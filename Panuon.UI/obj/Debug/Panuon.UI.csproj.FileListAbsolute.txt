@@ -1,0 +1,12 @@
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.cache
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.lref
+P:\Panuon Release\Panuon.UI\Panuon.UI\bin\Debug\Panuon.UI.dll
+P:\Panuon Release\Panuon.UI\Panuon.UI\bin\Debug\Panuon.UI.pdb
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Themes\Generic.baml
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.g.resources
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.Properties.Resources.resources
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.cache
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.csproj.CoreCompileInputs.cache
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.dll
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.pdb
+P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
