@@ -1,8 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Panuon.UI
@@ -19,16 +16,12 @@ namespace Panuon.UI
             base.OnApplyTemplate();
             if (TextBoxStyle == TextBoxStyles.General)
             {
-                if(HorizontalContentAlignment == HorizontalAlignment.Left)
-                    InnerWidth = Width - Padding.Right - Padding.Left ;
                 var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 0) as ScrollViewer;
                 scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
             }
-            else if(TextBoxStyle == TextBoxStyles.IconGroup)
+            else if (TextBoxStyle == TextBoxStyles.IconGroup)
             {
-                if (HorizontalContentAlignment == HorizontalAlignment.Left)
-                    InnerWidth = Width - IconWidth - Padding.Right;
-                var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1),0) as ScrollViewer;
+                var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1), 0) as ScrollViewer;
                 scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
             }
         }
@@ -45,11 +38,11 @@ namespace Panuon.UI
                     return;
             else
                  if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
-                    scrollViewer.LineDown();
-                else if (scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
-                    scrollViewer.LineRight();
-                else
-                    return;
+                scrollViewer.LineDown();
+            else if (scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
+                scrollViewer.LineRight();
+            else
+                return;
 
             if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible || scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
                 e.Handled = true;
@@ -117,14 +110,6 @@ namespace Panuon.UI
             set { SetValue(IconWidthProperty, value); }
         }
         public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register("IconWidth", typeof(double), typeof(PUTextBox), new PropertyMetadata((double)30));
-
-        //内部ScrollViewer的长度，自动计算的值。
-        private double InnerWidth
-        {
-            get { return (double)GetValue(InnerWidthProperty); }
-            set { SetValue(InnerWidthProperty, value); }
-        }
-        private static readonly DependencyProperty InnerWidthProperty = DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUTextBox), new PropertyMetadata(double.NaN));
 
         #endregion
 

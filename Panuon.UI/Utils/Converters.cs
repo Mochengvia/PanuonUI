@@ -69,4 +69,40 @@ namespace Panuon.UI
         }
     }
 
+
+    //输入框内部宽度转换器
+    public class TextBoxInnerWidthConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            //0是Width，1是Padding，，2是HorizontalContentAlignment
+            if ((HorizontalAlignment)values[2] != HorizontalAlignment.Center)
+                return (double)values[0] - ((Thickness)values[1]).Left - ((Thickness)values[1]).Right;
+            else
+                return DependencyProperty.UnsetValue;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return new object[] { DependencyProperty.UnsetValue, DependencyProperty.UnsetValue };
+        }
+    }
+
+    //输入框内部高度转换器
+    public class TextBoxInnerHeightConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            //0是Heihgt，1是Padding，2是VerticalContentAlignment
+            if ((VerticalAlignment)values[2] != VerticalAlignment.Center)
+                return (double)values[0] - ((Thickness)values[1]).Top - ((Thickness)values[1]).Bottom;
+            else
+                return DependencyProperty.UnsetValue;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return new object[] { DependencyProperty.UnsetValue, DependencyProperty.UnsetValue };
+        }
+    }
 }
