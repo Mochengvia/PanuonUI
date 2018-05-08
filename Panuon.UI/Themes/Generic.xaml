@@ -3,402 +3,956 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Panuon.UI">
 
-    <SolidColorBrush x:Key="Theme" Color="#FF3E3E3E"/>
-    <FontFamily x:Key="FontAwesome" >/#fontawesome</FontFamily>
-    
-    
-    
-    <Style TargetType="{x:Type local:PUButton}">
-        <Setter Property="Background" Value="{StaticResource Theme}"></Setter>
-        <Setter Property="BorderThickness" Value="0"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="Content" Value="Button"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
-        <Style.Triggers>
-            <Trigger Property="ButtonStyle" Value="General">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
-                                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Border x:Name="bdrInner" Background="{TemplateBinding Background}" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                        <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
-                                    </Border>
-                                </Border>
-                                <Border x:Name="bdrHoverCover" Background="{Binding CoverBackground,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0"></Border>
-                                <Border x:Name="bdrPressedCover" Background="{Binding CoverBackground,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0"></Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.4"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0.2" Duration="0:0:0.3"></DoubleAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"></DoubleAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-            <Trigger Property="ButtonStyle" Value="Hollow">
-                <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
-                <Setter Property="BorderBrush" Value="{StaticResource Theme}"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="CoverBackground" Value="{StaticResource Theme}"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
-                                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Grid>
-                                        <Border x:Name="bdrHoverCover" Background="{Binding CoverBackground,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0" Margin="-1"></Border>
-                                        <Border x:Name="bdrInner" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                            <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
-                                </Border>
-                                <Border x:Name="bdrPressedCover" Background="White" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"  Opacity="0"></Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.4"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"></DoubleAnimation>
-                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"></ColorAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"></DoubleAnimation>
-                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-            <Trigger Property="ButtonStyle" Value="Outline">
-                <Setter Property="Foreground" Value="LightGray"></Setter>
-                <Setter Property="BorderBrush" Value="LightGray"></Setter>
-                <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="CoverBackground" Value="{StaticResource Theme}"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
-                                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Grid>
-                                        <Border x:Name="bdrInner" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                            <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
-                                </Border>
-                                <Border x:Name="bdrHoverCover" Background="Transparent" BorderThickness="{TemplateBinding BorderThickness}"  BorderBrush="{Binding CoverBackground,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="1">
-                                    <Border.OpacityMask>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStopCollection>
-                                                <GradientStop Offset="0" Color="White"></GradientStop>
-                                                <GradientStop x:Name="offset" Offset="0" Color="Transparent"></GradientStop>
-                                            </GradientStopCollection>
-                                        </LinearGradientBrush>
-                                    </Border.OpacityMask>
-                                    <Label Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding Content}" Foreground="{Binding CoverBackground,RelativeSource={RelativeSource AncestorType=Button}}"></Label>
+  <SolidColorBrush x:Key="Theme" Color="#FF3E3E3E"/>
+  <FontFamily x:Key="FontAwesome" >/#fontawesome</FontFamily>
 
-                                </Border>
-                                <Border x:Name="bdrPressedCover" Background="{TemplateBinding CoverBackground}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"  Opacity="0"></Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.4"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.15"></DoubleAnimation>
-                                                <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.05" BeginTime="0:0:0.15"></ColorAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.05"></ColorAnimation>
-                                                <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="0" Duration="0:0:0.15" BeginTime="0:0:0.05"></DoubleAnimation>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
 
-        </Style.Triggers>
-    </Style>
-
-    <Style TargetType="{x:Type local:PUTextBox}">
-        <Setter Property="BorderBrush" Value="Gray"></Setter>
-        <Setter Property="BorderThickness" Value="0.3"></Setter>
-        <Setter Property="Foreground" Value="Gray"></Setter>
-        <Setter Property="Background" Value="White"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
-        <Setter Property="Padding" Value="3,1,1,1"></Setter>
-        <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
-        <Style.Triggers>
-            <Trigger Property="TextBoxStyle" Value="General">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type local:PUTextBox}">
-                            <Grid>
-                                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}">
-                                    <Border.Effect>
-                                        <DropShadowEffect x:Name="effect" ShadowDepth="0" BlurRadius="0" Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}" Opacity="0.4"/>
-                                    </Border.Effect>
-                                </Border>
-                                <Border x:Name="bdrInner" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Grid>
-                                        <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}" />
-                                        <TextBlock  x:Name="tbWaterMark" Margin="3,0,0,0" Padding="{TemplateBinding Padding}" TextWrapping="Wrap" Focusable="False" IsHitTestVisible="False" Visibility="Collapsed" Text="{Binding WaterMark,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Opacity="0.6"/>
-                                    </Grid>
-                                </Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="True"  >
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation To="5"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation To="0"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                                <Trigger Property="Text" Value="">
-                                    <Setter Property="Visibility" TargetName="tbWaterMark" Value="Visible"/>
-                                </Trigger>
-                                <Trigger  Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.3"></Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-            <Trigger Property="TextBoxStyle" Value="IconGroup">
-                <Setter Property="Padding" Value="30,1,1,1"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type local:PUTextBox}">
-                            <Grid>
-                                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}">
-                                    <Border.Effect>
-                                        <DropShadowEffect x:Name="effect" ShadowDepth="0" BlurRadius="0" Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}" Opacity="0.4"/>
-                                    </Border.Effect>
-                                </Border>
-                                <Border x:Name="bdrInner" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Grid>
-                                        <Border Width="{Binding IconWidth,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}" BorderThickness="1">
-                                            <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}" Foreground="{TemplateBinding Foreground}" FontFamily="{StaticResource FontAwesome}"></Label>
-                                        </Border>
-                                        <Grid  >
-                                            <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" Height="{TemplateBinding Height}"  IsTabStop="False" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                                            <TextBlock  x:Name="tbWaterMark" Margin="3,0,0,0" Padding="{TemplateBinding Padding}" TextWrapping="Wrap" Focusable="False" IsHitTestVisible="False" Visibility="Collapsed" Text="{Binding WaterMark,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Opacity="0.6"/>
-                                        </Grid>
-                                    </Grid>
-                                </Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsFocused" Value="True"  >
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation To="5"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation To="0"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                                <Trigger Property="Text" Value="">
-                                    <Setter Property="Visibility" TargetName="tbWaterMark" Value="Visible"/>
-                                </Trigger>
-                                <Trigger  Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" Value="0.3"></Setter>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="ScrollBarThumb"  TargetType="{x:Type Thumb}">
-        <Setter Property="OverridesDefaultStyle"  Value="true"/>
-        <Setter Property="IsTabStop"  Value="false"/>
+  <Style TargetType="{x:Type local:PUButton}">
+    <Setter Property="Background" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="BorderThickness" Value="0"></Setter>
+    <Setter Property="Foreground" Value="White"></Setter>
+    <Setter Property="Content" Value="Button"></Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" ></Setter>
+    <Style.Triggers>
+      <Trigger Property="ButtonStyle" Value="General">
         <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border  Background="#90B9B9B9"  CornerRadius="3"/>
-                </ControlTemplate>
-            </Setter.Value>
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUButton}">
+              <Grid>
+                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                  <Border x:Name="bdrInner" Background="{TemplateBinding Background}" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                    <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+                  </Border>
+                </Border>
+                <Border x:Name="bdrHoverCover" Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0"></Border>
+                <Border x:Name="bdrPressedCover" Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0"></Border>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                  <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0.2" Duration="0:0:0.3"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
         </Setter>
-    </Style>
-    <Style x:Key="ScrollBar" TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled"  Value="false"/>
-        <Setter Property="Stylus.IsFlicksEnabled"  Value="false"/>
-        <Setter Property="Background"  Value="Transparent"/>
-        <Setter Property="Width"  Value="12"/>
-        <Setter Property="MinWidth"  Value="12"/>
-        <Setter Property="Cursor" Value="Arrow"></Setter>
+      </Trigger>
+      <Trigger Property="ButtonStyle" Value="Hollow">
+        <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
         <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Grid SnapsToDevicePixels="true">
-                        <Track x:Name="PART_Track"  IsEnabled="{TemplateBinding IsMouseOver}"  IsDirectionReversed="true">
-                            <Track.Thumb>
-                                <Thumb Style="{StaticResource ScrollBarThumb}"/>
-                            </Track.Thumb>
-                        </Track>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="Orientation"  Value="Horizontal">
-                <Setter Property="Background"  Value="Transparent"/>
-                <Setter Property="Margin"  Value="1,0,6,1"/>
-                <Setter Property="Height"  Value="12"/>
-                <Setter Property="MinHeight"  Value="12"/>
-                <Setter Property="Width"  Value="Auto"/>
-                <Setter Property="Opacity" Value="0.3"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ScrollBar}">
-                            <Grid SnapsToDevicePixels="true">
-                                <Track x:Name="PART_Track"   IsEnabled="{TemplateBinding IsMouseOver}">
-                                    <Track.Thumb>
-                                        <Thumb Style="{StaticResource ScrollBarThumb}"/>
-                                    </Track.Thumb>
-                                </Track>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style TargetType="{x:Type local:PUScrollViewer}">
-        <Setter Property="BorderBrush"  Value="LightGray"/>
-        <Setter Property="BorderThickness"  Value="0"/>
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="HorizontalContentAlignment"  Value="Left"/>
-        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
-        <Setter Property="VerticalContentAlignment" Value="Top"/>
-        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUScrollViewer}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"   BorderThickness="{TemplateBinding BorderThickness}"   SnapsToDevicePixels="True">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ScrollContentPresenter  Cursor="{TemplateBinding Cursor}" Margin="0,0,10,10"  ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                            <ScrollBar x:Name="PART_VerticalScrollBar" Opacity="0.5" HorizontalAlignment="Right" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Style="{StaticResource ScrollBar}" ViewportSize="{TemplateBinding ViewportHeight}" Value="{TemplateBinding VerticalOffset}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                            <ScrollBar x:Name="PART_HorizontalScrollBar" Opacity="0.5" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Style="{StaticResource ScrollBar}" VerticalAlignment="Bottom" Value="{TemplateBinding HorizontalOffset}"  ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
-                        </Grid>
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUButton}">
+              <Grid>
+                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                  <Grid>
+                    <Border x:Name="bdrHoverCover" Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="0" Margin="-1"></Border>
+                    <Border x:Name="bdrInner" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                      <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="ScrollChanged" >
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation  Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" To="1"  Duration="0:0:0.2"/>
-                                    <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
-                                    <DoubleAnimation  Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"  Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseEnter" SourceName="PART_VerticalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity"  To="1" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave"  SourceName="PART_VerticalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="PART_VerticalScrollBar"  Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseEnter" SourceName="PART_HorizontalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity"  To="1" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave"  SourceName="PART_HorizontalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"  Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
+                  </Grid>
+                </Border>
+                <Border x:Name="bdrPressedCover" Background="White" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"  Opacity="0"></Border>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                  <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="White" Duration="0:0:0.3"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrHoverCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" Duration="0:0:0.3"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
         </Setter>
-    </Style>
+      </Trigger>
+      <Trigger Property="ButtonStyle" Value="Outline">
+        <Setter Property="Foreground" Value="LightGray"></Setter>
+        <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUButton}">
+              <Grid>
+                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                  <Grid>
+                    <Border x:Name="bdrInner" BorderThickness="0" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                      <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+                    </Border>
+                  </Grid>
+                </Border>
+                <Border x:Name="bdrHoverCover" Background="Transparent" BorderThickness="{TemplateBinding BorderThickness}"  BorderBrush="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" Opacity="1">
+                  <Border.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                      <GradientStopCollection>
+                        <GradientStop Offset="0" Color="White"></GradientStop>
+                        <GradientStop x:Name="offset" Offset="0" Color="Transparent"></GradientStop>
+                      </GradientStopCollection>
+                    </LinearGradientBrush>
+                  </Border.OpacityMask>
+                  <Label Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding Content}" Foreground="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}"></Label>
+
+                </Border>
+                <Border x:Name="bdrPressedCover" Background="{TemplateBinding CoverBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"  Opacity="0"></Border>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                  <Setter TargetName="bdrPressedCover" Property="Opacity" Value="0.1"></Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.15"></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.05" BeginTime="0:0:0.15"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.05"></ColorAnimation>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="0" Duration="0:0:0.15" BeginTime="0:0:0.05"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style TargetType="{x:Type local:PUTextBox}">
+    <Setter Property="BorderBrush" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="BorderThickness" Value="0.3"></Setter>
+    <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="Background" Value="White"></Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+    <Setter Property="Padding" Value="6,0,0,0"></Setter>
+    <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" ></Setter>
+    <Style.Triggers>
+      <Trigger Property="TextBoxStyle" Value="General">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUTextBox}">
+              <Grid>
+                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}">
+                  <Border.Effect>
+                    <DropShadowEffect x:Name="effect" ShadowDepth="0" BlurRadius="0" Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}" Opacity="0.4"/>
+                  </Border.Effect>
+                </Border>
+                <Border x:Name="bdrInner" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                  <Grid>
+                    <ScrollViewer x:Name="PART_ContentHost" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=TextBox}}" Margin="{TemplateBinding Padding}"  IsTabStop="False" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    <TextBlock  x:Name="tbWaterMark" Margin="3,0,0,0" Padding="{TemplateBinding Padding}" TextWrapping="Wrap" Focusable="False" IsHitTestVisible="False" Visibility="Collapsed" Text="{Binding WaterMark,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Opacity="0.6"/>
+                  </Grid>
+                </Border>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsFocused" Value="True"  >
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="5"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="0"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="Text" Value="">
+                  <Setter Property="Visibility" TargetName="tbWaterMark" Value="Visible"/>
+                </Trigger>
+                <Trigger  Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="TextBoxStyle" Value="IconGroup">
+        <Setter Property="Padding" Value="30,0,0,0"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUTextBox}">
+              <Grid>
+                <Border x:Name="bdrOuter" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}">
+                  <Border.Effect>
+                    <DropShadowEffect x:Name="effect" ShadowDepth="0" BlurRadius="0" Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}" Opacity="0.4"/>
+                  </Border.Effect>
+                </Border>
+                <Border x:Name="bdrInner" ClipToBounds="True" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                  <Grid>
+                    <Border Width="{Binding IconWidth,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}" BorderThickness="1">
+                      <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}" Foreground="{TemplateBinding Foreground}" FontFamily="{StaticResource FontAwesome}"></Label>
+                    </Border>
+                    <Grid  >
+                      <ScrollViewer x:Name="PART_ContentHost" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=TextBox}}" Margin="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"  Foreground="{TemplateBinding Foreground}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                      <TextBlock  x:Name="tbWaterMark" Padding="{TemplateBinding Padding}" TextWrapping="Wrap" Focusable="False" IsHitTestVisible="False" Visibility="Collapsed" Text="{Binding WaterMark,RelativeSource={RelativeSource AncestorType=TextBox}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Opacity="0.6"/>
+                    </Grid>
+                  </Grid>
+                </Border>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsFocused" Value="True"  >
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="5"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="0"  Duration="0:0:0.2" Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="Text" Value="">
+                  <Setter Property="Visibility" TargetName="tbWaterMark" Value="Visible"/>
+                </Trigger>
+                <Trigger  Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+
+    </Style.Triggers>
+  </Style>
+
+  <local:CornerRadiusConverter x:Key="CornerRadiusConverter"></local:CornerRadiusConverter>
+  <local:ToggleHeightConverter x:Key="ToggleHeightConverter"></local:ToggleHeightConverter>
+  <local:TranslateXConverter x:Key="TranslateXConverter"></local:TranslateXConverter>
+  <local:ScaleConverter x:Key="ScaleConverter"></local:ScaleConverter>
+  <Style TargetType="{x:Type local:PUCheckBox}">
+    <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="BorderThickness" Value="1"></Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+    <Setter Property="Padding" Value="4,0,0,0"></Setter>
+    <Setter Property="IsChecked" Value="False"></Setter>
+    <Setter Property="Content" Value="CheckBox"></Setter>
+    <Setter Property="Cursor" Value="Hand"></Setter>
+    <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" ></Setter>
+    <Style.Triggers>
+      <Trigger Property="CheckBoxStyle" Value="General">
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
+              <StackPanel Orientation="Horizontal">
+                <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=CheckBox}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox}}" Opacity="0.7">
+                  <Path x:Name="pCheck" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" Data="M2,9 L7,13 L 14,2" StrokeThickness="1.5" Fill="{x:Null}" Stroke="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                      <ScaleTransform>
+                        <ScaleTransform.ScaleX>
+                          <MultiBinding Converter="{StaticResource ScaleConverter}">
+                            <Binding Path="InnerWidth" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                            <Binding Path="InnerHeight" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                          </MultiBinding>
+                        </ScaleTransform.ScaleX>
+                        <ScaleTransform.ScaleY>
+                          <MultiBinding Converter="{StaticResource ScaleConverter}">
+                            <Binding Path="InnerWidth" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                            <Binding Path="InnerHeight" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                          </MultiBinding>
+                        </ScaleTransform.ScaleY>
+                      </ScaleTransform>
+                    </Path.RenderTransform>
+                    <Path.OpacityMask>
+                      <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStopCollection>
+                          <GradientStop Offset="0" Color="White"></GradientStop>
+                          <GradientStop x:Name="offset" Offset="0" Color="Transparent"></GradientStop>
+                        </GradientStopCollection>
+                      </LinearGradientBrush>
+                    </Path.OpacityMask>
+                  </Path>
+                </Border>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.2" ></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.05" BeginTime="0:0:0.2"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.05"></ColorAnimation>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="0" Duration="0:0:0.1" BeginTime="0:0:0.05"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Setter TargetName="bdrOuter" Property="Opacity" Value="1"></Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="CheckBoxStyle" Value="Switch">
+        <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        <Setter Property="CoverBrush" Value="LightGray"></Setter>
+        <Setter Property="Background" Value="LightGray"></Setter>
+        <Setter Property="InnerHeight" Value="25"></Setter>
+        <Setter Property="InnerWidth" Value="35"></Setter>
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
+              <StackPanel Orientation="Horizontal">
+                <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox}}" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=CheckBox}}">
+                  <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource CornerRadiusConverter}}">
+                    <Border x:Name="bdrInner" BorderThickness="0" Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource CornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5">
+                      <Border.RenderTransform>
+                        <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"></ScaleTransform>
+                      </Border.RenderTransform>
+                    </Border>
+                  </Border>
+                  <Border HorizontalAlignment="Right" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource CornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleHeightConverter}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleHeightConverter}}" Background="White">
+                    <Border.Effect>
+                      <DropShadowEffect x:Name="effect" Color="DimGray" Opacity="0.4" BlurRadius="3" ShadowDepth="0.5" Direction="215"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.RenderTransform>
+                      <TranslateTransform x:Name="translate">
+                        <TranslateTransform.X>
+                          <MultiBinding Converter="{StaticResource TranslateXConverter}">
+                            <Binding Path="InnerWidth" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                            <Binding Path="InnerHeight" RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                          </MultiBinding>
+                        </TranslateTransform.X>
+                      </TranslateTransform>
+                    </Border.RenderTransform>
+                  </Border>
+                </Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Storyboard>
+                          <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                          <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                          <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X" To="-1" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                        </Storyboard>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Storyboard>
+                          <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" To="5" Duration="0:0:0.3"></DoubleAnimation>
+                          <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="ShadowDepth" To="1" Duration="0:0:0.3"></DoubleAnimation>
+                        </Storyboard>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" Duration="0:0:0.3"></DoubleAnimation>
+                        <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="ShadowDepth" Duration="0:0:0.3"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="CheckBoxStyle" Value="Branch">
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderThickness" Value="5,0,0,0"></Setter>
+        <Setter Property="Padding" Value="10,0,0,0"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
+              <Grid>
+                <Grid>
+                  <Border x:Name="bdrCover" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}" Opacity="0.2"/>
+                  <Border x:Name="bdrInner" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}" Opacity="0.7">
+                    <Border.OpacityMask>
+                      <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStopCollection>
+                          <GradientStop Offset="0" Color="White"></GradientStop>
+                          <GradientStop x:Name="offset" Offset="0" Color="Transparent"></GradientStop>
+                        </GradientStopCollection>
+                      </LinearGradientBrush>
+                    </Border.OpacityMask>
+                  </Border>
+                </Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.3" ></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.2" Duration="0:0:0.3" ></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.05" ></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.05" BeginTime="0:0:0.05"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.05"></ColorAnimation>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="0" Duration="0:0:0.05" BeginTime="0:0:0.05"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style TargetType="{x:Type local:PURadioButton}">
+    <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="Background" Value="Transparent"></Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource Theme}"></Setter>
+    <Setter Property="BorderThickness" Value="1"></Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+    <Setter Property="Padding" Value="4,0,0,0"></Setter>
+    <Setter Property="IsChecked" Value="False"></Setter>
+    <Setter Property="Content" Value="RadioButton"></Setter>
+    <Setter Property="Cursor" Value="Hand"></Setter>
+    <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" ></Setter>
+    <Style.Triggers>
+      <Trigger Property="RadioButtonStyle" Value="General">
+        <Setter Property="Background" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderCornerRadius" Value="10"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PURadioButton}">
+              <StackPanel Orientation="Horizontal">
+                <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Background="{TemplateBinding Background}" Margin="1">
+                  <Border x:Name="bdrInner"  Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5" BorderThickness="0">
+                    <Border.Effect>
+                      <DropShadowEffect Color="White" Opacity="0.4" BlurRadius="3" ShadowDepth="0"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.RenderTransform>
+                      <ScaleTransform x:Name="scale1" ScaleX="1" ScaleY="1"></ScaleTransform>
+                    </Border.RenderTransform>
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" RenderTransformOrigin="0.5,0.5">
+                      <Border.RenderTransform>
+                        <ScaleTransform x:Name="scale2" ScaleX="0" ScaleY="0"></ScaleTransform>
+                      </Border.RenderTransform>
+                    </Border>
+                  </Border>
+                </Border>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
+                          <DoubleAnimation.EasingFunction>
+                            <BackEase EasingMode="EaseOut"></BackEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
+                          <DoubleAnimation.EasingFunction>
+                            <BackEase EasingMode="EaseOut"></BackEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="0.45" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
+                          <DoubleAnimation.EasingFunction>
+                            <BackEase EasingMode="EaseOut"></BackEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="0.45" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
+                          <DoubleAnimation.EasingFunction>
+                            <BackEase EasingMode="EaseOut"></BackEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="0" Duration="0:0:0.2" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation To="0" Duration="0:0:0.2" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Setter TargetName="bdrOuter" Property="Opacity" Value="1"></Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="RadioButtonStyle" Value="Switch">
+        <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        <Setter Property="CoverBrush" Value="LightGray"></Setter>
+        <Setter Property="Background" Value="LightGray"></Setter>
+        <Setter Property="InnerHeight" Value="25"></Setter>
+        <Setter Property="InnerWidth" Value="35"></Setter>
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PURadioButton}">
+              <StackPanel Orientation="Horizontal">
+                <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=RadioButton}}">
+                  <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}">
+                    <Border x:Name="bdrInner" BorderThickness="0" Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5">
+                      <Border.RenderTransform>
+                        <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1"></ScaleTransform>
+                      </Border.RenderTransform>
+                    </Border>
+                  </Border>
+                  <Border HorizontalAlignment="Right" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleHeightConverter}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleHeightConverter}}" Background="White">
+                    <Border.Effect>
+                      <DropShadowEffect x:Name="effect" Color="DimGray" Opacity="0.4" BlurRadius="3" ShadowDepth="0.5" Direction="215"></DropShadowEffect>
+                    </Border.Effect>
+                    <Border.RenderTransform>
+                      <TranslateTransform x:Name="translate">
+                        <TranslateTransform.X>
+                          <MultiBinding Converter="{StaticResource TranslateXConverter}">
+                            <Binding Path="InnerWidth" RelativeSource="{RelativeSource AncestorType=RadioButton}"></Binding>
+                            <Binding Path="InnerHeight" RelativeSource="{RelativeSource AncestorType=RadioButton}"></Binding>
+                          </MultiBinding>
+                        </TranslateTransform.X>
+                      </TranslateTransform>
+                    </Border.RenderTransform>
+                  </Border>
+                </Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Storyboard>
+                          <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                          <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                          <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X" To="-1" Duration="0:0:0.3">
+                            <DoubleAnimation.EasingFunction>
+                              <CubicEase EasingMode="EaseOut"></CubicEase>
+                            </DoubleAnimation.EasingFunction>
+                          </DoubleAnimation>
+                        </Storyboard>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X" Duration="0:0:0.3">
+                          <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"></CubicEase>
+                          </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Storyboard>
+                          <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" To="5" Duration="0:0:0.3"></DoubleAnimation>
+                          <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="ShadowDepth" To="1" Duration="0:0:0.3"></DoubleAnimation>
+                        </Storyboard>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="BlurRadius" Duration="0:0:0.3"></DoubleAnimation>
+                        <DoubleAnimation  Storyboard.TargetName="effect" Storyboard.TargetProperty="ShadowDepth" Duration="0:0:0.3"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+      <Trigger Property="RadioButtonStyle" Value="Branch">
+        <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderThickness" Value="5,0,0,0"></Setter>
+        <Setter Property="Padding" Value="10,0,0,0"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type local:PURadioButton}">
+              <Grid>
+                <Grid>
+                  <Border x:Name="bdrCover" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" Opacity="0.2"/>
+                  <Border x:Name="bdrInner" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" Opacity="0.7">
+                    <Border.OpacityMask>
+                      <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStopCollection>
+                          <GradientStop Offset="0" Color="White"></GradientStop>
+                          <GradientStop x:Name="offset" Offset="0" Color="Transparent"></GradientStop>
+                        </GradientStopCollection>
+                      </LinearGradientBrush>
+                    </Border.OpacityMask>
+                  </Border>
+                </Grid>
+                <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.3" ></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.2" Duration="0:0:0.3" ></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.05" ></DoubleAnimation>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.05" BeginTime="0:0:0.05"></ColorAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <ColorAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.05"></ColorAnimation>
+                        <DoubleAnimation Storyboard.TargetName="offset" Storyboard.TargetProperty="Offset" To="0" Duration="0:0:0.05" BeginTime="0:0:0.05"></DoubleAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                  <Setter Property="Opacity" Value="0.4"></Setter>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="ScrollBarThumb"  TargetType="{x:Type Thumb}">
+    <Setter Property="OverridesDefaultStyle"  Value="true"/>
+    <Setter Property="IsTabStop"  Value="false"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Thumb}">
+          <Border  Background="#90B9B9B9"  CornerRadius="3"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ScrollBar" TargetType="{x:Type ScrollBar}">
+    <Setter Property="Stylus.IsPressAndHoldEnabled"  Value="false"/>
+    <Setter Property="Stylus.IsFlicksEnabled"  Value="false"/>
+    <Setter Property="Background"  Value="Transparent"/>
+    <Setter Property="Width"  Value="12"/>
+    <Setter Property="MinWidth"  Value="12"/>
+    <Setter Property="Cursor" Value="Arrow"></Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ScrollBar}">
+          <Grid SnapsToDevicePixels="true">
+            <Track x:Name="PART_Track"  IsEnabled="{TemplateBinding IsMouseOver}"  IsDirectionReversed="true">
+              <Track.Thumb>
+                <Thumb Style="{StaticResource ScrollBarThumb}"/>
+              </Track.Thumb>
+            </Track>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Style.Triggers>
+      <Trigger Property="Orientation"  Value="Horizontal">
+        <Setter Property="Background"  Value="Transparent"/>
+        <Setter Property="Margin"  Value="1,0,1,1"/>
+        <Setter Property="Height"  Value="12"/>
+        <Setter Property="MinHeight"  Value="12"/>
+        <Setter Property="Width"  Value="Auto"/>
+        <Setter Property="Opacity" Value="0.3"></Setter>
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ScrollBar}">
+              <Grid SnapsToDevicePixels="true">
+                <Track x:Name="PART_Track"   IsEnabled="{TemplateBinding IsMouseOver}">
+                  <Track.Thumb>
+                    <Thumb Style="{StaticResource ScrollBarThumb}"/>
+                  </Track.Thumb>
+                </Track>
+              </Grid>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style TargetType="{x:Type ScrollViewer}">
+    <Setter Property="BorderBrush"  Value="LightGray"/>
+    <Setter Property="BorderThickness"  Value="0"/>
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="HorizontalContentAlignment"  Value="Left"/>
+    <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+    <Setter Property="VerticalContentAlignment" Value="Top"/>
+    <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+          <Border BorderBrush="{TemplateBinding BorderBrush}"   BorderThickness="{TemplateBinding BorderThickness}"   SnapsToDevicePixels="True">
+            <Grid Background="{TemplateBinding Background}">
+              <ScrollContentPresenter x:Name="content"  Cursor="{TemplateBinding Cursor}"  ContentTemplate="{TemplateBinding ContentTemplate}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+              <ScrollBar x:Name="PART_VerticalScrollBar" Opacity="0.5" HorizontalAlignment="Right" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Style="{StaticResource ScrollBar}" ViewportSize="{TemplateBinding ViewportHeight}" Value="{TemplateBinding VerticalOffset}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+              <ScrollBar x:Name="PART_HorizontalScrollBar" Opacity="0.5" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Style="{StaticResource ScrollBar}" VerticalAlignment="Bottom" Value="{TemplateBinding HorizontalOffset}"  ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="ScrollChanged" >
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation  Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" To="1"  Duration="0:0:0.2"/>
+                  <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
+                  <DoubleAnimation  Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                  <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"  Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseEnter" SourceName="PART_VerticalScrollBar">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar" Storyboard.TargetProperty="Opacity"  To="1" Duration="0:0:0.2"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave"  SourceName="PART_VerticalScrollBar">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation
+                      Storyboard.TargetName="PART_VerticalScrollBar"  Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseEnter" SourceName="PART_HorizontalScrollBar">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity"  To="1" Duration="0:0:0.2"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="MouseLeave"  SourceName="PART_HorizontalScrollBar">
+              <BeginStoryboard>
+                <Storyboard>
+                  <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"  Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" BeginTime="0:0:0.5"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
 
 </ResourceDictionary>

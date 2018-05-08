@@ -55,6 +55,8 @@
     <Compile Include="0_Base\PUScrollViewer.cs" />
     <Compile Include="1_Button\PUButton.cs" />
     <Compile Include="2_TextBox\PUTextBox.cs" />
+    <Compile Include="3_CheckBox\PUCheckBox.cs" />
+    <Compile Include="4_RadioButton\PURadioButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -68,6 +70,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Utils\Converters.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

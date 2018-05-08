@@ -45,16 +45,16 @@
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <Grid>
                     <pu:PUTextBox Padding="3,1,30,1" Text="与PUButton组合起来！" Width="180" Height="30" HorizontalAlignment="Left" Foreground="#FFE089B8" BorderBrush="#FFE089B8" ShadowColor="#FFE089B8" BorderCornerRadius="3"></pu:PUTextBox>
-                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5,0.4,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBackground="#AAE089B8" />
+                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5,0.4,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBrush="#AAE089B8" />
                 </Grid>
                 <Grid>
-                    <pu:PUTextBox Padding="30,1,30,1" TextBoxStyle="IconGroup" Text="与PUButton组合起来！" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FFE089B8" BorderBrush="#FFE089B8" ShadowColor="#FFE089B8" BorderCornerRadius="3"></pu:PUTextBox>
-                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5,0.4,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBackground="#AAE089B8" />
+                    <pu:PUTextBox Padding="30,0,30,0" TextBoxStyle="IconGroup" Text="与PUButton组合起来" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FFE089B8" BorderBrush="#FFE089B8" ShadowColor="#FFE089B8" BorderCornerRadius="3"></pu:PUTextBox>
+                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBrush="#AAE089B8" />
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <pu:PUTextBox Padding="3,5,1,1" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#FFF4A758" BorderCornerRadius="3" Text="PanuonUI是一个免费的、开源的、不限制个人或商业用途的开源控件库。&#13;但是，复刻该UI库以用于获得名誉、出售获利的行径是可耻、违反开源协议且不被容许的。&#13;如果发现此类行径，请联络我：bonjour@panuon.com。&#13;共同维护开源环境良性发展。"></pu:PUTextBox>
-                <pu:PUTextBox Icon="" TextBoxStyle="IconGroup" ScrollViewer.VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#AAF4A758" BorderCornerRadius="3" Text="PanuonUI是一个免费的、开源的、不限制个人或商业用途的开源控件库。&#13;但是，复刻该UI库以用于获得名誉、出售获利的行径是可耻、违反开源协议且不被容许的。&#13;如果发现此类行径，请联络我：bonjour@panuon.com。&#13;共同维护开源环境良性发展。" Margin="20,0,0,0"></pu:PUTextBox>
+                <pu:PUTextBox Padding="3,5,1,1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#FFF4A758" BorderCornerRadius="3"></pu:PUTextBox>
+                <pu:PUTextBox Icon="" TextBoxStyle="IconGroup" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#AAF4A758" BorderCornerRadius="3" Text="PanuonUI是一个免费的、开源的、不限制个人或商业用途的开源控件库。&#13;但是，复刻该UI库以用于获得名誉、出售获利的行径是可耻、违反开源协议且不被容许的。&#13;如果发现此类行径，请联络我：bonjour@panuon.com。&#13;共同维护开源环境良性发展。" Margin="20,0,0,0"></pu:PUTextBox>
             </StackPanel>
         </Grid>
 

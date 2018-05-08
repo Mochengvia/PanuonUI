@@ -36,12 +36,12 @@ namespace Panuon.UI
         /// 鼠标悬浮时遮罩层的背景颜色，默认值为白色。
         /// <para>仅当按钮样式为General时生效。</para>
         /// </summary>
-        public SolidColorBrush CoverBackground
+        public SolidColorBrush CoverBrush
         {
-            get { return (SolidColorBrush)GetValue(CoverBackgroundProperty); }
-            set { SetValue(CoverBackgroundProperty, value); }
+            get { return (SolidColorBrush)GetValue(CoverBrushProperty); }
+            set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBackgroundProperty = DependencyProperty.Register("CoverBackground", typeof(SolidColorBrush), typeof(PUButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(SolidColorBrush), typeof(PUButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         #endregion
 
@@ -53,12 +53,12 @@ namespace Panuon.UI
             General = 1,
             /// <summary>
             /// 一个带边框的空心按钮，当鼠标悬浮时才会显示背景色。
-            /// <para>当鼠标移入时，该按钮的背景色将由Background变为指定的CoverBackground。</para>
+            /// <para>当鼠标移入时，该按钮的背景色将由Background变为指定的CoverBrush。</para>
             /// </summary>
             Hollow = 2,
             /// <summary>
             /// 一个带边框的空心按钮，当鼠标悬浮时才会显示前景色。
-            /// <para>当鼠标移入时，该按钮的边框和前景色将由BorderBrush和Foreground变为指定的CoverBackground。</para>
+            /// <para>当鼠标移入时，该按钮的边框和前景色将由BorderBrush和Foreground变为指定的CoverBrush。</para>
             /// </summary>
             Outline = 3,
         }

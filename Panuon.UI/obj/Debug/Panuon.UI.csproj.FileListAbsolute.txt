@@ -10,3 +10,15 @@ P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.csproj.CoreCompileInpu
 P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.dll
 P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\Panuon.UI.pdb
 P:\Panuon Release\Panuon.UI\Panuon.UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.cache
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.lref
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\bin\Debug\Panuon.UI.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\bin\Debug\Panuon.UI.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Themes\Generic.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.g.resources
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.Properties.Resources.resources
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.cache
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csproj.CoreCompileInputs.cache

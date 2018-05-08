@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\
 Panuon.UIBrowser
 none
 false
 DEBUG;TRACE
-P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\App.xaml
-3-259665641
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\App.xaml
+5-162244487
 
-8-477340468
-13-1500424320
-MainWindow.xaml;Partial\TextBoxs.xaml;Partial\Buttons.xaml;
+12-831841220
+17697056530
+Partial\RadioButtons.xaml;Partial\CheckBoxs.xaml;Views\MainWindowView.xaml;Partial\TextBoxs.xaml;Partial\Buttons.xaml;
 
 True
 

@@ -3,13 +3,11 @@ P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.pdb
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Panuon.UI.dll
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Panuon.UI.pdb
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csprojResolveAssemblyReference.cache
-P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\MainWindow.g.cs
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\Buttons.g.cs
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\App.g.cs
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\GeneratedInternalTypeHelper.g.cs
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.cache
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.lref
-P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\MainWindow.baml
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\Buttons.baml
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.g.resources
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.Properties.Resources.resources
@@ -21,3 +19,48 @@ P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\App.baml
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\TextBoxs.g.cs
 P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\TextBoxs.baml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.g.cs
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.dll
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.dll
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.dll
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.xml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.xml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.xml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.baml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\CheckBoxs.baml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\CheckBoxs.g.cs
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\RadioButtons.baml
+P:\Panuon Release\Panuon.UI\Panuon.UIBrowser\obj\Debug\Partial\RadioButtons.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csprojResolveAssemblyReference.cache
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\App.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.cache
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.lref
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.exe
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.xml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.xml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\RadioButtons.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\CheckBoxs.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\RadioButtons.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\CheckBoxs.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\TextBoxs.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\Buttons.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\App.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\TextBoxs.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Partial\Buttons.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.g.resources
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.Properties.Resources.resources
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.GenerateResource.cache
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Source\Repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.CopyComplete
