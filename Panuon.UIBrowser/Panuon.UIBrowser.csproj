@@ -65,18 +65,22 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
-    <Compile Include="Partial\RadioButtons.xaml.cs">
-      <DependentUpon>RadioButtons.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Partial\CheckBoxs.xaml.cs">
-      <DependentUpon>CheckBoxs.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Page Include="Partial\RadioButtons.xaml">
+    <Compile Include="ViewModels\Partial\WindowsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\TextBoxsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\RadioButtonsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\WindowsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Partial\CheckBoxs.xaml">
+    <Page Include="Views\Partial\RadioButtonsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Partial\CheckBoxsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,22 +92,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Partial\TextBoxs.xaml">
+    <Page Include="Views\Partial\TextBoxsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Partial\Buttons.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Partial\ButtonsView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Partial\IntroductionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Partial\TextBoxs.xaml.cs">
-      <DependentUpon>TextBoxs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Partial\Buttons.xaml.cs">
-      <DependentUpon>Buttons.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,5 +136,6 @@
       <Name>Panuon.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

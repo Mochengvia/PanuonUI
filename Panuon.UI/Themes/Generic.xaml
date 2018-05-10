@@ -11,7 +11,322 @@
     <local:ScaleConverter x:Key="ScaleConverter"></local:ScaleConverter>
     <local:TextBoxInnerWidthConverter x:Key="TextBoxInnerWidthConverter"></local:TextBoxInnerWidthConverter>
     <local:TextBoxInnerHeightConverter x:Key="TextBoxInnerHeightConverter"></local:TextBoxInnerHeightConverter>
+    <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
+    <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
 
+    <Style TargetType="{x:Type local:PUWindow}">
+        <Setter Property="Background" Value="White"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderBrush" Value="Gray"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
+        <Setter Property="WindowStyle" Value="None"></Setter>
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+        <Style.Triggers>
+            <Trigger Property="AnimationStyle" Value="Fade">
+                <Setter Property="Opacity" Value="0"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUWindow}">
+                            <Border x:Name="bdrOuter" Margin="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
+                                <Grid>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid x:Name="grdNavbar" Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}" Margin="3,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}"></Label>
+                                                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}">
+                                                    <Label.Content>
+                                                        <MultiBinding Converter="{StaticResource HeaderConverter}">
+                                                            <Binding Path="Header" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                            <Binding Path="Title" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Content>
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <local:PUButton x:Name="btnMin" Content="-" Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnMax" Content="□" Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnClose" Content="×" Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#CCC53434" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="1" x:Name="grdContainer">
+                                            <AdornerDecorator>
+                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                            </AdornerDecorator>
+                                        </Grid>
+                                    </Grid>
+                                    <Border x:Name="bdrCover" Background="Gray" BorderThickness="0" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}" Opacity="0" IsHitTestVisible="False"/>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.4">
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger SourceName="btnClose" RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3">
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <Trigger Property="ShowCover" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.05"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="CanMinimize">
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="NoResize">
+                                    <Setter TargetName="btnMin" Property="IsEnabled" Value="False"></Setter>
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="HideNavButtons" Value="True">
+                                    <Setter TargetName="btnMin" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnMax" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnClose" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="AnimationStyle" Value="Gradual">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUWindow}">
+                            <Border x:Name="bdrOuter" Margin="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStopCollection>
+                                            <GradientStop x:Name="offset1" Offset="0" Color="White"></GradientStop>
+                                            <GradientStop x:Name="offset2" Offset="0" Color="Transparent"></GradientStop>
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                                <Grid>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid x:Name="grdNavbar" Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}" Margin="3,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}"></Label>
+                                                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}">
+                                                    <Label.Content>
+                                                        <MultiBinding Converter="{StaticResource HeaderConverter}">
+                                                            <Binding Path="Header" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                            <Binding Path="Title" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Content>
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <local:PUButton x:Name="btnMin" Content="-" Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnMax" Content="□" Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnClose" Content="×" Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#CCC53434" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="1" x:Name="grdContainer">
+                                            <AdornerDecorator>
+                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                            </AdornerDecorator>
+                                        </Grid>
+                                    </Grid>
+                                    <Border x:Name="bdrCover" Background="Gray" BorderThickness="0" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}" Opacity="0" IsHitTestVisible="False"/>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="offset2" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.2"></DoubleAnimation>
+                                            <ColorAnimation Storyboard.TargetName="offset2" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.1" BeginTime="0:0:0.2"></ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger SourceName="btnClose" RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="offset1" Storyboard.TargetProperty="Color" To="Transparent" Duration="0:0:0.2"></ColorAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="offset1" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.1" BeginTime="0:0:0.2"></DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <Trigger Property="ShowCover" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.05"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="CanMinimize">
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="NoResize">
+                                    <Setter TargetName="btnMin" Property="IsEnabled" Value="False"></Setter>
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="HideNavButtons" Value="True">
+                                    <Setter TargetName="btnMin" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnMax" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnClose" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="AnimationStyle" Value="Scale">
+                <Setter Property="Opacity" Value="0.5"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUWindow}">
+                            <Border x:Name="bdrOuter" Margin="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}" RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="scale" ScaleX="0.95" ScaleY="0.95"/>
+                                </Border.RenderTransform>
+                                <Grid>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid x:Name="grdNavbar" Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}" Margin="3,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}"></Label>
+                                                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontSize="{TemplateBinding FontSize}" FontFamily="{StaticResource FontAwesome}" Foreground="{TemplateBinding Foreground}">
+                                                    <Label.Content>
+                                                        <MultiBinding Converter="{StaticResource HeaderConverter}">
+                                                            <Binding Path="Header" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                            <Binding Path="Title" RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Content>
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <local:PUButton x:Name="btnMin" Content="-" Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnMax" Content="□" Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"  CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#99999999" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnClose" Content="×" Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}" ButtonStyle="Hollow" BorderBrush="Transparent" CoverBrush="#CCC53434" Foreground="{TemplateBinding Foreground}" Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}" HorizontalAlignment="Right" FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="1" x:Name="grdContainer">
+                                            <AdornerDecorator>
+                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                            </AdornerDecorator>
+                                        </Grid>
+                                    </Grid>
+                                    <Border x:Name="bdrCover" Background="Gray" BorderThickness="0" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}" Opacity="0" IsHitTestVisible="False"/>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.4"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger SourceName="btnClose" RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="0.95" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="0.95" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <Trigger Property="ShowCover" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.05"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover" Storyboard.TargetProperty="IsHitTestVisible" >
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="CanMinimize">
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="ResizeMode" Value="NoResize">
+                                    <Setter TargetName="btnMin" Property="IsEnabled" Value="False"></Setter>
+                                    <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
+                                </Trigger>
+                                <Trigger Property="HideNavButtons" Value="True">
+                                    <Setter TargetName="btnMin" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnMax" Property="Visibility" Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnClose" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
 
     <Style TargetType="{x:Type local:PUButton}">
         <Setter Property="Background" Value="{StaticResource Theme}"></Setter>
@@ -513,12 +828,13 @@
             </Trigger>
             <Trigger Property="CheckBoxStyle" Value="Branch">
                 <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
                 <Setter Property="BorderThickness" Value="5,0,0,0"></Setter>
                 <Setter Property="Padding" Value="10,0,0,0"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
-                            <Grid>
+                            <Grid Background="{TemplateBinding Background}">
                                 <Grid>
                                     <Border x:Name="bdrCover" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}" Opacity="0.2"/>
                                     <Border x:Name="bdrInner" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}" Opacity="0.7">
@@ -801,11 +1117,12 @@
             <Trigger Property="RadioButtonStyle" Value="Branch">
                 <Setter Property="CoverBrush" Value="{StaticResource Theme}"></Setter>
                 <Setter Property="BorderThickness" Value="5,0,0,0"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
                 <Setter Property="Padding" Value="10,0,0,0"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
-                            <Grid>
+                            <Grid Background="{TemplateBinding Background}">
                                 <Grid>
                                     <Border x:Name="bdrCover" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" Opacity="0.2"/>
                                     <Border x:Name="bdrInner" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" Opacity="0.7">

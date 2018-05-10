@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\App.xaml
-5-162244487
+7755067000
 
-12-831841220
+14-258860967
 17697056530
-Partial\RadioButtons.xaml;Partial\CheckBoxs.xaml;Views\MainWindowView.xaml;Partial\TextBoxs.xaml;Partial\Buttons.xaml;
+Views\Partial\WindowsView.xaml;Views\Partial\RadioButtonsView.xaml;Views\Partial\CheckBoxsView.xaml;Views\MainWindowView.xaml;Views\Partial\TextBoxsView.xaml;Views\Partial\ButtonsView.xaml;Views\Partial\IntroductionView.xaml;
 
-True
+False
 

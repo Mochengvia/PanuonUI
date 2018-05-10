@@ -1,0 +1,18 @@
+﻿<pu:PUWindow x:Class="Panuon.UI.PUMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pu="clr-namespace:Panuon.UI"
+        mc:Ignorable="d"
+        Title="提示" MinHeight="220" MinWidth="350" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" FontSize="16" ResizeMode="NoResize" Icon="" HideNavButtons="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblContent" Content="123" HorizontalContentAlignment="Center" FontSize="16" VerticalContentAlignment="Center"></Label>
+        <pu:PUButton Margin="30,0,30,5" Grid.Row="1" Content="好" Click="PUButton_Click"></pu:PUButton>
+    </Grid>
+</pu:PUWindow>
