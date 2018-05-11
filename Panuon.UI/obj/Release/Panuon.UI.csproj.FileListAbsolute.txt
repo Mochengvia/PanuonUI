@@ -12,3 +12,4 @@ C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.Gener
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.CoreCompileInputs.cache
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.dll
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache

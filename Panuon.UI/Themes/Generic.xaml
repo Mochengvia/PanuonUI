@@ -1052,20 +1052,22 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Background="{TemplateBinding Background}" Margin="1">
-                                    <Border x:Name="bdrInner"  Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5" BorderThickness="0">
-                                        <Border.Effect>
-                                            <DropShadowEffect Color="White" Opacity="0.4" BlurRadius="3" ShadowDepth="0"></DropShadowEffect>
-                                        </Border.Effect>
-                                        <Border.RenderTransform>
-                                            <ScaleTransform x:Name="scale1" ScaleX="1" ScaleY="1"></ScaleTransform>
-                                        </Border.RenderTransform>
+                                <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Background="{TemplateBinding Background}">
+                                    <Grid>
+                                        <Border x:Name="bdrInner"  Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource CornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="White" Opacity="0.4" BlurRadius="3" ShadowDepth="0"></DropShadowEffect>
+                                            </Border.Effect>
+                                            <Border.RenderTransform>
+                                                <ScaleTransform x:Name="scale1" ScaleX="1" ScaleY="1"></ScaleTransform>
+                                            </Border.RenderTransform>
+                                        </Border>
                                         <Border Background="{TemplateBinding Background}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}" RenderTransformOrigin="0.5,0.5">
                                             <Border.RenderTransform>
                                                 <ScaleTransform x:Name="scale2" ScaleX="0" ScaleY="0"></ScaleTransform>
                                             </Border.RenderTransform>
                                         </Border>
-                                    </Border>
+                                    </Grid>
                                 </Border>
                                 <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="Content"></ContentPresenter>
                             </StackPanel>
@@ -1084,12 +1086,12 @@
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.45" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.45" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>

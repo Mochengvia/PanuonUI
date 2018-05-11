@@ -22,7 +22,7 @@
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="Button 按钮" cal:Message.Attach="[Event Click]=[Action ChangeSelect('2')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="TextBox 输入框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('3')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="PasswordBox 密码框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('4')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="CheckBox 复选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('5)]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="CheckBox 复选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('5')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="RadiuButton 单选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('6')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="TreeView 树视图" cal:Message.Attach="[Event Click]=[Action ChangeSelect('7')]"></pu:PURadioButton>
             </StackPanel>
