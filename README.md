@@ -3,7 +3,7 @@
 本库是一个正在开发的项目，只会把已经验证过没有问题的控件放出来（每周不定时更新）。<br/>
 最近更新日期：2018/5/11（重大更新，新增Window和MessageBox）。最新的版本共有7个控件。<br/>
 
-具体的动态效果请在我的知乎文章或CSDN博客上查看。<br/>
+有关自定义依赖属性的详细解释，请在我的CSDN博客上查看。<br/>
 我的博客：https://blog.csdn.net/qq_36663276/article/details/80209684<br/>
 本项目（Panuon.UI）使用了FontAwesome字体；示例程序（Panuon UIBrowser）中使用了Caliburn.Micro开源框架，请知悉。<br/>
 
