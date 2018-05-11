@@ -13,7 +13,7 @@
         <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
             <Run Text="该控件包含两种样式：General（默认的）、IconGroup。"></Run>
             <LineBreak></LineBreak>
-            <Run Text="额外的依赖属性包括：TextBoxStyle、BorderCornerRadius、ShadowColor、WaterMark、Icon(仅在IconGroup样式下生效)、IconWidth(仅在IconGroup样式下生效)。它们的功能就如它们的名称一样。"></Run>
+            <Run Text="额外的依赖属性包括：TextBoxStyle、BorderCornerRadius、ShadowColor、WaterMark、Icon(仅在IconGroup样式下生效)、IconWidth(仅在IconGroup样式下生效)。"></Run>
         </TextBlock>
 
         <Grid Height="40">

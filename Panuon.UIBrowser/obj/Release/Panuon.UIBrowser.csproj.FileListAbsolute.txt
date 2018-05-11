@@ -35,3 +35,7 @@ C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowse
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.csproj.CopyComplete
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.exe
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.pdb
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\PasswordBoxsView.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\PasswordBoxsView.g.cs
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TreeViewsView.baml
+C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TreeViewsView.g.cs

@@ -32,10 +32,16 @@ namespace Panuon.UIBrowser.ViewModels
                     ActivateItem(new TextBoxsViewModel());
                     return;
                 case 4:
-                    ActivateItem(new CheckBoxsViewModel());
+                    ActivateItem(new PasswordBoxsViewModel());
                     return;
                 case 5:
+                    ActivateItem(new CheckBoxsViewModel());
+                    return;
+                case 6:
                     ActivateItem(new RadioButtonsViewModel());
+                    return;
+                case 7:
+                    ActivateItem(new TreeViewsViewModel());
                     return;
 
             }

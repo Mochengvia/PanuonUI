@@ -66,12 +66,22 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Partial\TreeViewsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\PasswordBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\WindowsViewModel.cs" />
     <Compile Include="ViewModels\Partial\TextBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\RadioButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\TreeViewsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Partial\PasswordBoxsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Partial\WindowsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
