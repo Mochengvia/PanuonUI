@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using Panuon.UIBrowser.ViewModels.Partial;
+using System;
 using System.ComponentModel.Composition;
+using System.Windows.Threading;
 
 namespace Panuon.UIBrowser.ViewModels
 {
@@ -13,7 +15,7 @@ namespace Panuon.UIBrowser.ViewModels
             ActivateItem(new IntroductionViewModel());
         }
 
-       public void ChangeSelect(int select)
+        public void ChangeSelect(int select)
         {
             switch (select)
             {

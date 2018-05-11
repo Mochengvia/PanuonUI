@@ -6,7 +6,10 @@
         xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900" WindowStartupLocation="CenterScreen" AnimationStyle="Gradual">
+        Title="PanuonUI Broswer" Height="450" Width="900" WindowStartupLocation="CenterScreen" AnimationStyle="Gradual" ShowDelay="True">
+    <pu:PUWindow.Icon>
+        <TextBlock Text="" FontSize="20" FontFamily="{StaticResource FontAwesome}"></TextBlock>
+    </pu:PUWindow.Icon>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2.2*"></ColumnDefinition>

@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pu="clr-namespace:Panuon.UI"
         mc:Ignorable="d"
-        Title="提示" MinHeight="220" MinWidth="350" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" FontSize="16" ResizeMode="NoResize" Icon="" HideNavButtons="True">
+        Title="提示" MinHeight="220" MinWidth="350" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" FontSize="16" ResizeMode="NoResize" HideNavButtons="True">
+    <pu:PUWindow.Icon>
+        <TextBlock Text="" FontSize="20" FontFamily="{StaticResource FontAwesome}"></TextBlock>
+    </pu:PUWindow.Icon>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>

@@ -28,6 +28,7 @@ namespace Panuon.UI
                 this.DragMove();
             };
             _btnClose = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(grdNavbar, 1), 2) as PUButton;
+
         }
 
         #region Property
@@ -41,6 +42,18 @@ namespace Panuon.UI
             set { SetValue(ShowCoverProperty, value); }
         }
         public static readonly DependencyProperty ShowCoverProperty = DependencyProperty.Register("ShowCover", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+
+        /// <summary>
+        /// 显示延迟，默认值为False。
+        /// </summary>
+        public bool ShowDelay
+        {
+            get { return (bool)GetValue(ShowDelayProperty); }
+            set { SetValue(ShowDelayProperty, value); }
+        }
+        public static readonly DependencyProperty ShowDelayProperty = DependencyProperty.Register("ShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+
+
 
         /// <summary>
         /// 隐藏所有的控制栏右侧按钮。
@@ -105,14 +118,14 @@ namespace Panuon.UI
         public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register("Header", typeof(string), typeof(PUWindow), new PropertyMetadata(null));
 
         /// <summary>
-        /// 左上角标题，默认值为null。
+        /// 左上角图标，默认值为null。
         /// </summary>
-        public new string Icon
+        public new object Icon
         {
-            get { return (string)GetValue(IconProperty); }
+            get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public new static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(PUWindow), new PropertyMetadata(""));
+        public new static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(object), typeof(PUWindow), new PropertyMetadata(null));
 
         /// <summary>
         /// 控制栏背景色，默认值为White（白色）。

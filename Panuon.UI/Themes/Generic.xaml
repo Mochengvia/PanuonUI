@@ -57,7 +57,7 @@
                                         </Grid>
                                         <Grid Grid.Row="1" x:Name="grdContainer">
                                             <AdornerDecorator>
-                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                                <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" />
                                             </AdornerDecorator>
                                         </Grid>
                                     </Grid>
@@ -65,6 +65,9 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="ShowDelay" Value="True">
+                                    <Setter TargetName="content" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
                                         <Storyboard>
@@ -76,8 +79,10 @@
                                 <EventTrigger SourceName="btnClose" RoutedEvent="Button.Click">
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3">
-                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="content" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -159,7 +164,7 @@
                                         </Grid>
                                         <Grid Grid.Row="1" x:Name="grdContainer">
                                             <AdornerDecorator>
-                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                                <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" />
                                             </AdornerDecorator>
                                         </Grid>
                                     </Grid>
@@ -167,11 +172,17 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="ShowDelay" Value="True">
+                                    <Setter TargetName="content" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="offset2" Storyboard.TargetProperty="Offset" To="1" Duration="0:0:0.2"></DoubleAnimation>
                                             <ColorAnimation Storyboard.TargetName="offset2" Storyboard.TargetProperty="Color" To="White" Duration="0:0:0.1" BeginTime="0:0:0.2"></ColorAnimation>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="content" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -258,7 +269,7 @@
                                         </Grid>
                                         <Grid Grid.Row="1" x:Name="grdContainer">
                                             <AdornerDecorator>
-                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                                <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" />
                                             </AdornerDecorator>
                                         </Grid>
                                     </Grid>
@@ -266,12 +277,18 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="ShowDelay" Value="True">
+                                    <Setter TargetName="content" Property="Visibility" Value="Collapsed"></Setter>
+                                </Trigger>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3"/>
                                             <DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.4"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3"/>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="content" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
