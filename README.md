@@ -3,7 +3,7 @@
 本库是一个正在开发的项目，只会把已经验证过没有问题的控件放出来（每周不定时更新）。<br/>
 最近更新日期：2018/5/11（重大更新，新增Window和MessageBox）。最新的版本共有7个控件。<br/>
 
-有关自定义依赖属性的详细解释，请在我的CSDN博客上查看。<br/>
+有关动态效果、自定义依赖属性的详细解释，请在我的CSDN博客上查看。<br/>
 我的博客：https://blog.csdn.net/qq_36663276/article/details/80209684<br/>
 本项目（Panuon.UI）使用了FontAwesome字体；示例程序（Panuon UIBrowser）中使用了Caliburn.Micro开源框架，请知悉。<br/>
 
@@ -28,14 +28,39 @@
   ...
 </ScrollViewer>
 ```
-##### PUWindow控件
-这是一个融合了遮罩层、动画渐入渐出的窗体控件。 
-UI Browser和PUMessageBox控件都是使用了PUWindow的窗体。 
-![Alt text](https://img-blog.csdn.net/20180510213434344?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+##### PUWindow控件与PUMessageBox对话框
+这是一个融合了遮罩层、动画渐入渐出的窗体控件。支持左上角标题与任务栏标题不同（单独设置Header属性即可）。 
+像下面这样使用PUWindow窗体：
+```
+<pu:PUWindow 
+    ...
+    xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+    ...
+    Title="HelloWorld!" Height="450" Width="800" AnimationStyle="Gradual" ShowDelay="True">
+    <pu:PUWindow.Icon>
+        <TextBlock Text="" FontSize="20" FontFamily="{StaticResource FontAwesome}"></TextBlock>
+    </pu:PUWindow.Icon>
+    
+    <Grid>
+    ...
+    </Gird>
+</pu:PUWindow>
+```
+PUMessageBox控件是使用了PUWindow的窗体，并且调用此控件的父窗体也必须是PUWindow窗体。
+**你不必手动打开父窗体的遮罩层，ShowDialog方法会自动帮你打开。**
+```
+UI.PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。");
+```
 
 ##### PUButton按钮控件
 ![Alt text](https://img-blog.csdn.net/20180510213810302?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-当你的鼠标移入和点击时，按钮会出现不同的变化。
+当你的鼠标移入和点击时，按钮会出现不同的变化。调整CoverBrush属性以修改鼠标悬浮时的颜色。
+```
+//默认样式General
+<pu:PUButton></pu:PUButton>
+<pu:PUButton ButtonStyle="Hollow"></pu:PUButton>
+<pu:PUButton ButtonStyle="Outline"></pu:PUButton>
+```
 
 ##### PUTextBox输入框控件
 ![Alt text](https://img-blog.csdn.net/2018051021383478?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
