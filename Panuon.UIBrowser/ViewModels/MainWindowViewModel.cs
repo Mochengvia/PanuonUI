@@ -43,6 +43,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case 7:
                     ActivateItem(new TreeViewsViewModel());
                     return;
+                case 8:
+                    ActivateItem(new ProgressBarsViewModel());
+                    return;
 
             }
         }

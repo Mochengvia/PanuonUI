@@ -25,6 +25,7 @@
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="CheckBox 复选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('5')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="RadiuButton 单选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('6')]"></pu:PURadioButton>
                 <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="TreeView 树视图" cal:Message.Attach="[Event Click]=[Action ChangeSelect('7')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="ProgressBar 进度条" cal:Message.Attach="[Event Click]=[Action ChangeSelect('8')]"></pu:PURadioButton>
             </StackPanel>
         </Grid>
         <ScrollViewer Grid.Column="1">

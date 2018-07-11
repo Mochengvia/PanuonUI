@@ -8,6 +8,20 @@ using System.Windows.Data;
 
 namespace Panuon.UI
 {
+    //ProgressBar内部角度转换器
+    public class SideCornerRadiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var cr = (CornerRadius)value;
+            return new CornerRadius(cr.TopLeft, 0, 0, cr.BottomLeft);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
 
     //Window Header和Title转换器
     public class HeaderConverter : IMultiValueConverter
@@ -71,7 +85,7 @@ namespace Panuon.UI
     }
 
     //内部Toggle的圆角转换器
-    public class CornerRadiusConverter : IValueConverter
+    public class ToggleCornerRadiusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

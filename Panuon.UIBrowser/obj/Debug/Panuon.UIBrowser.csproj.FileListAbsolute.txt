@@ -68,3 +68,44 @@ C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\Tex
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TextBoxsView.baml
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\WindowsView.g.cs
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\WindowsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.exe
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.xml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.xml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.xml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ProgressBarsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TreeViewsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\PasswordBoxsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\RadioButtonsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\CheckBoxsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TextBoxsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ButtonsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\IntroductionView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ProgressBarsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TreeViewsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\PasswordBoxsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\WindowsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\RadioButtonsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\CheckBoxsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TextBoxsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ButtonsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\IntroductionView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\App.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.cache
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser_MarkupCompile.lref
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\App.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\WindowsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.g.resources
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.Properties.Resources.resources
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.GenerateResource.Cache
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb

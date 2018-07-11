@@ -64,6 +64,7 @@
     <Compile Include="5_RadioButton\PURadioButton.cs" />
     <Compile Include="6_TreeView\PUTreeView.cs" />
     <Compile Include="6_TreeView\PUTreeViewItem.cs" />
+    <Compile Include="7_ProgressBar\PUProgressBar.cs" />
     <Compile Include="9_Special\PUMessageBox.xaml.cs">
       <DependentUpon>PUMessageBox.xaml</DependentUpon>
     </Compile>
