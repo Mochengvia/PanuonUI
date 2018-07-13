@@ -32,7 +32,7 @@ namespace Panuon.UI
             var anima = new DoubleAnimation()
             {
                 To = ((double)e.NewValue / pgbar.Maximum) * pgbar.Width,
-                Duration = pgbar.UsingAnimation ? TimeSpan.FromSeconds(0.1) : TimeSpan.FromSeconds(0),
+                Duration = pgbar.UsingAnimation ? TimeSpan.FromSeconds(0.4) : TimeSpan.FromSeconds(0),
                 EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut }
             };
             pgbar.BeginAnimation(InnerWidthProperty, anima);

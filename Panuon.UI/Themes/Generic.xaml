@@ -205,7 +205,6 @@
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
-
                                 </Trigger>
                                 <Trigger Property="ResizeMode" Value="CanMinimize">
                                     <Setter TargetName="btnMax" Property="IsEnabled" Value="False"></Setter>
@@ -326,7 +325,6 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
-
     </Style>
 
     <Style TargetType="{x:Type local:PUButton}">
@@ -1078,22 +1076,22 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation To="0.85" Duration="0:0:0.6" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation To="0.85" Duration="0:0:0.6" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.6" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35" Duration="0:0:0.4" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.6" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
@@ -1486,7 +1484,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
 
     <Style x:Key="ScrollBarThumb"  TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"  Value="true"/>
