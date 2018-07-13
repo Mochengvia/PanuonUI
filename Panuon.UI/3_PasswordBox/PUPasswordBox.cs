@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,6 +34,7 @@ namespace Panuon.UI
             PreviewKeyDown += PUPasswordBox_PreviewKeyDown;
         }
 
+        #region Sys
         private void PUPasswordBox_TextInput(object sender, TextCompositionEventArgs e)
         {
             if (Password.Length >= MaxLength && SelectionLength == 0)
@@ -44,7 +46,7 @@ namespace Panuon.UI
                 var length = SelectionLength;
                 Password = Password.Remove(currentCursor, length);
             }
-            
+
             Password = Password.Insert(currentCursor, e.Text);
             Select(currentCursor + 1, 0);
             e.Handled = true;
@@ -66,7 +68,7 @@ namespace Panuon.UI
                 case Key.Back:
                     if (Text.Length > 0 && currentCursor > 0 && SelectionLength == 0)
                     {
-                        
+
                         Password = Password.Remove(currentCursor - 1, 1);
                         if (currentCursor > 0)
                             Select(currentCursor - 1, 0);
@@ -83,7 +85,7 @@ namespace Panuon.UI
                 case Key.Delete:
                     if (currentCursor < Text.Length)
                     {
-                       
+
                         Password = Password.Remove(currentCursor, 1);
                         Select(currentCursor, 0);
                     }
@@ -91,10 +93,10 @@ namespace Panuon.UI
                 case Key.Space:
                     if (SelectionLength != 0)
                     {
-                        
+
                         Password = Password.Remove(currentCursor, SelectionLength);
                     }
-                  
+
                     Password = Password.Insert(currentCursor, " ");
                     Select(currentCursor + 1, 0);
                     break;
@@ -103,6 +105,8 @@ namespace Panuon.UI
             }
             e.Handled = true;
         }
+
+        #endregion
 
         #region Event
         /// <summary>
@@ -121,26 +125,24 @@ namespace Panuon.UI
         /// <summary>
         /// 密码属性
         /// </summary>
-        [Bindable(true, BindingDirection.TwoWay)]
         public string Password
         {
             get { return (string)GetValue(PasswordProperty); }
-            set
-            {
-                var val = Password;
-                SetValue(PasswordProperty, value);
-
-                Text = "";
-                if (Password != null && Password != "")
-                    for (int i = 0; i < Password.Length; i++)
-                        Text += PasswordChar;
-
-                RoutedPropertyChangedEventArgs<string> arg = new RoutedPropertyChangedEventArgs<string>(val, Password, PasswordChangedEvent);
-                RaiseEvent(arg);
-
-            }
+            set { SetValue(PasswordProperty, value); }
         }
-        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(PUPasswordBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(PUPasswordBox), new PropertyMetadata("", OnPasswordChanged));
+
+        private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pb = d as PUPasswordBox;
+            var val = (string)e.NewValue;
+            pb.Text = "";
+            if (pb.Password != null && pb.Password != "")
+                for (int i = 0; i < pb.Password.Length; i++)
+                    pb.Text += pb.PasswordChar;
+            RoutedPropertyChangedEventArgs<string> arg = new RoutedPropertyChangedEventArgs<string>(val, pb.Password, PasswordChangedEvent);
+            pb.RaiseEvent(arg);
+        }
 
         /// <summary>
         /// 密码掩饰字符，默认值为●。
@@ -179,7 +181,7 @@ namespace Panuon.UI
             get { return (Color)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Color), typeof(PUPasswordBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
+        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUPasswordBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
 
         /// <summary>
         ///  水印内容，默认值为空。

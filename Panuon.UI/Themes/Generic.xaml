@@ -14,7 +14,7 @@
     <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
     <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
     <local:SideCornerRadiusConverter x:Key="SideCornerRadiusConverter"></local:SideCornerRadiusConverter>
-    
+
     <Style TargetType="{x:Type local:PUWindow}">
         <Setter Property="Background" Value="White"></Setter>
         <Setter Property="Foreground" Value="{StaticResource Theme}"></Setter>
@@ -1055,9 +1055,7 @@
                                 <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}" Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}" Background="{TemplateBinding Background}">
                                     <Grid>
                                         <Border x:Name="bdrInner"  Background="White" CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}" RenderTransformOrigin="0.5,0.5">
-                                            <Border.Effect>
-                                                <DropShadowEffect Color="White" Opacity="0.4" BlurRadius="3" ShadowDepth="0"></DropShadowEffect>
-                                            </Border.Effect>
+
                                             <Border.RenderTransform>
                                                 <ScaleTransform x:Name="scale1" ScaleX="1" ScaleY="1"></ScaleTransform>
                                             </Border.RenderTransform>
@@ -1076,22 +1074,22 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.85" Duration="0:0:0.6" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.85" Duration="0:0:0.6" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation To="0.85" Duration="0:0:0.4" Storyboard.TargetName="scale1" Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35" Duration="0:0:0.6" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.5" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35" Duration="0:0:0.6" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
+                                                <DoubleAnimation To="0.35" Duration="0:0:0.5" Storyboard.TargetName="scale2" Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>

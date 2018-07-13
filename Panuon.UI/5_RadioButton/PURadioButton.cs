@@ -61,12 +61,12 @@ namespace Panuon.UI
         /// Check时对号的背景颜色（或前景色），默认值为白色。
         /// <para>仅当按钮样式为General时生效。</para>
         /// </summary>
-        public SolidColorBrush CoverBrush
+        public Brush CoverBrush
         {
-            get { return (SolidColorBrush)GetValue(CoverBrushProperty); }
+            get { return (Brush)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(SolidColorBrush), typeof(PURadioButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PURadioButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         #endregion
 

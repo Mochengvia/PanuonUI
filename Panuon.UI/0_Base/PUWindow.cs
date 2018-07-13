@@ -22,7 +22,7 @@ namespace Panuon.UI
         {
             base.OnApplyTemplate();
 
-            var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 0), 0),0) as Grid;
+            var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 0), 0), 0) as Grid;
             grdNavbar.MouseLeftButtonDown += delegate
             {
                 this.DragMove();
@@ -177,7 +177,7 @@ namespace Panuon.UI
         public ICommand CloseCommand
         {
             get
-            {return _closeCommad;}
+            { return _closeCommad; }
         }
         private ICommand _closeCommad = new CloseWindowCommand();
 
@@ -257,7 +257,7 @@ namespace Panuon.UI
             else
             {
                 DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
-                timer.Tick += delegate { window.Close();timer.Stop(); };
+                timer.Tick += delegate { window.Close(); timer.Stop(); };
                 timer.Start();
             }
         }

@@ -96,12 +96,12 @@ namespace Panuon.UI
         /// <summary>
         /// 进度颜色，默认值为灰黑色。
         /// </summary>
-        public SolidColorBrush CoverBrush
+        public Brush CoverBrush
         {
-            get { return (SolidColorBrush)GetValue(CoverBrushProperty); }
+            get { return (Brush)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(SolidColorBrush), typeof(PUProgressBar), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3E3E3E"))));
+        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUProgressBar), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF3E3E3E"))));
 
         #endregion
 
