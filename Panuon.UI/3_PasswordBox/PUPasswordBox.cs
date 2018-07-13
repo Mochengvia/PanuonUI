@@ -178,10 +178,10 @@ namespace Panuon.UI
         /// </summary>
         public Color ShadowColor
         {
-            get { return (Color)GetValue(CoverBrushProperty); }
-            set { SetValue(CoverBrushProperty, value); }
+            get { return (Color)GetValue(ShadowColorProperty); }
+            set { SetValue(ShadowColorProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUPasswordBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
+        public static readonly DependencyProperty ShadowColorProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUPasswordBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
 
         /// <summary>
         ///  水印内容，默认值为空。

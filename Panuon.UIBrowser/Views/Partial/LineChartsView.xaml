@@ -27,21 +27,6 @@
             <UI:PUButton x:Name="ChangeColor" Content="修改颜色" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
             <UI:PUButton x:Name="AnimationSwitch" Content="开/关 动画" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
         </Grid>
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="8*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
-            <Label Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
-
-        </Grid>
 
     </StackPanel>
 

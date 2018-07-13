@@ -46,6 +46,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="9_Special\PULoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="9_Special\PUMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,6 +69,9 @@
     <Compile Include="6_TreeView\PUTreeView.cs" />
     <Compile Include="6_TreeView\PUTreeViewItem.cs" />
     <Compile Include="7_ProgressBar\PUProgressBar.cs" />
+    <Compile Include="9_Special\PULoading.xaml.cs">
+      <DependentUpon>PULoading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="9_Special\PUMessageBox.xaml.cs">
       <DependentUpon>PUMessageBox.xaml</DependentUpon>
     </Compile>
