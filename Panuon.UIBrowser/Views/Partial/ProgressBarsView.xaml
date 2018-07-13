@@ -12,7 +12,7 @@
     <StackPanel Orientation="Vertical">
         <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0">PUProgressBar 进度条控件</Label>
         <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
-            <Run Text="额外的依赖属性包括：UsingAnimate、ShowPercent、IsPercentDecimal、IsVertical、BorderCornerRadius、CoverBrush。它们的功能就如它们的名称一样。"></Run>
+            <Run Text="额外的依赖属性包括：UsingAnimation、ShowPercent、IsPercentDecimal、IsVertical、BorderCornerRadius、CoverBrush。它们的功能就如它们的名称一样。"></Run>
         </TextBlock>
 
         <Grid Height="40">

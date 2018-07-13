@@ -72,13 +72,16 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.exe
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UIBrowser.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.dll
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.Charts.dll
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.dll
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.dll
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.Charts.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Panuon.UI.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.xml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\Caliburn.Micro.Platform.xml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\bin\Debug\System.Windows.Interactivity.xml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\LineChartsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ProgressBarsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TreeViewsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\PasswordBoxsView.baml
@@ -88,6 +91,7 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\MainWindowView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TextBoxsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ButtonsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\IntroductionView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\LineChartsView.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ProgressBarsView.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\TreeViewsView.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\PasswordBoxsView.g.cs

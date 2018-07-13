@@ -1454,7 +1454,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
                             <Border x:Name="bdrOuter" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar}}" Background="{TemplateBinding Background}">
-                                <Grid Margin="-1,0,0,0">
+                                <Grid Margin="-0.5,0,0,0">
                                     <Border x:Name="bdrInner" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=ProgressBar}}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar},Converter={StaticResource SideCornerRadiusConverter}}" Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ProgressBar}}"/>
                                     <Label VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}" Content="{Binding Percent,RelativeSource={RelativeSource AncestorType=ProgressBar}}" Visibility="{Binding ShowPercent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"></Label>
                                 </Grid>

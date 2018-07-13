@@ -46,6 +46,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case 8:
                     ActivateItem(new ProgressBarsViewModel());
                     return;
+                case 101:
+                    ActivateItem(new LineChartsViewModel());
+                    return;
 
             }
         }

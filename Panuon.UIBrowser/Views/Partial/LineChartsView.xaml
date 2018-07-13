@@ -1,0 +1,48 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts" 
+             xmlns:UI="clr-namespace:Panuon.UI;assembly=Panuon.UI" 
+             x:Class="Panuon.UIBrowser.Views.Partial.LineChartsView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <StackPanel Orientation="Vertical">
+        <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0" Content="PULineChart 折线图控件"/>
+        <TextBlock Height="90" Margin="27,0,50,10" TextWrapping="Wrap">
+            <Run Text="Panuon.UI.Chart是一个独立的控件库，它不依赖于Panuon.UI。"></Run>
+            <LineBreak/> 
+            <Run Text="额外的依赖属性包括：XAxis、YAxis、Values、ValueTips、UsingAnimation、AxisBrush、LineBrush、AreaBrush、StrokeThickness。值得一提的是，Values属性被设定成一个从0~1的Double集合，它表示该点在纵轴上的高度比例。"/>
+             <LineBreak/>
+            <Run Text="上述Brush属性均可被设定为LinearGradientBrush，以实现渐变效果。"></Run>
+        </TextBlock>
+
+        <Grid Height="350">
+            <pu:PULineChart XAxis="{Binding XAxis}" YAxis="{Binding YAxis}" Values="{Binding Values}" LineBrush="{Binding LineBrush}" AxisBrush="{Binding AxisBrush}" AreaBrush="{Binding AreaBrush}" UsingAnimation="{Binding UsingAnimation}" ValueTips="{Binding ValueTips}" Margin="0,10,70,40" Width="500" HorizontalAlignment="Right" />
+            <UI:PUButton x:Name="RandomValue" Content="产生随机数" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <UI:PUButton x:Name="ChangeAxis" Content="切换坐标轴" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <UI:PUButton x:Name="ChangeColor" Content="修改颜色" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <UI:PUButton x:Name="AnimationSwitch" Content="开/关 动画" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+        </Grid>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

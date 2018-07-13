@@ -1,0 +1,12 @@
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Debug\Panuon.UI.Charts.dll
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Debug\Panuon.UI.Charts.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\0_LineChart\PULineChart.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts_MarkupCompile.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts_MarkupCompile.lref
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\0_LineChart\PULineChart.baml
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.g.resources
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.dll
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Debug\System.Net.Http.dll
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Debug\System.Net.Http.xml

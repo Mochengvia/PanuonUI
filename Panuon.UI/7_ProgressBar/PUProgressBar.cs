@@ -32,7 +32,7 @@ namespace Panuon.UI
             var anima = new DoubleAnimation()
             {
                 To = ((double)e.NewValue / pgbar.Maximum) * pgbar.Width,
-                Duration = pgbar.UsingAnimate ? TimeSpan.FromSeconds(0.1) : TimeSpan.FromSeconds(0),
+                Duration = pgbar.UsingAnimation ? TimeSpan.FromSeconds(0.1) : TimeSpan.FromSeconds(0),
                 EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseOut }
             };
             pgbar.BeginAnimation(InnerWidthProperty, anima);
@@ -45,12 +45,12 @@ namespace Panuon.UI
         /// <summary>
         /// 进度改变时是否使用动画，默认值为True（使用）。
         /// </summary>
-        public bool UsingAnimate
+        public bool UsingAnimation
         {
-            get { return (bool)GetValue(UsingAnimateProperty); }
-            set { SetValue(UsingAnimateProperty, value); }
+            get { return (bool)GetValue(UsingAnimationProperty); }
+            set { SetValue(UsingAnimationProperty, value); }
         }
-        public static readonly DependencyProperty UsingAnimateProperty = DependencyProperty.Register("UsingAnimate", typeof(bool), typeof(PUProgressBar), new PropertyMetadata(true));
+        public static readonly DependencyProperty UsingAnimationProperty = DependencyProperty.Register("UsingAnimation", typeof(bool), typeof(PUProgressBar), new PropertyMetadata(true));
 
         /// <summary>
         /// 是否在进度条上显示百分比，默认值为Collapsed（不显示）。可以通过调整Foreground属性的值来改变颜色。

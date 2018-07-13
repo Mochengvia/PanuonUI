@@ -66,6 +66,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Partial\LineChartsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ProgressBarsViewModel.cs" />
     <Compile Include="ViewModels\Partial\TreeViewsViewModel.cs" />
     <Compile Include="ViewModels\Partial\PasswordBoxsViewModel.cs" />
@@ -75,6 +76,10 @@
     <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\LineChartsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Partial\ProgressBarsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +151,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Panuon.UI.Charts\Panuon.UI.Charts.csproj">
+      <Project>{39898e4a-724f-4711-ba20-cefb3dc379f0}</Project>
+      <Name>Panuon.UI.Charts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Panuon.UI\Panuon.UI.csproj">
       <Project>{72b3698e-1784-4101-99ae-fc7b8f48e96d}</Project>
       <Name>Panuon.UI</Name>
