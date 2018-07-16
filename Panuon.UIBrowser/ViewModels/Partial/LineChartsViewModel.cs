@@ -17,8 +17,8 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             XAxis = new string[] { "1", "2", "3", "4", "5", "6" };
             YAxis = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-            Values = new double[] { 0.1, 0.8, 0.4, 0.9, 0.6, 0.2 };
             ValueTips = new string[] { "1", "8", "4", "9", "6", "2" };
+            Values = new double[] { 0.1, 0.8, 0.4, 0.9, 0.6, 0.2 };
         }
 
         #region Bindings

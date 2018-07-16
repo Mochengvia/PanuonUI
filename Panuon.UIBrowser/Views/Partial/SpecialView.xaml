@@ -12,8 +12,18 @@
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
     <StackPanel Orientation="Vertical">
         <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0" Content="PULoading 等待控件"/>
+        <TextBlock Margin="27,0,50,10" TextWrapping="Wrap">
+            <Run Text="圆的直径与运动路径的直径是根据控件高度自动计算的。请保持控件宽度和高度一致，否则可能会显示异常。"></Run>
+            <LineBreak/> 
+            <Run Text="可以通过IsRunning属性来控制运转（将重新计算圆与路径的尺寸）或停止。"></Run>
+            <LineBreak/>
+        </TextBlock>
         <Grid Height="350">
-            <UI:PULoading HorizontalAlignment="Left" IsRunning="True" Foreground="Black" Height="100" Margin="334,76,0,0" VerticalAlignment="Top" Width="100"/>
+            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="100" Margin="253,26,0,0" VerticalAlignment="Top" Width="100"/>
+            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="70" Margin="427,26,0,0" VerticalAlignment="Top" Width="70"/>
+            <UI:PUButton x:Name="Switch" Content="停止/开始" HorizontalAlignment="Left" Margin="73,55,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="40" Margin="572,26,0,0" VerticalAlignment="Top" Width="40"/>
+
         </Grid>
 
     </StackPanel>

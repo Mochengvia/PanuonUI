@@ -43,12 +43,14 @@ namespace Panuon.UI
 
         private static void OnIsRunningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            //var load = d as PULoading;
-            //var run = (bool)e.NewValue;
-            //if (run)
-            //    load.Draw();
-            //else
-            //    load.Clear();
+            var load = d as PULoading;
+            if(double.IsNaN(load.Width) || load.Width == 0)
+                return;
+            var run = (bool)e.NewValue;
+            if (run)
+                load.Draw();
+            else
+                load.Clear();
         }
 
         #endregion
@@ -82,19 +84,19 @@ namespace Panuon.UI
 
                 var path = $"M{canvasHeight / 2},{canvasHeight * 0.125} A {rollRadius},{rollRadius} 0 0 1 {canvasHeight / 2},{rollHeight + canvasHeight * 0.125} A {rollRadius},{rollRadius} 0 0 1 {canvasHeight / 2},{canvasHeight * 0.125} A {rollRadius},{rollRadius} 0 0 1 {canvasHeight / 2},{rollHeight + canvasHeight * 0.125} A {rollRadius},{rollRadius} 0 0 1 {canvasHeight / 2},{canvasHeight * 0.125}";
 
-                var anima1 = GetDoubleAnimation(1, (i + i * 0.1) * 0.1, 0.01);
+                var anima1 = GetDoubleAnimation(1, (i + i * 0.3) * 0.1, 0.01);
                 Storyboard.SetTarget(anima1, ellipse);
                 Storyboard.SetTargetProperty(anima1, new PropertyPath("Opacity"));
                 _storyboard.Children.Add(anima1);
-                var animaX = GetDoubleAnimationUsingPath(path, (i + i * 0.1)  *  0.1, 1.75, PathAnimationSource.X);
+                var animaX = GetDoubleAnimationUsingPath(path, (i + i * 0.3)  *  0.1, 1.5, PathAnimationSource.X);
                 Storyboard.SetTarget(animaX, ellipse);
                 Storyboard.SetTargetProperty(animaX, new PropertyPath("(Canvas.Left)"));
                 _storyboard.Children.Add(animaX);
-                var animaY = GetDoubleAnimationUsingPath(path, (i + i * 0.1) * 0.1, 1.75, PathAnimationSource.Y);
+                var animaY = GetDoubleAnimationUsingPath(path, (i + i * 0.3) * 0.1, 1.5, PathAnimationSource.Y);
                 Storyboard.SetTarget(animaY, ellipse);
                 Storyboard.SetTargetProperty(animaY, new PropertyPath("(Canvas.Top)"));
                 _storyboard.Children.Add(animaY);
-                var anima2 = GetDoubleAnimation(0, 1.3 + 0.1 * i, 0.5);
+                var anima2 = GetDoubleAnimation(0, 1.05 + 0.1 * i, 0.5);
                 Storyboard.SetTarget(anima2, ellipse);
                 Storyboard.SetTargetProperty(anima2, new PropertyPath("Opacity"));
                 _storyboard.Children.Add(anima2);
