@@ -51,7 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="1_RingChart\" />
+    <Folder Include="1_DoughnutChart\" />
     <Folder Include="2_Column\" />
     <Folder Include="3_PointChart\" />
   </ItemGroup>

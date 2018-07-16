@@ -89,14 +89,14 @@ namespace Panuon.UI.Charts
         }
 
         /// <summary>
-        /// 鼠标悬浮点上时显示的值。ValueTips属性发生改变时，将不会触发重绘事件。请在触发重绘前修改它。
+        /// 鼠标悬浮点上时显示的值。修改此属性会触发控件重绘。
         /// </summary>
         public string[] ValueTips
         {
             get { return (string[])GetValue(ValueTipsProperty); }
             set { SetValue(ValueTipsProperty, value); }
         }
-        public static readonly DependencyProperty ValueTipsProperty = DependencyProperty.Register("ValueTips", typeof(string[]), typeof(PULineChart), new PropertyMetadata(null));
+        public static readonly DependencyProperty ValueTipsProperty = DependencyProperty.Register("ValueTips", typeof(string[]), typeof(PULineChart), new PropertyMetadata(null, AxisOnChanged));
 
         /// <summary>
         /// 坐标改变时是否使用动画，默认值为True（使用）。
