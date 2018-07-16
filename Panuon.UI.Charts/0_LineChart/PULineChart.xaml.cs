@@ -180,7 +180,6 @@ namespace Panuon.UI.Charts
             //绘制点和线
             if (Values == null)
                 return;
-            //折线
             DrawPointAndLineAndArea(xCellWidth, yCellHeight);
         }
 
@@ -237,7 +236,7 @@ namespace Panuon.UI.Charts
             var path = "";
             for (int i = 0; i < XAxis.Count(); i++)
             {
-                path += $"M {xCellWidth * i},{canvasHeight} V 0";
+                path += $"M {xCellWidth * i},0 V {canvasHeight}";
             }
             for (int i = 0; i < YAxis.Count(); i++)
             {
@@ -247,7 +246,7 @@ namespace Panuon.UI.Charts
         }
 
         /// <summary>
-        /// 绘制X、Y轴
+        /// 绘制X、Y轴坐标值
         /// </summary>
         internal void DrawAxis(double xCellWidth, double yCellHeight)
         {
