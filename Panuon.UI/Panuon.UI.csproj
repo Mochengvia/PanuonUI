@@ -63,11 +63,12 @@
     <Compile Include="0_Base\PUWindow.cs" />
     <Compile Include="1_Button\PUButton.cs" />
     <Compile Include="2_TextBox\PUTextBox.cs" />
-    <Compile Include="3_PasswordBox\PUPasswordBox.cs" />
+    <Compile Include="3_ComboBox\PUComboBox.cs" />
+    <Compile Include="5_PasswordBox\PUPasswordBox.cs" />
     <Compile Include="4_CheckBox\PUCheckBox.cs" />
-    <Compile Include="5_RadioButton\PURadioButton.cs" />
-    <Compile Include="6_TreeView\PUTreeView.cs" />
-    <Compile Include="6_TreeView\PUTreeViewItem.cs" />
+    <Compile Include="6_RadioButton\PURadioButton.cs" />
+    <Compile Include="8_TreeView\PUTreeView.cs" />
+    <Compile Include="8_TreeView\PUTreeViewItem.cs" />
     <Compile Include="7_ProgressBar\PUProgressBar.cs" />
     <Compile Include="9_Special\PULoading.xaml.cs">
       <DependentUpon>PULoading.xaml</DependentUpon>
@@ -75,6 +76,8 @@
     <Compile Include="9_Special\PUMessageBox.xaml.cs">
       <DependentUpon>PUMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="9_Special\PUSlideShow.cs" />
+    <Compile Include="A0_DatePicker\PUDatePicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

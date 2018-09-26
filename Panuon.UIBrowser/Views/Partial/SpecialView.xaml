@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:pu="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts" 
-             xmlns:UI="clr-namespace:Panuon.UI;assembly=Panuon.UI" 
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI" 
              x:Class="Panuon.UIBrowser.Views.Partial.SpecialView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
@@ -16,16 +15,27 @@
             <Run Text="圆的直径与运动路径的直径是根据控件高度自动计算的。请保持控件宽度和高度一致，否则可能会显示异常。"></Run>
             <LineBreak/> 
             <Run Text="可以通过IsRunning属性来控制运转（将重新计算圆与路径的尺寸）或停止。"></Run>
+            <LineBreak/> 
+        </TextBlock>
+        <Grid Height="155">
+            <pu:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="100" Margin="253,26,0,0" VerticalAlignment="Top" Width="100"/>
+            <pu:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="70" Margin="427,26,0,0" VerticalAlignment="Top" Width="70"/>
+            <pu:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="40" Margin="572,26,0,0" VerticalAlignment="Top" Width="40"/>
+            <pu:PUButton x:Name="Switch" Content="停止/开始" HorizontalAlignment="Left" Margin="73,55,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+        </Grid>
+        <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0" Content="PUSlideShow 轮播控件"/>
+        <TextBlock Margin="27,0,50,10" TextWrapping="Wrap">
+            <Run Text="该控件可以承载任何控件。"></Run>
+            <LineBreak/> 
+            <Run Text="设置IsVertical为True可以更改为竖向滑动；通过设置Index来改变当前的位置（从0开始的）。"></Run>
             <LineBreak/>
         </TextBlock>
-        <Grid Height="350">
-            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="100" Margin="253,26,0,0" VerticalAlignment="Top" Width="100"/>
-            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="70" Margin="427,26,0,0" VerticalAlignment="Top" Width="70"/>
-            <UI:PUButton x:Name="Switch" Content="停止/开始" HorizontalAlignment="Left" Margin="73,55,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
-            <UI:PULoading HorizontalAlignment="Left" IsRunning="{Binding IsRunning}" Foreground="Black" Height="40" Margin="572,26,0,0" VerticalAlignment="Top" Width="40"/>
-
-        </Grid>
-
+        <pu:PUSlideShow Height="300">
+                <Grid Height="300" Width="400">
+                    <pu:PUButton Content="&lt;" HorizontalAlignment="Left" Margin="32,130,0,0" VerticalAlignment="Top" Height="32" Width="32"/>
+                    <pu:PUButton Content="&gt;" HorizontalAlignment="Right" Margin="0,130,32,0" VerticalAlignment="Top" Height="32" Width="32"/>
+                </Grid>
+        </pu:PUSlideShow>
     </StackPanel>
 
 </UserControl>

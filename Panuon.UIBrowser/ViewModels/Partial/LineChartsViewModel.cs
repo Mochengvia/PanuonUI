@@ -81,6 +81,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         #endregion
 
+
         #region Event
         public void RandomValue()
         {

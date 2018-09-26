@@ -13,3 +13,19 @@ C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.CoreC
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.dll
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.pdb
 C:\Users\DELL\source\repos\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\bin\Release\Panuon.UI.dll
+D:\Panuon Repo\PanuonUI\Panuon.UI\bin\Release\Panuon.UI.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PULoading.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUMessageBox.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI_MarkupCompile.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI_MarkupCompile.lref
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PULoading.baml
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUMessageBox.baml
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Themes\Generic.baml
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.g.resources
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.Properties.Resources.resources
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.GenerateResource.Cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.dll
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache

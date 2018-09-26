@@ -37,8 +37,11 @@ namespace Panuon.UI
         #region Sys
         private void PUPasswordBox_TextInput(object sender, TextCompositionEventArgs e)
         {
-            if (Password.Length >= MaxLength && SelectionLength == 0)
+            if ((MaxLength != 0 && Password.Length >= MaxLength) && SelectionLength == 0)
+            {
+                e.Handled = true;
                 return;
+            }
             var currentCursor = SelectionStart;
 
             if (SelectionLength != 0)
@@ -186,12 +189,12 @@ namespace Panuon.UI
         /// <summary>
         ///  水印内容，默认值为空。
         /// </summary>
-        public string WaterMark
+        public string Watermark
         {
-            get { return (string)GetValue(WaterMarkProperty); }
-            set { SetValue(WaterMarkProperty, value); }
+            get { return (string)GetValue(WatermarkProperty); }
+            set { SetValue(WatermarkProperty, value); }
         }
-        public static readonly DependencyProperty WaterMarkProperty = DependencyProperty.Register("WaterMark", typeof(string), typeof(PUPasswordBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(PUPasswordBox), new PropertyMetadata(""));
 
         /// <summary>
         /// 放置在密码框前的图标。

@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:pu="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts" 
-             xmlns:UI="clr-namespace:Panuon.UI;assembly=Panuon.UI" 
+             xmlns:chart="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts" 
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI" 
              x:Class="Panuon.UIBrowser.Views.Partial.LineChartsView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
@@ -21,11 +21,11 @@
         </TextBlock>
 
         <Grid Height="350">
-            <pu:PULineChart XAxis="{Binding XAxis}" YAxis="{Binding YAxis}" Values="{Binding Values}" LineBrush="{Binding LineBrush}" AxisBrush="{Binding AxisBrush}" AreaBrush="{Binding AreaBrush}" UsingAnimation="{Binding UsingAnimation}" ValueTips="{Binding ValueTips}" Margin="0,10,70,40" Width="500" HorizontalAlignment="Right" />
-            <UI:PUButton x:Name="RandomValue" Content="产生随机数" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
-            <UI:PUButton x:Name="ChangeAxis" Content="切换坐标轴" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
-            <UI:PUButton x:Name="ChangeColor" Content="修改颜色" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
-            <UI:PUButton x:Name="AnimationSwitch" Content="开/关 动画" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <chart:PULineChart XAxis="{Binding XAxis}" YAxis="{Binding YAxis}" Values="{Binding Values}" LineBrush="{Binding LineBrush}" AxisBrush="{Binding AxisBrush}" AreaBrush="{Binding AreaBrush}" UsingAnimation="{Binding UsingAnimation}" ValueTips="{Binding ValueTips}" Margin="0,10,70,40" Width="500" HorizontalAlignment="Right" />
+            <pu:PUButton x:Name="RandomValue" Content="产生随机数" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <pu:PUButton x:Name="ChangeAxis" Content="切换坐标轴" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <pu:PUButton x:Name="ChangeColor" Content="修改颜色" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
+            <pu:PUButton x:Name="AnimationSwitch" Content="开/关 动画" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Height="32" Width="115"/>
         </Grid>
 
     </StackPanel>

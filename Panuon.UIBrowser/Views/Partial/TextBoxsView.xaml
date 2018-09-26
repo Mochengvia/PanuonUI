@@ -13,7 +13,7 @@
         <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
             <Run Text="该控件包含两种样式：General（默认的）、IconGroup。"></Run>
             <LineBreak></LineBreak>
-            <Run Text="额外的依赖属性包括：TextBoxStyle、BorderCornerRadius、ShadowColor、WaterMark、Icon(仅在IconGroup样式下生效)、IconWidth(仅在IconGroup样式下生效)。"></Run>
+            <Run Text="额外的依赖属性包括：TextBoxStyle、BorderCornerRadius、ShadowColor、Watermark、Icon(仅在IconGroup样式下生效)、IconWidth(仅在IconGroup样式下生效)。"></Run>
         </TextBlock>
 
         <Grid Height="40">
@@ -39,8 +39,8 @@
             </Grid.RowDefinitions>
             <Label Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PUTextBox WaterMark="这是一个水印" Width="180" Height="30" HorizontalAlignment="Left" Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
-                <pu:PUTextBox TextBoxStyle="IconGroup" WaterMark="这也是一个水印" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
+                <pu:PUTextBox Watermark="这是一个水印" Width="180" Height="30" HorizontalAlignment="Left" Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
+                <pu:PUTextBox TextBoxStyle="IconGroup" Watermark="这也是一个水印" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                 <Grid>

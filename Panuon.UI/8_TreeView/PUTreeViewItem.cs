@@ -18,6 +18,14 @@ namespace Panuon.UI
                     {
                         parent = (parent as PUTreeViewItem).Parent;
                     }
+                    if (parent == null)
+                    {
+                        parent = ItemsControl.ItemsControlFromItemContainer(this);
+                        if (parent == null)
+                            _parentTreeView = null;
+                        else
+                            _parentTreeView = parent as PUTreeView;
+                    }
                     _parentTreeView = (parent as PUTreeView);
                 }
                 return _parentTreeView;

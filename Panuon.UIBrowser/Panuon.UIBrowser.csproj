@@ -69,6 +69,7 @@
     <Compile Include="ViewModels\Partial\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Partial\LineChartsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ProgressBarsViewModel.cs" />
+    <Compile Include="ViewModels\Partial\ComboBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\TreeViewsViewModel.cs" />
     <Compile Include="ViewModels\Partial\PasswordBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\WindowsViewModel.cs" />
@@ -86,6 +87,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Partial\ProgressBarsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Partial\ComboBoxsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

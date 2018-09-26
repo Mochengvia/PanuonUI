@@ -29,7 +29,6 @@ namespace Panuon.UI
 
         public override void OnApplyTemplate()
         {
-            Draw();
             base.OnApplyTemplate();
         }
 
@@ -44,7 +43,7 @@ namespace Panuon.UI
         private static void OnIsRunningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var load = d as PULoading;
-            if(double.IsNaN(load.Width) || load.Width == 0)
+            if (double.IsNaN(load.Width) || load.Width == 0)
                 return;
             var run = (bool)e.NewValue;
             if (run)
@@ -88,7 +87,7 @@ namespace Panuon.UI
                 Storyboard.SetTarget(anima1, ellipse);
                 Storyboard.SetTargetProperty(anima1, new PropertyPath("Opacity"));
                 _storyboard.Children.Add(anima1);
-                var animaX = GetDoubleAnimationUsingPath(path, (i + i * 0.3)  *  0.1, 1.5, PathAnimationSource.X);
+                var animaX = GetDoubleAnimationUsingPath(path, (i + i * 0.3) * 0.1, 1.5, PathAnimationSource.X);
                 Storyboard.SetTarget(animaX, ellipse);
                 Storyboard.SetTargetProperty(animaX, new PropertyPath("(Canvas.Left)"));
                 _storyboard.Children.Add(animaX);
