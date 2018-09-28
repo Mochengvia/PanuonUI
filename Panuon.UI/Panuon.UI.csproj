@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="9_Special\PUSlideShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,7 +81,9 @@
     <Compile Include="9_Special\PUMessageBox.xaml.cs">
       <DependentUpon>PUMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="9_Special\PUSlideShow.cs" />
+    <Compile Include="9_Special\PUSlideShow.xaml.cs">
+      <DependentUpon>PUSlideShow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="A0_DatePicker\PUDatePicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
