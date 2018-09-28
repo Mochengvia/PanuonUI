@@ -1,58 +1,132 @@
 ﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.ComboBoxsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
     <StackPanel Orientation="Vertical">
-        <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0">PUComboBox 下拉选择框控件</Label>
-        <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
+        <Label Height="50"
+               FontSize="20"
+               VerticalContentAlignment="Center"
+               Margin="20,0,0,0">PUComboBox 下拉选择框控件</Label>
+        <TextBlock Height="50"
+                   Margin="27,0,50,10"
+                   TextWrapping="Wrap">
             <Run Text="额外的依赖属性包括：BorderCornerRadius、ShadowColor。"></Run>
         </TextBlock>
 
         <Grid Height="40">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="3.5*"></ColumnDefinition>
                 <ColumnDefinition Width="8*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Content="默认样式" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PUComboBox Width="180" Height="30" HorizontalAlignment="Left"></pu:PUComboBox>
-                <pu:PUTextBox TextBoxStyle="IconGroup" Text="IconGroup" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"></pu:PUTextBox>
+            <Label Content="默认样式"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,0"></Label>
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                <pu:PUComboBox Width="180"
+                               Height="30"
+                               HorizontalAlignment="Left">
+                    <pu:PUComboBoxItem Content="不显示删除按钮"
+                                       IsSelected="True" />
+                    <pu:PUComboBoxItem Content="不显示删除按钮" />
+                </pu:PUComboBox>
+                <pu:PUComboBox Width="180"
+                               Margin="15,0,0,0"
+                               Height="30"
+                               HorizontalAlignment="Left">
+                    <pu:PUComboBoxItem Content="显示删除按钮"
+                                       IsSelected="True"
+                                       IsDeleteButtonShow="True" />
+                    <pu:PUComboBoxItem Content="显示删除按钮"
+                                       IsDeleteButtonShow="True" />
+                </pu:PUComboBox>
+
             </StackPanel>
         </Grid>
-        <Grid >
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="3.5*"></ColumnDefinition>
                 <ColumnDefinition Width="8*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PUTextBox Watermark="这是一个水印" Width="180" Height="30" HorizontalAlignment="Left" Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
-                <pu:PUTextBox TextBoxStyle="IconGroup" Watermark="这也是一个水印" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FF49A9C0" BorderBrush="#FF49A9C0" ShadowColor="#FF49A9C0" BorderCornerRadius="3"></pu:PUTextBox>
+            <Label Content="一种控件，无限可能"
+                   VerticalContentAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,0"></Label>
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                <pu:PUComboBox Width="180"
+                               Height="30"
+                               IsEditable="True"
+                               Foreground="#FF49A9C0"
+                               BorderBrush="#9949A9C0"
+                               ShadowColor="#FF49A9C0"
+                               HorizontalAlignment="Left">
+                    <pu:PUComboBoxItem Content="可编辑的"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0"
+                                       IsSelected="True" />
+                    <pu:PUComboBoxItem Content="SelectItem"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0" />
+                </pu:PUComboBox>
+                <pu:PUComboBox Width="180"
+                               Margin="15,0,0,0"
+                               Height="30"
+                               DeleteMode="None"
+                               Foreground="#FF49A9C0"
+                               BorderBrush="#9949A9C0"
+                               ShadowColor="#FF49A9C0"
+                               HorizontalAlignment="Left"
+                               cm:Message.Attach="[Event DeleteItem]=[Action Delete($this.Items, $eventArgs)]">
+                    <pu:PUComboBoxItem Content="点击删除按钮时弹框"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0"
+                                       IsSelected="True"
+                                       IsDeleteButtonShow="True" />
+                    <pu:PUComboBoxItem Content="点击右侧删除按钮"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0"
+                                       IsDeleteButtonShow="True" />
+                </pu:PUComboBox>
+
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <Grid>
-                    <pu:PUTextBox Padding="3,1,30,1" Text="与PUButton组合起来！" Width="180" Height="30" HorizontalAlignment="Left" Foreground="#FFE089B8" BorderBrush="#FFE089B8" ShadowColor="#FFE089B8" BorderCornerRadius="3"></pu:PUTextBox>
-                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5,0.4,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBrush="#AAE089B8" />
-                </Grid>
-                <Grid>
-                    <pu:PUTextBox Padding="30,0,30,0" TextBoxStyle="IconGroup" Text="与PUButton组合起来" Icon="" Width="180" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"  Foreground="#FFE089B8" BorderBrush="#FFE089B8" ShadowColor="#FFE089B8" BorderCornerRadius="3"></pu:PUTextBox>
-                    <pu:PUButton Content="" FontFamily="{StaticResource FontAwesome}" Width="30" Height="30" Margin="0,5" HorizontalAlignment="Right" Foreground="#FFE089B8" BorderBrush="Transparent" BorderCornerRadius="0,0,3,3" Background="Transparent" CoverBrush="#AAE089B8" />
-                </Grid>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <pu:PUTextBox Padding="3,5,1,1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#FFF4A758" BorderCornerRadius="3"></pu:PUTextBox>
-                <pu:PUTextBox Icon="" TextBoxStyle="IconGroup" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="180" Height="80" HorizontalAlignment="Left" VerticalContentAlignment="Top" Foreground="#FFF4A758" BorderBrush="#FFF4A758" ShadowColor="#AAF4A758" BorderCornerRadius="3" Text="PanuonUI是一个免费的、开源的、不限制个人或商业用途的开源控件库。&#13;但是，复刻该UI库以用于获得名誉、出售获利的行径是可耻、违反开源协议且不被容许的。&#13;如果发现此类行径，请联络我：bonjour@panuon.com。&#13;共同维护开源环境良性发展。" Margin="20,0,0,0"></pu:PUTextBox>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                <pu:PUComboBox Width="180"
+                               Height="30"
+                               Foreground="#FFE089B8"
+                               BorderBrush="#99E089B8"
+                               ShadowColor="#FFE089B8"
+                               HorizontalAlignment="Left"
+                               SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
+                               SelectedValuePath="Value"
+                               BindingItems="{Binding ComboBoxItemsList}">
+                </pu:PUComboBox>
+                <pu:PUButton x:Name="GetValue" 
+                             Content="获取选择项的Value"
+                             FontFamily="{StaticResource FontAwesome}"
+                             Width="128"
+                             Height="30"
+                             Margin="15,5,0,5"
+                             HorizontalAlignment="Left"
+                             Background="#FFE089B8"
+                             BorderCornerRadius="3"></pu:PUButton>
+
             </StackPanel>
         </Grid>
 

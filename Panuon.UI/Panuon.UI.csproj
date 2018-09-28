@@ -64,6 +64,7 @@
     <Compile Include="1_Button\PUButton.cs" />
     <Compile Include="2_TextBox\PUTextBox.cs" />
     <Compile Include="3_ComboBox\PUComboBox.cs" />
+    <Compile Include="3_ComboBox\PUComboBoxItem.cs" />
     <Compile Include="5_PasswordBox\PUPasswordBox.cs" />
     <Compile Include="4_CheckBox\PUCheckBox.cs" />
     <Compile Include="6_RadioButton\PURadioButton.cs" />

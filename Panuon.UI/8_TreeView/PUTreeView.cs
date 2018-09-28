@@ -18,7 +18,7 @@ namespace Panuon.UI
         /// 选择了新项目事件。
         /// </summary>
         public static readonly RoutedEvent ChoosedItemChangedEvent = EventManager.RegisterRoutedEvent("ChoosedItemChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUTreeView>), typeof(PUTreeView));
-        public event RoutedPropertyChangedEventHandler<string> ChoosedItemChanged
+        public event RoutedPropertyChangedEventHandler<PUTreeView> ChoosedItemChanged
         {
             add { AddHandler(ChoosedItemChangedEvent, value); }
             remove { RemoveHandler(ChoosedItemChangedEvent, value); }

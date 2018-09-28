@@ -927,6 +927,80 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="ButtonStyle"
+                     Value="Link">
+                <Setter Property="Foreground"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="CoverBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUButton}">
+                            <Grid Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}">
+                                <Label x:Name="lblContent"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
+                                <Label x:Name="lblCover"
+                                       Opacity="0"
+                                       Foreground="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="lblContent"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="lblCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="lblContent"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="lblCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -1175,12 +1249,205 @@
     </Style>
 
     <Style TargetType="{x:Type local:PUComboBox}">
-        <Setter Property="BorderBrush"
-                Value="{StaticResource Theme}"></Setter>
-        <Setter Property="BorderThickness"
-                Value="0.3"></Setter>
         <Setter Property="Foreground"
-                Value="{StaticResource Theme}"></Setter>
+                Value="DimGray"></Setter>
+        <Setter Property="Background"
+                Value="White"></Setter>
+        <Setter Property="BorderBrush"
+                Value="LightGray"></Setter>
+        <Setter Property="BorderThickness"
+                Value="1"></Setter>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left"></Setter>
+        <Setter Property="Padding"
+                Value="10,0,0,0"></Setter>
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="UseLayoutRounding"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
+        <Setter Property="FontSize"
+                Value="14">
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUComboBox}">
+                    <Border x:Name="bdrMain"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
+
+                        <Grid>
+                            <ContentPresenter HorizontalAlignment="Left"
+                                              Margin="{TemplateBinding Padding}"
+                                              x:Name="ContentSite"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              IsHitTestVisible="False"
+                                              Opacity="0.8" />
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="false"
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          Background="Transparent"
+                                          BorderBrush="Transparent"
+                                          BorderThickness="0">
+                                <ToggleButton.Style>
+                                    <Style TargetType="ToggleButton">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Grid Background="Transparent">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="30" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Path x:Name="arrow1"
+                                                              Opacity="1"
+                                                              VerticalAlignment="Center"
+                                                              Grid.Column="1"
+                                                              HorizontalAlignment="Center"
+                                                              Data="M5,4 H14 L9.5,10 Z"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Fill="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5" />
+                                                        <Path x:Name="arrow2"
+                                                              Opacity="0"
+                                                              VerticalAlignment="Center"
+                                                              Grid.Column="1"
+                                                              HorizontalAlignment="Center"
+                                                              Data="M5,10 H14 L9.5,4.5 Z"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Fill="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5" />
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked"
+                                                                 Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="0"
+                                                                                         Duration="0:0:0.2"></DoubleAnimation>
+                                                                        <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="1"
+                                                                                         Duration="0:0:0.2"></DoubleAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="1"
+                                                                                         Duration="0:0:0.2"></DoubleAnimation>
+                                                                        <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                                         Storyboard.TargetProperty="Opacity"
+                                                                                         To="0"
+                                                                                         Duration="0:0:0.2"></DoubleAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
+                            <!--必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它-->
+                            <local:PUTextBox Visibility="Hidden"
+                                       BorderThickness="0"
+                                       Margin="2,0,25,0"
+                                       Padding="2,0,0,0"
+                                       x:Name="PART_EditableTextBox"
+                                       VerticalAlignment="Center"
+                                       Focusable="True"
+                                       Background="Transparent"
+                                       BorderBrush="{TemplateBinding BorderBrush}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       IsReadOnly="{TemplateBinding IsReadOnly}" />
+                            <!--Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen-->
+                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   x:Name="Popup"
+                                   Focusable="False"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Slide">
+                                <Grid MaxHeight="180"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      x:Name="DropDown">
+                                    <Border x:Name="DropDownBorder"
+                                            Margin="0,0,0,10"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="1"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="0"
+                                                              BlurRadius="10"
+                                                              Opacity="1"
+                                                              Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ComboBox}}"></DropShadowEffect>
+                                        </Border.Effect>
+                                    </Border>
+                                    <StackPanel  Margin="1,5,1,15"
+                                                 MaxHeight="250"
+                                                 IsItemsHost="True"
+                                                 SnapsToDevicePixels="True"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                 KeyboardNavigation.DirectionalNavigation="Contained"
+                                                 Orientation="Vertical">
+                                    </StackPanel>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEditable"
+                                 Value="True">
+                            <Setter TargetName="PART_EditableTextBox"
+                                    Property="Visibility"
+                                    Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="ContentSite"
+                                    Property="Opacity"
+                                    Value="0.9"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsFocused"
+                                 Value="True">
+                            <Setter TargetName="ContentSite"
+                                    Property="Opacity"
+                                    Value="1"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PUComboBoxItem}">
+        <Setter Property="Foreground"
+                Value="DimGray"></Setter>
         <Setter Property="Background"
                 Value="White"></Setter>
         <Setter Property="VerticalContentAlignment"
@@ -1188,93 +1455,94 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="6,0,0,0"></Setter>
+                Value="10,0,0,0"></Setter>
         <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="UseLayoutRounding"
                 Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
+        <Setter Property="SnapsToDevicePixels"
+                Value="True" />
+        <Setter Property="FontSize"
+                Value="14">
+        </Setter>
+        <Setter Property="MinHeight"
+                Value="35"></Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUComboBox}">
-                    <Border x:Name="bdrOuter"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TextBox}}">
-                        <Border.Effect>
-                            <DropShadowEffect x:Name="effect"
-                                              ShadowDepth="0"
-                                              BlurRadius="0"
-                                              Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                              Opacity="0.4" />
-                        </Border.Effect>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="30"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <ContentPresenter x:Name="PART_SelectedItem"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                              Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                              HorizontalAlignment="Stretch"
-                                              Margin="2,0,2,0"
-                                              IsHitTestVisible="False"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            <ToggleButton Grid.Column="1"
-                                          x:Name="PART_DropDownToggle"
-                                          IsTabStop="False"
-                                          Grid.ColumnSpan="3"
-                                          IsEnabled="{TemplateBinding IsEnabled}"
-                                          Foreground="{TemplateBinding Foreground}">
-                                <ToggleButton.Template>
-                                    <ControlTemplate TargetType="ToggleButton">
-                                        <Border>
-                                            <ContentPresenter VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center"
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </ToggleButton.Template>
-                                <ToggleButton.Content>
-                                    <Grid x:Name="arrow"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Left"
-                                          Width="20"
-                                          Height="15">
-                                        <Path x:Name="arrow1"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Left"
-                                              Margin="5,0,0,0"
-                                              Data="M2,5.5 L7,9.5 L12,5.5"
-                                              Width="15"
-                                              Height="15"
-                                              Fill="{x:Null}"
-                                              Stroke="{TemplateBinding Foreground}"
-                                              RenderTransformOrigin="0.5,0.5">
-                                        </Path>
-                                        <Path x:Name="arrow2"
-                                              Opacity="0"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Left"
-                                              Margin="5,0,0,0"
-                                              Data="M2,5.5 L7,9.5 L12,5.5"
-                                              Width="15"
-                                              Height="15"
-                                              Fill="{x:Null}"
-                                              Stroke="{TemplateBinding Foreground}"
-                                              RenderTransformOrigin="0.5,0.5">
-                                            <Path.RenderTransform>
-                                                <RotateTransform Angle="180"></RotateTransform>
-                                            </Path.RenderTransform>
-                                        </Path>
-                                    </Grid>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </Grid>
-                    </Border>
+                <ControlTemplate TargetType="{x:Type local:PUComboBoxItem}">
+                    <Grid Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}">
+                        <Border x:Name="bdrMain"
+                                Background="Transparent" />
+                        <TextBlock Margin="{TemplateBinding Padding}"
+                                   VerticalAlignment="Center"
+                                   x:Name="txtContent"
+                                   Opacity="0.8"
+                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                   Text="{Binding Content,RelativeSource={RelativeSource TemplatedParent}}" />
+                        <local:PUButton x:Name="btnDelete"
+                                        ButtonStyle="Link"
+                                        Opacity="0"
+                                        Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
+                                        CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                        Width="35"
+                                        Cursor="Arrow"
+                                        Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        CoverBrush="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        FontSize="20"
+                                        Content="×"></local:PUButton>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDeleteButtonShow"
+                                 Value="False">
+                            <Setter TargetName="btnDelete"
+                                    Property="Visibility"
+                                    Value="Collapsed"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected"
+                                 Value="true">
+                            <Setter TargetName="bdrMain"
+                                    Property="Background"
+                                    Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" />
+                            <Setter TargetName="txtContent"
+                                    Property="Opacity"
+                                    Value="1" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="true" />
+                                <Condition Property="IsDeleteButtonShow"
+                                           Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="btnDelete"
+                                    Property="Visibility"
+                                    Value="Collapsed"></Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="false" />
+                                <Condition Property="IsMouseOver"
+                                           Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="bdrMain"
+                                    Property="Background"
+                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" />
+                            <Setter TargetName="txtContent"
+                                    Property="Opacity"
+                                    Value="0.7" />
+                            <Setter TargetName="btnDelete"
+                                    Property="Opacity"
+                                    Value="0.7"></Setter>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

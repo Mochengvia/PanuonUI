@@ -15,11 +15,11 @@ namespace Panuon.UI
         static extern IntPtr GetForegroundWindow();
 
         private PUWindow _parentWindow;
-        private PUMessageBox(string title, object content, bool showInTaskBar, AnimationStyles animateStyle)
+        private PUMessageBox(string title, string content, bool showInTaskBar, AnimationStyles animateStyle)
         {
             InitializeComponent();
             Title = title;
-            lblContent.Content = content;
+            txtContent.Text = content;
             _parentWindow = GetOwnerWindow() ;
             _parentWindow.ShowCover = true;
             ShowInTaskbar = showInTaskBar;
@@ -36,7 +36,7 @@ namespace Panuon.UI
         /// <param name="content">要显示的内容。</param>
         /// <param name="title">标题内容。</param>
         /// <param name="showInTaskBar">是否在任务栏中显示，默认为True。</param>
-        public static void ShowDialog(object content, string title = "提示", bool showInTaskBar = true, AnimationStyles animateStyle = AnimationStyles.Scale)
+        public static void ShowDialog(string content, string title = "提示", bool showInTaskBar = true, AnimationStyles animateStyle = AnimationStyles.Scale)
         {
             var mbox = new PUMessageBox(title, content, showInTaskBar, animateStyle);
             if (!showInTaskBar)
