@@ -32,5 +32,10 @@
                         Margin="0,0,20,0"
                         BorderCornerRadius="17.5"
                         Click="BtnRight_Click"></local:PUButton>
+        <local:PUIndicator x:Name="Indicator"
+                           Height="14"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"></local:PUIndicator>
     </Grid>
 </UserControl>

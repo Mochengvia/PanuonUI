@@ -41,4 +41,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUSlideShow.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUSlideShow.baml
-D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUIndicator.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUIndicator.baml

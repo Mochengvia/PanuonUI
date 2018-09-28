@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Panuon.UI
 {
@@ -26,6 +17,11 @@ namespace Panuon.UI
         {
             InitializeComponent();
             Content = PART_Host.Children;
+            Indicator.IndexChanged += delegate
+            {
+                Index = Indicator.Index;
+            };
+            Indicator.AnimationDuration = AnimationDuration;
         }
 
         #region Property
@@ -37,20 +33,21 @@ namespace Panuon.UI
         }
 
         public new static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register("Content", typeof(UIElementCollection), typeof(PUSlideShow), new PropertyMetadata(OnItemsChanged));
+            DependencyProperty.Register("Content", typeof(UIElementCollection), typeof(PUSlideShow), new PropertyMetadata(OnContentChanged));
 
-        private static void OnItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
             if (!slideShow.IsLoaded || slideShow.Content == null)
                 return;
             slideShow.Draw();
+            slideShow.Indicator.TotalIndex = slideShow.Content.Count;
         }
 
         /// <summary>
-        /// 索引，表示当前的位置。
-        /// <para>当你试图将Index的值设置为大于Content数量上限 - 1或小于0的数字时，Index会被重设为Content的数量 - 1 或0
-        /// （若Recyclable为True，则会被重设为0或Content的数量 - 1）。</para>
+        /// 索引，表示当前的位置。从1开始。
+        /// <para>当你试图将Index的值设置为大于Content数量上限或小于1的数字时，Index会被重设为Content的数量或1
+        /// （若Recyclable为True，则会被重设为1或Content的数量）。</para>
         /// </summary>
         public int Index
         {
@@ -59,13 +56,14 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IndexProperty =
-            DependencyProperty.Register("Index", typeof(int), typeof(PUSlideShow), new PropertyMetadata(0, OnIndexChanged));
+            DependencyProperty.Register("Index", typeof(int), typeof(PUSlideShow), new PropertyMetadata(1, OnIndexChanged));
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
             if (!slideShow.IsLoaded || slideShow.Content == null)
                 return;
+            slideShow.Indicator.Index = slideShow.Index;
             slideShow.ChangeIndex(false);
         }
 
@@ -136,7 +134,6 @@ namespace Panuon.UI
             }
         }
 
-
         /// <summary>
         /// 滑动按钮的颜色，默认为灰黑色。
         /// </summary>
@@ -163,7 +160,6 @@ namespace Panuon.UI
             }
         }
 
-
         /// <summary>
         /// 左右滑动动画的持续时间（单位：毫秒），若为0，则滑动时不使用动画。默认值为500毫秒。
         /// </summary>
@@ -174,7 +170,13 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty AnimationDurationProperty =
-            DependencyProperty.Register("AnimationDuration", typeof(int), typeof(PUSlideShow), new PropertyMetadata(500));
+            DependencyProperty.Register("AnimationDuration", typeof(int), typeof(PUSlideShow), new PropertyMetadata(500, OnAnimationDurationChanged));
+
+        private static void OnAnimationDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var slideShow = d as PUSlideShow;
+            slideShow.Indicator.AnimationDuration = slideShow.AnimationDuration;
+        }
 
 
 
@@ -191,12 +193,87 @@ namespace Panuon.UI
             DependencyProperty.Register("Recyclable", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(false));
 
 
+        /// <summary>
+        /// 是否显示指示器。
+        /// </summary>
+        public bool IsIndicatorShow
+        {
+            get { return (bool)GetValue(IsIndicatorShowProperty); }
+            set { SetValue(IsIndicatorShowProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsIndicatorShowProperty =
+            DependencyProperty.Register("IsIndicatorShow", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(true));
+
+
+        /// <summary>
+        /// 指示器颜色。
+        /// </summary>
+        public Brush IndicatorBrush
+        {
+            get { return (Brush)GetValue(IndicatorBrushProperty); }
+            set { SetValue(IndicatorBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty IndicatorBrushProperty =
+            DependencyProperty.Register("IndicatorBrush", typeof(Brush), typeof(PUSlideShow), new PropertyMetadata(new SolidColorBrush(Colors.DimGray), OnIndicatorBrushChanged));
+
+        private static void OnIndicatorBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var slideShow = d as PUSlideShow;
+            slideShow.Indicator.BorderBrush = slideShow.IndicatorBrush;
+            slideShow.Indicator.CoverBrush = slideShow.IndicatorBrush;
+        }
+
+
+        /// <summary>
+        /// 指示器的位置。
+        /// </summary>
+        public IndicatorLocations IndicatorLocation
+        {
+            get { return (IndicatorLocations)GetValue(IndicatorLocationProperty); }
+            set { SetValue(IndicatorLocationProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IndicatorLocation.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IndicatorLocationProperty =
+            DependencyProperty.Register("IndicatorLocation", typeof(IndicatorLocations), typeof(PUSlideShow), new PropertyMetadata(IndicatorLocations.Bottom, OnIndicatorLocationChanged));
+
+        private static void OnIndicatorLocationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var slideShow = d as PUSlideShow;
+            switch (slideShow.IndicatorLocation)
+            {
+                case IndicatorLocations.Top:
+                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Top;
+                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
+                    break;
+                case IndicatorLocations.Bottom:
+                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Bottom;
+                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
+                    break;
+                case IndicatorLocations.Left:
+                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
+                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Left;
+                    break;
+                case IndicatorLocations.Right:
+                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
+                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Right;
+                    break;
+            }
+        }
+
+        public enum IndicatorLocations
+        {
+            Left,Top,Right,Bottom
+        }
         #endregion
 
 
         #region APIs
         private void Draw()
         {
+            Indicator.TotalIndex = Content.Count;
             foreach (var item in Content)
             {
                 var grid = item as FrameworkElement;
@@ -207,27 +284,39 @@ namespace Panuon.UI
 
         private void ChangeIndex(bool isFirstSet)
         {
-            if (Index < 0)
+            if (Index < 1)
             {
                 if (!Recyclable)
-                    Index = 0;
+                {
+                    Index = 1;
+                    return;
+                }
                 else
-                    Index = Content.Count - 1;
+                {
+                    Index = Content.Count;
+                    return;
+                }
             }
-            else if (Index > Content.Count - 1)
+            else if (Index > Content.Count)
             {
                 if (!Recyclable)
-                    Index = Content.Count - 1;
+                {
+                    Index = Content.Count;
+                    return;
+                }
                 else
-                    Index = 0;
+                {
+                    Index = 1;
+                    return;
+                }
             }
 
-            if (Index == 0 && !Recyclable)
+            if (Index == 1 && !Recyclable)
                 BtnLeft.IsEnabled = false;
             else
                 BtnLeft.IsEnabled = true;
 
-            if (Index == Content.Count - 1 && !Recyclable)
+            if (Index == Content.Count && !Recyclable)
                 BtnRight.IsEnabled = false;
             else
                 BtnRight.IsEnabled = true;
@@ -236,9 +325,9 @@ namespace Panuon.UI
             if (isFirstSet || AnimationDuration == 0)
             {
                 if (SlideDirection == Orientation.Horizontal)
-                    PART_Host.Margin = new Thickness(-1 * Index * ActualWidth, 0, 0, 0);
+                    PART_Host.Margin = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0);
                 else
-                    PART_Host.Margin = new Thickness(0, -1 * Index * ActualHeight, 0, 0);
+                    PART_Host.Margin = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0);
             }
             else
             {
@@ -246,7 +335,7 @@ namespace Panuon.UI
                 {
                     var anima = new ThicknessAnimation()
                     {
-                        To = new Thickness(-1 * Index * ActualWidth, 0, 0, 0),
+                        To = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0),
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };
@@ -256,7 +345,7 @@ namespace Panuon.UI
                 {
                     var anima = new ThicknessAnimation()
                     {
-                        To = new Thickness(0, -1 * Index * ActualHeight, 0, 0),
+                        To = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0),
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };

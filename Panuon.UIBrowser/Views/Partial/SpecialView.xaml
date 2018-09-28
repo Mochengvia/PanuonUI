@@ -57,6 +57,18 @@
                FontSize="20"
                VerticalContentAlignment="Center"
                Margin="20,0,0,0"
+               Content="PUIndicator 指示器控件" />
+        <TextBlock Margin="27,0,50,10"
+                   TextWrapping="Wrap">
+            <LineBreak />
+        </TextBlock>
+        <Grid Height="50" Margin="20,0">
+            <pu:PUIndicator TotalIndex="5" Height="14" HorizontalAlignment="Left"></pu:PUIndicator>
+        </Grid>
+        <Label Height="50"
+               FontSize="20"
+               VerticalContentAlignment="Center"
+               Margin="20,0,0,0"
                Content="PUSlideShow 轮播控件" />
         <TextBlock Margin="27,0,50,10"
                    TextWrapping="Wrap">
@@ -69,6 +81,7 @@
               Height="400">
             <pu:PUSlideShow ClipToBounds="True"
                             SlideDirection="Horizontal"
+                            IndicatorBrush="White"
                             Index="0">
                 <Grid Background="#FF49A9C0">
                     <TextBlock VerticalAlignment="Center"

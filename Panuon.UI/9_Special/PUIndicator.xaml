@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Panuon.UI.PUIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Panuon.UI"
+             mc:Ignorable="d" 
+             MinHeight="10"
+             d:DesignHeight="20" d:DesignWidth="300"
+             SizeChanged="UserControl_SizeChanged"
+             BorderBrush="Gray"
+             Opacity="0.8">
+    <Grid>
+        <Border VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 x:Name="EllIndicator"></Border>
+        <StackPanel x:Name="StkMain" Orientation="Horizontal">
+
+        </StackPanel>
+    </Grid>
+</UserControl>
