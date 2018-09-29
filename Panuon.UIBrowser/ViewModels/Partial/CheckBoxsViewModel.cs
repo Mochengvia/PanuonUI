@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Panuon.UIBrowser.ViewModels.Partial
 {
-    public class TreeViewsViewModel : Screen, IShell
+    public class CheckBoxsViewModel : Screen, IShell
     {
     }
 }

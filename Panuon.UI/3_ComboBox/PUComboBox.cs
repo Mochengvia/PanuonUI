@@ -20,7 +20,7 @@ namespace Panuon.UI
         /// <summary>
         /// 用户点击删除按钮事件。
         /// </summary>
-        public static readonly RoutedEvent DeleteItemEvent = EventManager.RegisterRoutedEvent("DeleteItem", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUComboBoxItem>), typeof(PUComboBoxItem));
+        public static readonly RoutedEvent DeleteItemEvent = EventManager.RegisterRoutedEvent("DeleteItem", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUComboBoxItem>), typeof(PUComboBox));
         public event RoutedPropertyChangedEventHandler<PUComboBoxItem> DeleteItem
         {
             add { AddHandler(DeleteItemEvent, value); }
@@ -65,18 +65,18 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty DeleteModeProperty =
-            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.DeleteItem));
+            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.DeleteAndRouted));
 
         public enum DeleteModes
         {
             /// <summary>
             /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
             /// </summary>
-            None,
+            EventOnly,
             /// <summary>
             /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
             /// </summary>
-            DeleteItem,
+            DeleteAndRouted,
         }
 
 

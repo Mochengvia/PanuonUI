@@ -23,6 +23,8 @@ namespace Panuon.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBoxItem), new FrameworkPropertyMetadata(typeof(PUComboBoxItem)));
         }
 
+       
+
         #region Property
         /// <summary>
         /// 鼠标悬浮时的背景颜色，默认值为浅灰色(#DDDDDD)。
@@ -100,7 +102,7 @@ namespace Panuon.UI
         {
             var comItem = (parameter as PUComboBoxItem);
             var combox = comItem.Parent as PUComboBox;
-            if (combox.DeleteMode == PUComboBox.DeleteModes.DeleteItem)
+            if (combox.DeleteMode == PUComboBox.DeleteModes.DeleteAndRouted)
                 combox.Items.Remove(comItem);
             combox.OnDeleteItem(null, comItem);
         }

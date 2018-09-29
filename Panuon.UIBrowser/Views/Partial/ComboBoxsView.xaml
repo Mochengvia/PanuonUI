@@ -86,12 +86,12 @@
                 <pu:PUComboBox Width="180"
                                Margin="15,0,0,0"
                                Height="30"
-                               DeleteMode="None"
+                               DeleteMode="EventOnly"
                                Foreground="#FF49A9C0"
                                BorderBrush="#9949A9C0"
                                ShadowColor="#FF49A9C0"
                                HorizontalAlignment="Left"
-                               cm:Message.Attach="[Event DeleteItem]=[Action Delete($this.Items, $eventArgs)]">
+                               cm:Message.Attach="[Event DeleteItem]=[Action Delete($this, $eventArgs)]">
                     <pu:PUComboBoxItem Content="点击删除按钮时弹框"
                                        CoverBrush="#2249A9C0"
                                        SelectedBrush="#5549A9C0"

@@ -2686,8 +2686,6 @@
                 Value="0"></Setter>
         <Setter Property="InnerHeight"
                 Value="40"></Setter>
-        <Setter Property="Width"
-                Value="200"></Setter>
         <Setter Property="FontSize"
                 Value="14"></Setter>
         <Setter Property="SnapsToDevicePixels"
@@ -2700,19 +2698,16 @@
                     <StackPanel>
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeViewItem}}">
                             <Grid>
                                 <Border x:Name="bdrCover"
-                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
-                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
                                         Opacity="0">
                                 </Border>
                                 <Border x:Name="bdrSelectedCover"
-                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
-                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                        Background="{Binding ChoosedBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
                                         Opacity="0">
                                 </Border>
                                 <StackPanel Orientation="Horizontal"
@@ -2783,9 +2778,14 @@
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                            <Trigger.EnterActions>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver"
+                                           Value="True"></Condition>
+                                <Condition Property="IsChoosed"
+                                           Value="False"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation To="1"
@@ -2794,8 +2794,8 @@
                                                          Storyboard.TargetProperty="Opacity" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation  Duration="0:0:0.2"
@@ -2803,8 +2803,9 @@
                                                           Storyboard.TargetProperty="Opacity" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
+
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <Trigger Property="IsExpanded"
                                  Value="True">
                             <Trigger.EnterActions>
@@ -2871,16 +2872,22 @@
     <Style TargetType="{x:Type local:PUTreeView}">
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
+        <Setter Property="CoverBrush"
+                Value="#22666666"></Setter>
+        <Setter Property="ChoosedBrush"
+                Value="#44666666"></Setter>
         <Setter Property="SnapsToDevicePixels"
                 Value="True"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <ScrollViewer>
-                        <StackPanel Margin="0,0,0,0">
-                            <ItemsPresenter></ItemsPresenter>
-                        </StackPanel>
-                    </ScrollViewer>
+                        <VirtualizingStackPanel Margin="0,0,0,0"
+                                                Height="{TemplateBinding Height}"
+                                                Width="{TemplateBinding Width}"
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                            IsItemsHost="True">
+                        </VirtualizingStackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2980,7 +2987,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ScrollBarThumb"
+    <Style
            TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
@@ -2995,7 +3002,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ScrollBar"
+    <Style 
            TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled"
                 Value="false" />
@@ -3017,7 +3024,7 @@
                                IsEnabled="{TemplateBinding IsMouseOver}"
                                IsDirectionReversed="true">
                             <Track.Thumb>
-                                <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                <Thumb />
                             </Track.Thumb>
                         </Track>
                     </Grid>
@@ -3046,7 +3053,7 @@
                                 <Track x:Name="PART_Track"
                                        IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.Thumb>
-                                        <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                        <Thumb />
                                     </Track.Thumb>
                                 </Track>
                             </Grid>
@@ -3063,12 +3070,8 @@
                 Value="0" />
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
         <Setter Property="HorizontalScrollBarVisibility"
                 Value="Disabled" />
-        <Setter Property="VerticalContentAlignment"
-                Value="Top" />
         <Setter Property="VerticalScrollBarVisibility"
                 Value="Auto" />
         <Setter Property="Template">
@@ -3081,16 +3084,14 @@
                             <ScrollContentPresenter x:Name="content"
                                                     Cursor="{TemplateBinding Cursor}"
                                                     ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                    Width="{TemplateBinding Width}"
-                                                    Height="{TemplateBinding Height}"
                                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                                    Width="{TemplateBinding Width}"
+                                                    Height="{TemplateBinding Height}" />
                             <ScrollBar x:Name="PART_VerticalScrollBar"
                                        Opacity="0.5"
                                        HorizontalAlignment="Right"
                                        Maximum="{TemplateBinding ScrollableHeight}"
                                        Orientation="Vertical"
-                                       Style="{StaticResource ScrollBar}"
                                        ViewportSize="{TemplateBinding ViewportHeight}"
                                        Value="{TemplateBinding VerticalOffset}"
                                        Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
@@ -3098,7 +3099,6 @@
                                        Opacity="0.5"
                                        Maximum="{TemplateBinding ScrollableWidth}"
                                        Orientation="Horizontal"
-                                       Style="{StaticResource ScrollBar}"
                                        VerticalAlignment="Bottom"
                                        Value="{TemplateBinding HorizontalOffset}"
                                        ViewportSize="{TemplateBinding ViewportWidth}"
@@ -3106,6 +3106,12 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ComputedVerticalScrollBarVisibility"
+                                 Value="Visible">
+                            <Setter TargetName="content"
+                                    Property="Margin"
+                                    Value="0,0,10,0"></Setter>
+                        </Trigger>
                         <EventTrigger RoutedEvent="ScrollChanged">
                             <BeginStoryboard>
                                 <Storyboard>
@@ -3115,7 +3121,7 @@
                                                       Duration="0:0:0.2" />
                                     <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     To="0"
+                                                     To="0.3"
                                                      Duration="0:0:0.3"
                                                      BeginTime="0:0:0.5" />
                                     <DoubleAnimation  Storyboard.TargetName="PART_HorizontalScrollBar"
@@ -3124,7 +3130,7 @@
                                                       Duration="0:0:0.2" />
                                     <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     To="0"
+                                                     To="0.3"
                                                      Duration="0:0:0.3"
                                                      BeginTime="0:0:0.5" />
                                 </Storyboard>
@@ -3147,7 +3153,7 @@
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     To="0"
+                                                     To="0.3"
                                                      Duration="0:0:0.3"
                                                      BeginTime="0:0:0.5" />
                                 </Storyboard>
@@ -3170,7 +3176,7 @@
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
                                                      Storyboard.TargetProperty="Opacity"
-                                                     To="0"
+                                                     To="0.3"
                                                      Duration="0:0:0.3"
                                                      BeginTime="0:0:0.5" />
                                 </Storyboard>

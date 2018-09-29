@@ -111,7 +111,7 @@ namespace Panuon.UI
 
         #endregion
 
-        #region Event
+        #region RoutedEvent
         /// <summary>
         /// 密码改变事件。
         /// </summary>

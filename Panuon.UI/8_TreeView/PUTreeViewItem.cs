@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -18,14 +19,6 @@ namespace Panuon.UI
                     {
                         parent = (parent as PUTreeViewItem).Parent;
                     }
-                    if (parent == null)
-                    {
-                        parent = ItemsControl.ItemsControlFromItemContainer(this);
-                        if (parent == null)
-                            _parentTreeView = null;
-                        else
-                            _parentTreeView = parent as PUTreeView;
-                    }
                     _parentTreeView = (parent as PUTreeView);
                 }
                 return _parentTreeView;
@@ -36,17 +29,6 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        ///  边角的圆滑程度，默认值为0。
-        /// </summary>
-        public int BorderCornerRadius
-        {
-            get { return (int)GetValue(BorderCornerRadiusProperty); }
-            set { SetValue(BorderCornerRadiusProperty, value); }
-        }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = DependencyProperty.Register("BorderCornerRadius", typeof(int), typeof(PUTreeViewItem), new PropertyMetadata(0));
-
-
-        /// <summary>
         /// 行元素高度，默认值为40。
         /// </summary>
         public double InnerHeight
@@ -56,15 +38,6 @@ namespace Panuon.UI
         }
         public static readonly DependencyProperty InnerHeightProperty = DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUTreeViewItem), new PropertyMetadata((double)40));
 
-        /// <summary>
-        /// 鼠标悬浮时遮罩层的背景颜色，默认值为#AA666666。
-        /// </summary>
-        public Brush CoverBrush
-        {
-            get { return (Brush)GetValue(CoverBrushProperty); }
-            set { SetValue(CoverBrushProperty, value); }
-        }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUTreeViewItem), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#22666666"))));
 
         /// <summary>
         /// 该元素是否被选择（即使上级子元素没有展开）。使用此属性而非IsSelected
@@ -73,17 +46,22 @@ namespace Panuon.UI
         {
             get { return (bool)GetValue(IsChoosedProperty); }
             set
+            {SetValue(IsChoosedProperty, value);}
+        }
+        public static readonly DependencyProperty IsChoosedProperty = 
+            DependencyProperty.Register("IsChoosed", typeof(bool), typeof(PUTreeViewItem), new PropertyMetadata(false,OnIsChoosedChanged));
+
+        private static void OnIsChoosedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var item = d as PUTreeViewItem;
+            if (item.IsChoosed == true)
             {
-                SetValue(IsChoosedProperty, value);
-                if (value == true)
-                {
-                    if (ParentTreeView.ChoosedItem != null)
-                        ParentTreeView.ChoosedItem.IsChoosed = false;
-                    ParentTreeView.ChoosedItem = this;
-                }
+                if (item.ParentTreeView.ChoosedItem != null)
+                    item.ParentTreeView.ChoosedItem.IsChoosed = false;
+                item.ParentTreeView.ChoosedItem = item;
+                item.ParentTreeView.ChoosedValue = (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value);
             }
         }
-        public static readonly DependencyProperty IsChoosedProperty = DependencyProperty.Register("IsChoosed", typeof(bool), typeof(PUTreeViewItem), new PropertyMetadata(false));
 
         /// <summary>
         /// Icon
@@ -93,7 +71,20 @@ namespace Panuon.UI
             get { return (string)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(PUTreeViewItem), new PropertyMetadata(""));
+        public static readonly DependencyProperty IconProperty = 
+            DependencyProperty.Register("Icon", typeof(string), typeof(PUTreeViewItem), new PropertyMetadata(""));
+
+
+        public object Value
+        {
+            get { return (object)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(object), typeof(PUTreeViewItem));
+
+
         #endregion
 
         static PUTreeViewItem()
@@ -134,7 +125,6 @@ namespace Panuon.UI
                     e.Handled = true;
                     return;
                 }
-                ParentTreeView.OnChoosedItemChanged();
             }
             else
             {
