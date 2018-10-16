@@ -56,7 +56,7 @@ namespace Panuon.UI
         public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUComboBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
 
         /// <summary>
-        /// 当子项目得到删除按钮可见时，用户点击删除按钮后的操作。默认为删除项目并触发DeleteItem路由事件。
+        /// 当子项目删除按钮可见时，用户点击删除按钮后的操作。默认为删除项目并触发DeleteItem路由事件。
         /// </summary>
         public DeleteModes DeleteMode
         {
@@ -70,13 +70,13 @@ namespace Panuon.UI
         public enum DeleteModes
         {
             /// <summary>
-            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
-            /// </summary>
-            EventOnly,
-            /// <summary>
             /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
             /// </summary>
             DeleteAndRouted,
+            /// <summary>
+            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
+            /// </summary>
+            EventOnly,
         }
 
 
@@ -106,7 +106,7 @@ namespace Panuon.UI
                 {
                     Content = item.Header,
                     Value = item.Value,
-                    IsDeleteButtonShow = item.CanDelete,
+                    DeleteButtonVisibility = item.CanDelete ? Visibility.Visible : Visibility.Collapsed,
                 };
                
                 if (item.CoverBrush != null)
@@ -181,13 +181,11 @@ namespace Panuon.UI
 
         }
 
-
-
         #endregion
 
         public enum SelectedValuePaths
         {
-            Value, Header
+            Header,Value
         }
     }
 }

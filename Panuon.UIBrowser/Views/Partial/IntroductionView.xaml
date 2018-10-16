@@ -1,39 +1,40 @@
 ﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.IntroductionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
              xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White" FontSize="14">
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White"
+             FontSize="14">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50" FontSize="22" VerticalContentAlignment="Center" Margin="20,0,0,0">PanuonUI for WPF</Label>
-        <TextBlock Margin="27,0,50,10" TextWrapping="Wrap">
-            <Run Text="PanuonUI是一个开源的、不限制任何使用方式的WPF控件库。"></Run>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <Run FontWeight="Bold" Text="许可声明："></Run>
-            <Run Text="你可以在任何开发用途上使用该控件库。除了Apache2.0中规定的开源协议之外，你还可以将控件移动到你自己的项目中并重命名。但是，不允许以任何形式抄袭、剽窃并发布新的控件库。例如，抄袭部分控件，更名成xx控件库并发行。如果发现类似行为，将依法追究相关责任。"></Run>
-            <LineBreak></LineBreak>
-            <Run Text=""></Run>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <Run Text="项目中使用了Caliburn.Micro开源框架，它提供极为优雅的MVVM支持，是一个非常优秀的开源项目。"></Run>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <Run Text="有关所有的自定义依赖属性含义，你在调用时会看到非常完善的Summary和注释。我不会在此实例项目中再次说明。也可移步至我的博客查看内容。"></Run>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <pu:PUTextBox IsReadOnly="True" Width="450" Height="28" Text="{Binding Website}"></pu:PUTextBox>
-            <pu:PUButton Height="28" Content="点击打开" Width="110" cal:Message.Attach="[Event Click]=[Action OpenWebsite]"></pu:PUButton>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <LineBreak></LineBreak>
-            <Run Foreground="Gray" Text="Designed and Developed by 末城via（Zeoun）"></Run>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label FontSize="22"
+               VerticalContentAlignment="Center"
+               Margin="20,0">PanuonUI for WPF（v0.0.5 beta）</Label>
+        <TextBlock Grid.Row="1"
+                   Margin="20,0"
+                   TextWrapping="Wrap"><Run Text="PanuonUI是一个开源的、不限制任何使用方式的WPF控件库。" /><LineBreak /><LineBreak />
+            <Run FontWeight="Bold"
+                 Text="许可声明：" />
+            <Run Text="你可以在任何开发用途上使用该控件库，包括将控件移动到你自己的项目中并重命名。但是，不允许以任何形式抄袭、剽窃并发布新的独立控件库。如果发现类似行为，将依法追究相关责任。" />
+            <LineBreak /><LineBreak /><LineBreak /><LineBreak />
+            <Run Text="项目中使用了IconFont图标字体库。" /><LineBreak />
+            <Run Text="另外，项目中还使用了Caliburn.Micro开源框架，它提供优雅的MVVM支持，是一个非常优秀的开源项目。" />
         </TextBlock>
-    </StackPanel>
-
+        <TextBlock Grid.Row="2"
+                   Margin="20,0"
+                   TextWrapping="Wrap">
+             <Run Foreground="Gray"
+                  Text="Designed and Developed by 末城via（Zeoun）" />
+        </TextBlock>
+    </Grid>
 </UserControl>

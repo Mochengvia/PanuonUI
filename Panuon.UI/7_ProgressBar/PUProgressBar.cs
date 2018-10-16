@@ -22,7 +22,8 @@ namespace Panuon.UI
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
-        public new static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double), typeof(PUProgressBar), new PropertyMetadata((double)0, ValueOnChanged));
+        public new static readonly DependencyProperty ValueProperty = 
+            DependencyProperty.Register("Value", typeof(double), typeof(PUProgressBar), new PropertyMetadata((double)0, ValueOnChanged));
 
         private static void ValueOnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -55,12 +56,13 @@ namespace Panuon.UI
         /// <summary>
         /// 是否在进度条上显示百分比，默认值为Collapsed（不显示）。可以通过调整Foreground属性的值来改变颜色。
         /// </summary>
-        public Visibility ShowPercent
+        public Visibility PercentVisibility
         {
-            get { return (Visibility)GetValue(ShowPercentProperty); }
-            set { SetValue(ShowPercentProperty, value); }
+            get { return (Visibility)GetValue(PercentVisibilityProperty); }
+            set { SetValue(PercentVisibilityProperty, value); }
         }
-        public static readonly DependencyProperty ShowPercentProperty = DependencyProperty.Register("ShowPercent", typeof(Visibility), typeof(PUProgressBar), new PropertyMetadata(Visibility.Collapsed));
+        public static readonly DependencyProperty PercentVisibilityProperty = 
+            DependencyProperty.Register("PercentVisibility", typeof(Visibility), typeof(PUProgressBar), new PropertyMetadata(Visibility.Collapsed));
 
         /// <summary>
         /// 显示的百分比文字是否为小数，默认值为True（是小数）。否则为整数百分比。

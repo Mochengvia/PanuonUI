@@ -13,7 +13,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 按钮样式，默认值为General
+        /// 获取或设置按钮的基本样式。默认值为标准样式（General）。
         /// </summary>
         public ButtonStyles ButtonStyle
         {
@@ -21,6 +21,18 @@ namespace Panuon.UI
             set { SetValue(ButtonStyleProperty, value); }
         }
         public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(ButtonStyles), typeof(PUButton), new PropertyMetadata(ButtonStyles.General));
+
+        /// <summary>
+        /// 获取或设置鼠标点击时按钮的效果。默认为无效果（Classic）。
+        /// </summary>
+        public ClickStyles ClickStyle
+        {
+            get { return (ClickStyles)GetValue(ClickStyleProperty); }
+            set { SetValue(ClickStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClickStyleProperty =
+            DependencyProperty.Register("ClickStyle", typeof(ClickStyles), typeof(PUButton), new PropertyMetadata(ClickStyles.Classic));
 
         /// <summary>
         /// 圆角大小，默认值为0。
@@ -65,6 +77,18 @@ namespace Panuon.UI
             /// <para>当鼠标移入时，该按钮的前景色将由Foreground变为指定的CoverBrush。</para>
             /// </summary>
             Link = 4,
+        }
+
+        public enum ClickStyles
+        {
+            /// <summary>
+            /// 点击按钮时不触发下沉操作。
+            /// </summary>
+            Classic,
+            /// <summary>
+            /// 点击按钮时下沉。
+            /// </summary>
+            Sink,
         }
     }
 

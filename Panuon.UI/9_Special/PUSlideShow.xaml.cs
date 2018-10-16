@@ -16,11 +16,22 @@ namespace Panuon.UI
         public PUSlideShow()
         {
             InitializeComponent();
-            Content = PART_Host.Children;
+            Content = StkMain.Children;
             Indicator.IndexChanged += delegate
             {
                 Index = Indicator.Index;
             };
+
+            if (Index == 1 && !Recyclable)
+                BtnLeft.IsEnabled = false;
+            else
+                BtnLeft.IsEnabled = true;
+
+            if (Index == Content.Count && !Recyclable)
+                BtnRight.IsEnabled = false;
+            else
+                BtnRight.IsEnabled = true;
+
             Indicator.AnimationDuration = AnimationDuration;
         }
 
@@ -82,7 +93,7 @@ namespace Panuon.UI
         private static void OnSlideDirectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
-            slideShow.PART_Host.Orientation = slideShow.SlideDirection;
+            slideShow.StkMain.Orientation = slideShow.SlideDirection;
             if (slideShow.SlideDirection == Orientation.Horizontal)
             {
                 slideShow.BtnLeft.Content = "";
@@ -325,9 +336,9 @@ namespace Panuon.UI
             if (isFirstSet || AnimationDuration == 0)
             {
                 if (SlideDirection == Orientation.Horizontal)
-                    PART_Host.Margin = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0);
+                    StkMain.Margin = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0);
                 else
-                    PART_Host.Margin = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0);
+                    StkMain.Margin = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0);
             }
             else
             {
@@ -339,7 +350,7 @@ namespace Panuon.UI
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };
-                    PART_Host.BeginAnimation(MarginProperty, anima);
+                    StkMain.BeginAnimation(MarginProperty, anima);
                 }
                 else
                 {
@@ -349,7 +360,7 @@ namespace Panuon.UI
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };
-                    PART_Host.BeginAnimation(MarginProperty, anima);
+                    StkMain.BeginAnimation(MarginProperty, anima);
                 }
             }
         }

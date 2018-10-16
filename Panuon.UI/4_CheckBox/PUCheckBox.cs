@@ -45,7 +45,8 @@ namespace Panuon.UI
             set
             { SetValue(InnerWidthProperty, value); }
         }
-        public static readonly DependencyProperty InnerWidthProperty = DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUCheckBox), new PropertyMetadata((double)20));
+        public static readonly DependencyProperty InnerWidthProperty = 
+            DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUCheckBox), new PropertyMetadata((double)20));
 
         /// <summary>
         /// 内部选择框的高度，默认值为20。
@@ -55,7 +56,8 @@ namespace Panuon.UI
             get { return (double)GetValue(InnerHeightProperty); }
             set { SetValue(InnerHeightProperty, value); }
         }
-        public static readonly DependencyProperty InnerHeightProperty = DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUCheckBox), new PropertyMetadata((double)20));
+        public static readonly DependencyProperty InnerHeightProperty = 
+            DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUCheckBox), new PropertyMetadata((double)20));
 
         /// <summary>
         /// Check时对号的背景颜色（或前景色），默认值为白色。
@@ -66,7 +68,8 @@ namespace Panuon.UI
             get { return (Brush)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUCheckBox), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty CoverBrushProperty = 
+            DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUCheckBox));
 
         #endregion
 

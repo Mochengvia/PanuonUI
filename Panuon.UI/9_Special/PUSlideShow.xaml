@@ -9,12 +9,12 @@
              d:DesignWidth="300"
              SizeChanged="UserControl_SizeChanged">
     <Grid>
-        <StackPanel x:Name="PART_Host"
+        <StackPanel x:Name="StkMain"
                     Orientation="Horizontal">
         </StackPanel>
         <local:PUButton x:Name="BtnLeft"
                         Content=""
-                        FontFamily="{StaticResource FontAwesome}"
+                        FontFamily="{StaticResource IconFont}"
                         ButtonStyle="Hollow"
                         Width="35"
                         Height="35"
@@ -24,7 +24,7 @@
                         Click="BtnLeft_Click"></local:PUButton>
         <local:PUButton x:Name="BtnRight"
                         Content=""
-                        FontFamily="{StaticResource FontAwesome}"
+                        FontFamily="{StaticResource IconFont}"
                         ButtonStyle="Hollow"
                         Width="35"
                         Height="35"

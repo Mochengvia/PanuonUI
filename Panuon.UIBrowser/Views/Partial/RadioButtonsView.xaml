@@ -7,63 +7,159 @@
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <StackPanel Orientation="Vertical">
-        <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0">PURadioButton 单选按钮控件</Label>
-        <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
-            <Run Text="该控件包含两种样式：General（默认的）、Switch、Branch。"></Run>
-            <LineBreak></LineBreak>
-            <Run Text="额外的依赖属性包括：RadioButtonStyle、BorderCornerRadius、InnerWidth、InnerHeight、CoverBrush。"></Run>
-        </TextBlock>
+    <Grid>
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PURadioButton 单选按钮控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,0"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">CheckBoxStyle </Run>
+                        <Run>获取或设置单选按钮的基本样式。【CheckBoxStyles枚举类型】可选项为：General、Switch、Branch。默认值为General。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置单选按钮的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置当单选按钮被选中时，对号的前景色（General样式时）或开关背景色（Switch样式）或侧边填充色（Branch样式时）（General和Hollow样式时）或前景颜色（Outline和Link样式时）。【Brush类型】。默认值为#3E3E3E（General或Branch样式时）或LightGray（Switch样式时）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">InnerWidth </Run>
+                        <Run>获取或设置内部选择框的宽度。【Double类型】。默认值为20或30（Switch样式）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">InnerHeight </Run>
+                        <Run>获取或设置内部选择框的高度。【Double类型】可选项为Classic、Sink。默认值为Classic。</Run><LineBreak />
+            </TextBlock>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="默认样式"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PURadioButton Content="General"></pu:PURadioButton>
+                        <pu:PURadioButton Content="Switch"
+                                          RadioButtonStyle="Switch"
+                                          Margin="30,0,0,0"></pu:PURadioButton>
+                        <pu:PURadioButton Content="Branch"
+                                          RadioButtonStyle="Branch"
+                                          Margin="30,5,0,5"></pu:PURadioButton>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                           Content="一种控件，无限可能"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"></Label>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Vertical">
+                            <pu:PURadioButton Content="更大的!"
+                                              InnerHeight="25"
+                                              InnerWidth="25"
+                                              Background="#FF49A9C0"
+                                              BorderBrush="#FF49A9C0"
+                                              Foreground="#FF49A9C0"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="General"
+                                              InnerHeight="25"
+                                              InnerWidth="25"
+                                              Margin="0,6,0,0"
+                                              Background="#FFE089B8"
+                                              BorderBrush="#FFE089B8"
+                                              Foreground="#FFE089B8"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="General"
+                                              InnerHeight="25"
+                                              InnerWidth="25"
+                                              Margin="0,6,0,0"
+                                              Background="#FFF4A758"
+                                              BorderBrush="#FFF4A758"
+                                              Foreground="#FFF4A758"
+                                              FontSize="15"></pu:PURadioButton>
 
-        <Grid Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Content="默认样式" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PURadioButton Content="General"></pu:PURadioButton>
-                <pu:PURadioButton Content="Switch" RadioButtonStyle="Switch" Margin="30,0,0,0"></pu:PURadioButton>
-                <pu:PURadioButton Content="Branch" RadioButtonStyle="Branch" Margin="30,5,0,5" ></pu:PURadioButton>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Vertical">
+                            <pu:PURadioButton Content="更大的!"
+                                              RadioButtonStyle="Switch"
+                                              InnerHeight="25"
+                                              InnerWidth="40"
+                                              Foreground="#FF49A9C0"
+                                              CoverBrush="#AA49A9C0"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Switch"
+                                              RadioButtonStyle="Switch"
+                                              Margin="0,8,0,0"
+                                              InnerHeight="25"
+                                              InnerWidth="40"
+                                              Foreground="#FFE089B8"
+                                              CoverBrush="#AAE089B8"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Switch"
+                                              RadioButtonStyle="Switch"
+                                              Margin="0,8,0,0"
+                                              InnerHeight="25"
+                                              InnerWidth="40"
+                                              Foreground="#FFF4A758"
+                                              CoverBrush="#AAF4A758"
+                                              FontSize="15"></pu:PURadioButton>
+
+                        </StackPanel>
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Vertical">
+                            <pu:PURadioButton Content="更大的!"
+                                              Height="30"
+                                              RadioButtonStyle="Branch"
+                                              Padding="15,0,0,0"
+                                              BorderBrush="#FF49A9C0"
+                                              CoverBrush="#FF49A9C0"
+                                              Foreground="#FF49A9C0"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Branch"
+                                              Height="30"
+                                              RadioButtonStyle="Branch"
+                                              Padding="15,0,0,0"
+                                              BorderBrush="#FFE089B8"
+                                              CoverBrush="#FFE089B8"
+                                              Foreground="#FFE089B8"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Branch"
+                                              Height="30"
+                                              RadioButtonStyle="Branch"
+                                              Padding="15,0,0,0"
+                                              BorderBrush="#FFF4A758"
+                                              CoverBrush="#FFF4A758"
+                                              Foreground="#FFF4A758"
+                                              FontSize="15"></pu:PURadioButton>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+
             </StackPanel>
         </Grid>
-        <Grid Margin="0,20,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Vertical">
-                    <pu:PURadioButton Content="更大的!" InnerHeight="25" InnerWidth="25" Background="#FF49A9C0" BorderBrush="#FF49A9C0" Foreground="#FF49A9C0" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="General" InnerHeight="25" InnerWidth="25" Margin="0,6,0,0" Background="#FFE089B8" BorderBrush="#FFE089B8" Foreground="#FFE089B8" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="General" InnerHeight="25" InnerWidth="25" Margin="0,6,0,0" Background="#FFF4A758" BorderBrush="#FFF4A758" Foreground="#FFF4A758" FontSize="15"></pu:PURadioButton>
-
-                </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <pu:PURadioButton Content="更大的!" RadioButtonStyle="Switch" InnerHeight="25" InnerWidth="40" Foreground="#FF49A9C0" Background="#AA49A9C0" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="Switch" RadioButtonStyle="Switch" Margin="0,8,0,0" InnerHeight="25" InnerWidth="40" Foreground="#FFE089B8" Background="#AAE089B8" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="Switch" RadioButtonStyle="Switch" Margin="0,8,0,0" InnerHeight="25" InnerWidth="40" Foreground="#FFF4A758" Background="#AAF4A758" FontSize="15"></pu:PURadioButton>
-
-                </StackPanel>
-                <StackPanel Grid.Column="2" Orientation="Vertical">
-                    <pu:PURadioButton Content="更大的!" Height="30" RadioButtonStyle="Branch" Padding="15,0,0,0" BorderBrush="#FF49A9C0" CoverBrush="#FF49A9C0" Foreground="#FF49A9C0" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="Branch" Height="30" RadioButtonStyle="Branch" Padding="15,0,0,0" BorderBrush="#FFE089B8" CoverBrush="#FFE089B8" Foreground="#FFE089B8" FontSize="15"></pu:PURadioButton>
-                    <pu:PURadioButton Content="Branch" Height="30" RadioButtonStyle="Branch" Padding="15,0,0,0" BorderBrush="#FFF4A758" CoverBrush="#FFF4A758" Foreground="#FFF4A758" FontSize="15"></pu:PURadioButton>
-                </StackPanel>
-
-            </Grid>
-        </Grid>
-
-    </StackPanel>
+    </Grid>
 
 </UserControl>

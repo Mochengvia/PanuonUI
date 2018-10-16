@@ -11,77 +11,126 @@
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0">PUTreeView / PUTreeViewItem 树视图</Label>
-        <TextBlock Margin="27,0,50,10"
-                   TextWrapping="Wrap">
-            <Run Text="PUTreeView额外的依赖属性包括：ChoosedItem、IsExpandDoubleClick。方法包括：ChooseItemByUID、GetItemByUID、ChooseItemByHeader。"></Run>
-            <LineBreak></LineBreak>
-            <Run Text="PUTreeViewItem额外的依赖属性包括：BorderCornerRadius、InnerHeight、CoverBrush、IsChoosed、Icon。"></Run>
-            <LineBreak></LineBreak>
-            <Run Foreground="Red"
-                 Text="请使用ChoosedItem获取被选择的项目（含有子控件的项目不会激活此属性）。"></Run>
-        </TextBlock>
-
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="默认样式（左）与自定义配色（右）"
-                       TextWrapping="Wrap"
-                       Margin="20,5,20,0"
-                       VerticalAlignment="Top" />
-            <StackPanel Orientation="Horizontal"
-                        Grid.Column="1">
-                <ScrollViewer Height="200"
-                              Width="200"
-                              VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <pu:PUTreeView cm:Message.Attach="[Event ChoosedItemChanged]=[Action ChoosedItemChanged($eventArgs)]"
-                                   ChoosedValuePath="Value"
-                                   ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
-                        <pu:PUTreeViewItem Header="Item1">
-                            <pu:PUTreeViewItem  Header="Item1-1"
-                                                Value="1.1" />
-                            <pu:PUTreeViewItem  Header="Item1-2"
-                                                Value="1.2" />
-                            <pu:PUTreeViewItem  Header="Item1-3"
-                                                Value="1.3" />
-                        </pu:PUTreeViewItem>
-                        <pu:PUTreeViewItem Header="Item2">
-                            <pu:PUTreeViewItem  Header="Item2-1"
-                                                Value="2.1" />
-                            <pu:PUTreeViewItem  Header="Item2-2"
-                                                Value="2.2" />
-                            <pu:PUTreeViewItem  Header="Item2-3"
-                                                Value="2.3" />
-                        </pu:PUTreeViewItem>
-                        <pu:PUTreeViewItem Header="Item3">
-                            <pu:PUTreeViewItem  Header="Item3-1"
-                                                Value="3.1" />
-                            <pu:PUTreeViewItem  Header="Item3-2"
-                                                Value="3.2" />
-                            <pu:PUTreeViewItem  Header="Item3-3"
-                                                Value="3.3" />
-                        </pu:PUTreeViewItem>
-                    </pu:PUTreeView>
-                </ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <pu:PUTextBox x:Name="ChoosedHeader"
-                                  Height="30"
-                                  Width="200"></pu:PUTextBox>
-                    <pu:PUTextBox x:Name="ChoosedValue"
-                                  Margin="0,5,0,0"
-                                  Height="30"
-                                  Width="200"></pu:PUTextBox>
+            <Grid Margin="60,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Height="50"
+                       FontSize="20"
+                       VerticalContentAlignment="Center">PUTreeView / PUTreeViewItem 树视图</Label>
+                <TextBlock Grid.Row="1"
+                           Margin="5,10,0,10"
+                           TextWrapping="Wrap">
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUTreeViewItem</Run><LineBreak />    
+                        <Run Foreground="#FF359ECF">IsChoosed </Run>
+                        <Run>获取或设置该子项是否已被选中，含有子项目的行项目无法被选中。【Boolean类型】。默认值为False。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">Value </Run>
+                        <Run>获取或设置该子项可以携带的值，仅用于标记该子项的实际内容，不对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF3ECD44">PUTreeViewItemModel </Run>
+                        <Run>用于绑定到PUTreeView子项集合的模型类，参见PUTreeView的BindingItems属性。</Run><LineBreak />
+
+                        <LineBreak />   
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUTreeView</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">InnerHeight </Run>
+                        <Run>获取或设置子项的行高度。【Double类型】。默认值为40。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时子项的背景色。【Brush类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">ChoosedBrush </Run>
+                        <Run>获取或设置子项被选中时，的背景色。【Brush类型】。默认值为#88888</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">Header </Run>
+                        <Run>获取或设置当前被选中的子项。【PUTreeViewItem枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BindingItems </Run>
+                        <Run>获取或设置绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。【&lt;PUTreeViewItemModel&gt;集合】。默认值为空。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">IsExpandDoubleClick </Run>
+                        <Run>获取或设置是否需要双击才能展开行项目的子项。【&lt;PUTreeViewItemModel&gt;集合】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">ChoosedValuePath </Run>
+                        <Run>获取或设置当子项目被选中时，ChoosedValue应呈现子项PUTreeViewItem的哪一个值。【ChoosedValuePaths枚举类型】可选项为：Header、Value。默认值为Header。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">ChoosedValue </Run>
+                        <Run>获取被选中的子项PUTreeViewItem的Header或Value属性（取决于ChoosedValuePath的值），或通过设置该值来选中指定的子项目。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FFF18C27">ChoosedItemChanged </Run>
+                        <Run>当新的子项被选中时，触发此路由事件。</Run><LineBreak />
+                        <Run Foreground="#FF9735CF">GetTreeViewItem </Run>
+                        <Run>当新的子项被选中时，触发此路由事件。</Run>
+                </TextBlock>
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="2"
+                            Margin="0,0,0,40">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="默认样式"
+                                   TextWrapping="Wrap"
+                                   Margin="0,5,20,0"
+                                   VerticalAlignment="Top" />
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="1">
+                            <ScrollViewer Height="200"
+                                          Width="200"
+                                          VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled">
+                                <pu:PUTreeView cm:Message.Attach="[Event ChoosedItemChanged]=[Action ChoosedItemChanged($eventArgs)]"
+                                               ChoosedValuePath="Value"
+                                               ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
+                                    <pu:PUTreeViewItem Header="Item1">
+                                        <pu:PUTreeViewItem  Header="Item1-1"
+                                                            Value="1.1" />
+                                        <pu:PUTreeViewItem  Header="Item1-2"
+                                                            Value="1.2" />
+                                        <pu:PUTreeViewItem  Header="Item1-3"
+                                                            Value="1.3" />
+                                    </pu:PUTreeViewItem>
+                                    <pu:PUTreeViewItem Header="Item2">
+                                        <pu:PUTreeViewItem  Header="Item2-1"
+                                                            Value="2.1" />
+                                        <pu:PUTreeViewItem  Header="Item2-2"
+                                                            Value="2.2" />
+                                        <pu:PUTreeViewItem  Header="Item2-3"
+                                                            Value="2.3" />
+                                    </pu:PUTreeViewItem>
+                                    <pu:PUTreeViewItem Header="Item3">
+                                        <pu:PUTreeViewItem  Header="Item3-1"
+                                                            Value="3.1" />
+                                        <pu:PUTreeViewItem  Header="Item3-2"
+                                                            Value="3.2" />
+                                        <pu:PUTreeViewItem  Header="Item3-3"
+                                                            Value="3.3" />
+                                    </pu:PUTreeViewItem>
+                                </pu:PUTreeView>
+                            </ScrollViewer>
+                            <StackPanel Orientation="Vertical">
+                                <Grid Height="30"
+                                      Width="220">
+                                    <Label Width="100"
+                                           HorizontalAlignment="Left">选中项的标题</Label>
+                                    <pu:PUTextBox x:Name="ChoosedHeader"
+                                                  Width="120"
+                                                  HorizontalAlignment="Right"></pu:PUTextBox>
+                                </Grid>
+                                <Grid Height="30"
+                                      Width="220">
+                                    <Label Width="100"
+                                           HorizontalAlignment="Left">选中项的Value</Label>
+                                    <pu:PUTextBox x:Name="ChoosedValue"
+                                                  Width="120"
+                                                  HorizontalAlignment="Right"></pu:PUTextBox>
+                                </Grid>
+                                <Label Foreground="Gray"
+                                       HorizontalAlignment="Left">修改上面的Value值，选中项也会改变。</Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </Grid>
-
-    </StackPanel>
-
+    </ScrollViewer>
 </UserControl>

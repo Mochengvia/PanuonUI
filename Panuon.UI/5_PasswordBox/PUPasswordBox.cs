@@ -57,8 +57,8 @@ namespace Panuon.UI
 
         private void PUPasswordBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            //禁止任何与Control键有关的事(除了全选)
-            if (Keyboard.IsKeyDown(Key.LeftCtrl) && !Keyboard.IsKeyDown(Key.A))
+            //禁止任何与Control键有关的事(除了全选)，禁止输入Enter
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) && !Keyboard.IsKeyDown(Key.A)) || Keyboard.IsKeyDown(Key.Enter))
             {
                 e.Handled = true;
                 return;
@@ -155,7 +155,8 @@ namespace Panuon.UI
             get { return (char)GetValue(PasswordCharProperty); }
             set { SetValue(PasswordCharProperty, value); }
         }
-        public static readonly DependencyProperty PasswordCharProperty = DependencyProperty.Register("PasswordChar", typeof(char), typeof(PUPasswordBox), new PropertyMetadata('●'));
+        public static readonly DependencyProperty PasswordCharProperty = 
+            DependencyProperty.Register("PasswordChar", typeof(char), typeof(PUPasswordBox), new PropertyMetadata('●'));
         /// <summary>
         /// 密码框样式，默认值为General。
         /// </summary>
@@ -164,7 +165,8 @@ namespace Panuon.UI
             get { return (PasswordBoxStyles)GetValue(PasswordBoxStyleProperty); }
             set { SetValue(PasswordBoxStyleProperty, value); }
         }
-        public static readonly DependencyProperty PasswordBoxStyleProperty = DependencyProperty.Register("PasswordBoxStyle", typeof(PasswordBoxStyles), typeof(PUPasswordBox), new PropertyMetadata(PasswordBoxStyles.General));
+        public static readonly DependencyProperty PasswordBoxStyleProperty = 
+            DependencyProperty.Register("PasswordBoxStyle", typeof(PasswordBoxStyles), typeof(PUPasswordBox), new PropertyMetadata(PasswordBoxStyles.General));
 
         /// <summary>
         /// 圆角大小，默认值为0。

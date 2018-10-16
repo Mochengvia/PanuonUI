@@ -11,12 +11,13 @@ namespace Panuon.UI
 {
     public class PUWindow : Window
     {
+        #region Identify
+        private PUButton _btnClose;
+        #endregion
         static PUWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUWindow), new FrameworkPropertyMetadata(typeof(PUWindow)));
         }
-
-        private PUButton _btnClose;
 
         public override void OnApplyTemplate()
         {
@@ -41,7 +42,8 @@ namespace Panuon.UI
             get { return (bool)GetValue(ShowCoverProperty); }
             set { SetValue(ShowCoverProperty, value); }
         }
-        public static readonly DependencyProperty ShowCoverProperty = DependencyProperty.Register("ShowCover", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty ShowCoverProperty = 
+            DependencyProperty.Register("ShowCover", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
 
         /// <summary>
         /// 显示延迟，默认值为False。
@@ -51,7 +53,8 @@ namespace Panuon.UI
             get { return (bool)GetValue(ShowDelayProperty); }
             set { SetValue(ShowDelayProperty, value); }
         }
-        public static readonly DependencyProperty ShowDelayProperty = DependencyProperty.Register("ShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty ShowDelayProperty = 
+            DependencyProperty.Register("ShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
 
 
 

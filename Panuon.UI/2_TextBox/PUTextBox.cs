@@ -57,7 +57,8 @@ namespace Panuon.UI
             get { return (TextBoxStyles)GetValue(TextBoxStyleProperty); }
             set { SetValue(TextBoxStyleProperty, value); }
         }
-        public static readonly DependencyProperty TextBoxStyleProperty = DependencyProperty.Register("TextBoxStyle", typeof(TextBoxStyles), typeof(PUTextBox), new PropertyMetadata(TextBoxStyles.General));
+        public static readonly DependencyProperty TextBoxStyleProperty = 
+            DependencyProperty.Register("TextBoxStyle", typeof(TextBoxStyles), typeof(PUTextBox), new PropertyMetadata(TextBoxStyles.General));
 
         /// <summary>
         /// 圆角大小，默认值为0。
@@ -67,7 +68,8 @@ namespace Panuon.UI
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox), new PropertyMetadata(new CornerRadius(0)));
+        public static readonly DependencyProperty BorderCornerRadiusProperty = 
+            DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox), new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
         ///  输入框激活时阴影的颜色，默认值为#888888。
@@ -77,7 +79,8 @@ namespace Panuon.UI
             get { return (Color)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUTextBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
+        public static readonly DependencyProperty CoverBrushProperty = 
+            DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUTextBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
 
         /// <summary>
         ///  水印内容，默认值为空。
@@ -87,18 +90,20 @@ namespace Panuon.UI
             get { return (string)GetValue(WatermarkProperty); }
             set { SetValue(WatermarkProperty, value); }
         }
-        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(PUTextBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty WatermarkProperty = 
+            DependencyProperty.Register("Watermark", typeof(string), typeof(PUTextBox), new PropertyMetadata(""));
 
         /// <summary>
         /// 放置在输入框前的图标。
         /// <para>仅当输入框样式为IconGroup时有效。</para>
         /// </summary>
-        public string Icon
+        public object Icon
         {
-            get { return (string)GetValue(IconProperty); }
+            get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(PUTextBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty IconProperty = 
+            DependencyProperty.Register("Icon", typeof(object), typeof(PUTextBox));
 
         /// <summary>
         /// 图标的宽度，默认值为30。
@@ -109,7 +114,8 @@ namespace Panuon.UI
             get { return (double)GetValue(IconWidthProperty); }
             set { SetValue(IconWidthProperty, value); }
         }
-        public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register("IconWidth", typeof(double), typeof(PUTextBox), new PropertyMetadata((double)30));
+        public static readonly DependencyProperty IconWidthProperty = 
+            DependencyProperty.Register("IconWidth", typeof(double), typeof(PUTextBox), new PropertyMetadata((double)30));
 
         #endregion
 

@@ -4,7 +4,7 @@
 
     <SolidColorBrush x:Key="Theme"
                      Color="#FF3E3E3E" />
-    <FontFamily x:Key="FontAwesome">/#fontawesome</FontFamily>
+    <FontFamily x:Key="IconFont">/#fontawesome</FontFamily>
     <local:ToggleCornerRadiusConverter x:Key="ToggleCornerRadiusConverter"></local:ToggleCornerRadiusConverter>
     <local:ToggleHeightConverter x:Key="ToggleHeightConverter"></local:ToggleHeightConverter>
     <local:TranslateXConverter x:Key="TranslateXConverter"></local:TranslateXConverter>
@@ -64,12 +64,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -128,7 +128,7 @@
                                         </Grid>
                                     </Grid>
                                     <Border x:Name="bdrCover"
-                                            Background="Gray"
+                                            Background="Black"
                                             BorderThickness="0"
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
@@ -164,7 +164,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 To="0.5"
+                                                                 To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
@@ -180,7 +180,7 @@
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
-                                                                 Duration="0:0:0.05"></DoubleAnimation>
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
@@ -262,12 +262,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -326,7 +326,7 @@
                                         </Grid>
                                     </Grid>
                                     <Border x:Name="bdrCover"
-                                            Background="Gray"
+                                            Background="Black"
                                             BorderThickness="0"
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
@@ -372,7 +372,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 To="0.5"
+                                                                 To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
@@ -388,7 +388,7 @@
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
-                                                                 Duration="0:0:0.05"></DoubleAnimation>
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
@@ -465,12 +465,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource FontAwesome}"
+                                                       FontFamily="{StaticResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -529,7 +529,7 @@
                                         </Grid>
                                     </Grid>
                                     <Border x:Name="bdrCover"
-                                            Background="Gray"
+                                            Background="Black"
                                             BorderThickness="0"
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
@@ -579,7 +579,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 To="0.5"
+                                                                 To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
@@ -595,7 +595,7 @@
                                                 <DoubleAnimation Storyboard.TargetName="bdrCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
-                                                                 Duration="0:0:0.05"></DoubleAnimation>
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
@@ -664,7 +664,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
+                            <Grid x:Name="grdMain">
                                 <Border x:Name="bdrOuter"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -702,6 +702,19 @@
                                             Property="Opacity"
                                             Value="0.1"></Setter>
                                 </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -743,7 +756,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
+                            <Grid x:Name="grdMain">
                                 <Border x:Name="bdrOuter"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -783,6 +796,19 @@
                                             Property="Opacity"
                                             Value="0.1"></Setter>
                                 </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -829,23 +855,16 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid>
+                            <Grid x:Name="grdMain">
                                 <Border x:Name="bdrOuter"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Grid>
-                                        <Border x:Name="bdrInner"
-                                                BorderThickness="0"
-                                                ClipToBounds="True"
-                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                            <ContentPresenter x:Name="content"
-                                                              Margin="{TemplateBinding Padding}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              ContentSource="Content"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
+                                    <Label Margin="{TemplateBinding Padding}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Content="{TemplateBinding Content}"
+                                           Foreground="{TemplateBinding Foreground}"></Label>
                                 </Border>
                                 <Border x:Name="bdrHoverCover"
                                         Background="Transparent"
@@ -889,6 +908,19 @@
                                             Property="Opacity"
                                             Value="0.1"></Setter>
                                 </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -940,8 +972,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid Height="{TemplateBinding Height}"
-                                  Width="{TemplateBinding Width}">
+                            <Grid x:Name="grdMain">
                                 <Label x:Name="lblContent"
                                        Foreground="{TemplateBinding Foreground}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -957,11 +988,38 @@
                                        FontSize="{TemplateBinding FontSize}"
                                        FontFamily="{TemplateBinding FontFamily}"
                                        Content="{TemplateBinding Content}"></Label>
+                                <Label x:Name="lblPressedCover"
+                                       Opacity="0"
+                                       Foreground="White"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled"
                                          Value="False">
                                     <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="lblPressedCover"
+                                            Property="Opacity"
                                             Value="0.4"></Setter>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver"
@@ -1159,7 +1217,7 @@
                                                HorizontalContentAlignment="Center"
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="{StaticResource FontAwesome}"></Label>
+                                               FontFamily="{StaticResource IconFont}"></Label>
                                         <Grid>
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Margin="{TemplateBinding Padding}"
@@ -1374,16 +1432,16 @@
                             </ToggleButton>
                             <!--必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它-->
                             <local:PUTextBox Visibility="Hidden"
-                                       BorderThickness="0"
-                                       Margin="2,0,25,0"
-                                       Padding="2,0,0,0"
-                                       x:Name="PART_EditableTextBox"
-                                       VerticalAlignment="Center"
-                                       Focusable="True"
-                                       Background="Transparent"
-                                       BorderBrush="{TemplateBinding BorderBrush}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       IsReadOnly="{TemplateBinding IsReadOnly}" />
+                                             BorderThickness="0"
+                                             Margin="2,0,25,0"
+                                             Padding="2,0,0,0"
+                                             x:Name="PART_EditableTextBox"
+                                             VerticalAlignment="Center"
+                                             Focusable="True"
+                                             Background="Transparent"
+                                             BorderBrush="{TemplateBinding BorderBrush}"
+                                             Foreground="{TemplateBinding Foreground}"
+                                             IsReadOnly="{TemplateBinding IsReadOnly}" />
                             <!--Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen-->
                             <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
@@ -1491,6 +1549,7 @@
                                         Cursor="Arrow"
                                         Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
                                         CoverBrush="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        Visibility="{Binding DeleteButtonVisibility,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
                                         VerticalAlignment="Top"
                                         HorizontalAlignment="Right"
                                         VerticalContentAlignment="Center"
@@ -1499,12 +1558,6 @@
                                         Content="×"></local:PUButton>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDeleteButtonShow"
-                                 Value="False">
-                            <Setter TargetName="btnDelete"
-                                    Property="Visibility"
-                                    Value="Collapsed"></Setter>
-                        </Trigger>
                         <Trigger Property="IsSelected"
                                  Value="true">
                             <Setter TargetName="bdrMain"
@@ -1518,8 +1571,8 @@
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected"
                                            Value="true" />
-                                <Condition Property="IsDeleteButtonShow"
-                                           Value="true" />
+                                <Condition Property="DeleteButtonVisibility"
+                                           Value="Visible" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="btnDelete"
                                     Property="Visibility"
@@ -1549,6 +1602,8 @@
     </Style>
 
     <Style TargetType="{x:Type local:PUPasswordBox}">
+        <Setter Property="AcceptsReturn"
+                Value="False"></Setter>
         <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="BorderThickness"
@@ -1705,7 +1760,7 @@
                                                HorizontalContentAlignment="Center"
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="{StaticResource FontAwesome}"></Label>
+                                               FontFamily="{StaticResource IconFont}"></Label>
                                         <Grid>
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Margin="{TemplateBinding Padding}"
@@ -1940,24 +1995,21 @@
                         Value="LightGray"></Setter>
                 <Setter Property="CoverBrush"
                         Value="LightGray"></Setter>
-                <Setter Property="Background"
-                        Value="LightGray"></Setter>
                 <Setter Property="InnerHeight"
                         Value="25"></Setter>
                 <Setter Property="InnerWidth"
                         Value="35"></Setter>
-                <Setter Property="CoverBrush"
-                        Value="{StaticResource Theme}"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal"
+                                        Background="{TemplateBinding Background}">
                                 <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                       Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=CheckBox}}">
                                     <Border x:Name="bdrOuter"
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                            Background="{TemplateBinding Background}"
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleCornerRadiusConverter}}">
                                         <Border x:Name="bdrInner"
                                                 BorderThickness="0"
@@ -2128,7 +2180,7 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                             Opacity="0.2" />
                                     <Border x:Name="bdrInner"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderBrush="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                             Opacity="0.7">
@@ -2257,36 +2309,47 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
                             <StackPanel Orientation="Horizontal">
-                                <Border x:Name="bdrOuter"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}"
-                                        Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
-                                        Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
-                                        Background="{TemplateBinding Background}">
-                                    <Grid>
-                                        <Border x:Name="bdrInner"
-                                                Background="White"
-                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}"
-                                                RenderTransformOrigin="0.5,0.5">
-
-                                            <Border.RenderTransform>
-                                                <ScaleTransform x:Name="scale1"
-                                                                ScaleX="1"
-                                                                ScaleY="1"></ScaleTransform>
-                                            </Border.RenderTransform>
-                                        </Border>
-                                        <Border Background="{TemplateBinding Background}"
-                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
-                                                RenderTransformOrigin="0.5,0.5">
-                                            <Border.RenderTransform>
-                                                <ScaleTransform x:Name="scale2"
-                                                                ScaleX="0"
-                                                                ScaleY="0"></ScaleTransform>
-                                            </Border.RenderTransform>
-                                        </Border>
-                                    </Grid>
-                                </Border>
+                                <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                      Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}">
+                                    <Ellipse x:Name="ellOuter"
+                                             Stroke="{TemplateBinding BorderBrush}"
+                                             StrokeThickness="{TemplateBinding BorderThickness}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Fill="{TemplateBinding Background}">
+                                    </Ellipse>
+                                    <Ellipse x:Name="ellInner"
+                                             Fill="White"
+                                             Stroke="Transparent"
+                                             StrokeThickness="{TemplateBinding BorderThickness}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="scale1"
+                                                            ScaleX="1"
+                                                            ScaleY="1"></ScaleTransform>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                    <Ellipse Fill="{TemplateBinding Background}"
+                                             Stroke="Transparent"
+                                             StrokeThickness="{TemplateBinding BorderThickness}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="scale2"
+                                                            ScaleX="0"
+                                                            ScaleY="0"></ScaleTransform>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Grid>
                                 <ContentPresenter Margin="{TemplateBinding Padding}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -2298,7 +2361,7 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.85"
+                                                <DoubleAnimation To="0.82"
                                                                  Duration="0:0:0.4"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleX">
@@ -2306,7 +2369,7 @@
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.85"
+                                                <DoubleAnimation To="0.82"
                                                                  Duration="0:0:0.4"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleY">
@@ -2314,7 +2377,7 @@
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35"
+                                                <DoubleAnimation To="0.36"
                                                                  Duration="0:0:0.5"
                                                                  Storyboard.TargetName="scale2"
                                                                  Storyboard.TargetProperty="ScaleX">
@@ -2322,7 +2385,7 @@
                                                         <BackEase EasingMode="EaseOut"></BackEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
-                                                <DoubleAnimation To="0.35"
+                                                <DoubleAnimation To="0.36"
                                                                  Duration="0:0:0.5"
                                                                  Storyboard.TargetName="scale2"
                                                                  Storyboard.TargetProperty="ScaleY">
@@ -2374,7 +2437,7 @@
                                 </Trigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
-                                    <Setter TargetName="bdrOuter"
+                                    <Setter TargetName="ellOuter"
                                             Property="Opacity"
                                             Value="1"></Setter>
                                 </Trigger>
@@ -2394,14 +2457,10 @@
                         Value="LightGray"></Setter>
                 <Setter Property="CoverBrush"
                         Value="LightGray"></Setter>
-                <Setter Property="Background"
-                        Value="LightGray"></Setter>
                 <Setter Property="InnerHeight"
                         Value="25"></Setter>
                 <Setter Property="InnerWidth"
                         Value="35"></Setter>
-                <Setter Property="CoverBrush"
-                        Value="{StaticResource Theme}"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
@@ -2411,7 +2470,7 @@
                                     <Border x:Name="bdrOuter"
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                            Background="{TemplateBinding Background}"
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}">
                                         <Border x:Name="bdrInner"
                                                 BorderThickness="0"
@@ -2582,7 +2641,7 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                             Opacity="0.2" />
                                     <Border x:Name="bdrInner"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderBrush="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                             Opacity="0.7">
@@ -2684,8 +2743,7 @@
                 Value="DimGray"></Setter>
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
-        <Setter Property="InnerHeight"
-                Value="40"></Setter>
+     
         <Setter Property="FontSize"
                 Value="14"></Setter>
         <Setter Property="SnapsToDevicePixels"
@@ -2700,7 +2758,7 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeViewItem}}">
+                                Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeView}}">
                             <Grid>
                                 <Border x:Name="bdrCover"
                                         Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
@@ -2762,10 +2820,6 @@
                                     <StackPanel x:Name="stkPanel"
                                                 Orientation="Horizontal"
                                                 Margin="10,0,0,0">
-                                        <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
-                                               VerticalContentAlignment="Center"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="{StaticResource FontAwesome}"></Label>
                                         <ContentPresenter x:Name="content"
                                                           RecognizesAccessKey="True"
                                                           VerticalAlignment="Center"
@@ -2860,9 +2914,6 @@
                             <Setter TargetName="bdrSelectedCover"
                                     Property="Opacity"
                                     Value="1" />
-                            <Setter TargetName="stkPanel"
-                                    Property="Margin"
-                                    Value="3,0,0,0"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -2873,21 +2924,23 @@
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
         <Setter Property="CoverBrush"
-                Value="#22666666"></Setter>
+                Value="#11666666"></Setter>
         <Setter Property="ChoosedBrush"
-                Value="#44666666"></Setter>
+                Value="#22666666"></Setter>
         <Setter Property="SnapsToDevicePixels"
                 Value="True"></Setter>
+        <Setter Property="InnerHeight"
+                Value="40"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                        <VirtualizingStackPanel Margin="0,0,0,0"
-                                                Height="{TemplateBinding Height}"
-                                                Width="{TemplateBinding Width}"
-                                                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    <VirtualizingStackPanel Margin="0,0,0,0"
+                                            Height="{TemplateBinding Height}"
+                                            Width="{TemplateBinding Width}"
+                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                             IsItemsHost="True">
-                        </VirtualizingStackPanel>
+                    </VirtualizingStackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2934,7 +2987,7 @@
                                            Foreground="{TemplateBinding Foreground}"
                                            FontSize="{TemplateBinding FontSize}"
                                            Content="{Binding Percent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                           Visibility="{Binding ShowPercent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"></Label>
+                                           Visibility="{Binding PercentVisibility,RelativeSource={RelativeSource AncestorType=ProgressBar}}"></Label>
                                 </Grid>
                             </Border>
                         </ControlTemplate>
@@ -2972,7 +3025,7 @@
                                            Foreground="{TemplateBinding Foreground}"
                                            FontSize="{TemplateBinding FontSize}"
                                            Content="{Binding Percent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                           Visibility="{Binding ShowPercent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
+                                           Visibility="{Binding PercentVisibility,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
                                            RenderTransformOrigin="0.5,0.5">
                                         <Label.RenderTransform>
                                             <RotateTransform Angle="90"></RotateTransform>
@@ -2987,8 +3040,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style
-           TargetType="{x:Type Thumb}">
+    <Style TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
         <Setter Property="IsTabStop"
@@ -3002,8 +3054,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style 
-           TargetType="{x:Type ScrollBar}">
+    <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled"
                 Value="false" />
         <Setter Property="Stylus.IsFlicksEnabled"

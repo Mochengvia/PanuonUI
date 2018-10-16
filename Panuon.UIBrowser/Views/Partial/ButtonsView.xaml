@@ -10,265 +10,280 @@
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0">PUButton 按钮控件</Label>
-        <TextBlock Height="50"
-                   Margin="27,0,50,10"
-                   TextWrapping="Wrap">
-            <Run Text="该控件包含四种样式：General（默认的）、Hollow、Outline、Link。"></Run>
-            <LineBreak></LineBreak>
-            <Run Text="额外的依赖属性包括：ButtonStyle、BorderCornerRadius、CoverBrush。它们的功能就如它们的名称一样。"></Run>
-        </TextBlock>
-
-        <Grid Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Content="默认样式"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content="General"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"></pu:PUButton>
-                <pu:PUButton Content="Hollow"
-                             ButtonStyle="Hollow"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"></pu:PUButton>
-                <pu:PUButton Content="Outline"
-                             ButtonStyle="Outline"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"></pu:PUButton>
-                <pu:PUButton Content="Link"
-                             ButtonStyle="Link"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"></pu:PUButton>
-
-            </StackPanel>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid Margin="60,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="一种控件，无限可能"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content="General"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Background="#FF49A9C0"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton ButtonStyle="Hollow"
-                             Content="Hollow"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FF49A9C0"
-                             BorderBrush="#FF49A9C0"
-                             Foreground="#FF49A9C0"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton ButtonStyle="Outline"
-                             Content="Outline"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FF49A9C0"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton ButtonStyle="Link"
-                             Content="Link"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FF49A9C0"></pu:PUButton>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUButton 按钮控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,0"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">ButtonStyle </Run>
+                        <Run>获取或设置按钮的基本样式。【ButtonStyles枚举类型】可选项为：General、Hollow、Outline、Link。默认值为General。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">ClickStyle </Run>
+                        <Run>获取或设置鼠标点击时按钮的效果。【ClickStyles类型】可选项为Classic、Sink。默认值为Classic。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置按钮的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时按钮的背景颜色（General和Hollow样式时）或前景颜色（Outline和Link样式时）。【Brush类型】。默认值为#FFFFFF（作为背景颜色时）或#3E3E3E（作为前景颜色时）。</Run><LineBreak />
+            </TextBlock>
+            <StackPanel Grid.Row="2">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="默认样式"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content="General"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"></pu:PUButton>
+                        <pu:PUButton Content="Hollow"
+                                     ButtonStyle="Hollow"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"></pu:PUButton>
+                        <pu:PUButton Content="Outline"
+                                     ButtonStyle="Outline"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"></pu:PUButton>
+                        <pu:PUButton Content="Link"
+                                     ButtonStyle="Link"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"></pu:PUButton>
+
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="一种控件，无限可能"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content="下沉"
+                                     ClickStyle="Sink"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Background="#FF49A9C0"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton ButtonStyle="Hollow"
+                                     ClickStyle="Sink"
+                                     Content="下沉"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FF49A9C0"
+                                     BorderBrush="#FF49A9C0"
+                                     Foreground="#FF49A9C0"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton ButtonStyle="Outline"
+                                     Content="下沉"
+                                     ClickStyle="Sink"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FF49A9C0"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton ButtonStyle="Link"
+                                     Content="下沉"
+                                     ClickStyle="Sink"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FF49A9C0"></pu:PUButton>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content=" General"
+                                     FontFamily="{StaticResource IconFont}"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Background="#FFE089B8"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton Content=" Hollow"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Hollow"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FFE089B8"
+                                     BorderBrush="#FFE089B8"
+                                     Foreground="#FFE089B8"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton Content=" Outline"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Outline"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FFE089B8"
+                                     BorderCornerRadius="3"></pu:PUButton>
+                        <pu:PUButton Content=" Link"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Link"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FF49A9C0"></pu:PUButton>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content=" General"
+                                     FontFamily="{StaticResource IconFont}"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Background="#FFF4A758"
+                                     BorderCornerRadius="15"></pu:PUButton>
+                        <pu:PUButton Content=" Hollow"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Hollow"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FFF4A758"
+                                     BorderBrush="#FFF4A758"
+                                     Foreground="#FFF4A758"
+                                     BorderCornerRadius="15"></pu:PUButton>
+                        <pu:PUButton Content=" Outline"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Outline"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FFF4A758"
+                                     BorderCornerRadius="15"></pu:PUButton>
+                        <pu:PUButton Content=" Link"
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Link"
+                                     Width="120"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="10,0,0,0"
+                                     CoverBrush="#FFF4A758"></pu:PUButton>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Background="#FF89E090"></pu:PUButton>
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Hollow"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FF89E090"
+                                     BorderBrush="#FF89E090"
+                                     Foreground="#FF89E090"></pu:PUButton>
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Outline"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FF89E090"></pu:PUButton>
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Link"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FF89E090"></pu:PUButton>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="4"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Background="#FFE2EE4C"
+                                     BorderCornerRadius="15" />
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Hollow"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FFE2EE4C"
+                                     BorderBrush="#FFE2EE4C"
+                                     Foreground="#FFE2EE4C"
+                                     BorderCornerRadius="15"></pu:PUButton>
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Outline"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FFE2EE4C"
+                                     BorderCornerRadius="15"></pu:PUButton>
+                        <pu:PUButton Content=""
+                                     FontFamily="{StaticResource IconFont}"
+                                     ButtonStyle="Link"
+                                     Width="30"
+                                     Height="30"
+                                     HorizontalAlignment="Left"
+                                     Margin="100,0,0,0"
+                                     CoverBrush="#FFE2EE4C"></pu:PUButton>
+                    </StackPanel>
+
+                </Grid>
 
             </StackPanel>
-            <StackPanel Grid.Row="1"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content=" General"
-                             FontFamily="{StaticResource FontAwesome}"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Background="#FFE089B8"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton Content=" Hollow"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Hollow"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FFE089B8"
-                             BorderBrush="#FFE089B8"
-                             Foreground="#FFE089B8"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton Content=" Outline"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Outline"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FFE089B8"
-                             BorderCornerRadius="3"></pu:PUButton>
-                <pu:PUButton Content=" Link"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Link"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FF49A9C0"></pu:PUButton>
-
-            </StackPanel>
-            <StackPanel Grid.Row="2"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content=" General"
-                             FontFamily="{StaticResource FontAwesome}"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Background="#FFF4A758"
-                             BorderCornerRadius="15"></pu:PUButton>
-                <pu:PUButton Content=" Hollow"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Hollow"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FFF4A758"
-                             BorderBrush="#FFF4A758"
-                             Foreground="#FFF4A758"
-                             BorderCornerRadius="15"></pu:PUButton>
-                <pu:PUButton Content=" Outline"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Outline"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FFF4A758"
-                             BorderCornerRadius="15"></pu:PUButton>
-                <pu:PUButton Content=" Link"
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Link"
-                             Width="120"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="10,0,0,0"
-                             CoverBrush="#FFF4A758"></pu:PUButton>
-
-            </StackPanel>
-            <StackPanel Grid.Row="3"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Background="#FF89E090"></pu:PUButton>
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Hollow"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FF89E090"
-                             BorderBrush="#FF89E090"
-                             Foreground="#FF89E090"></pu:PUButton>
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Outline"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FF89E090"></pu:PUButton>
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Link"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FF89E090"></pu:PUButton>
-
-            </StackPanel>
-            <StackPanel Grid.Row="4"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Background="#FFE2EE4C"
-                             BorderCornerRadius="15" />
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Hollow"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FFE2EE4C"
-                             BorderBrush="#FFE2EE4C"
-                             Foreground="#FFE2EE4C"
-                             BorderCornerRadius="15"></pu:PUButton>
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Outline"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FFE2EE4C"
-                             BorderCornerRadius="15"></pu:PUButton>
-                <pu:PUButton Content=""
-                             FontFamily="{StaticResource FontAwesome}"
-                             ButtonStyle="Link"
-                             Width="30"
-                             Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="100,0,0,0"
-                             CoverBrush="#FFE2EE4C"></pu:PUButton>
-            </StackPanel>
-
         </Grid>
-
-    </StackPanel>
-
+    </Grid>
 </UserControl>

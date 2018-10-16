@@ -1,38 +1,118 @@
 ﻿<pu:PUWindow x:Class="Panuon.UIBrowser.Views.MainWindowView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
-        xmlns:cal="http://www.caliburnproject.org"
-        mc:Ignorable="d"
-        Title="PanuonUI Broswer" Height="600" Width="1000" WindowStartupLocation="CenterScreen" AnimationStyle="Gradual" ShowDelay="True">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             Title="PanuonUI Broswer"
+             Height="600"
+             Width="1000"
+             WindowStartupLocation="CenterScreen"
+             AnimationStyle="Gradual"
+             ShowDelay="True">
     <pu:PUWindow.Icon>
-        <TextBlock Text="" FontSize="20" FontFamily="{StaticResource FontAwesome}"></TextBlock>
+        <TextBlock Text=""
+                   FontSize="20"
+                   FontFamily="{StaticResource IconFont}"></TextBlock>
     </pu:PUWindow.Icon>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.2*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="175"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid>
             <StackPanel Orientation="Vertical">
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="主页" IsChecked="True" cal:Message.Attach="[Event Click]=[Action ChangeSelect('0')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="Window 窗体" cal:Message.Attach="[Event Click]=[Action ChangeSelect('1')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="Button 按钮" cal:Message.Attach="[Event Click]=[Action ChangeSelect('2')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="TextBox 输入框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('3')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="ComboBox 下拉选择框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('4')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="PasswordBox 密码框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('5')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="CheckBox 复选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('6')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="RadioButton 单选框" cal:Message.Attach="[Event Click]=[Action ChangeSelect('7')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="TreeView 树视图" cal:Message.Attach="[Event Click]=[Action ChangeSelect('8')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="ProgressBar 进度条" cal:Message.Attach="[Event Click]=[Action ChangeSelect('9')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="Special 特殊控件" cal:Message.Attach="[Event Click]=[Action ChangeSelect('10')]"></pu:PURadioButton>
-                <pu:PURadioButton RadioButtonStyle="Branch" Height="34" Padding="20,0,0,0" FontSize="14" Background="White" Content="LineCharts 折线图" cal:Message.Attach="[Event Click]=[Action ChangeSelect('101')]"/>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="主页"
+                                  IsChecked="True"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('0')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="Window 窗体"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('1')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="Button 按钮"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('2')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="TextBox 输入框"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('3')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="ComboBox 下拉选择框"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('4')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="PasswordBox 密码框"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('5')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="CheckBox 复选框"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('6')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="RadioButton 单选按钮"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('7')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="TreeView 树视图"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('8')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="ProgressBar 进度条"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('9')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="Special 特殊控件"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('10')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="LineCharts 折线图"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('101')]" />
             </StackPanel>
         </Grid>
-        <ScrollViewer Grid.Column="1">
-            <ContentControl x:Name="ActiveItem" ></ContentControl>
-        </ScrollViewer>
+        <ContentControl  Grid.Column="1"
+                         ClipToBounds="True"
+                         x:Name="ActiveItem"></ContentControl>
     </Grid>
 </pu:PUWindow>

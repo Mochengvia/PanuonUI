@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -27,65 +30,6 @@ namespace Panuon.UI
         private PUTreeView _parentTreeView;
         #endregion
 
-        #region Property
-        /// <summary>
-        /// 行元素高度，默认值为40。
-        /// </summary>
-        public double InnerHeight
-        {
-            get { return (double)GetValue(InnerHeightProperty); }
-            set { SetValue(InnerHeightProperty, value); }
-        }
-        public static readonly DependencyProperty InnerHeightProperty = DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUTreeViewItem), new PropertyMetadata((double)40));
-
-
-        /// <summary>
-        /// 该元素是否被选择（即使上级子元素没有展开）。使用此属性而非IsSelected
-        /// </summary>
-        public bool IsChoosed
-        {
-            get { return (bool)GetValue(IsChoosedProperty); }
-            set
-            {SetValue(IsChoosedProperty, value);}
-        }
-        public static readonly DependencyProperty IsChoosedProperty = 
-            DependencyProperty.Register("IsChoosed", typeof(bool), typeof(PUTreeViewItem), new PropertyMetadata(false,OnIsChoosedChanged));
-
-        private static void OnIsChoosedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var item = d as PUTreeViewItem;
-            if (item.IsChoosed == true)
-            {
-                if (item.ParentTreeView.ChoosedItem != null)
-                    item.ParentTreeView.ChoosedItem.IsChoosed = false;
-                item.ParentTreeView.ChoosedItem = item;
-                item.ParentTreeView.ChoosedValue = (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value);
-            }
-        }
-
-        /// <summary>
-        /// Icon
-        /// </summary>
-        public string Icon
-        {
-            get { return (string)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
-        }
-        public static readonly DependencyProperty IconProperty = 
-            DependencyProperty.Register("Icon", typeof(string), typeof(PUTreeViewItem), new PropertyMetadata(""));
-
-
-        public object Value
-        {
-            get { return (object)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
-        }
-
-        public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(object), typeof(PUTreeViewItem));
-
-
-        #endregion
 
         static PUTreeViewItem()
         {
@@ -110,6 +54,46 @@ namespace Panuon.UI
             stk.MouseLeftButtonDown += Stk_MouseLeftButtonDown;
         }
 
+        #region Property
+        /// <summary>
+        /// 获取或设置该子项是否已被选中，含有子项目的行项目无法被选中。
+        /// </summary>
+        public bool IsChoosed
+        {
+            get { return (bool)GetValue(IsChoosedProperty); }
+            set
+            { SetValue(IsChoosedProperty, value); }
+        }
+        public static readonly DependencyProperty IsChoosedProperty =
+            DependencyProperty.Register("IsChoosed", typeof(bool), typeof(PUTreeViewItem), new PropertyMetadata(false, OnIsChoosedChanged));
+
+        private static void OnIsChoosedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var item = d as PUTreeViewItem;
+            if (item.IsChoosed == true)
+            {
+                if (item.ParentTreeView.ChoosedItem != null)
+                    item.ParentTreeView.ChoosedItem.IsChoosed = false;
+                item.ParentTreeView.ChoosedItem = item;
+                item.ParentTreeView.ChoosedValue = (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value);
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置该子项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。
+        /// </summary>
+        public object Value
+        {
+            get { return (object)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(object), typeof(PUTreeViewItem));
+
+        #endregion
+
+        #region Sys
         private void Stk_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             if (!HasItems)
@@ -133,7 +117,62 @@ namespace Panuon.UI
                     IsExpanded = !IsExpanded;
             }
         }
+        #endregion
+    }
 
+    /// <summary>
+    /// 用于TreeView绑定的模型。
+    /// </summary>
+
+    public class PUTreeViewItemModel : INotifyPropertyChanged
+    {
+        protected internal virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// 要显示的名称。可以作为SelectValuePath的值。
+        /// </summary>
+        public string Header
+        {
+            get { return _header; }
+            set
+            {
+                _header = value; OnPropertyChanged("Header");
+            }
+        }
+        private string _header = "";
+
+        /// <summary>
+        /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。
+        /// </summary>
+        public object Value
+        {
+            get { return _value; }
+            set
+            {
+                _value = value; OnPropertyChanged("Value");
+            }
+        }
+        private object _value = 0;
+
+
+        /// <summary>
+        /// 该项的子项目。
+        /// </summary>
+        public List<PUTreeViewItemModel> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value; OnPropertyChanged("Items");
+            }
+        }
+        private List<PUTreeViewItemModel> _items;
 
     }
+
 }

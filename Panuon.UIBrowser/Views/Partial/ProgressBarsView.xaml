@@ -8,55 +8,194 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50" FontSize="20" VerticalContentAlignment="Center" Margin="20,0,0,0">PUProgressBar 进度条控件</Label>
-        <TextBlock Height="50" Margin="27,0,50,10" TextWrapping="Wrap">
-            <Run Text="额外的依赖属性包括：UsingAnimation、ShowPercent、IsPercentDecimal、IsVertical、BorderCornerRadius、CoverBrush。"></Run>
-        </TextBlock>
-
-        <Grid Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Content="默认样式" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PUProgressBar Width="120" Height="30" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" Height="30" Value="40" HorizontalAlignment="Left" Margin="10,0,0,0"></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" Height="30" Value="100" HorizontalAlignment="Left" ShowPercent="Visible" Margin="10,0,0,0"></pu:PUProgressBar>
-            </StackPanel>
-        </Grid>
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid Margin="60,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="120"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="一种控件，无限可能" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <pu:PUProgressBar Width="120" BorderCornerRadius="15" Height="30" Background="{x:Null}" Foreground="#AADD44AA" BorderBrush="#77DD44AA" CoverBrush="#77DD44AA" Value="10" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="15" Margin="10,0,0,0" Height="30" Background="{x:Null}" Foreground="#AAF4A758" BorderBrush="#77F4A758" CoverBrush="#77F4A758" Value="10" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="15" Margin="10,0,0,0" Height="30" Foreground="#FF44AADD" BorderBrush="#FF44AADD" CoverBrush="#7744AADD" Value="10" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" IsPercentDecimal="False" Height="30" Background="#22DD44AA" Foreground="#AADD44AA" BorderBrush="#77DD44AA" CoverBrush="#77DD44AA" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" Margin="10,0,0,0" IsPercentDecimal="False" Height="30" Background="#22F4A758" Foreground="#AAF4A758" BorderBrush="#77F4A758" CoverBrush="#77F4A758" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" Margin="10,0,0,0" IsPercentDecimal="False" Height="30" Background="#2289E090" Foreground="#EE62B669" BorderBrush="#7762B669" CoverBrush="#7762B669" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" IsVertical="True" IsPercentDecimal="False" Height="30" Foreground="#AADD44AA" BorderBrush="#77DD44AA" CoverBrush="#77DD44AA" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" IsVertical="True" Margin="10,0,0,0" IsPercentDecimal="False" Height="30" Foreground="#AAF4A758" BorderBrush="#77F4A758" CoverBrush="#77F4A758" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-                <pu:PUProgressBar Width="120" BorderCornerRadius="5" IsVertical="True" Margin="10,0,0,0" IsPercentDecimal="False" Height="30" Foreground="#EE62B669" BorderBrush="#7762B669" CoverBrush="#7762B669" Value="50" ShowPercent="Visible" HorizontalAlignment="Left" ></pu:PUProgressBar>
-            </StackPanel>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUProgressBar 进度条控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,0"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">TextBoxStyle </Run>
+                        <Run>获取或设置输入框的基本样式。【TextBoxStyles枚举类型】可选项为：General、IconGroup。默认值为General。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置输入框的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">ShadowColor </Run>
+                        <Run>获取或设置输入框获得焦点时的阴影颜色。【Color类型】。默认值为#888888。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">Watermark </Run>
+                        <Run>获取或设置输入框的水印。【String类型】。默认值为空。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">Icon </Run>
+                        <Run>获取或设置输入框的前置图标，仅在IconGroup样式下生效。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">IconWidth </Run>
+                        <Run>获取或设置输入框前置图标的宽度，仅在IconGroup样式下生效。【Double类型】。默认值为30。</Run><LineBreak />
+            </TextBlock>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="默认样式"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUProgressBar Width="120"
+                                          Height="30"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          Height="30"
+                                          Value="40"
+                                          HorizontalAlignment="Left"
+                                          Margin="10,0,0,0"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          Height="30"
+                                          Value="100"
+                                          HorizontalAlignment="Left"
+                                          PercentVisibility="Visible"
+                                          Margin="10,0,0,0"></pu:PUProgressBar>
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="120"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="一种控件，无限可能"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="20,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="15"
+                                          Height="30"
+                                          Background="{x:Null}"
+                                          Foreground="#AADD44AA"
+                                          BorderBrush="#77DD44AA"
+                                          CoverBrush="#77DD44AA"
+                                          Value="10"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="15"
+                                          Margin="10,0,0,0"
+                                          Height="30"
+                                          Background="{x:Null}"
+                                          Foreground="#AAF4A758"
+                                          BorderBrush="#77F4A758"
+                                          CoverBrush="#77F4A758"
+                                          Value="10"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="15"
+                                          Margin="10,0,0,0"
+                                          Height="30"
+                                          Foreground="#FF44AADD"
+                                          BorderBrush="#FF44AADD"
+                                          CoverBrush="#7744AADD"
+                                          Value="10"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Background="#22DD44AA"
+                                          Foreground="#AADD44AA"
+                                          BorderBrush="#77DD44AA"
+                                          CoverBrush="#77DD44AA"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          Margin="10,0,0,0"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Background="#22F4A758"
+                                          Foreground="#AAF4A758"
+                                          BorderBrush="#77F4A758"
+                                          CoverBrush="#77F4A758"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          Margin="10,0,0,0"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Background="#2289E090"
+                                          Foreground="#EE62B669"
+                                          BorderBrush="#7762B669"
+                                          CoverBrush="#7762B669"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          IsVertical="True"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Foreground="#AADD44AA"
+                                          BorderBrush="#77DD44AA"
+                                          CoverBrush="#77DD44AA"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          IsVertical="True"
+                                          Margin="10,0,0,0"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Foreground="#AAF4A758"
+                                          BorderBrush="#77F4A758"
+                                          CoverBrush="#77F4A758"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                        <pu:PUProgressBar Width="120"
+                                          BorderCornerRadius="5"
+                                          IsVertical="True"
+                                          Margin="10,0,0,0"
+                                          IsPercentDecimal="False"
+                                          Height="30"
+                                          Foreground="#EE62B669"
+                                          BorderBrush="#7762B669"
+                                          CoverBrush="#7762B669"
+                                          Value="50"
+                                          PercentVisibility="Visible"
+                                          HorizontalAlignment="Left"></pu:PUProgressBar>
+                    </StackPanel>
 
+                </Grid>
+
+            </StackPanel>
         </Grid>
-
-    </StackPanel>
+    </Grid>
 
 </UserControl>

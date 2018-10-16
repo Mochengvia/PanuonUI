@@ -11,125 +11,165 @@
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0">PUComboBox 下拉选择框控件</Label>
-        <TextBlock Height="50"
-                   Margin="27,0,50,10"
-                   TextWrapping="Wrap">
-            <Run Text="额外的依赖属性包括：BorderCornerRadius、ShadowColor。"></Run>
-        </TextBlock>
-
-        <Grid Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Content="默认样式"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUComboBox Width="180"
-                               Height="30"
-                               HorizontalAlignment="Left">
-                    <pu:PUComboBoxItem Content="不显示删除按钮"
-                                       IsSelected="True" />
-                    <pu:PUComboBoxItem Content="不显示删除按钮" />
-                </pu:PUComboBox>
-                <pu:PUComboBox Width="180"
-                               Margin="15,0,0,0"
-                               Height="30"
-                               HorizontalAlignment="Left">
-                    <pu:PUComboBoxItem Content="显示删除按钮"
-                                       IsSelected="True"
-                                       IsDeleteButtonShow="True" />
-                    <pu:PUComboBoxItem Content="显示删除按钮"
-                                       IsDeleteButtonShow="True" />
-                </pu:PUComboBox>
-
-            </StackPanel>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="60,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="一种控件，无限可能"
-                   VerticalContentAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="20,0,0,0"></Label>
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUComboBox Width="180"
-                               Height="30"
-                               IsEditable="True"
-                               Foreground="#FF49A9C0"
-                               BorderBrush="#9949A9C0"
-                               ShadowColor="#FF49A9C0"
-                               HorizontalAlignment="Left">
-                    <pu:PUComboBoxItem Content="可编辑的"
-                                       CoverBrush="#2249A9C0"
-                                       SelectedBrush="#5549A9C0"
-                                       IsSelected="True" />
-                    <pu:PUComboBoxItem Content="SelectItem"
-                                       CoverBrush="#2249A9C0"
-                                       SelectedBrush="#5549A9C0" />
-                </pu:PUComboBox>
-                <pu:PUComboBox Width="180"
-                               Margin="15,0,0,0"
-                               Height="30"
-                               DeleteMode="EventOnly"
-                               Foreground="#FF49A9C0"
-                               BorderBrush="#9949A9C0"
-                               ShadowColor="#FF49A9C0"
-                               HorizontalAlignment="Left"
-                               cm:Message.Attach="[Event DeleteItem]=[Action Delete($this, $eventArgs)]">
-                    <pu:PUComboBoxItem Content="点击删除按钮时弹框"
-                                       CoverBrush="#2249A9C0"
-                                       SelectedBrush="#5549A9C0"
-                                       IsSelected="True"
-                                       IsDeleteButtonShow="True" />
-                    <pu:PUComboBoxItem Content="点击右侧删除按钮"
-                                       CoverBrush="#2249A9C0"
-                                       SelectedBrush="#5549A9C0"
-                                       IsDeleteButtonShow="True" />
-                </pu:PUComboBox>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUComboBox/PUComboBoxItem 下拉选择框控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,10"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUComboBoxItem</Run><LineBreak />    
+                         <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#EEEEEE。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedBrush </Run>
+                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#DDDDDD。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">DeleteButtonVisibility </Run>
+                        <Run>获取或设置下拉选择项后侧删除按钮的显示状态。【Visibility类型】。默认值为Collpased。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">Value </Run>
+                        <Run>获取或设置下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF3ECD44">PUComboBoxItemModel </Run>
+                        <Run>用于绑定到PUComboBox子项集合的模型类，参见PUComboBox的BindingItems属性。</Run><LineBreak />
 
-            </StackPanel>
-            <StackPanel Grid.Row="1"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <pu:PUComboBox Width="180"
-                               Height="30"
-                               Foreground="#FFE089B8"
-                               BorderBrush="#99E089B8"
-                               ShadowColor="#FFE089B8"
-                               HorizontalAlignment="Left"
-                               SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
-                               SelectedValuePath="Value"
-                               BindingItems="{Binding ComboBoxItemsList}">
-                </pu:PUComboBox>
-                <pu:PUButton x:Name="GetValue" 
-                             Content="获取选择项的Value"
-                             FontFamily="{StaticResource FontAwesome}"
-                             Width="128"
-                             Height="30"
-                             Margin="15,5,0,5"
-                             HorizontalAlignment="Left"
-                             Background="#FFE089B8"
-                             BorderCornerRadius="3"></pu:PUButton>
+                        <LineBreak />   
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUComboBox</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置下拉框的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">ShadowColor </Run>
+                        <Run>获取或设置下拉框激活时阴影的颜色。【Color类型】。默认值为#88888</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">DeleteMode </Run>
+                        <Run>获取或设置当用户点击下拉框子项的删除按钮时，应该执行的操作。【DeleteModes枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BindingItems </Run>
+                        <Run>获取或设置绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。【&lt;PUComboBoxItemModel&gt;集合】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedValuePath </Run>
+                        <Run>获取或设置当子项目被选中时，SelectedValue应呈现子项PUComboBoxItem的哪一个值。【SelectedValuePaths枚举类型】可选项为：Header、Value。默认值为Header。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">SelectedValue </Run>
+                        <Run>获取被选中的子项PUComboBoxItem的Header或Value属性（取决于SelectedValuePath的值），或通过设置该值来选中指定的子项目。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FFF18C27">DeleteItem </Run>
+                        <Run>当用户点击子项PUComboBoxItem的删除按钮时，触发此路由事件。</Run>
+            </TextBlock>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2"
+                        Margin="0,0,0,60">
+                <Grid Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="默认样式"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUComboBox Width="180"
+                                       Height="30"
+                                       HorizontalAlignment="Left">
+                            <pu:PUComboBoxItem Content="不显示删除按钮"
+                                               IsSelected="True" />
+                            <pu:PUComboBoxItem Content="不显示删除按钮" />
+                        </pu:PUComboBox>
+                        <pu:PUComboBox Width="180"
+                                       Margin="15,0,0,0"
+                                       Height="30"
+                                       HorizontalAlignment="Left">
+                            <pu:PUComboBoxItem Content="显示删除按钮"
+                                               IsSelected="True"
+                                               DeleteButtonVisibility="Visible" />
+                            <pu:PUComboBoxItem Content="显示删除按钮"
+                                               DeleteButtonVisibility="Visible" />
+                        </pu:PUComboBox>
+
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="一种控件，无限可能"
+                           VerticalContentAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,0,0"></Label>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUComboBox Width="180"
+                                       Height="30"
+                                       IsEditable="True"
+                                       Foreground="#FF49A9C0"
+                                       BorderBrush="#9949A9C0"
+                                       ShadowColor="#FF49A9C0"
+                                       HorizontalAlignment="Left">
+                            <pu:PUComboBoxItem Content="可编辑的"
+                                               CoverBrush="#2249A9C0"
+                                               SelectedBrush="#5549A9C0"
+                                               IsSelected="True" />
+                            <pu:PUComboBoxItem Content="SelectItem"
+                                               CoverBrush="#2249A9C0"
+                                               SelectedBrush="#5549A9C0" />
+                        </pu:PUComboBox>
+                        <pu:PUComboBox Width="180"
+                                       Margin="15,0,0,0"
+                                       Height="30"
+                                       DeleteMode="EventOnly"
+                                       Foreground="#FF49A9C0"
+                                       BorderBrush="#9949A9C0"
+                                       ShadowColor="#FF49A9C0"
+                                       HorizontalAlignment="Left"
+                                       cm:Message.Attach="[Event DeleteItem]=[Action Delete($this.Items, $eventArgs)]">
+                            <pu:PUComboBoxItem Content="点击删除按钮时弹框"
+                                               CoverBrush="#2249A9C0"
+                                               SelectedBrush="#5549A9C0"
+                                               IsSelected="True"
+                                               DeleteButtonVisibility="Visible" />
+                            <pu:PUComboBoxItem Content="点击右侧删除按钮"
+                                               CoverBrush="#2249A9C0"
+                                               SelectedBrush="#5549A9C0"
+                                               DeleteButtonVisibility="Visible" />
+                        </pu:PUComboBox>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                        <pu:PUComboBox Width="180"
+                                       Height="30"
+                                       Foreground="#FFE089B8"
+                                       BorderBrush="#99E089B8"
+                                       ShadowColor="#FFE089B8"
+                                       HorizontalAlignment="Left"
+                                       SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
+                                       SelectedValuePath="Value"
+                                       BindingItems="{Binding ComboBoxItemsList}">
+                        </pu:PUComboBox>
+                        <pu:PUButton x:Name="GetValue"
+                                     Content="获取选择项的Value"
+                                     FontFamily="{StaticResource IconFont}"
+                                     Width="128"
+                                     Height="30"
+                                     Margin="15,5,0,5"
+                                     HorizontalAlignment="Left"
+                                     Background="#FFE089B8"
+                                     BorderCornerRadius="3"></pu:PUButton>
+
+                    </StackPanel>
+                </Grid>
 
             </StackPanel>
         </Grid>
+    </ScrollViewer>
 
-    </StackPanel>
 
 </UserControl>

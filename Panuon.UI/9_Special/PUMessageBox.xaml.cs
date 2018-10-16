@@ -21,10 +21,12 @@ namespace Panuon.UI
             Title = title;
             txtContent.Text = content;
             _parentWindow = GetOwnerWindow() ;
-            _parentWindow.ShowCover = true;
+            if(_parentWindow != null)
+                _parentWindow.ShowCover = true;
             ShowInTaskbar = showInTaskBar;
             AnimationStyle = animateStyle;
-            Owner = _parentWindow;
+            if (_parentWindow != null)
+                Owner = _parentWindow;
         }
 
 

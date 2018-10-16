@@ -10,97 +10,102 @@
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <StackPanel Orientation="Vertical">
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0"
-               Content="PULoading 等待控件" />
-        <TextBlock Margin="27,0,50,10"
-                   TextWrapping="Wrap">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical">
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center"
+                   Margin="20,0,0,0"
+                   Content="PULoading 等待控件" />
+            <TextBlock Margin="27,0,50,10"
+                       TextWrapping="Wrap">
             <Run Text="圆的直径与运动路径的直径是根据控件高度自动计算的。请保持控件宽度和高度一致，否则可能会显示异常。"></Run>
             <LineBreak /> 
             <Run Text="可以通过IsRunning属性来控制运转（将重新计算圆与路径的尺寸）或停止。"></Run>
             <LineBreak />
-        </TextBlock>
-        <Grid Height="155">
-            <pu:PULoading HorizontalAlignment="Left"
-                          IsRunning="{Binding IsRunning}"
-                          Foreground="Black"
-                          Height="100"
-                          VerticalAlignment="Top"
-                          Width="100"
-                          Margin="234,26,0,0" />
-            <pu:PULoading HorizontalAlignment="Left"
-                          IsRunning="{Binding IsRunning}"
-                          Foreground="Black"
-                          Height="70"
-                          Margin="427,26,0,0"
-                          VerticalAlignment="Top"
-                          Width="70" />
-            <pu:PULoading HorizontalAlignment="Left"
-                          IsRunning="{Binding IsRunning}"
-                          Foreground="Black"
-                          Height="40"
-                          Margin="572,26,0,0"
-                          VerticalAlignment="Top"
-                          Width="40" />
-            <pu:PUButton x:Name="Switch"
-                         Content="停止/开始"
-                         HorizontalAlignment="Left"
-                         Margin="73,55,0,0"
-                         VerticalAlignment="Top"
-                         Height="32"
-                         Width="115" />
-        </Grid>
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0"
-               Content="PUIndicator 指示器控件" />
-        <TextBlock Margin="27,0,50,10"
-                   TextWrapping="Wrap">
+            </TextBlock>
+            <Grid Height="155">
+                <pu:PULoading HorizontalAlignment="Left"
+                              IsRunning="{Binding IsRunning}"
+                              Foreground="Black"
+                              Height="100"
+                              VerticalAlignment="Top"
+                              Width="100"
+                              Margin="234,26,0,0" />
+                <pu:PULoading HorizontalAlignment="Left"
+                              IsRunning="{Binding IsRunning}"
+                              Foreground="Black"
+                              Height="70"
+                              Margin="427,26,0,0"
+                              VerticalAlignment="Top"
+                              Width="70" />
+                <pu:PULoading HorizontalAlignment="Left"
+                              IsRunning="{Binding IsRunning}"
+                              Foreground="Black"
+                              Height="40"
+                              Margin="572,26,0,0"
+                              VerticalAlignment="Top"
+                              Width="40" />
+                <pu:PUButton x:Name="Switch"
+                             Content="停止/开始"
+                             HorizontalAlignment="Left"
+                             Margin="73,55,0,0"
+                             VerticalAlignment="Top"
+                             Height="32"
+                             Width="115" />
+            </Grid>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center"
+                   Margin="20,0,0,0"
+                   Content="PUIndicator 指示器控件" />
+            <TextBlock Margin="27,0,50,10"
+                       TextWrapping="Wrap">
             <LineBreak />
-        </TextBlock>
-        <Grid Height="50" Margin="20,0">
-            <pu:PUIndicator TotalIndex="5" Height="14" HorizontalAlignment="Left"></pu:PUIndicator>
-        </Grid>
-        <Label Height="50"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               Margin="20,0,0,0"
-               Content="PUSlideShow 轮播控件" />
-        <TextBlock Margin="27,0,50,10"
-                   TextWrapping="Wrap">
+            </TextBlock>
+            <Grid Height="50"
+                  Margin="20,0">
+                <pu:PUIndicator TotalIndex="5"
+                                Height="14"
+                                HorizontalAlignment="Left"></pu:PUIndicator>
+            </Grid>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center"
+                   Margin="20,0,0,0"
+                   Content="PUSlideShow 轮播控件" />
+            <TextBlock Margin="27,0,50,10"
+                       TextWrapping="Wrap">
             <Run Text="该控件可以承载任何控件。子控件的长度和宽度将被设置为SlideShow控件的长度和宽度。"></Run>
             <LineBreak /> 
             <Run Text="设置SlideDirection属性可以更改横向/竖向滑动；通过设置Index来改变当前的索引（从0开始的）。其他的依赖属性包括：IsSlideButtonShow、SlideButtonBrush、AnimationDuration、Recyclable。"></Run>
             <LineBreak />
-        </TextBlock>
-        <Grid Margin="50,20"
-              Height="400">
-            <pu:PUSlideShow ClipToBounds="True"
-                            SlideDirection="Horizontal"
-                            IndicatorBrush="White"
-                            Index="0">
-                <Grid Background="#FF49A9C0">
-                    <TextBlock VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="White">First Page</TextBlock>
-                </Grid>
-                <Grid Background="#FFE089B8">
-                    <TextBlock VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="White">Second Page</TextBlock>
-                </Grid>
-                <Grid Background="#FFF4A758">
-                    <TextBlock VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="White">Third Page</TextBlock>
-                </Grid>
-            </pu:PUSlideShow>
+            </TextBlock>
+            <Grid Margin="50,20"
+                  Height="400">
+                <pu:PUSlideShow ClipToBounds="True"
+                                SlideDirection="Horizontal"
+                                IndicatorBrush="White"
+                                Index="0">
+                    <Grid Background="#FF49A9C0">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White">First Page</TextBlock>
+                    </Grid>
+                    <Grid Background="#FFE089B8">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White">Second Page</TextBlock>
+                    </Grid>
+                    <Grid Background="#FFF4A758">
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White">Third Page</TextBlock>
+                    </Grid>
+                </pu:PUSlideShow>
 
-        </Grid>
-    </StackPanel>
+            </Grid>
+        </StackPanel>
 
+    </ScrollViewer>
 </UserControl>

@@ -91,7 +91,6 @@
     <Compile Include="9_Special\PUSlideShow.xaml.cs">
       <DependentUpon>PUSlideShow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="A0_DatePicker\PUDatePicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,6 +105,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\Converters.cs" />
+    <Compile Include="Utils\Extends.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

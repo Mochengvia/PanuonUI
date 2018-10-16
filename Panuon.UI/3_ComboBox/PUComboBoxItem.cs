@@ -51,16 +51,16 @@ namespace Panuon.UI
             DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(PUComboBoxItem), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#DDDDDD"))));
 
         /// <summary>
-        /// 是否显示删除按钮，默认为False（不显示）。
+        /// 是否显示删除按钮，默认值为Collapsed（不显示）。
         /// </summary>
-        public bool IsDeleteButtonShow
+        public Visibility DeleteButtonVisibility
         {
-            get { return (bool)GetValue(IsDeleteButtonShowProperty); }
-            set { SetValue(IsDeleteButtonShowProperty, value); }
+            get { return (Visibility)GetValue(DeleteButtonVisibilityProperty); }
+            set { SetValue(DeleteButtonVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsDeleteButtonShowProperty =
-            DependencyProperty.Register("IsDeleteButtonShow", typeof(bool), typeof(PUComboBoxItem), new PropertyMetadata(false));
+        public static readonly DependencyProperty DeleteButtonVisibilityProperty =
+            DependencyProperty.Register("DeleteButtonVisibility", typeof(Visibility), typeof(PUComboBoxItem), new PropertyMetadata(Visibility.Collapsed));
 
 
         /// <summary>
