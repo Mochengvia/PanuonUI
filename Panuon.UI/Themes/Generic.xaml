@@ -873,8 +873,9 @@
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"
                                         Opacity="1">
                                     <Border.OpacityMask>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,1">
+                                        <RadialGradientBrush GradientOrigin="0.5,0.5"
+                                                             RadiusX="1"
+                                                             RadiusY="1">
                                             <GradientStopCollection>
                                                 <GradientStop Offset="0"
                                                               Color="White"></GradientStop>
@@ -882,7 +883,7 @@
                                                               Offset="0"
                                                               Color="Transparent"></GradientStop>
                                             </GradientStopCollection>
-                                        </LinearGradientBrush>
+                                        </RadialGradientBrush>
                                     </Border.OpacityMask>
                                     <Label Margin="{TemplateBinding Padding}"
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -1320,7 +1321,7 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="10,0,0,0"></Setter>
+                Value="5,0,0,0"></Setter>
         <Setter Property="SnapsToDevicePixels"
                 Value="True"></Setter>
         <Setter Property="UseLayoutRounding"
@@ -2270,6 +2271,92 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="CheckBoxStyle"
+                     Value="Button">
+                <Setter Property="CoverBrush"
+                        Value="#EE666666"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="0"></Setter>
+                <Setter Property="Padding"
+                        Value="10,0"></Setter>
+                <Setter Property="HorizontalAlignment"
+                        Value="Left"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
+                            <Grid x:Name="GrdMain"
+                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Background="{TemplateBinding Background}"></Border>
+                                <Border x:Name="bdrCover"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Opacity="0"></Border>
+                                <Border x:Name="bdrCheckedCover"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Opacity="0"></Border>
+                                <Label x:Name="lblContent"
+                                       Content="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}">
+                                </Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.4"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsChecked"
+                                         Value="True">
+                                    <Setter TargetName="bdrCheckedCover"
+                                            Property="Opacity"
+                                            Value="1"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Foreground"
+                                            Value="White"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -2731,6 +2818,92 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="RadioButtonStyle"
+                     Value="Button">
+                <Setter Property="CoverBrush"
+                        Value="#EE666666"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="0"></Setter>
+                <Setter Property="Padding"
+                        Value="10,0"></Setter>
+                <Setter Property="HorizontalAlignment"
+                        Value="Left"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURadioButton}">
+                            <Grid x:Name="GrdMain"
+                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                        Background="{TemplateBinding Background}"></Border>
+                                <Border x:Name="bdrCover"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                        Opacity="0"></Border>
+                                <Border x:Name="bdrCheckedCover"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                        Opacity="0"></Border>
+                                <Label x:Name="lblContent"
+                                       Content="{TemplateBinding Content}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Margin="{TemplateBinding Padding}">
+                                </Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.4"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsChecked"
+                                         Value="True">
+                                    <Setter TargetName="bdrCheckedCover"
+                                            Property="Opacity"
+                                            Value="1"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Foreground"
+                                            Value="White"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -2743,7 +2916,7 @@
                 Value="DimGray"></Setter>
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
-     
+
         <Setter Property="FontSize"
                 Value="14"></Setter>
         <Setter Property="SnapsToDevicePixels"
@@ -3040,6 +3213,92 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="{x:Type local:PUSplitLine}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="LineBrush"
+                Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Thickness"
+                Value="1"></Setter>
+        <Style.Triggers>
+            <Trigger Property="Alignment"
+                     Value="Top">
+                <Setter Property="VerticalAlignment"
+                        Value="Top"></Setter>
+                <Setter Property="Height"
+                        Value="1"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
+                            <Border Height="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Width="{TemplateBinding Width}"
+                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Margin="{TemplateBinding Margin}">
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+            <Trigger Property="Alignment"
+                     Value="Bottom">
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom"></Setter>
+                <Setter Property="Height"
+                        Value="1"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
+                            <Border Height="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Width="{TemplateBinding Width}"
+                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Margin="{TemplateBinding Margin}">
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+            <Trigger Property="Alignment"
+                     Value="Left">
+                <Setter Property="HorizontalAlignment"
+                        Value="Left"></Setter>
+                <Setter Property="Width"
+                        Value="1"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
+                            <Border Width="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Height="{TemplateBinding Height}"
+                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Margin="{TemplateBinding Margin}">
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+            <Trigger Property="Alignment"
+                     Value="Right">
+                <Setter Property="HorizontalAlignment"
+                        Value="Right"></Setter>
+                <Setter Property="Width"
+                        Value="1"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
+                            <Border Width="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Height="{TemplateBinding Height}"
+                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Margin="{TemplateBinding Margin}">
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />

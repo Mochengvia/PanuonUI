@@ -36,13 +36,13 @@
                         Grid.Row="2">
                 <Grid Height="40">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Content="默认样式"
                            VerticalContentAlignment="Center"
                            HorizontalAlignment="Left"
-                           Margin="0,0,0,0"></Label>
+                           Margin="20,0,0,0"></Label>
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal">
                         <pu:PUCheckBox Content="General"></pu:PUCheckBox>
@@ -52,11 +52,15 @@
                         <pu:PUCheckBox Content="Branch"
                                        CheckBoxStyle="Branch"
                                        Margin="30,5,0,5"></pu:PUCheckBox>
+                        <pu:PUCheckBox Content="Button"
+                                       CheckBoxStyle="Button"
+                                       Margin="30,5,0,5"></pu:PUCheckBox>
+
                     </StackPanel>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="8*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -67,7 +71,7 @@
                     <Label Content="一种控件，无限可能"
                            VerticalContentAlignment="Center"
                            HorizontalAlignment="Left"
-                           Margin="0,0,0,0"></Label>
+                           Margin="20,0,0,0"></Label>
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal">
                         <pu:PUCheckBox Content="更大的!"
@@ -79,15 +83,21 @@
                                        BorderCornerRadius="2"></pu:PUCheckBox>
                         <pu:PUCheckBox Content="更大的!"
                                        CheckBoxStyle="Switch"
-                                       Margin="26,0,0,0"
+                                       Margin="25,0,0,0"
                                        InnerHeight="25"
                                        InnerWidth="40"
                                        Foreground="#FF49A9C0"
                                        CoverBrush="#AA49A9C0"></pu:PUCheckBox>
                         <pu:PUCheckBox Content="更大的!"
                                        CheckBoxStyle="Branch"
-                                       Margin="28,0,0,0"
+                                       Margin="28.5,0,0,0"
                                        Padding="15,0,0,0"
+                                       BorderBrush="#FF49A9C0"
+                                       CoverBrush="#FF49A9C0"
+                                       Foreground="#FF49A9C0"></pu:PUCheckBox>
+                        <pu:PUCheckBox Content="更大的!"
+                                       CheckBoxStyle="Button"
+                                       Margin="30,0,0,0"
                                        BorderBrush="#FF49A9C0"
                                        CoverBrush="#FF49A9C0"
                                        Foreground="#FF49A9C0"></pu:PUCheckBox>
@@ -116,6 +126,12 @@
                                        BorderBrush="#FFE089B8"
                                        CoverBrush="#FFE089B8"
                                        Foreground="#FFE089B8"></pu:PUCheckBox>
+                        <pu:PUCheckBox Content="Button"
+                                       CheckBoxStyle="Button"
+                                       Margin="30,0,0,0"
+                                       BorderBrush="#FFE089B8"
+                                       CoverBrush="#FFE089B8"
+                                       Foreground="#FFE089B8"></pu:PUCheckBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2"
                                 Grid.Column="1"
@@ -138,6 +154,12 @@
                                        CheckBoxStyle="Branch"
                                        Margin="30,0,0,0"
                                        Padding="15,0,0,0"
+                                       BorderBrush="#FFF4A758"
+                                       CoverBrush="#FFF4A758"
+                                       Foreground="#FFF4A758"></pu:PUCheckBox>
+                        <pu:PUCheckBox Content="Button"
+                                       CheckBoxStyle="Button"
+                                       Margin="30,0,0,0"
                                        BorderBrush="#FFF4A758"
                                        CoverBrush="#FFF4A758"
                                        Foreground="#FFF4A758"></pu:PUCheckBox>

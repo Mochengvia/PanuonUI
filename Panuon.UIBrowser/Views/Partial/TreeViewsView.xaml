@@ -44,20 +44,18 @@
                         <Run>获取或设置鼠标悬浮时子项的背景色。【Brush类型】。默认值为0。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">ChoosedBrush </Run>
                         <Run>获取或设置子项被选中时，的背景色。【Brush类型】。默认值为#88888</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">Header </Run>
-                        <Run>获取或设置当前被选中的子项。【PUTreeViewItem枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">BindingItems </Run>
                         <Run>获取或设置绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。【&lt;PUTreeViewItemModel&gt;集合】。默认值为空。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">IsExpandDoubleClick </Run>
-                        <Run>获取或设置是否需要双击才能展开行项目的子项。【&lt;PUTreeViewItemModel&gt;集合】。默认值为空。</Run><LineBreak />
+                        <Run>获取或设置是否需要双击才能展开行项目的子项。【Boolean类型】。默认值为False。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">ChoosedValuePath </Run>
                         <Run>获取或设置当子项目被选中时，ChoosedValue应呈现子项PUTreeViewItem的哪一个值。【ChoosedValuePaths枚举类型】可选项为：Header、Value。默认值为Header。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">ChoosedValue </Run>
                         <Run>获取被选中的子项PUTreeViewItem的Header或Value属性（取决于ChoosedValuePath的值），或通过设置该值来选中指定的子项目。【Object类型】。默认值为空。</Run><LineBreak />
                         <Run Foreground="#FFF18C27">ChoosedItemChanged </Run>
                         <Run>当新的子项被选中时，触发此路由事件。</Run><LineBreak />
-                        <Run Foreground="#FF9735CF">GetTreeViewItem </Run>
-                        <Run>当新的子项被选中时，触发此路由事件。</Run>
+                        <Run Foreground="#FF9735CF">GetTreeViewItem(object headerOrValue) </Run>
+                        <Run>通过HeaderValue选中项目接口。</Run>
                 </TextBlock>
                 <StackPanel Orientation="Vertical"
                             Grid.Row="2"

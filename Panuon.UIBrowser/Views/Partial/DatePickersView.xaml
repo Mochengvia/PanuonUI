@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.DatePickersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <!--<ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid Margin="60,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Height="50"
+                       FontSize="20"
+                       VerticalContentAlignment="Center">PUDatePicker 日期选择控件</Label>
+                <TextBlock Grid.Row="1"
+                           Margin="5,10,0,0"
+                           TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">ButtonStyle </Run>
+                        <Run>获取或设置按钮的基本样式。【ButtonStyles枚举类型】可选项为：General、Hollow、Outline、Link。默认值为General。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">ClickStyle </Run>
+                        <Run>获取或设置鼠标点击时按钮的效果。【ClickStyles类型】可选项为Classic、Sink。默认值为Classic。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置按钮的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时按钮的背景颜色（General和Hollow样式时）或前景颜色（Outline和Link样式时）。【Brush类型】。默认值为#FFFFFF（作为背景颜色时）或#3E3E3E（作为前景颜色时）。</Run><LineBreak />
+                </TextBlock>
+                <StackPanel Grid.Row="2"
+                            Margin="0,0,0,30">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <pu:PUCheckBox x:Name="LimitMaxDateIsChecked"
+                                           Content="限制最大日期"
+                                           Margin="0,0,0,10"
+                                           cm:Message.Attach="[Event Checked]=[Action LimitMaxDate('true')];[Event Unchecked]=[Action LimitMaxDate('false')]"></pu:PUCheckBox>
+                            <pu:PUCheckBox x:Name="LimitMinDateIsChecked"
+                                           Content="限制最小日期"
+                                           Margin="0,0,0,10"
+                                           cm:Message.Attach="[Event Checked]=[Action LimitMinDate('true')];[Event Unchecked]=[Action LimitMinDate('false')]"></pu:PUCheckBox>
+                            <Grid Width="250"
+                                  Height="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="手动修改时间"></Label>
+                                <pu:PUTextBox x:Name="SelectedDateString"
+                                              Grid.Column="1"
+                                              Watermark="在此输入时间"
+                                              Width="180"
+                                              Height="30"
+                                              HorizontalAlignment="Left"
+                                              cm:Message.Attach="[Event TextChanged]=[Action DateTimeInputChanged]"></pu:PUTextBox>
+                            </Grid>
+                        </StackPanel>
+                        <Grid Height="340"
+                              Width="320"
+                              Grid.Column="1">
+                            <Border BorderBrush="Gray"
+                                    BorderThickness="1"
+                                    Background="White">
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      BlurRadius="15"
+                                                      Color="Gray"
+                                                      Opacity="0.5"></DropShadowEffect>
+                                </Border.Effect>
+                            </Border>
+                            <pu:PUDatePicker Height="300"
+                                             SelectedDate="{Binding SelectedDate,Mode=TwoWay}"
+                                             MaxDateTime="{Binding MaxDateTime,Mode=TwoWay}"
+                                             MinDateTime="{Binding MinDateTime,Mode=TwoWay}"
+                                             Width="320"
+                                             VerticalAlignment="Top"
+                                             PickerMode="DateAndTime"
+                                             Background="Transparent"
+                                             Foreground="Gray"
+                                             CoverBrush="#FF49A9C0">
+                            </pu:PUDatePicker>
+                            <Grid Height="40"
+                                  VerticalAlignment="Bottom">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Margin="10,10,0,0"
+                                           VerticalAlignment="Top"
+                                           Text="{Binding SelectedDate,StringFormat='yyyy-MM-dd HH:mm:ss'}">
+                                </TextBlock>
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal">
+                                    <pu:PUButton Margin="0,0,0,0"
+                                                 Content="现在"
+                                                 VerticalAlignment="Top"
+                                                 Width="60"
+                                                 Height="30"
+                                                 Background="#FF49A9C0"
+                                                 cm:Message.Attach="[Event Click]=[Action SetNow]"></pu:PUButton>
+                                    <pu:PUButton Margin="0,0,10,0"
+                                                 Content="今天"
+                                                 VerticalAlignment="Top"
+                                                 Width="60"
+                                                 Height="30"
+                                                 Background="#FF49A9C0"
+                                                 cm:Message.Attach="[Event Click]=[Action SetToday]"></pu:PUButton>
+                                </StackPanel>
+
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>-->
+</UserControl>

@@ -51,6 +51,10 @@
                         <pu:PURadioButton Content="Branch"
                                           RadioButtonStyle="Branch"
                                           Margin="30,5,0,5"></pu:PURadioButton>
+                        <pu:PURadioButton Content="Button"
+                                          RadioButtonStyle="Button"
+                                          Margin="30,5,0,5"></pu:PURadioButton>
+
                     </StackPanel>
                 </Grid>
                 <Grid Margin="0,20,0,0">
@@ -68,10 +72,10 @@
                            Margin="20,0,0,0"></Label>
                     <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0"
                                     Orientation="Vertical">
@@ -149,6 +153,30 @@
                                               Height="30"
                                               RadioButtonStyle="Branch"
                                               Padding="15,0,0,0"
+                                              BorderBrush="#FFF4A758"
+                                              CoverBrush="#FFF4A758"
+                                              Foreground="#FFF4A758"
+                                              FontSize="15"></pu:PURadioButton>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3"
+                                    Orientation="Vertical">
+                            <pu:PURadioButton Content="Button"
+                                              Height="30"
+                                              RadioButtonStyle="Button"
+                                              BorderBrush="#FF49A9C0"
+                                              CoverBrush="#FF49A9C0"
+                                              Foreground="#FF49A9C0"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Button"
+                                              Height="30"
+                                              RadioButtonStyle="Button"
+                                              BorderBrush="#FFE089B8"
+                                              CoverBrush="#FFE089B8"
+                                              Foreground="#FFE089B8"
+                                              FontSize="15"></pu:PURadioButton>
+                            <pu:PURadioButton Content="Button"
+                                              Height="30"
+                                              RadioButtonStyle="Button"
                                               BorderBrush="#FFF4A758"
                                               CoverBrush="#FFF4A758"
                                               Foreground="#FFF4A758"

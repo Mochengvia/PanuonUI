@@ -66,6 +66,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Partial\DatePickersViewModel.cs" />
     <Compile Include="ViewModels\Partial\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Partial\LineChartsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ProgressBarsViewModel.cs" />
@@ -78,6 +79,10 @@
     <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\DatePickersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Partial\SpecialView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

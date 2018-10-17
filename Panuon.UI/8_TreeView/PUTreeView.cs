@@ -199,7 +199,10 @@ namespace Panuon.UI
 
                 var tvix = GetTreeViewItem(tvi, headerOrValue);
                 if (tvix != null)
+                {
+                    tvi.IsExpanded = true;
                     target = tvix;
+                }
             }
             return target;
         }
@@ -233,9 +236,13 @@ namespace Panuon.UI
             {
                 foreach (var tvi in item.Items)
                 {
+                    (tvi as PUTreeViewItem).IsExpanded = false;
                     var tvix = GetTreeViewItem(tvi as PUTreeViewItem, value);
                     if (tvix != null)
+                    {
+                        (tvi as PUTreeViewItem).IsExpanded = true;
                         return tvix;
+                    }
                 }
             }
             return null;

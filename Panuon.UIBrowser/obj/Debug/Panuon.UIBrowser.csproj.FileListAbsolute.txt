@@ -117,3 +117,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ComboBoxsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ComboBoxsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\DatePickersView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\DatePickersView.g.cs

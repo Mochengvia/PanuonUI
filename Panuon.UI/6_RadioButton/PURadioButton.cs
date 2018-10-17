@@ -84,6 +84,10 @@ namespace Panuon.UI
             /// 一个带有左边线的RadioButton。
             /// </summary>
             Branch = 3,
+            /// <summary>
+            ///  一个类似于按钮样式的选择框。
+            /// </summary>
+            Button = 4,
         }
 
     }
