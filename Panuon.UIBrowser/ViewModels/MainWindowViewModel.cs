@@ -50,7 +50,7 @@ namespace Panuon.UIBrowser.ViewModels
                     ActivateItem(new ProgressBarsViewModel());
                     return;
                 case 10:
-                    ActivateItem(new DatePickersViewModel());
+                    ActivateItem(new TabControlsViewModel());
                     return;
                 case 11:
                     ActivateItem(new SpecialViewModel());

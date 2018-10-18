@@ -62,7 +62,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="A0_DatePicker\PUDatePicker.xaml">
+    <Page Include="A2_DatePicker\PUDatePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="0_Base\PUWindow.cs" />
     <Compile Include="1_Button\PUButton.cs" />
+    <Compile Include="1_Button\PURepeatButton.cs" />
     <Compile Include="2_TextBox\PUTextBox.cs" />
     <Compile Include="3_ComboBox\PUComboBox.cs" />
     <Compile Include="3_ComboBox\PUComboBoxItem.cs" />
@@ -96,7 +97,9 @@
       <DependentUpon>PUSlideShow.xaml</DependentUpon>
     </Compile>
     <Compile Include="9_Special\PUSplitLine.cs" />
-    <Compile Include="A0_DatePicker\PUDatePicker.xaml.cs">
+    <Compile Include="A0_TabControl\PUTabControl.cs" />
+    <Compile Include="A0_TabControl\PUTabItem.cs" />
+    <Compile Include="A2_DatePicker\PUDatePicker.xaml.cs">
       <DependentUpon>PUDatePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

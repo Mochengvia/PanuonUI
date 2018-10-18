@@ -14,7 +14,8 @@
     <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
     <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
     <local:SideCornerRadiusConverter x:Key="SideCornerRadiusConverter"></local:SideCornerRadiusConverter>
-
+    <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
+    
     <Style TargetType="{x:Type local:PUWindow}">
         <Setter Property="Background"
                 Value="White"></Setter>
@@ -984,6 +985,428 @@
                                 <Label x:Name="lblCover"
                                        Opacity="0"
                                        Foreground="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
+                                <Label x:Name="lblPressedCover"
+                                       Opacity="0"
+                                       Foreground="White"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="lblPressedCover"
+                                            Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="lblContent"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="lblCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="lblContent"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="lblCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:PURepeatButton}">
+        <Setter Property="Background"
+                Value="{StaticResource Theme}"></Setter>
+        <Setter Property="BorderThickness"
+                Value="0"></Setter>
+        <Setter Property="Foreground"
+                Value="White"></Setter>
+        <Setter Property="Content"
+                Value="RepeatButton"></Setter>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Style.Triggers>
+            <Trigger Property="RepeatButtonStyle"
+                     Value="General">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURepeatButton}">
+                            <Grid x:Name="grdMain">
+                                <Border x:Name="bdrOuter"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                    <Border x:Name="bdrInner"
+                                            Background="{TemplateBinding Background}"
+                                            BorderThickness="0"
+                                            ClipToBounds="True"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                        <ContentPresenter x:Name="content"
+                                                          Margin="{TemplateBinding Padding}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          ContentSource="Content"></ContentPresenter>
+                                    </Border>
+                                </Border>
+                                <Border x:Name="bdrHoverCover"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        Opacity="0"></Border>
+                                <Border x:Name="bdrPressedCover"
+                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        Opacity="0"></Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="bdrPressedCover"
+                                            Property="Opacity"
+                                            Value="0.1"></Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.2"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="RepeatButtonStyle"
+                     Value="Hollow">
+                <Setter Property="Foreground"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="CoverBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURepeatButton}">
+                            <Grid x:Name="grdMain">
+                                <Border x:Name="bdrOuter"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                    <Grid>
+                                        <Border x:Name="bdrHoverCover"
+                                                Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                                Opacity="0"
+                                                Margin="-1"></Border>
+                                        <Border x:Name="bdrInner"
+                                                BorderThickness="0"
+                                                ClipToBounds="True"
+                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                            <ContentPresenter x:Name="content"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              ContentSource="Content"></ContentPresenter>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <Border x:Name="bdrPressedCover"
+                                        Background="White"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        Opacity="0"></Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="bdrPressedCover"
+                                            Property="Opacity"
+                                            Value="0.1"></Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                To="White"
+                                                                Duration="0:0:0.3"></ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.3"></DoubleAnimation>
+                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
+                                                                Duration="0:0:0.3"></ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="RepeatButtonStyle"
+                     Value="Outline">
+                <Setter Property="Foreground"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="CoverBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURepeatButton}">
+                            <Grid x:Name="grdMain">
+                                <Border x:Name="bdrOuter"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                    <Label Margin="{TemplateBinding Padding}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Content="{TemplateBinding Content}"
+                                           Foreground="{TemplateBinding Foreground}"></Label>
+                                </Border>
+                                <Border x:Name="bdrHoverCover"
+                                        Background="Transparent"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        Opacity="1">
+                                    <Border.OpacityMask>
+                                        <RadialGradientBrush GradientOrigin="0.5,0.5"
+                                                             RadiusX="1"
+                                                             RadiusY="1">
+                                            <GradientStopCollection>
+                                                <GradientStop Offset="0"
+                                                              Color="White"></GradientStop>
+                                                <GradientStop x:Name="offset"
+                                                              Offset="0"
+                                                              Color="Transparent"></GradientStop>
+                                            </GradientStopCollection>
+                                        </RadialGradientBrush>
+                                    </Border.OpacityMask>
+                                    <Label Margin="{TemplateBinding Padding}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Content="{TemplateBinding Content}"
+                                           Foreground="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"></Label>
+
+                                </Border>
+                                <Border x:Name="bdrPressedCover"
+                                        Background="{TemplateBinding CoverBrush}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
+                                        Opacity="0"></Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="bdrPressedCover"
+                                            Property="Opacity"
+                                            Value="0.1"></Setter>
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsPressed"
+                                                   Value="True"></Condition>
+                                        <Condition Property="ClickStyle"
+                                                   Value="Sink"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="grdMain"
+                                                Property="Margin"
+                                                Value="0,1.5,0,-1"></Setter>
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="offset"
+                                                                 Storyboard.TargetProperty="Offset"
+                                                                 To="1"
+                                                                 Duration="0:0:0.15"></DoubleAnimation>
+                                                <ColorAnimation Storyboard.TargetName="offset"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="White"
+                                                                Duration="0:0:0.05"
+                                                                BeginTime="0:0:0.15"></ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="offset"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="Transparent"
+                                                                Duration="0:0:0.05"></ColorAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="offset"
+                                                                 Storyboard.TargetProperty="Offset"
+                                                                 To="0"
+                                                                 Duration="0:0:0.15"
+                                                                 BeginTime="0:0:0.05"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="RepeatButtonStyle"
+                     Value="Link">
+                <Setter Property="Foreground"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderBrush"
+                        Value="LightGray"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="1"></Setter>
+                <Setter Property="CoverBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURepeatButton}">
+                            <Grid x:Name="grdMain">
+                                <Label x:Name="lblContent"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Content="{TemplateBinding Content}"></Label>
+                                <Label x:Name="lblCover"
+                                       Opacity="0"
+                                       Foreground="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        FontSize="{TemplateBinding FontSize}"
@@ -3210,6 +3633,175 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:PUTabControl}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Setter Property="BorderBrush"
+                Value="LightGray"></Setter>
+        <Setter Property="Foreground"
+                Value="DimGray"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUTabControl}">
+                    <Grid ClipToBounds="True"
+                          KeyboardNavigation.TabNavigation="Local"
+                          HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <local:PURepeatButton x:Name="btnLeft"
+                                                  Width="25"
+                                                  Height="25"
+                                                  RepeatButtonStyle="Link"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  Content=""
+                                                  FontSize="18"
+                                                  FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
+                            <Grid  Grid.Column="1">
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,0,0,1"
+                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch">
+                                    <TabPanel x:Name="HeaderPanel"
+                                              IsItemsHost="True"></TabPanel>
+                                </StackPanel>
+                                <Border BorderThickness="0,0,0,1"
+                                        Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                            </Grid>
+                            <local:PURepeatButton x:Name="btnRight"
+                                                  Grid.Column="2"
+                                                  RepeatButtonStyle="Link"
+                                                  Width="25"
+                                                  Height="25"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  Foreground="{StaticResource Theme}"
+                                                  Content=""
+                                                  FontSize="18"
+                                                  FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
+                        </Grid>
+                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                                          Grid.Row="1"
+                                          ContentSource="SelectedContent"
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SideButtonVisibility"
+                                 Value="Collapsed">
+                            <Setter TargetName="btnLeft"
+                                    Property="Visibility"
+                                    Value="Collapsed"></Setter>
+                            <Setter TargetName="btnRight"
+                                    Property="Visibility"
+                                    Value="Collapsed"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:PUTabItem}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Setter Property="Background"
+                Value="Transparent"></Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TabControlStyle,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                         Value="General">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabItem}">
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding TabControlStyle,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                         Value="Classic">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabItem}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label x:Name="lblIcon"
+                                           Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                           Margin="5,0,-10,0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontFamily="{StaticResource IconFont}"></Label>
+                                    <Label x:Name="lblContent"
+                                           Content="{TemplateBinding Header}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="10,0"
+                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontFamily="{Binding FontFamily,RelativeSource={RelativeSource AncestorType=TabControl}}"></Label>
+                                    <local:PUButton x:Name="btnDelete"
+                                                    Content="×"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Left"
+                                                    ButtonStyle="Link"
+                                                    FontSize="15"
+                                                    Margin="3,0"
+                                                    Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                    Visibility="Collapsed"></local:PUButton>
+                                </StackPanel>
+                                <Border x:Name="bdrSelected"
+                                        BorderThickness="0,0,0,1"
+                                        BorderBrush="LightGray">
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="lblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </DataTrigger>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="1,1,1,0"></Setter>
+                                </Trigger>
+                                <Trigger Property="DeleteButtonVisibility"
+                                         Value="Visible">
+                                    <Setter TargetName="btnDelete"
+                                            Property="Visibility"
+                                            Value="Visible"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Margin"
+                                            Value="10,0,0,0"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

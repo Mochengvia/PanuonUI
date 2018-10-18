@@ -9,7 +9,7 @@ using System.Windows.Data;
 namespace Panuon.UI
 {
     //ProgressBar内部角度转换器
-    public class SideCornerRadiusConverter : IValueConverter
+    internal class SideCornerRadiusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -23,8 +23,22 @@ namespace Panuon.UI
         }
     }
 
+    internal class WidthToMarginConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var actualWidth = (double)value;
+            return new Thickness(actualWidth - 1, 0, 0, 1);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
+
     //Window Header和Title转换器
-    public class HeaderConverter : IMultiValueConverter
+    internal class HeaderConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -38,7 +52,7 @@ namespace Panuon.UI
         }
     }
     //Icon字体大小转换器（ + 5）
-    public class IconFontSizeConverter : IValueConverter
+    internal class IconFontSizeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -53,7 +67,7 @@ namespace Panuon.UI
 
 
     //CheckBox General样式内部对号的缩放比例
-    public class ScaleConverter : IMultiValueConverter
+    internal class ScaleConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -71,7 +85,7 @@ namespace Panuon.UI
 
     //以下转换器用于CheckBox Switch样式
     //内部Toggle的长宽转换器
-    public class ToggleHeightConverter : IValueConverter
+    internal class ToggleHeightConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -85,7 +99,7 @@ namespace Panuon.UI
     }
 
     //内部Toggle的圆角转换器
-    public class ToggleCornerRadiusConverter : IValueConverter
+    internal class ToggleCornerRadiusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -99,7 +113,7 @@ namespace Panuon.UI
     }
 
     //内部Toggle的水平偏移量转换器
-    public class TranslateXConverter : IMultiValueConverter
+    internal class TranslateXConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -115,7 +129,7 @@ namespace Panuon.UI
 
 
     //输入框内部宽度转换器
-    public class TextBoxInnerWidthConverter : IMultiValueConverter
+    internal class TextBoxInnerWidthConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -133,7 +147,7 @@ namespace Panuon.UI
     }
 
     //输入框内部高度转换器
-    public class TextBoxInnerHeightConverter : IMultiValueConverter
+    internal class TextBoxInnerHeightConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

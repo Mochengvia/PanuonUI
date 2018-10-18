@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -67,17 +65,6 @@ namespace Panuon.UI
         public static readonly DependencyProperty DeleteModeProperty =
             DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.DeleteAndRouted));
 
-        public enum DeleteModes
-        {
-            /// <summary>
-            /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
-            /// </summary>
-            DeleteAndRouted,
-            /// <summary>
-            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
-            /// </summary>
-            EventOnly,
-        }
 
 
         /// <summary>
@@ -185,7 +172,21 @@ namespace Panuon.UI
 
         public enum SelectedValuePaths
         {
-            Header,Value
+            Header,
+            Value
         }
+
+        public enum DeleteModes
+        {
+            /// <summary>
+            /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
+            /// </summary>
+            DeleteAndRouted,
+            /// <summary>
+            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
+            /// </summary>
+            EventOnly,
+        }
+
     }
 }

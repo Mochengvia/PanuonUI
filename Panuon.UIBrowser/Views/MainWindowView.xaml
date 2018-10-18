@@ -95,6 +95,14 @@
                                   Background="White"
                                   Content="ProgressBar 进度条"
                                   cal:Message.Attach="[Event Click]=[Action ChangeSelect('9')]"></pu:PURadioButton>
+                <pu:PURadioButton RadioButtonStyle="Branch"
+                                  Height="34"
+                                  Padding="20,0,0,0"
+                                  FontSize="14"
+                                  Background="White"
+                                  Content="TabControl 选项卡"
+                                  cal:Message.Attach="[Event Click]=[Action ChangeSelect('10')]"></pu:PURadioButton>
+
                 <!--<pu:PURadioButton RadioButtonStyle="Branch"
                                   Height="34"
                                   Padding="20,0,0,0"

@@ -5,25 +5,23 @@
 *日志：2018/9/27 16:00:11 创建。
 *==============================================================*/
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
-using System.ComponentModel;
- 
+using System.Windows.Media;
+
 namespace Panuon.UI
 {
     public class PUComboBoxItem : ComboBoxItem
     {
+
+        
+
         static PUComboBoxItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBoxItem), new FrameworkPropertyMetadata(typeof(PUComboBoxItem)));
         }
-
-       
 
         #region Property
         /// <summary>

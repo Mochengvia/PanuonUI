@@ -14,16 +14,17 @@ namespace Panuon.UI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            ScrollViewer scrollViewer = new ScrollViewer();
             if (TextBoxStyle == TextBoxStyles.General)
             {
-                var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 0) as ScrollViewer;
-                scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
+                scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 0) as ScrollViewer;
             }
             else if (TextBoxStyle == TextBoxStyles.IconGroup)
             {
-                var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1), 0) as ScrollViewer;
-                scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
+                scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1), 0) as ScrollViewer;
             }
+            if(scrollViewer != null)
+                scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
         }
 
         private void ScrollViewer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
