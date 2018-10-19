@@ -1,88 +1,92 @@
-# PanuonUI
+# PanuonUI(v0.0.5 alpha)
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
-本库是一个正在开发的项目，只会把已经验证过没有问题的控件放出来（每周不定时更新）。<br/>
-最近更新日期：2018/5/11（重大更新，新增Window和MessageBox）。最新的版本共有7个控件。<br/>
+本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)。<br/>
+请勿将本控件库或本控件库的一部分作为一个新的控件库发布。否则将追究相关法律责任。
+## 目录
+[Window / MessageBox 窗体控件](#window-窗体控件)<br/>
+[Button / RepeatButton 按钮控件](#button-按钮控件)<br/>
+[TextBox 输入框控件](#textbox-输入框控件)<br/>
+[PasswordBox 输入框控件](#passwordbox-密码框控件)<br/>
 
-有关动态效果、自定义依赖属性的详细解释，请在我的CSDN博客上查看。<br/>
-我的博客：https://blog.csdn.net/qq_36663276/article/details/80209684<br/>
-本项目（Panuon.UI）使用了FontAwesome字体；示例程序（Panuon UIBrowser）中使用了Caliburn.Micro开源框架，请知悉。<br/>
+### Window 窗体控件
+PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
+图中演示了如何使用不同的动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window201810191402.gif)<br/>
 
-#### 许可说明：
-不限制在任何情景下使用本控件库，你可以将一些控件拷贝到你的项目中并重命名，这是被允许的。<br/>
-但是，不允许通过抄袭、售卖本库或本库中的一部分来获取利益（例如剽窃源码后改名成了其他的控件库，甚至用于出售盈利），否则追究相关责任。<br/>
-本项目是完全开放使用的控件库，请尊重作者劳动成果，共同维护开源社区成长。:)<br/>
-如果遇到任何问题，或者有更好的建议，请发送至我的邮箱bonjour@panuon.com，或是在知乎上私信我（末城via）。<br/>
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| Header | Object | 通常情况下，Title属性会同时设置窗体的左上角标题和任务栏标题。如果你期望使用不同的值，可以单独设置Header属性来改变左上角的标题内容。如果设置为Null，左上角标题将默认使用Title属性的内容。默认值为Null。  |
+| Icon | Object | 显示在右上角标题之前的图标。默认值为Null。  |
+| AnimationStyle | AnimationStyles枚举 | 启动/关闭时使用的动画样式。默认值为Scale（其余可选项为Gradual、Fade）。  |
+| AnimateOut | Boolean | 关闭窗体时是否使用动画。默认值为True。  |
+| AnimateIn | Boolean | 打开窗体时是否使用动画。默认值为True。  |
+| NavButtonVisibilty | Visibility | 设置控制条右侧三个按钮的显示状态。默认值为Visible。  |
+| IsCoverMaskShow | Boolean | 是否显示窗体的遮罩层。默认值为False。  |
+| AllowShowDelay  | Boolean | 是否允许延迟显示窗体内容。在页面较为复杂时，将此属性设置为True有助于减少动画卡顿。  |
+| NavbarBackground | Brush | 控制栏的背景色。默认值为White（白色）。  |
+| NavbarHeight | Double | 控制栏的高度。默认值为30。  |
+| NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
+| NavButtonWidth | Double | 控制栏按钮的宽度。默认值为30。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
 
-### 所有控件组
-目前已拥有的控件：ScrollViewer、Window、Button、TextBox、CheckBox、RadioButton。
-特殊控件：MessageBox
 
-##### ScrollViewer控件
-一个滚动视图控件，具体样式请参考其他图片（TextBox中的滚动视图就是此样式）。鼠标移入和移出时，透明度会发生改变。
-要使用该控件，只需要在你的项目中引用Generic.xaml资源字典，它将覆盖默认的ScrollViewer样式。
+PUWindow包含以下一个方法。<br/>
+
+| 方法 | 含义 |
+| ----- | ----- |
+| CloseWindow | 若要关闭窗体，请使用该方法。否则关闭动画可能不会如期执行。 |
+
+扩展：PUMessageBox
+该控件继承自PUWindow，因而可以使用上面任意一个属性来配置它。
+你在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。
 ```
-//将下列资源字典加入你的MergedDictionaries
-<ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Generic.xaml" />
-//在窗体或控件中直接使用即可
-<ScrollViewer>
-  ...
-</ScrollViewer>
-```
-##### PUWindow控件与PUMessageBox对话框
-这是一个融合了遮罩层、动画渐入渐出的窗体控件。支持左上角标题与任务栏标题不同（单独设置Header属性即可）。 
-像下面这样使用PUWindow窗体：
-```
-<pu:PUWindow 
-    ...
-    xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
-    ...
-    Title="HelloWorld!" Height="450" Width="800" AnimationStyle="Gradual" ShowDelay="True">
-    <pu:PUWindow.Icon>
-        <TextBlock Text="" FontSize="20" FontFamily="{StaticResource FontAwesome}"></TextBlock>
-    </pu:PUWindow.Icon>
-    
-    <Grid>
-    ...
-    </Gird>
-</pu:PUWindow>
-```
-PUMessageBox控件是使用了PUWindow的窗体，并且调用此控件的父窗体也必须是PUWindow窗体。
-**你不必手动打开父窗体的遮罩层，ShowDialog方法会自动帮你打开。**
-```
-UI.PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。");
+//像下面这样调用，来显示一段提示
+PUMessageBox.ShowDialog($"操作成功。");
+//或显示一个询问对话框
+PUMessageBox.ShowConfirm($"确定吗？");
 ```
 
-##### PUButton按钮控件
-![Alt text](https://img-blog.csdn.net/20180510213810302?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-当你的鼠标移入和点击时，按钮会出现不同的变化。调整CoverBrush属性以修改鼠标悬浮时的颜色。
-```
-//默认样式General
-<pu:PUButton></pu:PUButton>
-<pu:PUButton ButtonStyle="Hollow"></pu:PUButton>
-<pu:PUButton ButtonStyle="Outline"></pu:PUButton>
-```
+### Button 按钮控件
+PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
+PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/buttons.gif)<br/>
 
-##### PUTextBox输入框控件
-![Alt text](https://img-blog.csdn.net/2018051021383478?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-支持水印效果（WaterMark属性），当输入框被激活时，控件会出现阴影效果（颜色可以自定义，ShadowColor属性）。
 
-##### PUCheckBox选择框控件
-![Alt text](https://img-blog.csdn.net/20180510214602422?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-包含一组标准样式、Switch开关样式和枝杈样式。
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| ButtonStyle | ButtonStyles枚举 | 按钮的基本样式。默认值为General（其他可选项为Hollow、Outline、Link）。  |
+| ClickStyle | ClickStyles枚举 | 鼠标点击时按钮的效果。默认值为Classic（其他可选项为Sink）。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
 
-##### PURadioButton单选按钮控件
-![Alt text](https://img-blog.csdn.net/20180510214620422?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NjYzMjc2/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
-包含一组标准样式、Switch开关样式和枝杈样式（可以用作侧边栏）。
 
-###版本更新日志
-### V0.0.3测试中 版本新增
-2018.5.10 <br/>
-新增PUWindow控件，它支持三种启动/关闭动画并融合了遮罩层；新增PUMessageBox特殊控件。
+### TextBox 输入框控件
+PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox201810191448.gif)<br/>
 
-### V0.0.2测试中 版本新增
-2018.5.8 <br/>
-移除PUScrollViewer控件，只需添加资源字典并使用ScrollViewer控件即可覆盖默认样式。新增PUCheckBox、PURadioButton两组控件。
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| TextBoxStyle | TextBoxStyles枚举 | 输入框的基本样式。默认值为General（其他可选项为IconGroup）。  |
+| Watermark | String | 水印。默认值为空。  |
+| Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
+| IconWidth | Double | 图标的宽度。默认值为30。  |
+| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
 
-### V0.0.1测试中 版本新增
-2018.5.5 <br/>
-新增PUScrollViewer、PUButton、PUTextBox三组控件。
+### PasswordBox 密码框控件
+#### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
+不要对Text属性进行赋值，可能会导致意外的错误。按原生PasswordBox的方式使用即可。
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/passwordbox201810191449.gif)<br/>
+
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| PasswordBoxStyle | PasswordBoxStyles枚举 | 密码框的基本样式。默认值为General（其他可选项为IconGroup）。  |
+| Watermark | String | 水印。默认值为空。  |
+| Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
+| IconWidth | Double | 图标的宽度。默认值为30。  |
+| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+
+（文档更新中）
