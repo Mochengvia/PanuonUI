@@ -9,7 +9,7 @@
 ### Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
 图中演示了如何使用不同的动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/windows.gif)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.gif)<br/>
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
