@@ -6,7 +6,7 @@
 [Window / MessageBox 窗体控件](#Window)<br/>
 [Button 按钮控件](#Button)<br/>
 
-### Window 窗体控件
+###Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
 图中演示了如何使用不同的动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window201810191402.gif)<br/>
@@ -44,5 +44,5 @@ PUMessageBox.ShowDialog($"操作成功。");
 PUMessageBox.ShowConfirm($"确定吗？");
 ```
 
-### Button 按钮控件
+###Button 按钮控件
 （文档更新中）
