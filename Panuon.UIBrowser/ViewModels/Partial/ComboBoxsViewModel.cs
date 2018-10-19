@@ -27,16 +27,12 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             {
                 Header = "它的Value为123",
                 CanDelete = false,
-                CoverBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#22E089B8")),
-                SelectedBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#55E089B8")),
                 Value = 123,
             });
             comboList.Add(new PUComboBoxItemModel()
             {
                 Header = "它的Value为456",
                 CanDelete = false,
-                CoverBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#22E089B8")),
-                SelectedBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#55E089B8")),
                 Value = 456,
             });
             ComboBoxItemsList = new BindableCollection<PUComboBoxItemModel>(comboList);

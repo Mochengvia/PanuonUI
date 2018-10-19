@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,6 +73,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="0_Base\PUResizeGrid.cs" />
+    <Compile Include="0_Base\PUResizeThumb.cs" />
     <Compile Include="0_Base\PUWindow.cs" />
     <Compile Include="1_Button\PUButton.cs" />
     <Compile Include="1_Button\PURepeatButton.cs" />
@@ -127,6 +130,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

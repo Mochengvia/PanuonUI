@@ -16,6 +16,19 @@
                    FontSize="20"
                    VerticalContentAlignment="Center"
                    Margin="20,0,0,0"
+                   Content="PUResizeGrid 调整大小控件" />
+            <TextBlock Margin="27,0,50,10"
+                       TextWrapping="Wrap">
+            </TextBlock>
+            <Grid Height="155">
+                <pu:PUResizeGrid Height="50" Width="150">
+                    <pu:PUButton Content="拖动四周来改变大小"> </pu:PUButton>
+                </pu:PUResizeGrid>
+            </Grid>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center"
+                   Margin="20,0,0,0"
                    Content="PULoading 等待控件" />
             <TextBlock Margin="27,0,50,10"
                        TextWrapping="Wrap">

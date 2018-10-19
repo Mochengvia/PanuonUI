@@ -28,8 +28,7 @@ namespace Panuon.UI
         }
         internal void OnChoosedItemChanged(PUTreeViewItem oldItem, PUTreeViewItem newItem)
         {
-            RoutedPropertyChangedEventArgs<PUTreeViewItem> arg = new RoutedPropertyChangedEventArgs<PUTreeViewItem>(oldItem, newItem, ChoosedItemChangedEvent);
-            RaiseEvent(arg);
+            RoutedPropertyChangedEventArgs<PUTreeViewItem> arg = new RoutedPropertyChangedEventArgs<PUTreeViewItem>(oldItem, newItem, ChoosedItemChangedEvent);   RaiseEvent(arg);
         }
         #endregion
 
@@ -96,7 +95,10 @@ namespace Panuon.UI
         public static readonly DependencyProperty IsExpandDoubleClickProperty =
             DependencyProperty.Register("IsExpandDoubleClick", typeof(bool), typeof(PUTreeView), new PropertyMetadata(false));
 
-
+        /// <summary>
+        /// 该属性指定了当子项目被选中时，ChoosedValue应呈现子项目的哪一个值。
+        /// 可选项为Header或Value，默认值为Header。
+        /// </summary>
         public ChoosedValuePaths ChoosedValuePath
         {
             get { return (ChoosedValuePaths)GetValue(ChoosedValuePathProperty); }
@@ -112,6 +114,10 @@ namespace Panuon.UI
             Header, Value
         }
 
+        /// <summary>
+        /// 获取被选中PUTreeViewItem的Header或Value属性（这取决于SelectedValuePath），
+        /// 或根据设置的ChoosedValue来选中子项目。
+        /// </summary>
         public object ChoosedValue
         {
             get { return (object)GetValue(ChoosedValueProperty); }

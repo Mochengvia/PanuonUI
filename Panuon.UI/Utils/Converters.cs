@@ -28,7 +28,7 @@ namespace Panuon.UI
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var actualWidth = (double)value;
-            return new Thickness(actualWidth - 1, 0, 0, 1);
+            return new Thickness(actualWidth, 0, 0, 1);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

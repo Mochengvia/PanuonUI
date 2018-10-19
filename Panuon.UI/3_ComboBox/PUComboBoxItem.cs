@@ -16,8 +16,6 @@ namespace Panuon.UI
     public class PUComboBoxItem : ComboBoxItem
     {
 
-        
-
         static PUComboBoxItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBoxItem), new FrameworkPropertyMetadata(typeof(PUComboBoxItem)));
@@ -143,7 +141,7 @@ namespace Panuon.UI
                 _value = value; OnPropertyChanged("Value");
             }
         }
-        private object _value = 0;
+        private object _value;
 
         /// <summary>
         /// 是否显示删除按钮。
@@ -157,17 +155,6 @@ namespace Panuon.UI
             }
         }
         private bool _canDelete = false;
-
-        /// <summary>
-        /// 鼠标悬浮时的背景颜色，若不设置，则使用默认值(#DDDDDD)。
-        /// </summary>
-        public Brush CoverBrush { get; set; }
-
-        /// <summary>
-        /// 项目被选中时的背景颜色，若不设置，则使用默认值(#CCCCCC)。
-        /// </summary>
-        public Brush SelectedBrush { get; set; }
-
     }
 
 }

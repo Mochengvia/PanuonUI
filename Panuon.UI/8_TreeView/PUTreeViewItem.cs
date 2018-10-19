@@ -30,7 +30,6 @@ namespace Panuon.UI
         private PUTreeView _parentTreeView;
         #endregion
 
-
         static PUTreeViewItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUTreeViewItem), new FrameworkPropertyMetadata(typeof(PUTreeViewItem)));
@@ -157,7 +156,7 @@ namespace Panuon.UI
                 _value = value; OnPropertyChanged("Value");
             }
         }
-        private object _value = 0;
+        private object _value;
 
 
         /// <summary>

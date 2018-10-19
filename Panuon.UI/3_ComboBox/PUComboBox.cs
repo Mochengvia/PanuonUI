@@ -13,6 +13,14 @@ namespace Panuon.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBox), new FrameworkPropertyMetadata(typeof(PUComboBox)));
         }
 
+        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            if (SelectedValuePath == SelectedValuePaths.Header)
+                SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUComboBoxItem).Content.ToString();
+            else
+                SelectedValue = SelectedItem == null ? null : (SelectedItem as PUComboBoxItem).Value;
+            base.OnSelectionChanged(e);
+        }
 
         #region RoutedEvent
         /// <summary>
@@ -94,19 +102,6 @@ namespace Panuon.UI
                     Content = item.Header,
                     Value = item.Value,
                     DeleteButtonVisibility = item.CanDelete ? Visibility.Visible : Visibility.Collapsed,
-                };
-               
-                if (item.CoverBrush != null)
-                    comboBoxItem.CoverBrush = item.CoverBrush;
-                if (item.SelectedBrush != null)
-                    comboBoxItem.SelectedBrush = item.SelectedBrush;
-
-                comboBoxItem.Selected += delegate
-                {
-                    if (comboBox.SelectedValuePath == SelectedValuePaths.Header)
-                        comboBox.SelectedValue = comboBoxItem.Content.ToString();
-                    else
-                        comboBox.SelectedValue = comboBoxItem.Value;
                 };
 
                 if (comboBox.Items.Count == 0)

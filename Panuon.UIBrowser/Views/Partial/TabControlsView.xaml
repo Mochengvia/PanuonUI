@@ -10,80 +10,81 @@
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
-    <Grid>
-        <Grid Margin="60,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Height="50"
-                   FontSize="20"
-                   VerticalContentAlignment="Center">PUButton 按钮控件</Label>
-            <TextBlock Grid.Row="1"
-                       Margin="5,10,0,0"
-                       TextWrapping="Wrap">
-                        <Run Foreground="#FF359ECF">ButtonStyle </Run>
-                        <Run>获取或设置按钮的基本样式。【ButtonStyles枚举类型】可选项为：General、Hollow、Outline、Link。默认值为General。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">ClickStyle </Run>
-                        <Run>获取或设置鼠标点击时按钮的效果。【ClickStyles类型】可选项为Classic、Sink。默认值为Classic。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
-                        <Run>获取或设置按钮的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid Margin="60,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Height="50"
+                       FontSize="20"
+                       VerticalContentAlignment="Center">PUTabControl/PUTabItem 选项卡控件</Label>
+                <TextBlock Grid.Row="1"
+                           Margin="5,10,0,10"
+                           TextWrapping="Wrap">
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUTabItem</Run><LineBreak />    
+                         <Run Foreground="#FF359ECF">Icon </Run>
+                        <Run>获取或设置显示在选项卡前的图标。该图标可以是FontAwesome字体，也可以是一个对象。【Objecy类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">DeleteButtonVisibility </Run>
+                        <Run>获取或设置下拉选择项后侧删除按钮的显示状态。【Visibility类型】。默认值为Collpased。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">Value </Run>
+                        <Run>获取或设置下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF3ECD44">PUTabItemModel </Run>
+                        <Run>用于绑定到PUTabControl子项集合的模型类，参见PUTabControl的BindingItems属性。</Run><LineBreak />
+
+                        <LineBreak />   
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUTabControl</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">TabControlStyle </Run>
+                        <Run>获取或设置选项卡的基础样式。【TabControlStyles枚举类型】可选项General、Classic。默认值为General。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时按钮的背景颜色（General和Hollow样式时）或前景颜色（Outline和Link样式时）。【Brush类型】。默认值为#FFFFFF（作为背景颜色时）或#3E3E3E（作为前景颜色时）。</Run><LineBreak />
-            </TextBlock>
-            <StackPanel Grid.Row="2">
-                <Grid Height="62">
-                    <pu:PUTabControl TabControlStyle="Classic">
-                        <pu:PUTabItem Header="Test1"
-                                      Height="30">
-                            <Grid>
-                                <Label>Text1</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                        <pu:PUTabItem Header="Test2"
-                                      Height="30">
-                            <Grid>
-                                <Label>Text2</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                        <pu:PUTabItem Header="Test3"
-                                      Height="30">
-                            <Grid>
-                                <Label>Text3</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                    </pu:PUTabControl>
-                </Grid>
-                <Grid Height="62">
-                    <pu:PUTabControl TabControlStyle="Classic"
-                                     SideButtonVisibility="Visible"
-                                     Margin="0,0,457,0">
-                        <pu:PUTabItem Header="Test1"
-                                      Icon=""
-                                      Height="30"
-                                      DeleteButtonVisibility="Visible">
-                            <Grid>
-                                <Label>Text1</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                        <pu:PUTabItem Header="Test2"
-                                      Icon=""
-                                      Height="30">
-                            <Grid>
-                                <Label>Text2</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                        <pu:PUTabItem Header="Test3"
-                                      Icon=""
-                                      Height="30">
-                            <Grid>
-                                <Label>Text3</Label>
-                            </Grid>
-                        </pu:PUTabItem>
-                    </pu:PUTabControl>
-                </Grid>
-            </StackPanel>
+                        <Run>获取或设置当某个子项被选中时的前景色。【Brush类型】。默认值为#3E3E3E</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">DeleteMode </Run>
+                        <Run>获取或设置当用户点击下拉框子项的删除按钮时，应该执行的操作。【DeleteModes枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BindingItems </Run>
+                        <Run>获取或设置绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。【&lt;PUComboBoxItemModel&gt;集合】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedValuePath </Run>
+                        <Run>获取或设置当子项目被选中时，SelectedValue应呈现子项PUComboBoxItem的哪一个值。【SelectedValuePaths枚举类型】可选项为：Header、Value。默认值为Header。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedValue </Run>
+                        <Run>获取被选中的子项PUComboBoxItem的Header或Value属性（取决于SelectedValuePath的值），或通过设置该值来选中指定的子项目。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FFF18C27">DeleteItem </Run>
+                        <Run>当用户点击子项PUComboBoxItem的删除按钮时，触发此路由事件。</Run><LineBreak />
+                        <Run Foreground="Gray">当内容长度超出控件长度时，将显示两侧的按钮。除了点击按钮，也可以直接在TabControl上使用鼠标滚轮。</Run>
+                </TextBlock>
+                <StackPanel Grid.Row="2">
+                    <Grid Height="62">
+                        <pu:PUTabControl BindingItems="{Binding TabItemList,Mode=TwoWay}">
+                        </pu:PUTabControl>
+                    </Grid>
+                    <Grid Height="62"
+                          Margin="0,20,0,0">
+                        <pu:PUTabControl CoverBrush="#FF2393C7"
+                                         Margin="0,0,469,0"
+                                         BindingItems="{Binding TabItemList,Mode=TwoWay}">
+                        </pu:PUTabControl>
+                    </Grid>
+                    <Grid Height="62"
+                          Margin="0,20,0,0">
+                        <pu:PUTabControl TabControlStyle="Classic"
+                                         BindingItems="{Binding TabItemList,Mode=TwoWay}">
+                        </pu:PUTabControl>
+                    </Grid>
+                    <Grid Height="62"
+                          Margin="0,20,0,0">
+                        <pu:PUTabControl TabControlStyle="Classic"
+                                         CoverBrush="#FF2393C7"
+                                         Margin="0,0,456,0"
+                                         BindingItems="{Binding TabItemList,Mode=TwoWay}">
+                        </pu:PUTabControl>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
         </Grid>
-    </Grid>
+
+    </ScrollViewer>
 </UserControl>

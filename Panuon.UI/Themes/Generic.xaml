@@ -16,6 +16,80 @@
     <local:SideCornerRadiusConverter x:Key="SideCornerRadiusConverter"></local:SideCornerRadiusConverter>
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
     
+    <Style TargetType="{x:Type local:PUResizeGrid}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUResizeGrid}">
+                    <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid>
+                            <local:ResizeThumb Height="2"
+                                               Cursor="SizeNS"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="2"
+                                               Margin="0 -2 0 0"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Stretch" />
+                            <local:ResizeThumb Width="2"
+                                               Cursor="SizeWE"
+                                               Margin="-2 0 0 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="2"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Left" />
+                            <local:ResizeThumb Width="2"
+                                               Cursor="SizeWE"
+                                               Margin="0 0 -2 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="2"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Right" />
+                            <local:ResizeThumb Height="2"
+                                               Cursor="SizeNS"
+                                               Margin="0 0 0 -2"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="2"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Stretch" />
+                            <local:ResizeThumb Width="4"
+                                               Height="4"
+                                               Cursor="SizeNWSE"
+                                               Margin="-2 -2 0 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="4"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Left" />
+                            <local:ResizeThumb Width="4"
+                                               Height="4"
+                                               Cursor="SizeNESW"
+                                               Margin="0 -2 -2 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="4"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Right" />
+                            <local:ResizeThumb Width="4"
+                                               Height="4"
+                                               Cursor="SizeNESW"
+                                               Margin="-2 0 0 -2"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="4"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Left" />
+                            <local:ResizeThumb Width="4"
+                                               Height="4"
+                                               Cursor="SizeNWSE"
+                                               Margin="0 0 -2 -2"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="4"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Right" />
+                        </Grid>
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:PUWindow}">
         <Setter Property="Background"
                 Value="White"></Setter>
@@ -228,112 +302,112 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
-                            <Border x:Name="bdrOuter"
-                                    Margin="5"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
-                                <Border.OpacityMask>
-                                    <LinearGradientBrush StartPoint="0,0"
-                                                         EndPoint="0,1">
-                                        <GradientStopCollection>
-                                            <GradientStop x:Name="offset1"
-                                                          Offset="0"
-                                                          Color="White"></GradientStop>
-                                            <GradientStop x:Name="offset2"
-                                                          Offset="0"
-                                                          Color="Transparent"></GradientStop>
-                                        </GradientStopCollection>
-                                    </LinearGradientBrush>
-                                </Border.OpacityMask>
-                                <Grid>
+                                <Border x:Name="bdrOuter"
+                                        Margin="0"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
+                                    <Border.OpacityMask>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="0,1">
+                                            <GradientStopCollection>
+                                                <GradientStop x:Name="offset1"
+                                                              Offset="0"
+                                                              Color="White"></GradientStop>
+                                                <GradientStop x:Name="offset2"
+                                                              Offset="0"
+                                                              Color="Transparent"></GradientStop>
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush>
+                                    </Border.OpacityMask>
                                     <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid x:Name="grdNavbar"
-                                              Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
-                                            <StackPanel Orientation="Horizontal"
-                                                        HorizontalAlignment="Left"
-                                                        Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
-                                                <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                       Margin="3,0,0,0"
-                                                       VerticalContentAlignment="Center"
-                                                       HorizontalContentAlignment="Left"
-                                                       FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
-                                                       Foreground="{TemplateBinding Foreground}"></Label>
-                                                <Label VerticalContentAlignment="Center"
-                                                       HorizontalContentAlignment="Left"
-                                                       FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
-                                                       Foreground="{TemplateBinding Foreground}">
-                                                    <Label.Content>
-                                                        <MultiBinding Converter="{StaticResource HeaderConverter}">
-                                                            <Binding Path="Header"
-                                                                     RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
-                                                            <Binding Path="Title"
-                                                                     RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
-                                                        </MultiBinding>
-                                                    </Label.Content>
-                                                </Label>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal"
-                                                        HorizontalAlignment="Right"
-                                                        VerticalAlignment="Top"
-                                                        Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
-                                                <local:PUButton x:Name="btnMin"
-                                                                Content="-"
-                                                                Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                ButtonStyle="Hollow"
-                                                                BorderBrush="Transparent"
-                                                                CoverBrush="#99999999"
-                                                                Foreground="{TemplateBinding Foreground}"
-                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                HorizontalAlignment="Right"
-                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
-                                                <local:PUButton x:Name="btnMax"
-                                                                Content="□"
-                                                                Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                ButtonStyle="Hollow"
-                                                                BorderBrush="Transparent"
-                                                                CoverBrush="#99999999"
-                                                                Foreground="{TemplateBinding Foreground}"
-                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                HorizontalAlignment="Right"
-                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
-                                                <local:PUButton x:Name="btnClose"
-                                                                Content="×"
-                                                                Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                ButtonStyle="Hollow"
-                                                                BorderBrush="Transparent"
-                                                                CoverBrush="#CCC53434"
-                                                                Foreground="{TemplateBinding Foreground}"
-                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                HorizontalAlignment="Right"
-                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
-                                            </StackPanel>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid x:Name="grdNavbar"
+                                                  Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <StackPanel Orientation="Horizontal"
+                                                            HorizontalAlignment="Left"
+                                                            Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                    <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                           Margin="3,0,0,0"
+                                                           VerticalContentAlignment="Center"
+                                                           HorizontalContentAlignment="Left"
+                                                           FontSize="{TemplateBinding FontSize}"
+                                                           FontFamily="{StaticResource IconFont}"
+                                                           Foreground="{TemplateBinding Foreground}"></Label>
+                                                    <Label VerticalContentAlignment="Center"
+                                                           HorizontalContentAlignment="Left"
+                                                           FontSize="{TemplateBinding FontSize}"
+                                                           FontFamily="{StaticResource IconFont}"
+                                                           Foreground="{TemplateBinding Foreground}">
+                                                        <Label.Content>
+                                                            <MultiBinding Converter="{StaticResource HeaderConverter}">
+                                                                <Binding Path="Header"
+                                                                         RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                                <Binding Path="Title"
+                                                                         RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                            </MultiBinding>
+                                                        </Label.Content>
+                                                    </Label>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Top"
+                                                            Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                    <local:PUButton x:Name="btnMin"
+                                                                    Content="-"
+                                                                    Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                    ButtonStyle="Hollow"
+                                                                    BorderBrush="Transparent"
+                                                                    CoverBrush="#99999999"
+                                                                    Foreground="{TemplateBinding Foreground}"
+                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    HorizontalAlignment="Right"
+                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                    <local:PUButton x:Name="btnMax"
+                                                                    Content="□"
+                                                                    Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                    ButtonStyle="Hollow"
+                                                                    BorderBrush="Transparent"
+                                                                    CoverBrush="#99999999"
+                                                                    Foreground="{TemplateBinding Foreground}"
+                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    HorizontalAlignment="Right"
+                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                    <local:PUButton x:Name="btnClose"
+                                                                    Content="×"
+                                                                    Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                    ButtonStyle="Hollow"
+                                                                    BorderBrush="Transparent"
+                                                                    CoverBrush="#CCC53434"
+                                                                    Foreground="{TemplateBinding Foreground}"
+                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    HorizontalAlignment="Right"
+                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
+                                                </StackPanel>
+                                            </Grid>
+                                            <Grid Grid.Row="1"
+                                                  x:Name="grdContainer">
+                                                <AdornerDecorator>
+                                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                                </AdornerDecorator>
+                                            </Grid>
                                         </Grid>
-                                        <Grid Grid.Row="1"
-                                              x:Name="grdContainer">
-                                            <AdornerDecorator>
-                                                <ContentPresenter Content="{TemplateBinding Content}" />
-                                            </AdornerDecorator>
-                                        </Grid>
+                                        <Border x:Name="bdrCover"
+                                                Background="Black"
+                                                BorderThickness="0"
+                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                Opacity="0"
+                                                IsHitTestVisible="False" />
                                     </Grid>
-                                    <Border x:Name="bdrCover"
-                                            Background="Black"
-                                            BorderThickness="0"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
-                                            Opacity="0"
-                                            IsHitTestVisible="False" />
-                                </Grid>
-                            </Border>
+                                </Border>
                             <ControlTemplate.Triggers>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
@@ -1926,7 +2000,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <Style TargetType="{x:Type local:PUComboBoxItem}">
         <Setter Property="Foreground"
                 Value="DimGray"></Setter>
@@ -3645,6 +3718,10 @@
                 Value="LightGray"></Setter>
         <Setter Property="Foreground"
                 Value="DimGray"></Setter>
+        <Setter Property="CoverBrush"
+                Value="{StaticResource Theme}"></Setter>
+        <Setter Property="Background"
+                Value="Transparent"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PUTabControl}">
@@ -3662,9 +3739,10 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <local:PURepeatButton x:Name="btnLeft"
-                                                  Width="25"
-                                                  Height="25"
+                                                  Margin="5,0"
                                                   RepeatButtonStyle="Link"
+                                                  Command="{Binding LeftCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                  CommandParameter="{Binding ElementName=scrollViewer}"
                                                   VerticalAlignment="Center"
                                                   HorizontalAlignment="Left"
                                                   Foreground="{TemplateBinding Foreground}"
@@ -3672,15 +3750,17 @@
                                                   FontSize="18"
                                                   FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
                             <Grid  Grid.Column="1">
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="0,0,0,1"
-                                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                            VerticalAlignment="Stretch"
-                                            HorizontalAlignment="Stretch">
-                                    <TabPanel x:Name="HeaderPanel"
-                                              IsItemsHost="True"></TabPanel>
-                                </StackPanel>
+                                <ScrollViewer x:Name="scrollViewer"
+                                    VerticalScrollBarVisibility="Disabled"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              Margin="0,0,0,1"
+                                              VerticalAlignment="Stretch"
+                                              HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TabPanel x:Name="HeaderPanel"
+                                                  IsItemsHost="True"></TabPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
                                 <Border BorderThickness="0,0,0,1"
                                         Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
                                         BorderBrush="{TemplateBinding BorderBrush}"></Border>
@@ -3688,8 +3768,9 @@
                             <local:PURepeatButton x:Name="btnRight"
                                                   Grid.Column="2"
                                                   RepeatButtonStyle="Link"
-                                                  Width="25"
-                                                  Height="25"
+                                                  Margin="5,0"
+                                                  Command="{Binding RightCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                  CommandParameter="{Binding ElementName=scrollViewer}"
                                                   VerticalAlignment="Center"
                                                   HorizontalAlignment="Left"
                                                   Foreground="{StaticResource Theme}"
@@ -3718,7 +3799,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
     <Style TargetType="{x:Type local:PUTabItem}">
         <Setter Property="SnapsToDevicePixels"
                 Value="True"></Setter>
@@ -3732,6 +3812,73 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUTabItem}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label x:Name="lblIcon"
+                                           Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                           Margin="5,0,-10,0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontFamily="{StaticResource IconFont}"></Label>
+                                    <Label x:Name="lblContent"
+                                           Content="{TemplateBinding Header}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="10,0"
+                                           Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                           FontFamily="{Binding FontFamily,RelativeSource={RelativeSource AncestorType=TabControl}}"></Label>
+                                    <local:PUButton x:Name="btnDelete"
+                                                    Content="×"
+                                                    Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Left"
+                                                    ButtonStyle="Link"
+                                                    FontSize="15"
+                                                    Margin="3,0"
+                                                    Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                    Visibility="Collapsed"></local:PUButton>
+                                </StackPanel>
+                                <Border x:Name="bdrSelected"
+                                        BorderThickness="0,0,0,1"
+                                        BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                             Value="">
+                                    <Setter TargetName="lblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </DataTrigger>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,0,0,3"></Setter>
+                                    <Setter TargetName="lblIcon"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderBrush"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                </Trigger>
+                                <Trigger Property="DeleteButtonVisibility"
+                                         Value="Visible">
+                                    <Setter TargetName="btnDelete"
+                                            Property="Visibility"
+                                            Value="Visible"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Margin"
+                                            Value="10,0,0,0"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -3761,6 +3908,8 @@
                                            FontFamily="{Binding FontFamily,RelativeSource={RelativeSource AncestorType=TabControl}}"></Label>
                                     <local:PUButton x:Name="btnDelete"
                                                     Content="×"
+                                                    Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Left"
                                                     ButtonStyle="Link"
@@ -3771,12 +3920,12 @@
                                 </StackPanel>
                                 <Border x:Name="bdrSelected"
                                         BorderThickness="0,0,0,1"
-                                        BorderBrush="LightGray">
+                                        BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
-                                             Value="{x:Null}">
+                                             Value="">
                                     <Setter TargetName="lblIcon"
                                             Property="Visibility"
                                             Value="Collapsed"></Setter>
@@ -3786,6 +3935,13 @@
                                     <Setter TargetName="bdrSelected"
                                             Property="BorderThickness"
                                             Value="1,1,1,0"></Setter>
+                                    <Setter TargetName="lblIcon"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                    <Setter TargetName="lblContent"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                
                                 </Trigger>
                                 <Trigger Property="DeleteButtonVisibility"
                                          Value="Visible">
@@ -3800,7 +3956,6 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -3891,7 +4046,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style TargetType="{x:Type Thumb}">
+    <Style x:Key="Scroll_Thumb" TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
         <Setter Property="IsTabStop"
@@ -3926,7 +4081,7 @@
                                IsEnabled="{TemplateBinding IsMouseOver}"
                                IsDirectionReversed="true">
                             <Track.Thumb>
-                                <Thumb />
+                                <Thumb Style="{StaticResource Scroll_Thumb}"/>
                             </Track.Thumb>
                         </Track>
                     </Grid>
