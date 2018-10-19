@@ -6,6 +6,8 @@
 [Window / MessageBox 窗体控件](#window-窗体控件)<br/>
 [Button / RepeatButton 按钮控件](#button-按钮控件)<br/>
 [TextBox 输入框控件](#textbox-输入框控件)<br/>
+[PasswordBox 输入框控件](#passwordbox-密码框控件)<br/>
+
 ### Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
 图中演示了如何使用不同的动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
