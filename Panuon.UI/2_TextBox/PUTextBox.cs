@@ -73,7 +73,7 @@ namespace Panuon.UI
             DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox), new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
-        ///  输入框激活时阴影的颜色，默认值为#888888。
+        ///  输入框获得焦点时阴影的颜色，默认值为#888888。
         /// </summary>
         public Color ShadowColor
         {

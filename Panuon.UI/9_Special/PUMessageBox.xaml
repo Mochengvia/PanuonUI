@@ -13,7 +13,7 @@
              WindowStartupLocation="CenterOwner"
              FontSize="16"
              ResizeMode="NoResize"
-             NavButtonVisibilty="Hidden">
+             NavButtonVisibility="Hidden">
     <pu:PUWindow.Icon>
         <TextBlock Text=""
                    FontSize="20"
@@ -53,6 +53,9 @@
             <pu:PUButton Margin="10,0,20,5"
                          Grid.Column="1"
                          ButtonStyle="Outline"
+                         Foreground="Gray"
+                         BorderBrush="Gray"
+                         CoverBrush="DimGray"
                          Content="取消"
                          Click="PUButtonNo_Click"></pu:PUButton>
         </Grid>

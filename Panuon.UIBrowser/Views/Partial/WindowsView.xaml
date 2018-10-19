@@ -14,7 +14,7 @@
         <TextBlock Margin="27,0,50,10" TextWrapping="Wrap">
             <Run Text="该控件包含三种启动动画样式：Scale（默认的）、Gradual、Fade。"></Run>
             <LineBreak></LineBreak>
-            <Run Text="额外的依赖属性包括：ShowCover、AllowShowDelay、NavButtonVisibilty、AnimateIn、AnimateOut、AnimationStyle、BorderCornerRadius、Header、Icon、NavbarBackground、NavbarHeight、NavButtonHeight、NavButtonWidth。"></Run>
+            <Run Text="额外的依赖属性包括：ShowCover、AllowShowDelay、NavButtonVisibility、AnimateIn、AnimateOut、AnimationStyle、BorderCornerRadius、Header、Icon、NavbarBackground、NavbarHeight、NavButtonHeight、NavButtonWidth。"></Run>
             <LineBreak></LineBreak>
             <LineBreak></LineBreak>
             <Run Text="点击下面的按钮，将会弹出一个PUMessageBox控件。它派生自PUWindow窗体。所有继承自此PUWindow的窗体都可以使用如下开关动画。你可以用AnimateIn和AnimateOut属性来控制动画的开/关。"></Run>

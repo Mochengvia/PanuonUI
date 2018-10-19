@@ -283,7 +283,7 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="NavButtonVisibilty"
+                                <Trigger Property="NavButtonVisibility"
                                          Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
@@ -494,7 +494,7 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="NavButtonVisibilty"
+                                <Trigger Property="NavButtonVisibility"
                                          Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
@@ -705,7 +705,7 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="NavButtonVisibilty"
+                                <Trigger Property="NavButtonVisibility"
                                          Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
@@ -1373,11 +1373,18 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
-                                    <Label Margin="{TemplateBinding Padding}"
-                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                           Content="{TemplateBinding Content}"
-                                           Foreground="{TemplateBinding Foreground}"></Label>
+                                    <Grid>
+                                        <Border x:Name="bdrInner"
+                                                BorderThickness="0"
+                                                ClipToBounds="True"
+                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
+                                            <ContentPresenter x:Name="content"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              ContentSource="Content"></ContentPresenter>
+                                        </Border>
+                                    </Grid>
                                 </Border>
                                 <Border x:Name="bdrHoverCover"
                                         Background="Transparent"
@@ -1432,7 +1439,7 @@
                                     <MultiTrigger.Setters>
                                         <Setter TargetName="grdMain"
                                                 Property="Margin"
-                                                Value="0,1.5,0,-1"></Setter>
+                                                Value="0,2,0,-1.5"></Setter>
                                     </MultiTrigger.Setters>
                                 </MultiTrigger>
                                 <Trigger Property="IsMouseOver"
@@ -4062,7 +4069,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Scroll_Thumb" TargetType="{x:Type Thumb}">
+    <Style TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle"
                 Value="true" />
         <Setter Property="IsTabStop"
@@ -4097,7 +4104,7 @@
                                IsEnabled="{TemplateBinding IsMouseOver}"
                                IsDirectionReversed="true">
                             <Track.Thumb>
-                                <Thumb Style="{StaticResource Scroll_Thumb}"/>
+                                <Thumb />
                             </Track.Thumb>
                         </Track>
                     </Grid>

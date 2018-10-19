@@ -58,13 +58,13 @@ namespace Panuon.UI
         /// <summary>
         /// 隐藏所有的控制栏右侧按钮。
         /// </summary>
-        public Visibility NavButtonVisibilty
+        public Visibility NavButtonVisibility
         {
-            get { return (Visibility)GetValue(NavButtonVisibiltyProperty); }
-            set { SetValue(NavButtonVisibiltyProperty, value); }
+            get { return (Visibility)GetValue(NavButtonVisibilityProperty); }
+            set { SetValue(NavButtonVisibilityProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonVisibiltyProperty = 
-            DependencyProperty.Register("NavButtonVisibilty", typeof(Visibility), typeof(PUWindow), new PropertyMetadata(Visibility.Visible));
+        public static readonly DependencyProperty NavButtonVisibilityProperty = 
+            DependencyProperty.Register("NavButtonVisibility", typeof(Visibility), typeof(PUWindow), new PropertyMetadata(Visibility.Visible));
 
 
         /// <summary>
@@ -132,12 +132,13 @@ namespace Panuon.UI
         /// <summary>
         /// 控制栏背景色，默认值为White（白色）。
         /// </summary>
-        public SolidColorBrush NavbarBackground
+        public Brush NavbarBackground
         {
-            get { return (SolidColorBrush)GetValue(NavbarBackgroundProperty); }
+            get { return (Brush)GetValue(NavbarBackgroundProperty); }
             set { SetValue(NavbarBackgroundProperty, value); }
         }
-        public static readonly DependencyProperty NavbarBackgroundProperty = DependencyProperty.Register("NavbarBackground", typeof(SolidColorBrush), typeof(PUWindow), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty NavbarBackgroundProperty =
+            DependencyProperty.Register("NavbarBackground", typeof(Brush), typeof(PUWindow), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         /// <summary>
         /// 控制栏高度，默认值为30。
