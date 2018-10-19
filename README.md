@@ -4,7 +4,7 @@
 请勿将本控件库或本控件库的一部分作为一个新的控件库发布。否则将追究相关法律责任。
 ## 目录
 [Window / MessageBox 窗体控件](#Window)<br/>
-[Button 窗体控件](#Button)<br/>
+[Button 按钮控件](#Button)<br/>
 
 ### Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
@@ -43,4 +43,6 @@ PUMessageBox.ShowDialog($"操作成功。");
 //或显示一个询问对话框
 PUMessageBox.ShowConfirm($"确定吗？");
 ```
+
+### Button 按钮控件
 （文档更新中）
