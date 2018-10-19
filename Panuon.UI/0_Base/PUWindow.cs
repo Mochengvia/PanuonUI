@@ -117,7 +117,7 @@ namespace Panuon.UI
             set { SetValue(HeaderProperty, value); }
         }
         public static readonly DependencyProperty HeaderProperty = 
-            DependencyProperty.Register("Header", typeof(object), typeof(PUWindow), new PropertyMetadata("MainWindow"));
+            DependencyProperty.Register("Header", typeof(object), typeof(PUWindow), new PropertyMetadata());
 
         /// <summary>
         /// 左上角图标，默认值为null。
