@@ -33,40 +33,38 @@ namespace Panuon.UI
         }
 
         #region Property
-
         /// <summary>
         /// 打开遮罩层，默认值为False。
         /// </summary>
-        public bool ShowCover
+        public bool IsCoverMaskShow
         {
-            get { return (bool)GetValue(ShowCoverProperty); }
-            set { SetValue(ShowCoverProperty, value); }
+            get { return (bool)GetValue(IsCoverMaskShowProperty); }
+            set { SetValue(IsCoverMaskShowProperty, value); }
         }
-        public static readonly DependencyProperty ShowCoverProperty = 
-            DependencyProperty.Register("ShowCover", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsCoverMaskShowProperty = 
+            DependencyProperty.Register("IsCoverMaskShow", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
 
         /// <summary>
         /// 显示延迟，默认值为False。
         /// </summary>
-        public bool ShowDelay
+        public bool AllowShowDelay
         {
-            get { return (bool)GetValue(ShowDelayProperty); }
-            set { SetValue(ShowDelayProperty, value); }
+            get { return (bool)GetValue(AllowShowDelayProperty); }
+            set { SetValue(AllowShowDelayProperty, value); }
         }
-        public static readonly DependencyProperty ShowDelayProperty = 
-            DependencyProperty.Register("ShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
-
-
+        public static readonly DependencyProperty AllowShowDelayProperty = 
+            DependencyProperty.Register("AllowShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
 
         /// <summary>
         /// 隐藏所有的控制栏右侧按钮。
         /// </summary>
-        public bool HideNavButtons
+        public Visibility NavButtonVisibilty
         {
-            get { return (bool)GetValue(HideNavButtonsProperty); }
-            set { SetValue(HideNavButtonsProperty, value); }
+            get { return (Visibility)GetValue(NavButtonVisibiltyProperty); }
+            set { SetValue(NavButtonVisibiltyProperty, value); }
         }
-        public static readonly DependencyProperty HideNavButtonsProperty = DependencyProperty.Register("HideNavButtons", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+        public static readonly DependencyProperty NavButtonVisibiltyProperty = 
+            DependencyProperty.Register("NavButtonVisibilty", typeof(Visibility), typeof(PUWindow), new PropertyMetadata(Visibility.Visible));
 
 
         /// <summary>
@@ -113,12 +111,13 @@ namespace Panuon.UI
         /// 左上角标题，默认值为null。
         /// <para>当该属性为null时，将采用Title属性来填充左上角标题。</para>
         /// </summary>
-        public string Header
+        public object Header
         {
-            get { return (string)GetValue(HeaderProperty); }
+            get { return (object)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
-        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register("Header", typeof(string), typeof(PUWindow), new PropertyMetadata(null));
+        public static readonly DependencyProperty HeaderProperty = 
+            DependencyProperty.Register("Header", typeof(object), typeof(PUWindow), new PropertyMetadata("MainWindow"));
 
         /// <summary>
         /// 左上角图标，默认值为null。
@@ -139,7 +138,6 @@ namespace Panuon.UI
             set { SetValue(NavbarBackgroundProperty, value); }
         }
         public static readonly DependencyProperty NavbarBackgroundProperty = DependencyProperty.Register("NavbarBackground", typeof(SolidColorBrush), typeof(PUWindow), new PropertyMetadata(new SolidColorBrush(Colors.White)));
-
 
         /// <summary>
         /// 控制栏高度，默认值为30。

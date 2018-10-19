@@ -118,7 +118,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
                             <Border x:Name="bdrOuter"
-                                    Margin="5"
+                                    Margin="0"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -161,6 +161,7 @@
                                                         VerticalAlignment="Top"
                                                         Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
                                                 <local:PUButton x:Name="btnMin"
+                                                                Visibility="Collapsed"
                                                                 Content="-"
                                                                 Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -172,6 +173,7 @@
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnMax"
+                                                                Visibility="Collapsed"
                                                                 Content="□"
                                                                 Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -183,6 +185,7 @@
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnClose"
+                                                                Visibility="Collapsed"
                                                                 Content="×"
                                                                 Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -232,7 +235,7 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <Trigger Property="ShowCover"
+                                <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
@@ -280,17 +283,17 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="HideNavButtons"
-                                         Value="True">
+                                <Trigger Property="NavButtonVisibilty"
+                                         Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnMax"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnClose"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -359,7 +362,8 @@
                                                             VerticalAlignment="Top"
                                                             Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
                                                     <local:PUButton x:Name="btnMin"
-                                                                    Content="-"
+                                                                Visibility="Hidden"
+                                                                Content="-"
                                                                     Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
                                                                     ButtonStyle="Hollow"
@@ -370,7 +374,8 @@
                                                                     HorizontalAlignment="Right"
                                                                     FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                     <local:PUButton x:Name="btnMax"
-                                                                    Content="□"
+                                                                Visibility="Hidden"
+                                                                Content="□"
                                                                     Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
                                                                     ButtonStyle="Hollow"
@@ -381,7 +386,8 @@
                                                                     HorizontalAlignment="Right"
                                                                     FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                     <local:PUButton x:Name="btnClose"
-                                                                    Content="×"
+                                                                Visibility="Hidden"
+                                                                Content="×"
                                                                     Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                     CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
                                                                     ButtonStyle="Hollow"
@@ -440,7 +446,7 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <Trigger Property="ShowCover"
+                                <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
@@ -488,17 +494,17 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="HideNavButtons"
-                                         Value="True">
+                                <Trigger Property="NavButtonVisibilty"
+                                         Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnMax"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnClose"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -513,7 +519,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
                             <Border x:Name="bdrOuter"
-                                    Margin="5"
+                                    Margin="0"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -562,6 +568,7 @@
                                                         VerticalAlignment="Top"
                                                         Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
                                                 <local:PUButton x:Name="btnMin"
+                                                                Visibility="Hidden"
                                                                 Content="-"
                                                                 Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -573,6 +580,7 @@
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnMax"
+                                                                Visibility="Hidden"
                                                                 Content="□"
                                                                 Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -584,6 +592,7 @@
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnClose"
+                                                                Visibility="Hidden"
                                                                 Content="×"
                                                                 Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
@@ -647,7 +656,7 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <Trigger Property="ShowCover"
+                                <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
@@ -696,17 +705,17 @@
                                             Property="IsEnabled"
                                             Value="False"></Setter>
                                 </Trigger>
-                                <Trigger Property="HideNavButtons"
-                                         Value="True">
+                                <Trigger Property="NavButtonVisibilty"
+                                         Value="Visible">
                                     <Setter TargetName="btnMin"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnMax"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                     <Setter TargetName="btnClose"
                                             Property="Visibility"
-                                            Value="Collapsed"></Setter>
+                                            Value="Visible"></Setter>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -935,11 +944,18 @@
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                    <Label Margin="{TemplateBinding Padding}"
-                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                           Content="{TemplateBinding Content}"
-                                           Foreground="{TemplateBinding Foreground}"></Label>
+                                    <Grid>
+                                        <Border x:Name="bdrInner"
+                                                BorderThickness="0"
+                                                ClipToBounds="True"
+                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
+                                            <ContentPresenter x:Name="content"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              ContentSource="Content"></ContentPresenter>
+                                        </Border>
+                                    </Grid>
                                 </Border>
                                 <Border x:Name="bdrHoverCover"
                                         Background="Transparent"
@@ -994,7 +1010,7 @@
                                     <MultiTrigger.Setters>
                                         <Setter TargetName="grdMain"
                                                 Property="Margin"
-                                                Value="0,1.5,0,-1"></Setter>
+                                                Value="0,2,0,-1.5"></Setter>
                                     </MultiTrigger.Setters>
                                 </MultiTrigger>
                                 <Trigger Property="IsMouseOver"

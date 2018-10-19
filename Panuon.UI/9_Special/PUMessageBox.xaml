@@ -13,7 +13,7 @@
              WindowStartupLocation="CenterOwner"
              FontSize="16"
              ResizeMode="NoResize"
-             HideNavButtons="True">
+             NavButtonVisibilty="Hidden">
     <pu:PUWindow.Icon>
         <TextBlock Text=""
                    FontSize="20"
@@ -26,17 +26,35 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="5"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label 
-               Margin="20,0"
+        <Label Margin="20,0"
                HorizontalContentAlignment="Center"
                FontSize="16"
                VerticalContentAlignment="Center">
-            <TextBlock x:Name="txtContent" TextWrapping="Wrap"
+            <TextBlock x:Name="txtContent"
+                       TextWrapping="Wrap"
                        Text="" />
         </Label>
-        <pu:PUButton Margin="30,0,30,5"
-                     Grid.Row="1"
-                     Content="好"
-                     Click="PUButton_Click"></pu:PUButton>
+        <Grid Grid.Row="1"
+              x:Name="groupTip">
+            <pu:PUButton Margin="30,0,30,5"
+                         Content="好"
+                         Click="PUButton_Click"></pu:PUButton>
+        </Grid>
+        <Grid Grid.Row="1"
+              x:Name="groupConfirm"
+              Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <pu:PUButton Margin="20,0,10,5"
+                         Content="是"
+                         Click="PUButtonYes_Click"></pu:PUButton>
+            <pu:PUButton Margin="10,0,20,5"
+                         Grid.Column="1"
+                         ButtonStyle="Outline"
+                         Content="取消"
+                         Click="PUButtonNo_Click"></pu:PUButton>
+        </Grid>
     </Grid>
 </pu:PUWindow>

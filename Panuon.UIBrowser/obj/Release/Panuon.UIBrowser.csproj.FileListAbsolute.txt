@@ -88,3 +88,7 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\WindowsView.b
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.g.resources
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.Properties.Resources.resources
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.csproj.GenerateResource.Cache
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TabControlsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\DatePickersView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TabControlsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\DatePickersView.g.cs
