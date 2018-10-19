@@ -57,7 +57,7 @@ PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
 | --- | --- | ---|
 | ButtonStyle | ButtonStyles枚举 | 按钮的基本样式。默认值为General（其他可选项为Hollow、Outline、Link）。  |
 | ClickStyle | ClickStyles枚举 | 鼠标点击时按钮的效果。默认值为Classic（其他可选项为Sink）。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| BorderCornerRadius | CornerRadius | 按钮圆角大小。默认值为0。  |
 | CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
 
 
@@ -72,8 +72,7 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
 | IconWidth | Double | 图标的宽度。默认值为30。  |
 | ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+| BorderCornerRadius | CornerRadius | 输入框圆角大小。默认值为0。  |
 
 ### PasswordBox 密码框控件
 #### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
@@ -85,9 +84,8 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | PasswordBoxStyle | PasswordBoxStyles枚举 | 密码框的基本样式。默认值为General（其他可选项为IconGroup）。  |
 | Watermark | String | 水印。默认值为空。  |
 | Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
-| IconWidth | Double | 图标的宽度。默认值为30。  |
-| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+| IconWidth | Double | 图标的宽度，仅在IconGroup样式下有效。默认值为30。  |
+| ShadowColor | Color | 密码框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 密码框圆角大小。默认值为0。  |
 
 （文档更新中）
