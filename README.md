@@ -3,9 +3,9 @@
 本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)。<br/>
 请勿将本控件库或本控件库的一部分作为一个新的控件库发布。否则将追究相关法律责任。
 ## 目录
-[Window / MessageBox 窗体控件](#window)<br/>
-[Button 按钮控件](#Button)<br/>
-
+[Window / MessageBox 窗体控件](#window-窗体控件)<br/>
+[Button / RepeatButton 按钮控件](#button-按钮控件)<br/>
+[TextBox 输入框控件](#textbox-输入框控件)<br/>
 ### Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
 图中演示了如何使用不同的动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
@@ -25,7 +25,7 @@ PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。
 | NavbarHeight | Double | 控制栏的高度。默认值为30。  |
 | NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
 | NavButtonWidth | Double | 控制栏按钮的宽度。默认值为30。  |
-
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
 
 
 PUWindow包含以下一个方法。<br/>
@@ -44,5 +44,47 @@ PUMessageBox.ShowDialog($"操作成功。");
 PUMessageBox.ShowConfirm($"确定吗？");
 ```
 
-### Button
+### Button 按钮控件
+PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
+PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/buttons.gif)<br/>
+
+
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| ButtonStyle | ButtonStyles枚举 | 按钮的基本样式。默认值为General（其他可选项为Hollow、Outline、Link）。  |
+| ClickStyle | ClickStyles枚举 | 鼠标点击时按钮的效果。默认值为Classic（其他可选项为Sink）。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+
+
+### TextBox 输入框控件
+PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox201810191448.gif)<br/>
+
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| TextBoxStyle | TextBoxStyles枚举 | 输入框的基本样式。默认值为General（其他可选项为IconGroup）。  |
+| Watermark | String | 水印。默认值为空。  |
+| Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
+| IconWidth | Double | 图标的宽度。默认值为30。  |
+| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+
+### PasswordBox 密码框控件
+#### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
+不要对Text属性进行赋值，可能会导致意外的错误。按原生PasswordBox的方式使用即可。
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/passwordbox201810191449.gif)<br/>
+
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| PasswordBoxStyle | PasswordBoxStyles枚举 | 密码框的基本样式。默认值为General（其他可选项为IconGroup）。  |
+| Watermark | String | 水印。默认值为空。  |
+| Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
+| IconWidth | Double | 图标的宽度。默认值为30。  |
+| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+
 （文档更新中）
