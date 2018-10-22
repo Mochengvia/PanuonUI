@@ -14,7 +14,7 @@ namespace Panuon.UI
     /// <summary>
     /// 此控件源码来源于网络，并在原来的基础上进行了修改。
     /// </summary>
-    public class ResizeThumb : Thumb
+    internal class ResizeThumb : Thumb
     {
         public ResizeThumb()
         {

@@ -9,17 +9,26 @@ using System.Windows.Data;
 namespace Panuon.UI
 {
     //ProgressBar内部角度转换器
-    internal class SideCornerRadiusConverter : IValueConverter
+    internal class ProgressBarConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var cr = (CornerRadius)value;
-            return new CornerRadius(cr.TopLeft, 0, 0, cr.BottomLeft);
+            //0是CornerRadius，1是Direction
+            var cr = (CornerRadius)values[0];
+            var dir = (PUProgressBar.Directions)values[1];
+            if (dir == PUProgressBar.Directions.LeftToRight)
+                return new CornerRadius(cr.TopLeft, 0, 0, cr.BottomLeft);
+            else if (dir == PUProgressBar.Directions.RightToLeft)
+                return new CornerRadius(0, cr.TopRight, cr.BottomRight, 0);
+            else if (dir == PUProgressBar.Directions.TopToBottom)
+                return new CornerRadius(cr.TopLeft, cr.TopRight, 0, 0);
+            else
+                return new CornerRadius(0, 0, cr.BottomRight, cr.BottomLeft);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            return DependencyProperty.UnsetValue;
+            return new object[] { DependencyProperty.UnsetValue, DependencyProperty.UnsetValue };
         }
     }
 

@@ -22,29 +22,6 @@ namespace Panuon.UI
         }
 
         #region Property
-        /// <summary>
-        /// 鼠标悬浮时的背景颜色，默认值为浅灰色(#DDDDDD)。
-        /// </summary>
-        public Brush CoverBrush
-        {
-            get { return (Brush)GetValue(CoverBrushProperty); }
-            set { SetValue(CoverBrushProperty, value); }
-        }
-        public static readonly DependencyProperty CoverBrushProperty =
-            DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUComboBoxItem), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EEEEEE"))));
-
-        /// <summary>
-        /// 项目被选中时的背景颜色，默认值为浅灰色(#CCCCCC)。
-        /// </summary>
-        public Brush SelectedBrush
-        {
-            get { return (Brush)GetValue(SelectedBrushProperty); }
-            set { SetValue(SelectedBrushProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SelectedBrush.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectedBrushProperty =
-            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(PUComboBoxItem), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#DDDDDD"))));
 
         /// <summary>
         /// 是否显示删除按钮，默认值为Collapsed（不显示）。

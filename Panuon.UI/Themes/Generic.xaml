@@ -13,7 +13,8 @@
     <local:TextBoxInnerHeightConverter x:Key="TextBoxInnerHeightConverter"></local:TextBoxInnerHeightConverter>
     <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
     <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
-    <local:SideCornerRadiusConverter x:Key="SideCornerRadiusConverter"></local:SideCornerRadiusConverter>
+    <local:ProgressBarConverter x:Key="ProgressBarConverter"></local:ProgressBarConverter>
+
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
     
     <Style TargetType="{x:Type local:PUResizeGrid}">
@@ -1861,7 +1862,6 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
-
                         <Grid>
                             <ContentPresenter HorizontalAlignment="Left"
                                               Margin="{TemplateBinding Padding}"
@@ -2062,7 +2062,7 @@
                                    Text="{Binding Content,RelativeSource={RelativeSource TemplatedParent}}" />
                         <local:PUButton x:Name="btnDelete"
                                         ButtonStyle="Link"
-                                        Opacity="0"
+                                        Opacity="0.7"
                                         Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
                                         CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
                                         Width="35"
@@ -2082,22 +2082,11 @@
                                  Value="true">
                             <Setter TargetName="bdrMain"
                                     Property="Background"
-                                    Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" />
+                                    Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
                             <Setter TargetName="txtContent"
                                     Property="Opacity"
                                     Value="1" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected"
-                                           Value="true" />
-                                <Condition Property="DeleteButtonVisibility"
-                                           Value="Visible" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="btnDelete"
-                                    Property="Visibility"
-                                    Value="Collapsed"></Setter>
-                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected"
@@ -2107,13 +2096,10 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="bdrMain"
                                     Property="Background"
-                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" />
+                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
                             <Setter TargetName="txtContent"
                                     Property="Opacity"
                                     Value="0.7" />
-                            <Setter TargetName="btnDelete"
-                                    Property="Opacity"
-                                    Value="0.7"></Setter>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -3652,83 +3638,157 @@
         <Setter Property="FontSize"
                 Value="12"></Setter>
         <Style.Triggers>
-            <Trigger Property="IsVertical"
-                     Value="False">
+            <Trigger Property="Direction"
+                     Value="LeftToRight">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
-                            <Border x:Name="bdrOuter"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Height="{TemplateBinding Height}"
-                                    Width="{TemplateBinding Width}"
-                                    CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                    Background="{TemplateBinding Background}">
-                                <Grid Margin="-0.5,0,0,0">
-                                    <Border x:Name="bdrInner"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Left"
-                                            Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                            Height="{TemplateBinding Height}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar},Converter={StaticResource SideCornerRadiusConverter}}"
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ProgressBar}}" />
-                                    <Label VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           Content="{Binding Percent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                           Visibility="{Binding PercentVisibility,RelativeSource={RelativeSource AncestorType=ProgressBar}}"></Label>
-                                </Grid>
-                            </Border>
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
+                                        ClipToBounds="True">
+                                    <Border 
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            HorizontalAlignment="Left">
+                                        <Border.CornerRadius>
+                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                                <Binding Path="BorderCornerRadius"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                                <Binding Path="Direction"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            </MultiBinding>
+                                        </Border.CornerRadius>
+                                    </Border>
+                                </Border>
+                                
+                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"></Label>
+                            </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
-            <Trigger Property="IsVertical"
-                     Value="True">
+            <Trigger Property="Direction"
+                     Value="RightToLeft">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
-                            <Border x:Name="bdrOuter"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Height="{TemplateBinding Height}"
-                                    Width="{TemplateBinding Width}"
-                                    CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                    Background="{TemplateBinding Background}"
-                                    RenderTransformOrigin="0.5,0.5">
-                                <Border.RenderTransform>
-                                    <RotateTransform Angle="-90"></RotateTransform>
-                                </Border.RenderTransform>
-                                <Grid Margin="-1,0,0,0">
-                                    <Border x:Name="bdrInner"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Left"
-                                            Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                            Height="{TemplateBinding Height}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ProgressBar},Converter={StaticResource SideCornerRadiusConverter}}"
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ProgressBar}}" />
-                                    <Label VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           Content="{Binding Percent,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                           Visibility="{Binding PercentVisibility,RelativeSource={RelativeSource AncestorType=ProgressBar}}"
-                                           RenderTransformOrigin="0.5,0.5">
-                                        <Label.RenderTransform>
-                                            <RotateTransform Angle="90"></RotateTransform>
-                                        </Label.RenderTransform>
-                                    </Label>
-                                </Grid>
-                            </Border>
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
+                                        ClipToBounds="True">
+                                    <Border 
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            HorizontalAlignment="Right">
+                                        <Border.CornerRadius>
+                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                                <Binding Path="BorderCornerRadius"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                                <Binding Path="Direction"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            </MultiBinding>
+                                        </Border.CornerRadius>
+                                    </Border>
+
+                                </Border>
+                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"></Label>
+                            </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="Direction"
+                     Value="BottomToTop">
+                <Setter Property="FontSize"
+                        Value="10"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
+                                        ClipToBounds="True">
+                                    <Border
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            VerticalAlignment="Bottom">
+                                        <Border.CornerRadius>
+                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                                <Binding Path="BorderCornerRadius"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                                <Binding Path="Direction"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            </MultiBinding>
+                                        </Border.CornerRadius>
+                                    </Border>
+                                </Border>
+                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"></Label>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Direction"
+                     Value="TopToBottom">
+                <Setter Property="FontSize"
+                        Value="10"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
+                                        ClipToBounds="True">
+                                    <Border 
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
+                                            VerticalAlignment="Top">
+                                        <Border.CornerRadius>
+                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                                <Binding Path="BorderCornerRadius"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                                <Binding Path="Direction"
+                                                         RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            </MultiBinding>
+                                        </Border.CornerRadius>
+                                    </Border>
+                                </Border>
+                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"></Label>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
         </Style.Triggers>
     </Style>
 

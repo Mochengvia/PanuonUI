@@ -26,13 +26,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             comboList.Add(new PUComboBoxItemModel()
             {
                 Header = "它的Value为123",
-                CanDelete = false,
+                CanDelete = true,
                 Value = 123,
             });
             comboList.Add(new PUComboBoxItemModel()
             {
                 Header = "它的Value为456",
-                CanDelete = false,
+                CanDelete = true,
                 Value = 456,
             });
             ComboBoxItemsList = new BindableCollection<PUComboBoxItemModel>(comboList);
@@ -67,7 +67,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         public void Delete(ItemCollection sender, RoutedPropertyChangedEventArgs<PUComboBoxItem> e)
         {
             var item = e.NewValue as PUComboBoxItem;
-            if(PUMessageBox.ShowConfirm($"确定要删除“{item.Content}”吗？") == true)
+            if(PUMessageBox.ShowConfirm("确定要删除该选项吗？") == true)
             {
                 sender.Remove(item);
             }
@@ -75,7 +75,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void GetValue()
         {
-            PUMessageBox.ShowDialog($"该选项的Value为“{SelectedValue.ToString()}”。\n你可以通过修改PUComboBoxItem的Value属性来控制它。");
+            PUMessageBox.ShowDialog($"该选项的Value为“{SelectedValue?.ToString()}”。\n你可以通过修改PUComboBoxItem的Value属性来控制它。");
         }
         #endregion
     }

@@ -42,24 +42,49 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 圆角大小，默认值为3。
+        /// 鼠标悬浮时的背景颜色，默认值为浅灰色(#EEEEEE)。
+        /// </summary>
+        public Brush CoverBrush
+        {
+            get { return (Brush)GetValue(CoverBrushProperty); }
+            set { SetValue(CoverBrushProperty, value); }
+        }
+        public static readonly DependencyProperty CoverBrushProperty =
+            DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUComboBox), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EEEEEE"))));
+
+        /// <summary>
+        /// 项目被选中时的背景颜色，默认值为浅灰色(#DDDDDD)。
+        /// </summary>
+        public Brush SelectedBrush
+        {
+            get { return (Brush)GetValue(SelectedBrushProperty); }
+            set { SetValue(SelectedBrushProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedBrushProperty =
+            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(PUComboBox), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#DDDDDD"))));
+
+        /// <summary>
+        /// 圆角大小，默认值为0。
         /// </summary>
         public CornerRadius BorderCornerRadius
         {
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUComboBox), new PropertyMetadata(new CornerRadius(3)));
+        public static readonly DependencyProperty BorderCornerRadiusProperty = 
+            DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUComboBox), new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
         ///  下拉框激活时阴影的颜色，默认值为#888888。
         /// </summary>
         public Color ShadowColor
         {
-            get { return (Color)GetValue(CoverBrushProperty); }
-            set { SetValue(CoverBrushProperty, value); }
+            get { return (Color)GetValue(ShadowColorProperty); }
+            set { SetValue(ShadowColorProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUComboBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
+        public static readonly DependencyProperty ShadowColorProperty = DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUComboBox), new PropertyMetadata((Color)ColorConverter.ConvertFromString("#888888")));
 
         /// <summary>
         /// 当子项目删除按钮可见时，用户点击删除按钮后的操作。默认为删除项目并触发DeleteItem路由事件。

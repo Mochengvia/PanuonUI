@@ -27,10 +27,6 @@
                        TextWrapping="Wrap">
                         <Run Foreground="#FF24618B"
                              FontWeight="Bold">PUComboBoxItem</Run><LineBreak />    
-                         <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#EEEEEE。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">SelectedBrush </Run>
-                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#DDDDDD。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">DeleteButtonVisibility </Run>
                         <Run>获取或设置下拉选择项后侧删除按钮的显示状态。【Visibility类型】。默认值为Collpased。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">Value </Run>
@@ -45,6 +41,10 @@
                         <Run>获取或设置下拉框的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">ShadowColor </Run>
                         <Run>获取或设置下拉框激活时阴影的颜色。【Color类型】。默认值为#88888</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#EEEEEE。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedBrush </Run>
+                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#DDDDDD。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">DeleteMode </Run>
                         <Run>获取或设置当用户点击下拉框子项的删除按钮时，应该执行的操作。【DeleteModes枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">BindingItems </Run>
@@ -106,37 +106,36 @@
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal">
                         <pu:PUComboBox Width="180"
+                                       BorderCornerRadius="3"
                                        Height="30"
                                        IsEditable="True"
                                        Foreground="#FF49A9C0"
                                        BorderBrush="#9949A9C0"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0"
                                        ShadowColor="#FF49A9C0"
                                        HorizontalAlignment="Left">
                             <pu:PUComboBoxItem Content="可编辑的"
-                                               CoverBrush="#2249A9C0"
-                                               SelectedBrush="#5549A9C0"
                                                IsSelected="True" />
-                            <pu:PUComboBoxItem Content="SelectItem"
-                                               CoverBrush="#2249A9C0"
-                                               SelectedBrush="#5549A9C0" />
+                            <pu:PUComboBoxItem Content="SelectItem" />
                         </pu:PUComboBox>
                         <pu:PUComboBox Width="180"
+                                       BorderCornerRadius="3"
                                        Margin="15,0,0,0"
                                        Height="30"
                                        DeleteMode="EventOnly"
                                        Foreground="#FF49A9C0"
                                        BorderBrush="#9949A9C0"
+                                       CoverBrush="#2249A9C0"
+                                       SelectedBrush="#5549A9C0"
                                        ShadowColor="#FF49A9C0"
                                        HorizontalAlignment="Left"
                                        cm:Message.Attach="[Event DeleteItem]=[Action Delete($this.Items, $eventArgs)]">
                             <pu:PUComboBoxItem Content="点击删除按钮时弹框"
-                                               CoverBrush="#2249A9C0"
-                                               SelectedBrush="#5549A9C0"
+                                              
                                                IsSelected="True"
                                                DeleteButtonVisibility="Visible" />
                             <pu:PUComboBoxItem Content="点击右侧删除按钮"
-                                               CoverBrush="#2249A9C0"
-                                               SelectedBrush="#5549A9C0"
                                                DeleteButtonVisibility="Visible" />
                         </pu:PUComboBox>
 
@@ -145,9 +144,12 @@
                                 Grid.Column="1"
                                 Orientation="Horizontal">
                         <pu:PUComboBox Width="180"
+                                       BorderCornerRadius="3"
                                        Height="30"
                                        Foreground="#FFE089B8"
                                        BorderBrush="#99E089B8"
+                                       CoverBrush="#22E089B8"
+                                       SelectedBrush="#55E089B8"
                                        ShadowColor="#FFE089B8"
                                        HorizontalAlignment="Left"
                                        SelectedValue="{Binding SelectedValue, Mode=TwoWay}"
