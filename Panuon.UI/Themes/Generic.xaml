@@ -16,7 +16,7 @@
     <local:ProgressBarConverter x:Key="ProgressBarConverter"></local:ProgressBarConverter>
 
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
-    
+
     <Style TargetType="{x:Type local:PUResizeGrid}">
         <Setter Property="Template">
             <Setter.Value>
@@ -100,8 +100,6 @@
                 Value="Gray"></Setter>
         <Setter Property="BorderThickness"
                 Value="1"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="WindowStyle"
                 Value="None"></Setter>
         <Setter Property="AllowsTransparency"
@@ -306,115 +304,115 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
-                                <Border x:Name="bdrOuter"
-                                        Margin="0"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
-                                    <Border.OpacityMask>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="0,1">
-                                            <GradientStopCollection>
-                                                <GradientStop x:Name="offset1"
-                                                              Offset="0"
-                                                              Color="White"></GradientStop>
-                                                <GradientStop x:Name="offset2"
-                                                              Offset="0"
-                                                              Color="Transparent"></GradientStop>
-                                            </GradientStopCollection>
-                                        </LinearGradientBrush>
-                                    </Border.OpacityMask>
+                            <Border x:Name="bdrOuter"
+                                    Margin="0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush StartPoint="0,0"
+                                                         EndPoint="0,1">
+                                        <GradientStopCollection>
+                                            <GradientStop x:Name="offset1"
+                                                          Offset="0"
+                                                          Color="White"></GradientStop>
+                                            <GradientStop x:Name="offset2"
+                                                          Offset="0"
+                                                          Color="Transparent"></GradientStop>
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                                <Grid>
                                     <Grid>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid x:Name="grdNavbar"
-                                                  Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
-                                                <StackPanel Orientation="Horizontal"
-                                                            HorizontalAlignment="Left"
-                                                            Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
-                                                    <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                           Margin="3,0,0,0"
-                                                           VerticalContentAlignment="Center"
-                                                           HorizontalContentAlignment="Left"
-                                                           FontSize="{TemplateBinding FontSize}"
-                                                           FontFamily="{StaticResource IconFont}"
-                                                           Foreground="{TemplateBinding Foreground}"></Label>
-                                                    <Label VerticalContentAlignment="Center"
-                                                           HorizontalContentAlignment="Left"
-                                                           FontSize="{TemplateBinding FontSize}"
-                                                           FontFamily="{StaticResource IconFont}"
-                                                           Foreground="{TemplateBinding Foreground}">
-                                                        <Label.Content>
-                                                            <MultiBinding Converter="{StaticResource HeaderConverter}">
-                                                                <Binding Path="Header"
-                                                                         RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
-                                                                <Binding Path="Title"
-                                                                         RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
-                                                            </MultiBinding>
-                                                        </Label.Content>
-                                                    </Label>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
-                                                    <local:PUButton x:Name="btnMin"
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid x:Name="grdNavbar"
+                                              Background="{Binding NavbarBackground,RelativeSource={RelativeSource AncestorType=Window}}">
+                                            <StackPanel Orientation="Horizontal"
+                                                        HorizontalAlignment="Left"
+                                                        Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                       Margin="3,0,0,0"
+                                                       VerticalContentAlignment="Center"
+                                                       HorizontalContentAlignment="Left"
+                                                       FontSize="{TemplateBinding FontSize}"
+                                                       FontFamily="{StaticResource IconFont}"
+                                                       Foreground="{TemplateBinding Foreground}"></Label>
+                                                <Label VerticalContentAlignment="Center"
+                                                       HorizontalContentAlignment="Left"
+                                                       FontSize="{TemplateBinding FontSize}"
+                                                       FontFamily="{StaticResource IconFont}"
+                                                       Foreground="{TemplateBinding Foreground}">
+                                                    <Label.Content>
+                                                        <MultiBinding Converter="{StaticResource HeaderConverter}">
+                                                            <Binding Path="Header"
+                                                                     RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                            <Binding Path="Title"
+                                                                     RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                                        </MultiBinding>
+                                                    </Label.Content>
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Top"
+                                                        Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <local:PUButton x:Name="btnMin"
                                                                 Visibility="Hidden"
                                                                 Content="-"
-                                                                    Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                    ButtonStyle="Hollow"
-                                                                    BorderBrush="Transparent"
-                                                                    CoverBrush="#99999999"
-                                                                    Foreground="{TemplateBinding Foreground}"
-                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    HorizontalAlignment="Right"
-                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
-                                                    <local:PUButton x:Name="btnMax"
+                                                                Command="{Binding MinCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                ButtonStyle="Hollow"
+                                                                BorderBrush="Transparent"
+                                                                CoverBrush="#99999999"
+                                                                Foreground="{TemplateBinding Foreground}"
+                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                HorizontalAlignment="Right"
+                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnMax"
                                                                 Visibility="Hidden"
                                                                 Content="□"
-                                                                    Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                    ButtonStyle="Hollow"
-                                                                    BorderBrush="Transparent"
-                                                                    CoverBrush="#99999999"
-                                                                    Foreground="{TemplateBinding Foreground}"
-                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    HorizontalAlignment="Right"
-                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
-                                                    <local:PUButton x:Name="btnClose"
+                                                                Command="{Binding MaxCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                ButtonStyle="Hollow"
+                                                                BorderBrush="Transparent"
+                                                                CoverBrush="#99999999"
+                                                                Foreground="{TemplateBinding Foreground}"
+                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                HorizontalAlignment="Right"
+                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
+                                                <local:PUButton x:Name="btnClose"
                                                                 Visibility="Hidden"
                                                                 Content="×"
-                                                                    Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                                                    ButtonStyle="Hollow"
-                                                                    BorderBrush="Transparent"
-                                                                    CoverBrush="#CCC53434"
-                                                                    Foreground="{TemplateBinding Foreground}"
-                                                                    Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                    HorizontalAlignment="Right"
-                                                                    FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
-                                                </StackPanel>
-                                            </Grid>
-                                            <Grid Grid.Row="1"
-                                                  x:Name="grdContainer">
-                                                <AdornerDecorator>
-                                                    <ContentPresenter Content="{TemplateBinding Content}" />
-                                                </AdornerDecorator>
-                                            </Grid>
+                                                                Command="{Binding CloseCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                                                ButtonStyle="Hollow"
+                                                                BorderBrush="Transparent"
+                                                                CoverBrush="#CCC53434"
+                                                                Foreground="{TemplateBinding Foreground}"
+                                                                Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                HorizontalAlignment="Right"
+                                                                FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
+                                            </StackPanel>
                                         </Grid>
-                                        <Border x:Name="bdrCover"
-                                                Background="Black"
-                                                BorderThickness="0"
-                                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
-                                                Opacity="0"
-                                                IsHitTestVisible="False" />
+                                        <Grid Grid.Row="1"
+                                              x:Name="grdContainer">
+                                            <AdornerDecorator>
+                                                <ContentPresenter Content="{TemplateBinding Content}" />
+                                            </AdornerDecorator>
+                                        </Grid>
                                     </Grid>
-                                </Border>
+                                    <Border x:Name="bdrCover"
+                                            Background="Black"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Opacity="0"
+                                            IsHitTestVisible="False" />
+                                </Grid>
+                            </Border>
                             <ControlTemplate.Triggers>
                                 <EventTrigger RoutedEvent="Loaded">
                                     <BeginStoryboard>
@@ -739,8 +737,6 @@
                 Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment"
                 Value="Center"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Style.Triggers>
@@ -1168,8 +1164,6 @@
                 Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment"
                 Value="Center"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Style.Triggers>
@@ -1599,8 +1593,6 @@
                 Value="Left"></Setter>
         <Setter Property="Padding"
                 Value="6,0,0,0"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Style.Triggers>
@@ -1843,14 +1835,10 @@
                 Value="Left"></Setter>
         <Setter Property="Padding"
                 Value="5,0,0,0"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="UseLayoutRounding"
                 Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True" />
         <Setter Property="FontSize"
                 Value="14">
         </Setter>
@@ -1989,7 +1977,6 @@
                                     <StackPanel  Margin="1,5,1,15"
                                                  MaxHeight="250"
                                                  IsItemsHost="True"
-                                                 SnapsToDevicePixels="True"
                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                  KeyboardNavigation.DirectionalNavigation="Contained"
@@ -2034,14 +2021,10 @@
                 Value="Left"></Setter>
         <Setter Property="Padding"
                 Value="10,0,0,0"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="UseLayoutRounding"
                 Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True" />
         <Setter Property="FontSize"
                 Value="14">
         </Setter>
@@ -2124,8 +2107,6 @@
                 Value="Left"></Setter>
         <Setter Property="Padding"
                 Value="6,0,0,0"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="InputMethod.IsInputMethodEnabled"
@@ -2375,8 +2356,6 @@
                 Value="CheckBox"></Setter>
         <Setter Property="Cursor"
                 Value="Hand"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Style.Triggers>
@@ -2401,9 +2380,8 @@
                                           Height="16"
                                           VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
-                                          Data="M2,9 L7,13 L 14,2"
+                                          Data="M2,9 L7.5,13.5 L 14.5,2.5"
                                           StrokeThickness="1.5"
-                                          Fill="{x:Null}"
                                           Stroke="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                           RenderTransformOrigin="0.5,0.5">
                                         <Path.RenderTransform>
@@ -2466,6 +2444,134 @@
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="offset"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="Transparent"
+                                                                Duration="0:0:0.05"></ColorAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="offset"
+                                                                 Storyboard.TargetProperty="Offset"
+                                                                 To="0"
+                                                                 Duration="0:0:0.1"
+                                                                 BeginTime="0:0:0.05"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="bdrOuter"
+                                            Property="Opacity"
+                                            Value="1"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="CheckBoxStyle"
+                     Value="Classic">
+                <Setter Property="CoverBrush"
+                        Value="{StaticResource Theme}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="bdrOuter"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                        Opacity="0.9">
+                                    <Border x:Name="bdrInner"
+                                            Margin="-0.5,0"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=CheckBox}}"
+                                            Opacity="0"
+                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}">
+                                        <Path x:Name="pCheck"
+                                              Width="16"
+                                              Height="16"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              Data="M2,9 L7.5,13.5 L 14.5,2.5"
+                                              StrokeThickness="1.5"
+                                              Stroke="White"
+                                              RenderTransformOrigin="0.5,0.5">
+                                            <Path.RenderTransform>
+                                                <ScaleTransform>
+                                                    <ScaleTransform.ScaleX>
+                                                        <MultiBinding Converter="{StaticResource ScaleConverter}">
+                                                            <Binding Path="InnerWidth"
+                                                                     RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                                                            <Binding Path="InnerHeight"
+                                                                     RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                                                        </MultiBinding>
+                                                    </ScaleTransform.ScaleX>
+                                                    <ScaleTransform.ScaleY>
+                                                        <MultiBinding Converter="{StaticResource ScaleConverter}">
+                                                            <Binding Path="InnerWidth"
+                                                                     RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                                                            <Binding Path="InnerHeight"
+                                                                     RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
+                                                        </MultiBinding>
+                                                    </ScaleTransform.ScaleY>
+                                                </ScaleTransform>
+                                            </Path.RenderTransform>
+                                            <Path.OpacityMask>
+                                                <LinearGradientBrush StartPoint="0,0"
+                                                                     EndPoint="1,1">
+                                                    <GradientStopCollection>
+                                                        <GradientStop Offset="0"
+                                                                      Color="White"></GradientStop>
+                                                        <GradientStop x:Name="offset"
+                                                                      Offset="0"
+                                                                      Color="Transparent"></GradientStop>
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush>
+                                            </Path.OpacityMask>
+                                        </Path>
+                                    </Border>
+                                </Border>
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  ContentSource="Content"></ContentPresenter>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrInner"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="offset"
+                                                                 Storyboard.TargetProperty="Offset"
+                                                                 To="1"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <ColorAnimation Storyboard.TargetName="offset"
+                                                                Storyboard.TargetProperty="Color"
+                                                                To="White"
+                                                                Duration="0:0:0.05"
+                                                                BeginTime="0:0:0.2"></ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrInner"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
                                                 <ColorAnimation Storyboard.TargetName="offset"
                                                                 Storyboard.TargetProperty="Color"
                                                                 To="Transparent"
@@ -2886,14 +2992,14 @@
                 Value="RadioButton"></Setter>
         <Setter Property="Cursor"
                 Value="Hand"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Style.Triggers>
             <Trigger Property="RadioButtonStyle"
                      Value="General">
                 <Setter Property="Background"
+                        Value="White"></Setter>
+                <Setter Property="CoverBrush"
                         Value="{StaticResource Theme}"></Setter>
                 <Setter Property="BorderCornerRadius"
                         Value="10"></Setter>
@@ -2910,10 +3016,10 @@
                                              HorizontalAlignment="Center"
                                              Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                              Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
-                                             Fill="{TemplateBinding Background}">
+                                             Fill="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}">
                                     </Ellipse>
                                     <Ellipse x:Name="ellInner"
-                                             Fill="White"
+                                             Fill="{TemplateBinding Background}"
                                              Stroke="Transparent"
                                              StrokeThickness="{TemplateBinding BorderThickness}"
                                              VerticalAlignment="Center"
@@ -2927,7 +3033,7 @@
                                                             ScaleY="1"></ScaleTransform>
                                         </Ellipse.RenderTransform>
                                     </Ellipse>
-                                    <Ellipse Fill="{TemplateBinding Background}"
+                                    <Ellipse Fill="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                              Stroke="Transparent"
                                              StrokeThickness="{TemplateBinding BorderThickness}"
                                              VerticalAlignment="Center"
@@ -3018,6 +3124,123 @@
                                                 <DoubleAnimation To="0"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="scale2"
+                                                                 Storyboard.TargetProperty="ScaleY">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="ellOuter"
+                                            Property="Opacity"
+                                            Value="1"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                                         Value="False">
+                                    <Setter Property="Opacity"
+                                            Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="RadioButtonStyle"
+                     Value="Classic">
+                <Setter Property="BorderBrush"
+                        Value="Transparent"></Setter>
+                <Setter Property="Background"
+                        Value="#66AAAAAA"></Setter>
+                <Setter Property="CoverBrush"
+                        Value="#666666"></Setter>
+                <Setter Property="BorderCornerRadius"
+                        Value="10"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PURadioButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                      Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}">
+                                    <Ellipse x:Name="ellOuter"
+                                             Stroke="{TemplateBinding BorderBrush}"
+                                             StrokeThickness="{TemplateBinding BorderThickness}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Fill="{TemplateBinding Background}">
+                                    </Ellipse>
+                                    <Ellipse x:Name="ellInner"
+                                             Fill="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Stroke="Transparent"
+                                             StrokeThickness="{TemplateBinding BorderThickness}"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
+                                             RenderTransformOrigin="0.5,0.5">
+                                        <Ellipse.RenderTransform>
+                                            <ScaleTransform x:Name="scale1"
+                                                            ScaleX="0"
+                                                            ScaleY="0"></ScaleTransform>
+                                        </Ellipse.RenderTransform>
+                                        <Ellipse.Effect>
+                                            <DropShadowEffect Color="#FFFFFF"
+                                                              ShadowDepth="0"
+                                                              BlurRadius="5"
+                                                              Opacity="0.5"></DropShadowEffect>
+                                        </Ellipse.Effect>
+                                    </Ellipse>
+                                </Grid>
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  ContentSource="Content"></ContentPresenter>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation To="0.5"
+                                                                 Duration="0:0:0.4"
+                                                                 Storyboard.TargetName="scale1"
+                                                                 Storyboard.TargetProperty="ScaleX">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <BackEase EasingMode="EaseOut"></BackEase>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation To="0.5"
+                                                                 Duration="0:0:0.4"
+                                                                 Storyboard.TargetName="scale1"
+                                                                 Storyboard.TargetProperty="ScaleY">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <BackEase EasingMode="EaseOut"></BackEase>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation To="0"
+                                                                 Duration="0:0:0.2"
+                                                                 Storyboard.TargetName="scale1"
+                                                                 Storyboard.TargetProperty="ScaleX">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation To="0"
+                                                                 Duration="0:0:0.2"
+                                                                 Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"></CubicEase>
@@ -3424,8 +3647,6 @@
 
         <Setter Property="FontSize"
                 Value="14"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True" />
         <Setter Property="IsExpanded"
                 Value="False"></Setter>
         <Setter Property="Template">
@@ -3435,7 +3656,6 @@
                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeView}}">
                             <Grid>
                                 <Border x:Name="bdrCover"
@@ -3455,8 +3675,7 @@
                                             <ControlTemplate TargetType="ToggleButton">
                                                 <Border>
                                                     <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center"
-                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                                      HorizontalAlignment="Center" />
                                                 </Border>
                                             </ControlTemplate>
                                         </ToggleButton.Template>
@@ -3506,8 +3725,7 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <ItemsPresenter x:Name="ItemsHost"
-                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <ItemsPresenter x:Name="ItemsHost" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -3605,8 +3823,6 @@
                 Value="#11666666"></Setter>
         <Setter Property="ChoosedBrush"
                 Value="#22666666"></Setter>
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="InnerHeight"
                 Value="40"></Setter>
         <Setter Property="Template">
@@ -3649,8 +3865,7 @@
                                         Background="{TemplateBinding Background}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
                                         ClipToBounds="True">
-                                    <Border 
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    <Border Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                             Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             HorizontalAlignment="Left">
                                         <Border.CornerRadius>
@@ -3663,7 +3878,7 @@
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
-                                
+
                                 <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -3686,8 +3901,7 @@
                                         Background="{TemplateBinding Background}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
                                         ClipToBounds="True">
-                                    <Border 
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    <Border Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                             Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             HorizontalAlignment="Right">
                                         <Border.CornerRadius>
@@ -3725,8 +3939,7 @@
                                         Background="{TemplateBinding Background}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
                                         ClipToBounds="True">
-                                    <Border
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    <Border Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                             Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             VerticalAlignment="Bottom">
                                         <Border.CornerRadius>
@@ -3763,8 +3976,7 @@
                                         Background="{TemplateBinding Background}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Control}}"
                                         ClipToBounds="True">
-                                    <Border 
-                                            Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    <Border Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                             Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             VerticalAlignment="Top">
                                         <Border.CornerRadius>
@@ -3793,8 +4005,6 @@
     </Style>
 
     <Style TargetType="{x:Type local:PUTabControl}">
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="BorderBrush"
@@ -3815,7 +4025,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Grid >
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -3834,7 +4044,7 @@
                                                   FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
                             <Grid  Grid.Column="1">
                                 <ScrollViewer x:Name="scrollViewer"
-                                    VerticalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Disabled"
                                               HorizontalScrollBarVisibility="Hidden"
                                               Margin="0,0,0,1"
                                               VerticalAlignment="Stretch"
@@ -3864,8 +4074,7 @@
                         <ContentPresenter x:Name="PART_SelectedContentHost"
                                           Grid.Row="1"
                                           ContentSource="SelectedContent"
-                                          Margin="{TemplateBinding Padding}"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                          Margin="{TemplateBinding Padding}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="SideButtonVisibility"
@@ -3883,8 +4092,6 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type local:PUTabItem}">
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="Background"
@@ -3951,6 +4158,14 @@
                                     <Setter TargetName="bdrSelected"
                                             Property="BorderBrush"
                                             Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                    <Setter TargetName="btnDelete"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                    </Setter>
+                                    <Setter TargetName="btnDelete"
+                                            Property="CoverBrush"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                    </Setter>
                                 </Trigger>
                                 <Trigger Property="DeleteButtonVisibility"
                                          Value="Visible">
@@ -4024,7 +4239,14 @@
                                     <Setter TargetName="lblContent"
                                             Property="Foreground"
                                             Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
-                                
+                                    <Setter TargetName="btnDelete"
+                                            Property="Foreground"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                    </Setter>
+                                    <Setter TargetName="btnDelete"
+                                            Property="CoverBrush"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                    </Setter>
                                 </Trigger>
                                 <Trigger Property="DeleteButtonVisibility"
                                          Value="Visible">
@@ -4044,8 +4266,6 @@
     </Style>
 
     <Style TargetType="{x:Type local:PUSplitLine}">
-        <Setter Property="SnapsToDevicePixels"
-                Value="True"></Setter>
         <Setter Property="LineBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Thickness"
@@ -4159,7 +4379,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Grid SnapsToDevicePixels="true">
+                    <Grid>
                         <Track x:Name="PART_Track"
                                IsEnabled="{TemplateBinding IsMouseOver}"
                                IsDirectionReversed="true">
@@ -4189,7 +4409,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
-                            <Grid SnapsToDevicePixels="true">
+                            <Grid>
                                 <Track x:Name="PART_Track"
                                        IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.Thumb>
@@ -4208,8 +4428,6 @@
                 Value="LightGray" />
         <Setter Property="BorderThickness"
                 Value="0" />
-        <Setter Property="SnapsToDevicePixels"
-                Value="True" />
         <Setter Property="HorizontalScrollBarVisibility"
                 Value="Disabled" />
         <Setter Property="VerticalScrollBarVisibility"
@@ -4218,8 +4436,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="True">
+                            BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid Background="{TemplateBinding Background}">
                             <ScrollContentPresenter x:Name="content"
                                                     Cursor="{TemplateBinding Cursor}"

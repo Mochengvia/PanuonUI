@@ -82,7 +82,7 @@ namespace Panuon.UI
         {
             //0是InnerWidth，1是InnerHeight
             var minvalue = (double)values[0] < (double)values[1] ? (double)values[0] : (double)values[1];
-            return minvalue / 20;
+            return minvalue / 22;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
