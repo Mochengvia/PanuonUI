@@ -11,23 +11,23 @@
 
 ### Window 窗体控件
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
-图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供消息显示。<br/>
+图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window201810191402.gif)<br/>
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
 | Header | Object | 通常情况下，Title属性会同时设置窗体的左上角标题和任务栏标题。如果你期望使用不同的值，可以单独设置Header属性来改变左上角的标题内容。如果设置为Null，左上角标题将默认使用Title属性的内容。默认值为Null。  |
-| Icon | Object | 显示在右上角标题之前的图标。默认值为Null。  |
+| Icon | Object | 显示在左上角标题之前的图标。默认值为Null。  |
 | AnimationStyle | AnimationStyles枚举 | 启动/关闭时使用的动画样式。默认值为Scale（其余可选项为Gradual、Fade）。  |
-| AnimateOut | Boolean | 关闭窗体时是否使用动画。默认值为True。  |
 | AnimateIn | Boolean | 打开窗体时是否使用动画。默认值为True。  |
+| AnimateOut | Boolean | 关闭窗体时是否使用动画。默认值为True。  |
 | NavButtonVisibilty | Visibility | 设置控制条右侧三个按钮的显示状态。默认值为Visible。  |
 | IsCoverMaskShow | Boolean | 是否显示窗体的遮罩层。默认值为False。  |
-| AllowShowDelay  | Boolean | 是否允许延迟显示窗体内容。在页面较为复杂时，将此属性设置为True有助于减少动画卡顿。  |
+| AllowShowDelay  | Boolean | 是否允许在启动时延迟显示窗体内容。在页面较为复杂时，将此属性设置为True有助于减少启动动画卡顿。  |
 | NavbarBackground | Brush | 控制栏的背景色。默认值为White（白色）。  |
 | NavbarHeight | Double | 控制栏的高度。默认值为30。  |
 | NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
-| NavButtonWidth | Double | 控制栏按钮的宽度。默认值为30。  |
+| NavButtonWidth | Double | 控制栏按钮的宽度。默认值为40。  |
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
 
 
@@ -39,7 +39,7 @@ PUWindow包含以下一个方法。<br/>
 
 扩展：PUMessageBox
 该控件继承自PUWindow，因而可以使用上面任意一个属性来配置它。
-你在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。
+你可以在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。
 ```
 //像下面这样调用，来显示一段提示
 PUMessageBox.ShowDialog($"操作成功。");
@@ -57,7 +57,7 @@ PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
 | --- | --- | ---|
 | ButtonStyle | ButtonStyles枚举 | 按钮的基本样式。默认值为General（其他可选项为Hollow、Outline、Link）。  |
 | ClickStyle | ClickStyles枚举 | 鼠标点击时按钮的效果。默认值为Classic（其他可选项为Sink）。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| BorderCornerRadius | CornerRadius | 按钮圆角大小。默认值为0。  |
 | CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
 
 
@@ -72,8 +72,7 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
 | IconWidth | Double | 图标的宽度。默认值为30。  |
 | ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+| BorderCornerRadius | CornerRadius | 输入框圆角大小。默认值为0。  |
 
 ### PasswordBox 密码框控件
 #### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
@@ -85,9 +84,8 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | PasswordBoxStyle | PasswordBoxStyles枚举 | 密码框的基本样式。默认值为General（其他可选项为IconGroup）。  |
 | Watermark | String | 水印。默认值为空。  |
 | Icon | Object | 放置在输入框前的图标，仅在IconGroup样式下有效。默认值为空。  |
-| IconWidth | Double | 图标的宽度。默认值为30。  |
-| ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
-| BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
+| IconWidth | Double | 图标的宽度，仅在IconGroup样式下有效。默认值为30。  |
+| ShadowColor | Color | 密码框获得焦点时阴影的颜色。默认值为#888888。  |
+| BorderCornerRadius | CornerRadius | 密码框圆角大小。默认值为0。  |
 
 （文档更新中）
