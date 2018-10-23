@@ -47,14 +47,16 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <pu:PUButton Margin="20,0,10,5"
+            <pu:PUButton x:Name="BtnYes"
+                         Margin="20,0,10,5"
                          Content="是"
                          Click="PUButtonYes_Click"></pu:PUButton>
-            <pu:PUButton Margin="10,0,20,5"
+            <pu:PUButton x:Name="BtnNo"
+                         Margin="10,0,20,5"
                          Grid.Column="1"
                          ButtonStyle="Outline"
-                         Foreground="Gray"
-                         BorderBrush="Gray"
+                         Foreground="DimGray"
+                         BorderBrush="DimGray"
                          CoverBrush="DimGray"
                          Content="取消"
                          Click="PUButtonNo_Click"></pu:PUButton>

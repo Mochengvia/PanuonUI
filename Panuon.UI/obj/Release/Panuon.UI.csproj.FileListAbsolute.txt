@@ -35,3 +35,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUIndicator.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUSlideShow.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A2_DatePicker\PUDatePicker.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUImageCuter.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUImageCuter.baml

@@ -14,7 +14,7 @@ namespace Panuon.UI
     /// <summary>
     /// 此控件源码来源于网络，并在原来的基础上进行了修改。
     /// </summary>
-    internal class ResizeThumb : Thumb
+    public class ResizeThumb : Thumb
     {
         public ResizeThumb()
         {
@@ -45,6 +45,8 @@ namespace Panuon.UI
                     default:
                         break;
                 }
+                if (item.Height > item.MaxHeight)
+                    item.Height = item.MaxHeight;
 
                 switch (HorizontalAlignment)
                 {
@@ -63,6 +65,8 @@ namespace Panuon.UI
                         break;
                 }
             }
+            if (item.Width > item.MaxWidth)
+                item.Width = item.MaxWidth;
 
             e.Handled = true;
         }

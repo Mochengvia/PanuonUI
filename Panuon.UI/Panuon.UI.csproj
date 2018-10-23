@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -46,6 +47,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="9_Special\PUImageCuter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="9_Special\PUIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +91,9 @@
     <Compile Include="8_TreeView\PUTreeView.cs" />
     <Compile Include="8_TreeView\PUTreeViewItem.cs" />
     <Compile Include="7_ProgressBar\PUProgressBar.cs" />
+    <Compile Include="9_Special\PUImageCuter.xaml.cs">
+      <DependentUpon>PUImageCuter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="9_Special\PUIndicator.xaml.cs">
       <DependentUpon>PUIndicator.xaml</DependentUpon>
     </Compile>
@@ -128,9 +136,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

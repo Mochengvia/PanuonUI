@@ -55,6 +55,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case 11:
                     ActivateItem(new SpecialViewModel());
                     return;
+                case 12:
+                    ActivateItem(new ImageCuterViewModel());
+                    return;
                 case 101:
                     ActivateItem(new LineChartsViewModel());
                     return;

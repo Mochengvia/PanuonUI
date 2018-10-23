@@ -3159,6 +3159,8 @@
                         Value="#666666"></Setter>
                 <Setter Property="BorderCornerRadius"
                         Value="10"></Setter>
+                <Setter Property="BorderThickness"
+                        Value="0"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">

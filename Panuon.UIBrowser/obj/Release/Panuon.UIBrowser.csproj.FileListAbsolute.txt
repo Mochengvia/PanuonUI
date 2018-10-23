@@ -92,3 +92,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TabControlsVi
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\DatePickersView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\TabControlsView.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\DatePickersView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\ImageCuterView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\ImageCuterView.g.cs

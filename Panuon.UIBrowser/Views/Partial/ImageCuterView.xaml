@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.ImageCuterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <Grid>
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUImageCuter</Label>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <pu:PUButton x:Name="BtnSelectFile"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             Content="选择文件"
+                             Height="30"
+                             Width="100"></pu:PUButton>
+                <Grid Grid.Row="1"
+                      Margin="-10,0,10,0">
+                    <Border Width="500"
+                            Height="300"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            BorderBrush="DimGray"
+                            BorderThickness="1">
+                        <pu:PUImageCuter ImageSource="{Binding ImageSource,Mode=TwoWay}"
+                                         cm:Message.Attach="[Event Loaded]=[Action ImageCuterLoaded($source)]"></pu:PUImageCuter>
+                    </Border>
+                    <Border Width="100"
+                            Height="100"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            BorderBrush="DimGray"
+                            BorderThickness="1"
+                            Margin="522,0,0,0">
+                        <Image cm:Message.Attach="[Event Loaded]=[Action ImageLoaded($source)]"/>
+                    </Border>
+                </Grid>
+                <pu:PUButton x:Name="BtnCut"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             Content="裁剪"
+                             Height="30"
+                             Width="100"
+                             Margin="124,0,0,0" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
