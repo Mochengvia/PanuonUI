@@ -65,8 +65,20 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 _image.Source = image;
                 Clipboard.SetImage(image);
             }
+        }
 
-
+        public void SelectionChanged(object sender)
+        {
+            var comboBox = sender as PUComboBox;
+            switch (comboBox.SelectedValue as string)
+            {
+                case "Rectangle":
+                    _cuter.AreaStyle = PUImageCuter.AreaStyles.Rectangle;
+                    return;
+                case "Square":
+                    _cuter.AreaStyle = PUImageCuter.AreaStyles.Square;
+                    return;
+            }
         }
     }
 }

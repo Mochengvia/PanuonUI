@@ -20,9 +20,14 @@
             <TextBlock Margin="27,0,50,10"
                        TextWrapping="Wrap">
             </TextBlock>
-            <Grid Height="155">
-                <pu:PUResizeGrid Height="50" Width="150">
-                    <pu:PUButton Content="拖动四周来改变大小"> </pu:PUButton>
+            <Grid Height="150">
+                <pu:PUResizeGrid Height="50"
+                                 Width="150"
+                                 MaxHeight="150"
+                                 MaxWidth="150"
+                                 MinWidth="50"
+                                 MinHeight="50">
+                    <pu:PUButton Content="拖动四周来改变大小"></pu:PUButton>
                 </pu:PUResizeGrid>
             </Grid>
             <Label Height="50"
@@ -91,7 +96,7 @@
                        TextWrapping="Wrap">
             <Run Text="该控件可以承载任何控件。子控件的长度和宽度将被设置为SlideShow控件的长度和宽度。"></Run>
             <LineBreak /> 
-            <Run Text="设置SlideDirection属性可以更改横向/竖向滑动；通过设置Index来改变当前的索引（从0开始的）。其他的依赖属性包括：IsSlideButtonShow、SlideButtonBrush、AnimationDuration、Recyclable。"></Run>
+            <Run Text="设置SlideDirection属性可以更改横向/竖向滑动；通过设置Index来改变当前的索引（从1开始的）。其他的依赖属性包括：IsSlideButtonShow、SlideButtonBrush、AnimationDuration、Recyclable。"></Run>
             <LineBreak />
             </TextBlock>
             <Grid Margin="50,20"
@@ -99,7 +104,7 @@
                 <pu:PUSlideShow ClipToBounds="True"
                                 SlideDirection="Horizontal"
                                 IndicatorBrush="White"
-                                Index="0">
+                                Index="1">
                     <Grid Background="#FF49A9C0">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"

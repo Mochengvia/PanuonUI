@@ -60,6 +60,20 @@
                              Height="30"
                              Width="100"
                              Margin="124,0,0,0" />
+                <pu:PUComboBox Width="180"
+                               Margin="252,0,0,0"
+                               VerticalAlignment="Top"
+                               Height="30"
+                               HorizontalAlignment="Left"
+                               SelectedValuePath="Value"
+                               cm:Message.Attach="[Event SelectionChanged]=[Action SelectionChanged($source)]">
+                    <pu:PUComboBoxItem Content="矩形"
+                                       IsSelected="True"
+                                       Value="Rectangle"/>
+                    <pu:PUComboBoxItem Content="正方形" 
+                                       Value="Square"/>
+                </pu:PUComboBox>
+
             </Grid>
         </Grid>
     </Grid>

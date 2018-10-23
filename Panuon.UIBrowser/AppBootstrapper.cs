@@ -5,7 +5,9 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 using Caliburn.Micro;
+using Panuon.UI;
 
 namespace Panuon.UIBrowser
 {
@@ -32,6 +34,12 @@ namespace Panuon.UIBrowser
             container.Compose(batch);
         }
 
+        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            base.OnUnhandledException(sender, e);
+            PUMessageBox.ShowDialog("异常：" + e.Exception.Message);
+            e.Handled = true;
+        }
         protected override object GetInstance(Type serviceType, string key)
         {
             string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
