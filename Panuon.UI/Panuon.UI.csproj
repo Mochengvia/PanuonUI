@@ -113,6 +113,8 @@
     <Compile Include="9_Special\PUSplitLine.cs" />
     <Compile Include="A0_TabControl\PUTabControl.cs" />
     <Compile Include="A0_TabControl\PUTabItem.cs" />
+    <Compile Include="A2_ListBox\PUListBox.cs" />
+    <Compile Include="A2_ListBox\PUListBoxItem.cs" />
     <Compile Include="A3_DatePicker\PUDatePicker.xaml.cs">
       <DependentUpon>PUDatePicker.xaml</DependentUpon>
     </Compile>
@@ -141,8 +143,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="A2_ListBox\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

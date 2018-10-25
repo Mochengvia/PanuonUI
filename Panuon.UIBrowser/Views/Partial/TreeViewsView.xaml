@@ -76,32 +76,9 @@
                                           VerticalScrollBarVisibility="Auto"
                                           HorizontalScrollBarVisibility="Disabled">
                                 <pu:PUTreeView cm:Message.Attach="[Event ChoosedItemChanged]=[Action ChoosedItemChanged($eventArgs)]"
+                                               BindingItems="{Binding TreeViewItems}"
                                                ChoosedValuePath="Value"
                                                ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
-                                    <pu:PUTreeViewItem Header="Item1">
-                                        <pu:PUTreeViewItem  Header="Item1-1"
-                                                            Value="1.1" />
-                                        <pu:PUTreeViewItem  Header="Item1-2"
-                                                            Value="1.2" />
-                                        <pu:PUTreeViewItem  Header="Item1-3"
-                                                            Value="1.3" />
-                                    </pu:PUTreeViewItem>
-                                    <pu:PUTreeViewItem Header="Item2">
-                                        <pu:PUTreeViewItem  Header="Item2-1"
-                                                            Value="2.1" />
-                                        <pu:PUTreeViewItem  Header="Item2-2"
-                                                            Value="2.2" />
-                                        <pu:PUTreeViewItem  Header="Item2-3"
-                                                            Value="2.3" />
-                                    </pu:PUTreeViewItem>
-                                    <pu:PUTreeViewItem Header="Item3">
-                                        <pu:PUTreeViewItem  Header="Item3-1"
-                                                            Value="3.1" />
-                                        <pu:PUTreeViewItem  Header="Item3-2"
-                                                            Value="3.2" />
-                                        <pu:PUTreeViewItem  Header="Item3-3"
-                                                            Value="3.3" />
-                                    </pu:PUTreeViewItem>
                                 </pu:PUTreeView>
                             </ScrollViewer>
                             <StackPanel Orientation="Vertical">

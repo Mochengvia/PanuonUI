@@ -44,7 +44,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty UsingAnimationProperty =
-            DependencyProperty.Register("UsingAnimation", typeof(bool), typeof(PUProgressBar));
+            DependencyProperty.Register("UsingAnimation", typeof(bool), typeof(PUProgressBar), new PropertyMetadata(true));
 
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Panuon.UI
             DependencyProperty.Register("Direction", typeof(Directions), typeof(PUProgressBar), new PropertyMetadata(Directions.LeftToRight));
 
         /// <summary>
-        /// 是否显示百分比。默认值为False。
+        /// 获取或设置是否显示百分比。默认值为False。
         /// </summary>
         public bool IsPercentShow
         {

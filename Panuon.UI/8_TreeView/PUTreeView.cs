@@ -28,7 +28,7 @@ namespace Panuon.UI
         }
         internal void OnChoosedItemChanged(PUTreeViewItem oldItem, PUTreeViewItem newItem)
         {
-            RoutedPropertyChangedEventArgs<PUTreeViewItem> arg = new RoutedPropertyChangedEventArgs<PUTreeViewItem>(oldItem, newItem, ChoosedItemChangedEvent);   RaiseEvent(arg);
+            RoutedPropertyChangedEventArgs<PUTreeViewItem> arg = new RoutedPropertyChangedEventArgs<PUTreeViewItem>(oldItem, newItem, ChoosedItemChangedEvent); RaiseEvent(arg);
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace Panuon.UI
             get { return (double)GetValue(InnerHeightProperty); }
             set { SetValue(InnerHeightProperty, value); }
         }
-        public static readonly DependencyProperty InnerHeightProperty = 
+        public static readonly DependencyProperty InnerHeightProperty =
             DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUTreeView), new PropertyMetadata((double)40));
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Panuon.UI
 
             var tvi = treeView.GetTreeViewItem(treeView.ChoosedValue);
 
-            if (tvi != null && !tvi.IsChoosed)
+            if (tvi != null && !tvi.IsChoosed && !tvi.HasItems)
             {
                 tvi.IsChoosed = true;
                 var parent = tvi.Parent as PUTreeViewItem;
@@ -146,9 +146,12 @@ namespace Panuon.UI
             }
             else if (tvi == null)
             {
-                treeView.ChoosedItem.IsChoosed = false;
-                treeView.ChoosedItem.IsSelected = false;
-                treeView.ChoosedItem = null;
+                if (treeView.ChoosedItem != null)
+                {
+                    treeView.ChoosedItem.IsChoosed = false;
+                    treeView.ChoosedItem.IsSelected = false;
+                    treeView.ChoosedItem = null;
+                }
                 treeView.ChoosedValue = null;
             }
         }
@@ -188,7 +191,6 @@ namespace Panuon.UI
 
         #endregion
 
-
         #region APIs
         /// <summary>
         /// 通过标题或Value值选中目标子项。参数应该是Header还是Value，取决于ChoosedValuePath的值（默认为Header）。
@@ -216,7 +218,6 @@ namespace Panuon.UI
 
         #endregion
 
-
         #region Function
         private void AppendItem(PUTreeViewItemModel model, PUTreeViewItem parent, int deepth)
         {
@@ -236,7 +237,7 @@ namespace Panuon.UI
         }
         private PUTreeViewItem GetTreeViewItem(PUTreeViewItem item, object value)
         {
-            if (ChoosedValuePath == ChoosedValuePaths.Header ? item.Header.Equals(value) : (item.Value == null ? false : item.Value.Equals(value)))
+            if (ChoosedValuePath == ChoosedValuePaths.Header ? item.Header.Equals(value) : (item.Value == null ? false : item.Value.Equals(value)) && !item.HasItems)
                 return item;
             if (item.HasItems)
             {
