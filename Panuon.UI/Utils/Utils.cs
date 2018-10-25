@@ -5,6 +5,7 @@
 *日志：2018/10/15 12:26:44 创建。
 *==============================================================*/
 using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Panuon.UI.Utils
@@ -17,7 +18,7 @@ namespace Panuon.UI.Utils
         #region Identity
         private static ConcurrentQueue<Task> _taskQueue;
 
-        private static ConcurrentQueue<Task> _runningTaskQueue;
+        private static int _runningTaskQuantity;
         #endregion
 
         #region Property
@@ -41,7 +42,7 @@ namespace Panuon.UI.Utils
         public static void Init()
         {
             _taskQueue = new ConcurrentQueue<Task>();
-            _runningTaskQueue = new ConcurrentQueue<Task>();
+            _runningTaskQuantity = 0;
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Panuon.UI.Utils
         {
             MaxTaskQuantity = maxTaskQuantity;
             _taskQueue = new ConcurrentQueue<Task>();
-            _runningTaskQueue = new ConcurrentQueue<Task>();
+            _runningTaskQuantity = 0;
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Panuon.UI.Utils
         #region Funtion
         private static void RecheckQueue()
         {
-            if (_taskQueue.Count == 0 || (MaxTaskQuantity != null && _runningTaskQueue.Count >= MaxTaskQuantity))
+            if (_taskQueue.Count == 0 || (MaxTaskQuantity != null && _runningTaskQuantity >= MaxTaskQuantity))
                 return;
             Task task;
             if (!_taskQueue.TryDequeue(out task))
@@ -96,11 +97,10 @@ namespace Panuon.UI.Utils
                 RecheckQueue();
                 return;
             }
-            _runningTaskQueue.Enqueue(task);
+            Interlocked.Increment(ref _runningTaskQuantity);
             task.ContinueWith((t) =>
             {
-                Task outTask;
-                while (!_runningTaskQueue.TryDequeue(out outTask)) { }
+                Interlocked.Decrement(ref _runningTaskQuantity);
                 RecheckQueue();
             });
             task.Start();

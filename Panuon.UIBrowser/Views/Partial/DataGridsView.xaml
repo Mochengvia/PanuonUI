@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.DataGridsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <Grid>
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">DataGrid</Label>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                      Margin="-10,0,10,0">
+                    <DataGrid 
+                              VerticalAlignment="Top"
+                              ItemsSource="{Binding ItemsList}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding ID}"
+                                                Header="ID"
+                                                Width="*" />
+                            <DataGridTextColumn Binding="{Binding Number}"
+                                                Header="NUMBER"
+                                                Width="*" />
+                            <DataGridTextColumn Binding="{Binding Name}"
+                                                Header="NAME"
+                                                Width="*" />
+                            <DataGridTemplateColumn CellStyle="{StaticResource HoverToShowCell}"
+                                                Header="OPERATE"
+                                                Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Foreground="#2191f1"
+                                                   Margin="0,0,0,0"
+                                                   Cursor="Hand"
+                                                   Tag="{Binding ID}"
+                                                   cm:Message.Attach="[Event MouseLeftButtonDown]=[Action Delete($this.Tag)]">删除</Label>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

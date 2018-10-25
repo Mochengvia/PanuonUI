@@ -37,6 +37,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         public void BtnSelectFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "图像文件|*.jpg;*.png;*.jpeg;*.bmp";
             if (ofd.ShowDialog() != true)
                 return;
             var file = ofd.FileName;

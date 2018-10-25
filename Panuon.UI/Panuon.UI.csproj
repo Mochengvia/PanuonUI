@@ -67,9 +67,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="A2_DatePicker\PUDatePicker.xaml">
+    <Page Include="A3_DatePicker\PUDatePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -109,7 +113,7 @@
     <Compile Include="9_Special\PUSplitLine.cs" />
     <Compile Include="A0_TabControl\PUTabControl.cs" />
     <Compile Include="A0_TabControl\PUTabItem.cs" />
-    <Compile Include="A2_DatePicker\PUDatePicker.xaml.cs">
+    <Compile Include="A3_DatePicker\PUDatePicker.xaml.cs">
       <DependentUpon>PUDatePicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -136,6 +140,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="A2_ListBox\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

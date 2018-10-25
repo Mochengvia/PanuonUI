@@ -9,7 +9,7 @@
                     <!--AppBootstrapper启动器-->
                     <local:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
-                <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

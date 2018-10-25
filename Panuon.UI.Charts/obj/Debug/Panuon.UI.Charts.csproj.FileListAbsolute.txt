@@ -9,4 +9,3 @@ D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\0_LineChart\PULineChart.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.g.resources
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.pdb
-D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.csprojResolveAssemblyReference.cache

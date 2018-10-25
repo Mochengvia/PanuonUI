@@ -56,6 +56,9 @@ namespace Panuon.UIBrowser.ViewModels
                     ActivateItem(new SpecialViewModel());
                     return;
                 case 12:
+                    ActivateItem(new DataGridsViewModel());
+                    return;
+                case 13:
                     ActivateItem(new ImageCuterViewModel());
                     return;
                 case 101:

@@ -67,6 +67,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Partial\DataGridsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ImageCuterViewModel.cs" />
     <Compile Include="ViewModels\Partial\TabControlsViewModel.cs" />
     <Compile Include="ViewModels\Partial\DatePickersViewModel.cs" />
@@ -82,6 +83,10 @@
     <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\DataGridsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Partial\ImageCuterView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

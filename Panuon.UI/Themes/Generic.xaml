@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Panuon.UI">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
-    <SolidColorBrush x:Key="Theme"
-                     Color="#FF3E3E3E" />
-    <FontFamily x:Key="IconFont">/#fontawesome</FontFamily>
     <local:ToggleCornerRadiusConverter x:Key="ToggleCornerRadiusConverter"></local:ToggleCornerRadiusConverter>
     <local:ToggleHeightConverter x:Key="ToggleHeightConverter"></local:ToggleHeightConverter>
     <local:TranslateXConverter x:Key="TranslateXConverter"></local:TranslateXConverter>
@@ -3098,11 +3098,11 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation To="1"
-                                                                 Duration="0:0:0.2"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation To="1"
@@ -3110,23 +3110,23 @@
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation To="0"
-                                                                 Duration="0:0:0.2"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale2"
                                                                  Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation To="0"
-                                                                 Duration="0:0:0.2"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale2"
                                                                  Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                             </Storyboard>
@@ -3210,7 +3210,7 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation To="0.5"
-                                                                 Duration="0:0:0.4"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
@@ -3218,7 +3218,7 @@
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation To="0.5"
-                                                                 Duration="0:0:0.4"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
@@ -3233,19 +3233,19 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation To="0"
-                                                                 Duration="0:0:0.2"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleX">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation To="0"
-                                                                 Duration="0:0:0.2"
+                                                                 Duration="0:0:0.3"
                                                                  Storyboard.TargetName="scale1"
                                                                  Storyboard.TargetProperty="ScaleY">
                                                     <DoubleAnimation.EasingFunction>
-                                                        <CubicEase EasingMode="EaseOut"></CubicEase>
+                                                        <CubicEase EasingMode="EaseIn"></CubicEase>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                             </Storyboard>
@@ -4267,6 +4267,7 @@
         </Style.Triggers>
     </Style>
 
+
     <Style TargetType="{x:Type local:PUSplitLine}">
         <Setter Property="LineBrush"
                 Value="{StaticResource Theme}"></Setter>
@@ -4350,201 +4351,6 @@
 
             </Trigger>
         </Style.Triggers>
-    </Style>
-    <Style TargetType="{x:Type Thumb}">
-        <Setter Property="OverridesDefaultStyle"
-                Value="true" />
-        <Setter Property="IsTabStop"
-                Value="false" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border  Background="#90B9B9B9"
-                             CornerRadius="3" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsPressAndHoldEnabled"
-                Value="false" />
-        <Setter Property="Stylus.IsFlicksEnabled"
-                Value="false" />
-        <Setter Property="Background"
-                Value="Transparent" />
-        <Setter Property="Width"
-                Value="12" />
-        <Setter Property="MinWidth"
-                Value="12" />
-        <Setter Property="Cursor"
-                Value="Arrow"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Grid>
-                        <Track x:Name="PART_Track"
-                               IsEnabled="{TemplateBinding IsMouseOver}"
-                               IsDirectionReversed="true">
-                            <Track.Thumb>
-                                <Thumb />
-                            </Track.Thumb>
-                        </Track>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="Orientation"
-                     Value="Horizontal">
-                <Setter Property="Background"
-                        Value="Transparent" />
-                <Setter Property="Margin"
-                        Value="1,0,1,1" />
-                <Setter Property="Height"
-                        Value="12" />
-                <Setter Property="MinHeight"
-                        Value="12" />
-                <Setter Property="Width"
-                        Value="Auto" />
-                <Setter Property="Opacity"
-                        Value="0.3"></Setter>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ScrollBar}">
-                            <Grid>
-                                <Track x:Name="PART_Track"
-                                       IsEnabled="{TemplateBinding IsMouseOver}">
-                                    <Track.Thumb>
-                                        <Thumb />
-                                    </Track.Thumb>
-                                </Track>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style TargetType="{x:Type ScrollViewer}">
-        <Setter Property="BorderBrush"
-                Value="LightGray" />
-        <Setter Property="BorderThickness"
-                Value="0" />
-        <Setter Property="HorizontalScrollBarVisibility"
-                Value="Disabled" />
-        <Setter Property="VerticalScrollBarVisibility"
-                Value="Auto" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Border BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ScrollContentPresenter x:Name="content"
-                                                    Cursor="{TemplateBinding Cursor}"
-                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                    Width="{TemplateBinding Width}"
-                                                    Height="{TemplateBinding Height}" />
-                            <ScrollBar x:Name="PART_VerticalScrollBar"
-                                       Opacity="0.5"
-                                       HorizontalAlignment="Right"
-                                       Maximum="{TemplateBinding ScrollableHeight}"
-                                       Orientation="Vertical"
-                                       ViewportSize="{TemplateBinding ViewportHeight}"
-                                       Value="{TemplateBinding VerticalOffset}"
-                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
-                            <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                       Opacity="0.5"
-                                       Maximum="{TemplateBinding ScrollableWidth}"
-                                       Orientation="Horizontal"
-                                       VerticalAlignment="Bottom"
-                                       Value="{TemplateBinding HorizontalOffset}"
-                                       ViewportSize="{TemplateBinding ViewportWidth}"
-                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="ComputedVerticalScrollBarVisibility"
-                                 Value="Visible">
-                            <Setter TargetName="content"
-                                    Property="Margin"
-                                    Value="0,0,10,0"></Setter>
-                        </Trigger>
-                        <EventTrigger RoutedEvent="ScrollChanged">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation  Storyboard.TargetName="PART_VerticalScrollBar"
-                                                      Storyboard.TargetProperty="Opacity"
-                                                      To="1"
-                                                      Duration="0:0:0.2" />
-                                    <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"
-                                                     BeginTime="0:0:0.5" />
-                                    <DoubleAnimation  Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                      Storyboard.TargetProperty="Opacity"
-                                                      To="1"
-                                                      Duration="0:0:0.2" />
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"
-                                                     BeginTime="0:0:0.5" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseEnter"
-                                      SourceName="PART_VerticalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     Duration="0:0:0.2" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave"
-                                      SourceName="PART_VerticalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_VerticalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"
-                                                     BeginTime="0:0:0.5" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseEnter"
-                                      SourceName="PART_HorizontalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="1"
-                                                     Duration="0:0:0.2" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave"
-                                      SourceName="PART_HorizontalScrollBar">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"
-                                                     BeginTime="0:0:0.5" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
 
