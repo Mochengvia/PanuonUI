@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.ListBoxsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUComboBox/PUListBoxItem 下拉选择框控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,10"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUListBoxItem</Run><LineBreak />    
+                        <Run Foreground="#FF359ECF">Value </Run>
+                        <Run>获取或设置下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run Foreground="#FF3ECD44">PUComboBoxItemModel </Run>
+                        <Run>用于绑定到PUComboBox子项集合的模型类，参见PUComboBox的BindingItems属性。</Run><LineBreak />
+
+                        <LineBreak />   
+                        <Run Foreground="#FF24618B"
+                             FontWeight="Bold">PUListBox</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#EEEEEE。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedBrush </Run>
+                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#DDDDDD。</Run><LineBreak />
+            </TextBlock>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2"
+                        Margin="0,0,0,60">
+                <StackPanel Orientation="Horizontal">
+                    <pu:PUTextBox x:Name="ContentWord" Height="30" Width="150"
+                                  Watermark="模糊查询内容"></pu:PUTextBox>
+                    <pu:PUButton x:Name="Search"
+                                 IsDefault="True"
+                                 Content="Search"
+                                 Margin="10,0,0,0"
+                                 Padding="15,0"></pu:PUButton>
+                </StackPanel>
+                <pu:PUListBox Height="110"
+                              Margin="0,20,0,0"
+                              cm:Message.Attach="[Event Loaded]=[Action ListBoxLoaded($source)]">
+                    <pu:PUListBoxItem Content="1：PUListBox包含两个查询方法"
+                                      Value="1"></pu:PUListBoxItem>
+                    <pu:PUListBoxItem Content="2：分别是SearchItemByContent(string content, bool allowFuzzySearch)"
+                                      Value="2"></pu:PUListBoxItem>
+                    <pu:PUListBoxItem Content="3：和SearchItemByValue(object value)"
+                                      Value="3"></pu:PUListBoxItem>
+                    <pu:PUListBoxItem Content="4：你可以修改PUListBox的SearchBrush来修改查询时的高亮背景色"
+                                      Value="4"></pu:PUListBoxItem>
+                    <pu:PUListBoxItem Content="5：查询到结果时会自动滚动到目标位置"
+                                      Value="5"></pu:PUListBoxItem>
+                </pu:PUListBox>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
+
+</UserControl>

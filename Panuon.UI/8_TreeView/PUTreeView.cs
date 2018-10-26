@@ -133,7 +133,7 @@ namespace Panuon.UI
             if (!treeView.IsLoaded || treeView.ChoosedValue == null)
                 return;
 
-            var tvi = treeView.GetTreeViewItem(treeView.ChoosedValue);
+            var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
 
             if (tvi != null && !tvi.IsChoosed && !tvi.HasItems)
             {
@@ -193,11 +193,11 @@ namespace Panuon.UI
 
         #region APIs
         /// <summary>
-        /// 通过标题或Value值选中目标子项。参数应该是Header还是Value，取决于ChoosedValuePath的值（默认为Header）。
+        /// 通过标题获取子项。
         /// </summary>
         /// <param name="headerOrValue"></param>
         /// <returns></returns>
-        public PUTreeViewItem GetTreeViewItem(object headerOrValue)
+        public PUTreeViewItem GetTreeViewItemByHeader(object header)
         {
             PUTreeViewItem target = null;
             foreach (var item in Items)
@@ -205,7 +205,7 @@ namespace Panuon.UI
                 var tvi = item as PUTreeViewItem;
                 tvi.IsExpanded = false;
 
-                var tvix = GetTreeViewItem(tvi, headerOrValue);
+                var tvix = GetTreeViewItemByHeader(tvi, header);
                 if (tvix != null)
                 {
                     tvi.IsExpanded = true;
@@ -215,7 +215,28 @@ namespace Panuon.UI
             return target;
         }
 
+        /// <summary>
+        /// 通过Value获取子项。
+        /// </summary>
+        /// <param name="headerOrValue"></param>
+        /// <returns></returns>
+        public PUTreeViewItem GetTreeViewItemByValue(object value)
+        {
+            PUTreeViewItem target = null;
+            foreach (var item in Items)
+            {
+                var tvi = item as PUTreeViewItem;
+                tvi.IsExpanded = false;
 
+                var tvix = GetTreeViewItemByValue(tvi, value);
+                if (tvix != null)
+                {
+                    tvi.IsExpanded = true;
+                    target = tvix;
+                }
+            }
+            return target;
+        }
         #endregion
 
         #region Function
@@ -235,16 +256,17 @@ namespace Panuon.UI
                     AppendItem(item, treeViewItem, deepth + 1);
             }
         }
-        private PUTreeViewItem GetTreeViewItem(PUTreeViewItem item, object value)
+
+        private PUTreeViewItem GetTreeViewItemByHeader(PUTreeViewItem item, object header)
         {
-            if (ChoosedValuePath == ChoosedValuePaths.Header ? item.Header.Equals(value) : (item.Value == null ? false : item.Value.Equals(value)) && !item.HasItems)
+            if ( item.Header.Equals(header))
                 return item;
             if (item.HasItems)
             {
                 foreach (var tvi in item.Items)
                 {
                     (tvi as PUTreeViewItem).IsExpanded = false;
-                    var tvix = GetTreeViewItem(tvi as PUTreeViewItem, value);
+                    var tvix = GetTreeViewItemByHeader(tvi as PUTreeViewItem, header);
                     if (tvix != null)
                     {
                         (tvi as PUTreeViewItem).IsExpanded = true;
@@ -254,6 +276,27 @@ namespace Panuon.UI
             }
             return null;
         }
+
+        private PUTreeViewItem GetTreeViewItemByValue(PUTreeViewItem item, object value)
+        {
+            if (item.Value.Equals(value))
+                return item;
+            if (item.HasItems)
+            {
+                foreach (var tvi in item.Items)
+                {
+                    (tvi as PUTreeViewItem).IsExpanded = false;
+                    var tvix = GetTreeViewItemByValue(tvi as PUTreeViewItem, value);
+                    if (tvix != null)
+                    {
+                        (tvi as PUTreeViewItem).IsExpanded = true;
+                        return tvix;
+                    }
+                }
+            }
+            return null;
+        }
+
         #endregion
     }
 }

@@ -185,7 +185,6 @@ namespace Panuon.UI
                     }
                 }
             }
-
         }
 
         #endregion
