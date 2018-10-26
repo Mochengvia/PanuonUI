@@ -85,7 +85,7 @@ namespace Panuon.UI
         }
 
         /// <summary>
-        /// 通过内容查询符合条件的第一个子项，若找到项目，则滚动到该项目并高亮。
+        /// 通过内容查询符合条件的第一个子项，滚动到该项目并高亮。
         /// </summary>
         /// <param name="content">子项的内容。</param>
         /// <param name="allowFuzzySearch">是否允许模糊查询。</param>

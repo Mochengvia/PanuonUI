@@ -29,16 +29,24 @@
                              FontWeight="Bold">PUListBoxItem</Run><LineBreak />    
                         <Run Foreground="#FF359ECF">Value </Run>
                         <Run>获取或设置下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
-                        <Run Foreground="#FF3ECD44">PUComboBoxItemModel </Run>
-                        <Run>用于绑定到PUComboBox子项集合的模型类，参见PUComboBox的BindingItems属性。</Run><LineBreak />
 
                         <LineBreak />   
                         <Run Foreground="#FF24618B"
                              FontWeight="Bold">PUListBox</Run><LineBreak />
                         <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#EEEEEE。</Run><LineBreak />
+                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#22E6E6E6。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">SelectedBrush </Run>
-                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#DDDDDD。</Run><LineBreak />
+                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#E6E6E6。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SearchBrush </Run>
+                        <Run>获取或设置当子项被搜索到时展现1秒的背景颜色。【Brush类型】。默认值为#44444444。</Run><LineBreak />
+                       <Run Foreground="#FF9735CF">SearchItemByContent(string content, bool allowFuzzySearch)</Run>
+                        <Run>通过内容查找符合条件的第一个子项，滚动到该项目并高亮（内容必须是String类型才能调用该方法，支持模糊查询）。</Run> <LineBreak />
+                        <Run Foreground="#FF9735CF">SearchItemByValue(object value) </Run>
+                        <Run>通过Value查找符合条件的第一个子项，滚动到该项目并高亮。</Run> <LineBreak />
+                        <Run Foreground="#FF9735CF">GetListBoxItemByContent(object content)</Run>
+                        <Run>通过内容查找并返回符合条件的第一个子项。</Run> <LineBreak />
+                        <Run Foreground="#FF9735CF">GetListBoxItemByValue(object value) </Run>
+                        <Run>通过Value查找并返回符合条件的第一个子项。</Run>
             </TextBlock>
             <StackPanel Orientation="Vertical"
                         Grid.Row="2"

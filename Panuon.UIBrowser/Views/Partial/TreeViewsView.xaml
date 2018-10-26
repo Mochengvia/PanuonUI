@@ -54,8 +54,10 @@
                         <Run>获取被选中的子项PUTreeViewItem的Header或Value属性（取决于ChoosedValuePath的值），或通过设置该值来选中指定的子项目。【Object类型】。默认值为空。</Run><LineBreak />
                         <Run Foreground="#FFF18C27">ChoosedItemChanged </Run>
                         <Run>当新的子项被选中时，触发此路由事件。</Run><LineBreak />
-                        <Run Foreground="#FF9735CF">GetTreeViewItem(object headerOrValue) </Run>
-                        <Run>通过HeaderValue选中项目接口。</Run>
+                        <Run Foreground="#FF9735CF">GetTreeViewItemByHeader(object header)</Run>
+                        <Run>通过Header查找并返回符合条件的第一个子项。</Run> <LineBreak />
+                        <Run Foreground="#FF9735CF">GetTreeViewItemByValue(object value) </Run>
+                        <Run>通过Value查找并返回符合条件的第一个子项。</Run>
                 </TextBlock>
                 <StackPanel Orientation="Vertical"
                             Grid.Row="2"
