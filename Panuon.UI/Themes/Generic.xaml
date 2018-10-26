@@ -1974,14 +1974,15 @@
                                                               Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ComboBox}}"></DropShadowEffect>
                                         </Border.Effect>
                                     </Border>
-                                    <StackPanel  Margin="1,5,1,15"
-                                                 MaxHeight="250"
-                                                 IsItemsHost="True"
-                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                 KeyboardNavigation.DirectionalNavigation="Contained"
-                                                 Orientation="Vertical">
-                                    </StackPanel>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                  Margin="1,5,1,15"
+                                                  MaxHeight="250">
+                                        <StackPanel IsItemsHost="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                                    Orientation="Vertical">
+                                        </StackPanel>
+                                    </ScrollViewer>
                                 </Grid>
                             </Popup>
                         </Grid>

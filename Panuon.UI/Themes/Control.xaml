@@ -54,7 +54,7 @@
                         Value="1,0,1,1" />
                 <Setter Property="Height"
                         Value="5" />
-                <Setter Property="MinWidth"
+                <Setter Property="MinHeight"
                         Value="0"></Setter>
                 <Setter Property="Width"
                         Value="Auto" />
@@ -231,8 +231,6 @@
                 Value="Auto"></Setter>
         <Setter Property="Foreground"
                 Value="#666666"></Setter>
-        <Setter Property="Padding"
-                Value="10,0,0,0"></Setter>
     </Style>
 
     <Style TargetType="DataGridColumnHeader">
@@ -241,10 +239,12 @@
         <Setter Property="Height"
                 Value="30">
         </Setter>
+        <Setter Property="Padding"
+                Value="10,0,0,0"></Setter>
         <Setter Property="Background"
-                Value="#DDDDDD"></Setter>
-        <Setter Property="BorderBrush"
                 Value="#E6E6E6"></Setter>
+        <Setter Property="BorderBrush"
+                Value="#DDDDDD"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
@@ -253,7 +253,7 @@
                                 BorderThickness="0"
                                 Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                              Margin="{TemplateBinding Padding}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
@@ -298,8 +298,7 @@
                         <Border x:Name="bdrOuter"
                                 Background="{TemplateBinding Background}"
                                 Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=DataGrid}}">
-                            <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Left" />
+                            <ContentPresenter VerticalAlignment="Center" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
