@@ -117,7 +117,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
                             <Border x:Name="bdrOuter"
-                                    Margin="0"
+                                    Margin="5"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -305,7 +305,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
                             <Border x:Name="bdrOuter"
-                                    Margin="0"
+                                    Margin="5"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -518,7 +518,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUWindow}">
                             <Border x:Name="bdrOuter"
-                                    Margin="0"
+                                    Margin="5"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
@@ -1620,6 +1620,7 @@
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
                                     <Grid>
                                         <ScrollViewer x:Name="PART_ContentHost"
+                                                      Style="{StaticResource MiniScrollViewer}"
                                                       Margin="{TemplateBinding Padding}"
                                                       IsTabStop="False"
                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -1734,6 +1735,7 @@
                                                FontFamily="{StaticResource IconFont}"></Label>
                                         <Grid>
                                             <ScrollViewer x:Name="PART_ContentHost"
+                                                          Style="{StaticResource MiniScrollViewer}"
                                                           Margin="{TemplateBinding Padding}"
                                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -1976,6 +1978,7 @@
                                     </Border>
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Auto"
+                                                  Style="{StaticResource MiniScrollViewer}"
                                                   Margin="1,5,1,15"
                                                   MaxHeight="250">
                                         <StackPanel IsItemsHost="True"
@@ -2137,6 +2140,7 @@
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
                                     <Grid>
                                         <ScrollViewer x:Name="PART_ContentHost"
+                                                      Style="{StaticResource MiniScrollViewer}"
                                                       Margin="{TemplateBinding Padding}"
                                                       IsTabStop="False"
                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -2251,6 +2255,7 @@
                                                FontFamily="{StaticResource IconFont}"></Label>
                                         <Grid>
                                             <ScrollViewer x:Name="PART_ContentHost"
+                                                          Style="{StaticResource MiniScrollViewer}"
                                                           Margin="{TemplateBinding Padding}"
                                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -3831,13 +3836,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <VirtualizingStackPanel Margin="0,0,0,0"
-                                            Height="{TemplateBinding Height}"
-                                            Width="{TemplateBinding Width}"
-                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                            IsItemsHost="True">
-                    </VirtualizingStackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  Style="{StaticResource MiniScrollViewer}">
+                        <VirtualizingStackPanel Margin="0,0,0,0"
+                                                Height="{TemplateBinding Height}"
+                                                Width="{TemplateBinding Width}"
+                                                IsItemsHost="True">
+                        </VirtualizingStackPanel>
+                    </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -4047,6 +4054,7 @@
                                                   FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
                             <Grid  Grid.Column="1">
                                 <ScrollViewer x:Name="scrollViewer"
+                                              Style="{StaticResource MiniScrollViewer}"
                                               VerticalScrollBarVisibility="Disabled"
                                               HorizontalScrollBarVisibility="Hidden"
                                               Margin="0,0,0,1"
@@ -4337,7 +4345,7 @@
                                 Background="{Binding SearchBrush,RelativeSource={RelativeSource AncestorType=ListBox}}"></Border>
                         <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}"/>
+                                          Margin="{TemplateBinding Padding}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
