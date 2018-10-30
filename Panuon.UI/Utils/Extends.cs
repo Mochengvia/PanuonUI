@@ -47,7 +47,7 @@ namespace Panuon.UI.Utils
         public static string ToChineseNumber(this int number)
         {
             var result = "";
-            var str = "零一二三四五六七八九十";
+            var str = "零一二三四五六七八九";
             var convert = number.ToString();
             for(int i = 0; i < convert.Length; i++)
             {

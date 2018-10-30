@@ -168,7 +168,27 @@ namespace Panuon.UI
             get { return (double)GetValue(NavButtonWidthProperty); }
             set { SetValue(NavButtonWidthProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonWidthProperty = DependencyProperty.Register("NavButtonWidth", typeof(double), typeof(PUWindow), new PropertyMetadata((double)40));
+        public static readonly DependencyProperty NavButtonWidthProperty = 
+            DependencyProperty.Register("NavButtonWidth", typeof(double), typeof(PUWindow), new PropertyMetadata((double)40));
+
+        /// <summary>
+        /// 是否打开遮罩层并显示等待控件。
+        /// </summary>
+        public bool IsAwaitShow
+        {
+            get { return (bool)GetValue(IsAwaitShowProperty); }
+            set { SetValue(IsAwaitShowProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsAwaitShowProperty =
+            DependencyProperty.Register("IsAwaitShow", typeof(bool), typeof(PUWindow));
+
+
+
+
+        #endregion
+
+        #region Internal APIs
 
         #endregion
 

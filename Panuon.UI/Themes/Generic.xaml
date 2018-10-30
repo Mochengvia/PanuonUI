@@ -210,6 +210,10 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <local:PULoading x:Name="loading"
+                                                     Foreground="#CCFFFFFF"
+                                                     Height="100"
+                                                     Width="100"></local:PULoading>
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
@@ -266,6 +270,50 @@
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsAwaitShow"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.7"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0.1"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+
                                 </Trigger>
                                 <Trigger Property="ResizeMode"
                                          Value="CanMinimize">
@@ -411,6 +459,10 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <local:PULoading x:Name="loading"
+                                                     Foreground="#CCFFFFFF"
+                                                     Height="100"
+                                                     Width="100"></local:PULoading>
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
@@ -477,6 +529,50 @@
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsAwaitShow"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.7"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0.1"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+
                                 </Trigger>
                                 <Trigger Property="ResizeMode"
                                          Value="CanMinimize">
@@ -617,6 +713,10 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <local:PULoading x:Name="loading"
+                                                     Foreground="#CCFFFFFF"
+                                                     Height="100"
+                                                     Width="100"></local:PULoading>
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
@@ -681,6 +781,50 @@
                                                                  Duration="0:0:0.2"></DoubleAnimation>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+
+                                </Trigger>
+                                <Trigger Property="IsAwaitShow"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.7"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0.1"
+                                                                             Value="True" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.2"></DoubleAnimation>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                                                Storyboard.TargetProperty="IsHitTestVisible">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0"
+                                                                             Value="False" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="loading"
+                                                                                Storyboard.TargetProperty="IsRunning">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="False" />
                                                 </BooleanAnimationUsingKeyFrames>

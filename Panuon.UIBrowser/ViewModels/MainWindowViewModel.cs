@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI;
 using Panuon.UIBrowser.ViewModels.Partial;
 using System;
 using System.ComponentModel.Composition;
@@ -71,5 +72,13 @@ namespace Panuon.UIBrowser.ViewModels
             }
         }
 
+        public void ShowAwait()
+        {
+            (GetView() as PUWindow).IsAwaitShow = true;
+        }
+        public void CloseAwait()
+        {
+            (GetView() as PUWindow).IsAwaitShow = false;
+        }
     }
 }

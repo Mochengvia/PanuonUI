@@ -34,6 +34,7 @@ namespace Panuon.UI
         private TabPanel _tabPanel;
 
         #endregion
+
         static PUTabControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUTabControl), new FrameworkPropertyMetadata(typeof(PUTabControl)));
@@ -49,6 +50,7 @@ namespace Panuon.UI
             tabPanel.MouseWheel += ScrollViewer_MouseWheel;
         }
 
+        #region Sys
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             if (SelectedValuePath == SelectedValuePaths.Header)
@@ -71,6 +73,7 @@ namespace Panuon.UI
             if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible || scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
                 e.Handled = true;
         }
+        #endregion
 
         #region RoutedEvent
         /// <summary>
@@ -272,6 +275,7 @@ namespace Panuon.UI
             }
         }
         #endregion
+
         public enum TabControlStyles
         {
             General,

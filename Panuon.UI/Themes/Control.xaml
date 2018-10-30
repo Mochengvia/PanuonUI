@@ -475,7 +475,7 @@
                     <Grid>
                         <Border x:Name="bdrOuter"
                                 Background="{TemplateBinding Background}"
-                                Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=DataGridRow}}">
                             <ContentPresenter VerticalAlignment="Center" />
                         </Border>
                     </Grid>
@@ -507,6 +507,8 @@
                 Value="{x:Null}"></Setter>
         <Setter Property="Opacity"
                 Value="0.8"></Setter>
+        <Setter Property="Padding"
+                Value="10,0,0,0"></Setter>
         <Setter Property="Background"
                 Value="Transparent"></Setter>
         <Setter Property="SnapsToDevicePixels"

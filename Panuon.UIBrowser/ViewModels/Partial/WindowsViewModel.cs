@@ -1,8 +1,11 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Panuon.UIBrowser.ViewModels.Partial
 {
@@ -14,15 +17,30 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             switch (type)
             {
                 case "scale":
-                    UI.PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。");
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。");
                     return;
                 case "gradual":
-                    UI.PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Gradual);
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Gradual);
                     return;
                 case "fade":
-                    UI.PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Fade);
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Fade);
                     return;
             }
+        }
+
+        public void ShowAwait()
+        {
+            var parent = Parent as MainWindowViewModel;
+            parent.ShowAwait();
+            var task = new Task(() => 
+            {
+                Thread.Sleep(2000);
+                App.Current.Dispatcher.BeginInvoke(new System.Action(() => 
+                {
+                    parent.CloseAwait();
+                }));
+            });
+            task.Start();
         }
     }
 }
