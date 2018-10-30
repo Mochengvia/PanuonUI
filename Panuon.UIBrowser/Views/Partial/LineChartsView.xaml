@@ -62,7 +62,7 @@
                          VerticalAlignment="Top"
                          Height="32"
                          Width="115" />
-            <pu:PUButton x:Name="AddValues"
+            <pu:PURepeatButton x:Name="AddValues"
                          Content="添加点"
                          HorizontalAlignment="Left"
                          Margin="10,180,0,0"

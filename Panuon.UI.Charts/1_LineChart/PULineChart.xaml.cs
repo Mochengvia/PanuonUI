@@ -397,7 +397,14 @@ namespace Panuon.UI.Charts
 
             canvasPoints.Width = this.ActualWidth - _yWidth;
             canvasPoints.Height = this.ActualHeight - _xHeight;
-            if(IsLoaded)
+
+            polygon.Width = this.ActualWidth - _yWidth;
+            polygon.Height = this.ActualHeight - _xHeight;
+
+            polyline.Width = this.ActualWidth - _yWidth;
+            polyline.Height = this.ActualHeight - _xHeight;
+
+            if (IsLoaded)
                 Draw();
         }
 
