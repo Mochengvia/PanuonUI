@@ -37,4 +37,3 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\9_Special\PUImageCuter.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A3_DatePicker\PUDatePicker.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A3_DatePicker\PUDatePicker.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Themes\Control.baml
-D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache

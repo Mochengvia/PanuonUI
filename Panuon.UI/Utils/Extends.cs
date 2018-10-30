@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Collections.ObjectModel;
 
 namespace Panuon.UI.Utils
 {
@@ -71,6 +71,11 @@ namespace Panuon.UI.Utils
         public static DateTime ToDate(this long timeStamp)
         {
             return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddMilliseconds((long)timeStamp);
+        }
+
+        public static ObservableCollection<T> ToObservableCollection<T>(this IList<T> list)
+        {
+            return new ObservableCollection<T>(list);
         }
     }
 }

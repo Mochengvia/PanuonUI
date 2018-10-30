@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace Panuon.UI
 {
-    //ProgressBar内部角度转换器
+    //ProgressBar专用内部圆角转换器
     internal class ProgressBarConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -74,7 +74,6 @@ namespace Panuon.UI
         }
     }
 
-
     //CheckBox General样式内部对号的缩放比例
     internal class ScaleConverter : IMultiValueConverter
     {
@@ -91,9 +90,6 @@ namespace Panuon.UI
         }
     }
 
-
-    //以下转换器用于CheckBox Switch样式
-    //内部Toggle的长宽转换器
     internal class ToggleHeightConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -108,7 +104,7 @@ namespace Panuon.UI
     }
 
     //内部Toggle的圆角转换器
-    internal class ToggleCornerRadiusConverter : IValueConverter
+    internal class ToHalfConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -122,7 +118,7 @@ namespace Panuon.UI
     }
 
     //内部Toggle的水平偏移量转换器
-    internal class TranslateXConverter : IMultiValueConverter
+    internal class ToggleTranslateXConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -135,7 +131,6 @@ namespace Panuon.UI
             return new object[] { DependencyProperty.UnsetValue, DependencyProperty.UnsetValue };
         }
     }
-
 
     //输入框内部宽度转换器
     internal class TextBoxInnerWidthConverter : IMultiValueConverter

@@ -5,9 +5,9 @@
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <local:ToggleCornerRadiusConverter x:Key="ToggleCornerRadiusConverter"></local:ToggleCornerRadiusConverter>
+    <local:ToHalfConverter x:Key="ToHalfConverter"></local:ToHalfConverter>
     <local:ToggleHeightConverter x:Key="ToggleHeightConverter"></local:ToggleHeightConverter>
-    <local:TranslateXConverter x:Key="TranslateXConverter"></local:TranslateXConverter>
+    <local:ToggleTranslateXConverter x:Key="ToggleTranslateXConverter"></local:ToggleTranslateXConverter>
     <local:ScaleConverter x:Key="ScaleConverter"></local:ScaleConverter>
     <local:TextBoxInnerWidthConverter x:Key="TextBoxInnerWidthConverter"></local:TextBoxInnerWidthConverter>
     <local:TextBoxInnerHeightConverter x:Key="TextBoxInnerHeightConverter"></local:TextBoxInnerHeightConverter>
@@ -1625,16 +1625,6 @@
                                                       IsTabStop="False"
                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
-                                            <ScrollViewer.Width>
-                                                <MultiBinding Converter="{StaticResource TextBoxInnerWidthConverter}">
-                                                    <Binding Path="ActualWidth"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    <Binding Path="Padding"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    <Binding Path="HorizontalContentAlignment"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                </MultiBinding>
-                                            </ScrollViewer.Width>
                                             <ScrollViewer.Height>
                                                 <MultiBinding Converter="{StaticResource TextBoxInnerHeightConverter}">
                                                     <Binding Path="ActualHeight"
@@ -1742,16 +1732,6 @@
                                                           Foreground="{TemplateBinding Foreground}"
                                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                           ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                                <ScrollViewer.Width>
-                                                    <MultiBinding Converter="{StaticResource TextBoxInnerWidthConverter}">
-                                                        <Binding Path="ActualWidth"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                        <Binding Path="Padding"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                        <Binding Path="HorizontalContentAlignment"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    </MultiBinding>
-                                                </ScrollViewer.Width>
                                                 <ScrollViewer.Height>
                                                     <MultiBinding Converter="{StaticResource TextBoxInnerHeightConverter}">
                                                         <Binding Path="ActualHeight"
@@ -2145,16 +2125,6 @@
                                                       IsTabStop="False"
                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
-                                            <ScrollViewer.Width>
-                                                <MultiBinding Converter="{StaticResource TextBoxInnerWidthConverter}">
-                                                    <Binding Path="ActualWidth"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    <Binding Path="Padding"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    <Binding Path="HorizontalContentAlignment"
-                                                             RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                </MultiBinding>
-                                            </ScrollViewer.Width>
                                             <ScrollViewer.Height>
                                                 <MultiBinding Converter="{StaticResource TextBoxInnerHeightConverter}">
                                                     <Binding Path="ActualHeight"
@@ -2262,16 +2232,6 @@
                                                           Foreground="{TemplateBinding Foreground}"
                                                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                           ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                                <ScrollViewer.Width>
-                                                    <MultiBinding Converter="{StaticResource TextBoxInnerWidthConverter}">
-                                                        <Binding Path="ActualWidth"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                        <Binding Path="Padding"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                        <Binding Path="HorizontalContentAlignment"
-                                                                 RelativeSource="{RelativeSource AncestorType=TextBox}"></Binding>
-                                                    </MultiBinding>
-                                                </ScrollViewer.Width>
                                                 <ScrollViewer.Height>
                                                     <MultiBinding Converter="{StaticResource TextBoxInnerHeightConverter}">
                                                         <Binding Path="ActualHeight"
@@ -2628,11 +2588,11 @@
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
-                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleCornerRadiusConverter}}">
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}">
                                         <Border x:Name="bdrInner"
                                                 BorderThickness="0"
                                                 Background="White"
-                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleCornerRadiusConverter}}"
+                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}"
                                                 RenderTransformOrigin="0.5,0.5">
                                             <Border.RenderTransform>
                                                 <ScaleTransform x:Name="scale"
@@ -2642,7 +2602,7 @@
                                         </Border>
                                     </Border>
                                     <Border HorizontalAlignment="Right"
-                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleCornerRadiusConverter}}"
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}"
                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleHeightConverter}}"
                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToggleHeightConverter}}"
                                             Background="White">
@@ -2657,7 +2617,7 @@
                                         <Border.RenderTransform>
                                             <TranslateTransform x:Name="translate">
                                                 <TranslateTransform.X>
-                                                    <MultiBinding Converter="{StaticResource TranslateXConverter}">
+                                                    <MultiBinding Converter="{StaticResource ToggleTranslateXConverter}">
                                                         <Binding Path="InnerWidth"
                                                                  RelativeSource="{RelativeSource AncestorType=CheckBox}"></Binding>
                                                         <Binding Path="InnerHeight"
@@ -3294,11 +3254,11 @@
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
-                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}">
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}">
                                         <Border x:Name="bdrInner"
                                                 BorderThickness="0"
                                                 Background="White"
-                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}"
+                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}"
                                                 RenderTransformOrigin="0.5,0.5">
                                             <Border.RenderTransform>
                                                 <ScaleTransform x:Name="scale"
@@ -3308,7 +3268,7 @@
                                         </Border>
                                     </Border>
                                     <Border HorizontalAlignment="Right"
-                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleCornerRadiusConverter}}"
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}"
                                             Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleHeightConverter}}"
                                             Width="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToggleHeightConverter}}"
                                             Background="White">
@@ -3323,7 +3283,7 @@
                                         <Border.RenderTransform>
                                             <TranslateTransform x:Name="translate">
                                                 <TranslateTransform.X>
-                                                    <MultiBinding Converter="{StaticResource TranslateXConverter}">
+                                                    <MultiBinding Converter="{StaticResource ToggleTranslateXConverter}">
                                                         <Binding Path="InnerWidth"
                                                                  RelativeSource="{RelativeSource AncestorType=RadioButton}"></Binding>
                                                         <Binding Path="InnerHeight"

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Panuon.UI.Utils
 {
     /// <summary>
-    /// 提供Task的池化管理，并发任务数量可控。
+    /// 提供Task的简易池化管理，并发任务数量可控。
     /// </summary>
     public class TaskFactory
     {

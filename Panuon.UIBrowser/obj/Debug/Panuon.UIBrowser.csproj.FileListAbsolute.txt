@@ -125,3 +125,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ImageCuterView.
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ImageCuterView.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\DataGridsView.baml
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\DataGridsView.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ListBoxsView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ListBoxsView.g.cs

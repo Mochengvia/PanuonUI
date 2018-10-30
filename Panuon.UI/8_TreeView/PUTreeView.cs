@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -159,14 +155,14 @@ namespace Panuon.UI
         /// <summary>
         /// 用于TreeView的绑定。
         /// </summary>
-        public ObservableCollection<PUTreeViewItemModel> BindingItems
+        public IList<PUTreeViewItemModel> BindingItems
         {
-            get { return (ObservableCollection<PUTreeViewItemModel>)GetValue(BindingItemsProperty); }
+            get { return (IList<PUTreeViewItemModel>)GetValue(BindingItemsProperty); }
             set { SetValue(BindingItemsProperty, value); }
         }
 
         public static readonly DependencyProperty BindingItemsProperty =
-            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUTreeViewItemModel>), typeof(PUTreeView), new PropertyMetadata(OnBindingItemsChanged));
+            DependencyProperty.Register("BindingItems", typeof(IList<PUTreeViewItemModel>), typeof(PUTreeView), new PropertyMetadata(OnBindingItemsChanged));
 
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

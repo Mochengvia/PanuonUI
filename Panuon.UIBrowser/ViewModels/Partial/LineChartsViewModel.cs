@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI.Charts;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -17,8 +19,15 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             XAxis = new string[] { "1", "2", "3", "4", "5", "6" };
             YAxis = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-            ValueTips = new string[] { "1", "8", "4", "9", "6", "2" };
-            Values = new double[] { 0.1, 0.8, 0.4, 0.9, 0.6, 0.2 };
+            Points = new ObservableCollection<PUChartPoint>()
+            {
+                new PUChartPoint() { Value = 0.1, ValueTip = "1" },
+                new PUChartPoint() { Value = 0.2, ValueTip = "2" },
+                new PUChartPoint() { Value = 0.3, ValueTip = "3" },
+                new PUChartPoint() { Value = 0.4, ValueTip = "4" },
+                new PUChartPoint() { Value = 0.5, ValueTip = "5" },
+                new PUChartPoint() { Value = 0.6, ValueTip = "6" },
+            };
         }
 
         #region Bindings
@@ -36,19 +45,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
         private string[] _yAxis;
 
-        public double[] Values
+        public ObservableCollection<PUChartPoint> Points
         {
-            get { return _values; }
-            set { _values = value; NotifyOfPropertyChange(() => Values); }
+            get { return _points; }
+            set { _points = value; NotifyOfPropertyChange(() => Points); }
         }
-        private double[] _values;
+        private ObservableCollection<PUChartPoint> _points;
 
-        public string[] ValueTips
-        {
-            get { return _valueTips; }
-            set { _valueTips = value; NotifyOfPropertyChange(() => ValueTips); }
-        }
-        private string[] _valueTips;
 
         public Brush AreaBrush
         {
@@ -57,12 +60,12 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
         private Brush _areaBrush = new LinearGradientBrush(new GradientStopCollection() { new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#AAAAAAAA"), Offset = 0 }, new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#22AAAAAA"), Offset = 1 } }, 90);
 
-        public Brush AxisBrush
+        public Brush GridBrush
         {
-            get { return _axisBrush; }
-            set { _axisBrush = value; NotifyOfPropertyChange(() => AxisBrush); }
+            get { return _gridBrush; }
+            set { _gridBrush = value; NotifyOfPropertyChange(() => GridBrush); }
         }
-        private Brush _axisBrush = new SolidColorBrush(Colors.DimGray);
+        private Brush _gridBrush = new SolidColorBrush(Colors.LightGray);
 
         public Brush LineBrush
         {
@@ -87,29 +90,32 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             if (_currentMode == 0)
             {
-                var array = new double[_currentQuantity];
-                var tipArray = new string[_currentQuantity];
+                var list = new List<PUChartPoint>();
                 for (int i = 0; i < _currentQuantity; i++)
                 {
-                    array[i] = GetRandomDecimal1();
-                    tipArray[i] = (array[i] * 10).ToString("f2");
+                    var value = GetRandomDecimal1();
+                    list.Add(new PUChartPoint()
+                    {
+                        Value = value,
+                        ValueTip = (value * 10).ToString("f2"),
+                    });
                 }
-                ValueTips = (string[])tipArray.Clone();
-                Values = (double[])array.Clone();
+                Points = new ObservableCollection<PUChartPoint>(list);
             }
             else if (_currentMode == 1)
             {
                 var temp = new string[] { "等级一", "等级二", "等级三", "等级四", "等级五", "等级六" };
-                var array = new double[_currentQuantity];
-                var tipArray = new string[_currentQuantity];
-
+                var list = new List<PUChartPoint>();
                 for (int i = 0; i < _currentQuantity; i++)
                 {
-                    array[i] = GetRandomDecimal2();
-                    tipArray[i] = temp[((int)(array[i] * 5))];
+                    var value = GetRandomDecimal2();
+                    list.Add(new PUChartPoint()
+                    {
+                        Value = value,
+                        ValueTip = temp[((int)(value * 5))],
+                    });
                 }
-                ValueTips = (string[])tipArray.Clone();
-                Values = (double[])array.Clone();
+                Points = new ObservableCollection<PUChartPoint>(list);
             }
 
         }
@@ -134,30 +140,69 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             }
         }
 
+        public void AddValues()
+        {
+            if(_currentMode == 0)
+            {
+                _currentQuantity++;
+                var list = XAxis.ToList();
+                if (list.Count == 20)
+                {
+                    for (int i = 1; i < 20; i += 2)
+                    {
+                        list[i] = "";
+                    }
+                    list.Add(_currentQuantity.ToString());
+                }
+                else if(list.Count > 20)
+                {
+                    if (list.Count % 2 == 1)
+                        list.Add("");
+                    else
+                        list.Add(_currentQuantity.ToString());
+                }
+                else
+                    list.Add(_currentQuantity.ToString());
+
+                XAxis = list.ToArray();
+
+                var value = GetRandomDecimal1();
+                var valuelist = Points.ToList();
+                valuelist.Add(new PUChartPoint()
+                {
+                    Value = value,
+                    ValueTip = (value * 10).ToString("f2"),
+                });
+               
+                Points = new ObservableCollection<PUChartPoint>(valuelist);
+            }
+           
+        }
+
         public void ChangeColor()
         {
             switch (_currentColor)
             {
                 case 0:
-                    AxisBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF49A9C0"));
+                    GridBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AA49A9C0"));
                     AreaBrush = new LinearGradientBrush(new GradientStopCollection() { new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#AA49A9C0"), Offset = 0 }, new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#5549A9C0"), Offset = 1 } }, 90);
-                    LineBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF49A9C0"));
+                    LineBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#49A9C0"));
                     _currentColor = 1;
                     break;
                 case 1:
-                    AxisBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F4A758"));
+                    GridBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAF4A758"));
                     AreaBrush = new LinearGradientBrush(new GradientStopCollection() { new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#AAF4A758"), Offset = 0 }, new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#55F4A758"), Offset = 1 } }, 90);
                     LineBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F4A758"));
                     _currentColor = 2;
                     break;
                 case 2:
-                    AxisBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E089B8"));
+                    GridBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAE089B8"));
                     AreaBrush = new LinearGradientBrush(new GradientStopCollection() { new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#AAE089B8"), Offset = 0 }, new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#55E089B8"), Offset = 1 } }, 90);
                     LineBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E089B8"));
                     _currentColor = 3;
                     break;
                 case 3:
-                    AxisBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"));
+                    GridBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAAAA"));
                     AreaBrush = new LinearGradientBrush(new GradientStopCollection() { new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#AAAAAAAA"), Offset = 0 }, new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#55DDDDDD"), Offset = 1 } }, 90);
                     LineBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"));
                     _currentColor = 0;
@@ -165,10 +210,6 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             }
         }
 
-        public void AnimationSwitch()
-        {
-            UsingAnimation = !UsingAnimation;
-        }
         #endregion
 
         #region Function

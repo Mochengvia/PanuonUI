@@ -20,8 +20,12 @@ namespace Panuon.UI
             InitializeComponent();
             Title = title;
             txtContent.Text = content;
-            _parentWindow = GetOwnerWindow() ;
-            if(_parentWindow != null)
+            try
+            {
+                _parentWindow = GetOwnerWindow();
+            }
+            catch { }
+            if (_parentWindow != null)
                 _parentWindow.IsCoverMaskShow =  true;
             if(isConfirm)
             {
@@ -108,20 +112,23 @@ namespace Panuon.UI
         #region Sys
         private void PUButton_Click(object sender, RoutedEventArgs e)
         {
-            _parentWindow.IsCoverMaskShow = false;
+            if(_parentWindow != null)
+                _parentWindow.IsCoverMaskShow = false;
             CloseWindow();
         }
 
         private void PUButtonYes_Click(object sender, RoutedEventArgs e)
         {
-            _parentWindow.IsCoverMaskShow = false;
+            if(_parentWindow != null)
+                _parentWindow.IsCoverMaskShow = false;
             DialogResult = true;
             CloseWindow();
         }
 
         private void PUButtonNo_Click(object sender, RoutedEventArgs e)
         {
-            _parentWindow.IsCoverMaskShow = false;
+            if(_parentWindow != null)
+                _parentWindow.IsCoverMaskShow = false;
             DialogResult = false;
             CloseWindow();
         }

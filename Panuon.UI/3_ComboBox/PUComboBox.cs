@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -103,14 +103,14 @@ namespace Panuon.UI
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
         /// </summary>
-        public ObservableCollection<PUComboBoxItemModel> BindingItems
+        public IList<PUComboBoxItemModel> BindingItems
         {
-            get { return (ObservableCollection<PUComboBoxItemModel>)GetValue(BindingItemsProperty); }
+            get { return (IList<PUComboBoxItemModel>)GetValue(BindingItemsProperty); }
             set { SetValue(BindingItemsProperty, value); }
         }
 
         public static readonly DependencyProperty BindingItemsProperty =
-            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUComboBoxItemModel>), typeof(PUComboBox), new PropertyMetadata(null, OnBindingItemsChanged));
+            DependencyProperty.Register("BindingItems", typeof(IList<PUComboBoxItemModel>), typeof(PUComboBox), new PropertyMetadata(null, OnBindingItemsChanged));
 
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

@@ -2,11 +2,10 @@ D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.pdb
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Release\System.Net.Http.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\bin\Release\System.Net.Http.xml
-D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\0_LineChart\PULineChart.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts_MarkupCompile.cache
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts_MarkupCompile.lref
-D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\0_LineChart\PULineChart.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.g.resources
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.pdb
-D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.baml

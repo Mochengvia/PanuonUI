@@ -177,7 +177,7 @@
                                       BorderBrush="#FFF4A758"
                                       ShadowColor="#AAF4A758"
                                       BorderCornerRadius="3"
-                                      Text="PanuonUI是一个免费的、开源的、不限制个人或商业用途的开源控件库。&#13;但是，复刻该UI库以用于获得名誉、出售获利的行径是可耻、违反开源协议且不被容许的。&#13;如果发现此类行径，请联络我：bonjour@panuon.com。&#13;共同维护开源环境良性发展。"
+                                      Text="Your Text Here Your Text Here Your Text Here  &#13;Your Text Here Your Text Here Your Text Here  &#13;Your Text Here Your Text Here Your Text Here  &#13;"
                                       Margin="20,0,0,0"></pu:PUTextBox>
                     </StackPanel>
                 </Grid>

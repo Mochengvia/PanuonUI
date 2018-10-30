@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Controls.Primitives;
 using System.Collections.Specialized;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Panuon.UI
 {
@@ -182,14 +183,14 @@ namespace Panuon.UI
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
         /// </summary>
-        public ObservableCollection<PUTabItemModel> BindingItems
+        public IList<PUTabItemModel> BindingItems
         {
-            get { return (ObservableCollection<PUTabItemModel>)GetValue(BindingItemsProperty); }
+            get { return (IList<PUTabItemModel>)GetValue(BindingItemsProperty); }
             set { SetValue(BindingItemsProperty, value); }
         }
 
         public static readonly DependencyProperty BindingItemsProperty =
-            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUTabItemModel>), typeof(PUTabControl), new PropertyMetadata(null, OnBindingItemsChanged));
+            DependencyProperty.Register("BindingItems", typeof(IList<PUTabItemModel>), typeof(PUTabControl), new PropertyMetadata(null, OnBindingItemsChanged));
 
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
