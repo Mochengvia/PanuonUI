@@ -81,7 +81,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
         private bool _usingAnimation = true;
 
-
+        public int XAxisGap
+        {
+            get { return _xAxisGap; }
+            set { _xAxisGap = value; NotifyOfPropertyChange(() => XAxisGap); }
+        }
+        private int _xAxisGap = 0;
+        
         #endregion
 
 
@@ -146,23 +152,21 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             {
                 _currentQuantity++;
                 var list = XAxis.ToList();
-                if (list.Count == 20)
-                {
-                    for (int i = 1; i < 20; i += 2)
-                    {
-                        list[i] = "";
-                    }
+
                     list.Add(_currentQuantity.ToString());
-                }
-                else if(list.Count > 20)
+
+                if(list.Count > 60)
                 {
-                    if (list.Count % 2 == 1)
-                        list.Add("");
-                    else
-                        list.Add(_currentQuantity.ToString());
+                    XAxisGap = 3;
                 }
-                else
-                    list.Add(_currentQuantity.ToString());
+                else if (list.Count > 40)
+                {
+                    XAxisGap = 2;
+                }
+                else if (list.Count > 20)
+                {
+                    XAxisGap = 1;
+                }
 
                 XAxis = list.ToArray();
 

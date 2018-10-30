@@ -34,6 +34,28 @@ namespace Panuon.UI.Charts
         }
 
         #region Property
+
+        /// <summary>
+        /// X轴显示间距。
+        /// </summary>
+        public int XAxisGap
+        {
+            get { return (int)GetValue(XAxisGapProperty); }
+            set { SetValue(XAxisGapProperty, value); }
+        }
+
+        public static readonly DependencyProperty XAxisGapProperty =
+            DependencyProperty.Register("XAxisGap", typeof(int), typeof(PULineChart), new PropertyMetadata(0,OnXAxisGapChanged));
+
+        private static void OnXAxisGapChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var chart = d as PULineChart;
+            if (chart.IsLoaded)
+            {
+                chart.LoadXAxis(chart.ActualWidth);
+            }
+        }
+
         /// <summary>
         /// 获取或设置使用动画的方式。默认值为始终使用（Always）。
         /// </summary>
@@ -244,7 +266,7 @@ namespace Panuon.UI.Charts
             for (int i = 0; i < canvasXAxis.Children.Count; i++)
             {
                 var txt = canvasXAxis.Children[i] as TextBlock;
-                txt.Text = XAxis[i];
+                txt.Text = XAxisGap == 0 ? XAxis[i] : (i % (XAxisGap + 1) != 0 ? "" : XAxis[i]);
                 txt.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
                 txt.Arrange(new Rect(txt.DesiredSize));
                 Canvas.SetLeft(txt, yWidth * i + _yWidth - (txt.ActualWidth / 2));

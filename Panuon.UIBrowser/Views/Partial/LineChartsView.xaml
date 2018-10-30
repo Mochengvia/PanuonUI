@@ -22,7 +22,7 @@
                    TextWrapping="Wrap">
             <Run Text="Panuon.UI.Chart是一个独立的控件库，它不依赖于Panuon.UI。"></Run>
             <LineBreak /> 
-            <Run Text="额外的依赖属性包括：XAxis、YAxis、Points、AnimationMode、GridBrush、LineBrush、AreaBrush、LineThickness。" />
+            <Run Text="额外的依赖属性包括：XAxis、YAxis、Points、AnimationMode、GridBrush、LineBrush、AreaBrush、LineThickness、XAxisGap。" />
              <LineBreak />
             <Run Text="上述Brush属性均可被设定为LinearGradientBrush，以实现渐变效果。"></Run>
         </TextBlock>
@@ -35,10 +35,11 @@
                                LineBrush="{Binding LineBrush}"
                                GridBrush="{Binding GridBrush}"
                                AreaBrush="{Binding AreaBrush}"
+                               XAxisGap="{Binding XAxisGap}"
                                AnimationMode="OneTime"
                                LineThickness="2"
                                Margin="0,10,70,40"
-                               Width="500"
+                               Width="600"
                                HorizontalAlignment="Right" />
             <pu:PUButton x:Name="RandomValue"
                          Content="产生随机数"
