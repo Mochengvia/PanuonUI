@@ -23,6 +23,7 @@ PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。
 | AnimateOut | Boolean | 关闭窗体时是否使用动画。默认值为True。  |
 | NavButtonVisibilty | Visibility | 设置控制条右侧三个按钮的显示状态。默认值为Visible。  |
 | IsCoverMaskShow | Boolean | 是否显示窗体的遮罩层。默认值为False。  |
+| IsAwaitShow | Boolean | 是否打开窗体的遮罩层，并显示等待控件。默认值为False。  |
 | AllowShowDelay  | Boolean | 是否允许在启动时延迟显示窗体内容。在页面较为复杂时，将此属性设置为True有助于减少启动动画卡顿。  |
 | NavbarBackground | Brush | 控制栏的背景色。默认值为White（白色）。  |
 | NavbarHeight | Double | 控制栏的高度。默认值为30。  |
