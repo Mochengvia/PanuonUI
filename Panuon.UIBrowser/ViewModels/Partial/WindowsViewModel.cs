@@ -12,12 +12,6 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 {
     public class WindowsViewModel : Screen, IShell
     {
-        private PUWindow _window;
-
-        public WindowsViewModel(PUWindow window)
-        {
-            _window = window;
-        }
 
         public void OpenDialog(string type)
         {
@@ -37,13 +31,14 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void ShowAwait()
         {
-            _window.IsAwaitShow = true;
+            var parent = Parent as MainWindowViewModel;
+            parent.ShowAwait();
             var task = new Task(() =>
             {
                 Thread.Sleep(2000);
                 App.Current.Dispatcher.BeginInvoke(new System.Action(() =>
                 {
-                    _window.IsAwaitShow = false;
+                    parent.CloseAwait();
                 }));
             });
             task.Start();
