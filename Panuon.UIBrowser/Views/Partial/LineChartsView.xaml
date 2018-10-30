@@ -22,7 +22,7 @@
                    TextWrapping="Wrap">
             <Run Text="Panuon.UI.Chart是一个独立的控件库，它不依赖于Panuon.UI。"></Run>
             <LineBreak /> 
-            <Run Text="额外的依赖属性包括：XAxis、YAxis、Values、ValueTips、UsingAnimation、AxisBrush、LineBrush、AreaBrush、StrokeThickness。值得一提的是，Values属性被设定成一个从0~1的Double集合，它表示该点在纵轴上的高度比例。" />
+            <Run Text="额外的依赖属性包括：XAxis、YAxis、Points、AnimationMode、GridBrush、LineBrush、AreaBrush、LineThickness。" />
              <LineBreak />
             <Run Text="上述Brush属性均可被设定为LinearGradientBrush，以实现渐变效果。"></Run>
         </TextBlock>
