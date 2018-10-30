@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Panuon.UI;
+using Panuon.UIBrowser.Views.Partial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 {
     public class WindowsViewModel : Screen, IShell
     {
+        private PUWindow _window;
+
+        public WindowsViewModel(PUWindow window)
+        {
+            _window = window;
+        }
 
         public void OpenDialog(string type)
         {
@@ -30,14 +37,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void ShowAwait()
         {
-            var parent = Parent as MainWindowViewModel;
-            parent.ShowAwait();
-            var task = new Task(() => 
+            _window.IsAwaitShow = true;
+            var task = new Task(() =>
             {
                 Thread.Sleep(2000);
-                App.Current.Dispatcher.BeginInvoke(new System.Action(() => 
+                App.Current.Dispatcher.BeginInvoke(new System.Action(() =>
                 {
-                    parent.CloseAwait();
+                    _window.IsAwaitShow = false;
                 }));
             });
             task.Start();

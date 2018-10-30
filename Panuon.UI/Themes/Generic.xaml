@@ -210,6 +210,12 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <Border x:Name="bdrAwaitCover"
+                                            Background="Black"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Opacity="0"
+                                            IsHitTestVisible="False" />
                                     <local:PULoading x:Name="loading"
                                                      Foreground="#CCFFFFFF"
                                                      Height="100"
@@ -276,11 +282,11 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="True" />
@@ -296,11 +302,11 @@
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="False" />
@@ -459,6 +465,12 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <Border x:Name="bdrAwaitCover"
+                                            Background="Black"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Opacity="0"
+                                            IsHitTestVisible="False" />
                                     <local:PULoading x:Name="loading"
                                                      Foreground="#CCFFFFFF"
                                                      Height="100"
@@ -535,11 +547,11 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="True" />
@@ -555,11 +567,11 @@
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="False" />
@@ -713,6 +725,12 @@
                                             CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
                                             Opacity="0"
                                             IsHitTestVisible="False" />
+                                    <Border x:Name="bdrAwaitCover"
+                                            Background="Black"
+                                            BorderThickness="0"
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Opacity="0"
+                                            IsHitTestVisible="False" />
                                     <local:PULoading x:Name="loading"
                                                      Foreground="#CCFFFFFF"
                                                      Height="100"
@@ -794,11 +812,11 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0.7"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="True" />
@@ -814,11 +832,11 @@
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="bdrCover"
+                                                <DoubleAnimation Storyboard.TargetName="bdrAwaitCover"
                                                                  Storyboard.TargetProperty="Opacity"
                                                                  To="0"
                                                                  Duration="0:0:0.2"></DoubleAnimation>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrCover"
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="bdrAwaitCover"
                                                                                 Storyboard.TargetProperty="IsHitTestVisible">
                                                     <DiscreteBooleanKeyFrame KeyTime="0:0:0"
                                                                              Value="False" />

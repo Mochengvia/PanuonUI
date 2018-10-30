@@ -24,7 +24,7 @@ namespace Panuon.UIBrowser.ViewModels
                     ActivateItem(new IntroductionViewModel());
                     return;
                 case 1:
-                    ActivateItem(new WindowsViewModel());
+                    ActivateItem(new WindowsViewModel(GetView() as PUWindow));
                     return;
                 case 2:
                     ActivateItem(new ButtonsViewModel());

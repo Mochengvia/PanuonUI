@@ -24,7 +24,8 @@ namespace Panuon.UI
             {
                 _parentWindow = GetOwnerWindow();
             }
-            catch { }
+            catch(Exception ex)
+            { }
             if (_parentWindow != null)
                 _parentWindow.IsCoverMaskShow =  true;
             if(isConfirm)
