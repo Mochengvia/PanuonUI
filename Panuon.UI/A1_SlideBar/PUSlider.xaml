@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Panuon.UI.PUSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Panuon.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="500"
+             x:Name="slider"
+             SizeChanged="slider_SizeChanged">
+    <Grid>
+        <Border Height="4"
+                Margin="2,0"
+                Background="{Binding Foreground,ElementName=slider}"></Border>
+        <Border x:Name="bdrCover"
+                Margin="2,0"
+                Width="5"
+                HorizontalAlignment="Left"
+                Height="4"
+                Background="{Binding CoverBrush,ElementName=slider}"></Border>
+        <Canvas Height="20" x:Name="canvas">
+            <Thumb x:Name="tmbToggle" Background="Transparent"
+                   DragDelta="Thumb_DragDelta"
+                   Canvas.Left="0">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Border BorderBrush="{Binding CoverBrush,ElementName=slider}"
+                                Width="20"
+                                HorizontalAlignment="Left"
+                                Height="20"
+                                CornerRadius="10"
+                                BorderThickness="3"
+                                Cursor="Hand"
+                                Background="White"></Border>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+        </Canvas>
+    </Grid>
+</UserControl>

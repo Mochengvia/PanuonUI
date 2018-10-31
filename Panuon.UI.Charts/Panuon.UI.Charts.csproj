@@ -53,12 +53,10 @@
     <Compile Include="1_LineChart\PULineChart.xaml.cs">
       <DependentUpon>PULineChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="2_DoughnutChart\PUDoughnutChart.xaml.cs">
-      <DependentUpon>PUDoughnutChart.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="2_DoughnutChart\" />
     <Folder Include="3_PointChart\" />
   </ItemGroup>
   <ItemGroup>
@@ -67,10 +65,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="1_LineChart\PULineChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="2_DoughnutChart\PUDoughnutChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

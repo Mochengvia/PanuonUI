@@ -127,3 +127,5 @@ D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.Properties.R
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.GenerateResource.Cache
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
 D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\SlidersView.baml
+D:\Panuon Repo\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\SlidersView.g.cs

@@ -17,6 +17,7 @@ namespace Panuon.UI.Utils
 {
     public static class Extends
     {
+        #region String
         /// <summary>
         /// 尝试将字符串转换为整数，若转换失败，则返回0。
         /// </summary>
@@ -40,7 +41,9 @@ namespace Panuon.UI.Utils
             else
                 return 0;
         }
+        #endregion
 
+        #region Integer
         /// <summary>
         /// 将数字转换为中文大写文字。
         /// </summary>
@@ -56,6 +59,9 @@ namespace Panuon.UI.Utils
             return result;
         }
 
+        #endregion
+
+        #region DateTime
         /// <summary>
         /// 将时间转换成时间戳（精确到毫秒）。
         /// </summary>
@@ -64,7 +70,9 @@ namespace Panuon.UI.Utils
             TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
             return Convert.ToInt64(ts.TotalMilliseconds);
         }
+        #endregion
 
+        #region Long
         /// <summary>
         /// 将时间戳转换成时间（精确到毫秒）。
         /// </summary>
@@ -72,10 +80,22 @@ namespace Panuon.UI.Utils
         {
             return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddMilliseconds((long)timeStamp);
         }
+        #endregion
+
+        #region List
+        /// <summary>
+        /// 将列表中的每个元素拼接成一段字符串。
+        /// </summary>
+        /// <param name="spliter">分隔符。</param>
+        public static string ToString<T>(this IList<T> list,string spliter)
+        {
+            return String.Join(spliter, list);
+        }
 
         public static ObservableCollection<T> ToObservableCollection<T>(this IList<T> list)
         {
             return new ObservableCollection<T>(list);
         }
+        #endregion
     }
 }

@@ -210,7 +210,7 @@ namespace Panuon.UI.Charts
             DrawGrid(actualWidth, actualHeight);
             if (Points == null)
                 return;
-            InitLine(actualWidth, actualHeight, chart.AnimationMode != AnimationModes.None);
+            InitLine(actualWidth, actualHeight, AnimationMode != AnimationModes.None);
         }
 
         private void LoadYAxis(double actualHeight)
