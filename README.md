@@ -4,15 +4,16 @@
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
 ## 使用方式
-1.添加对Panuon.UI.dll的引用
-2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。
+1.添加对Panuon.UI.dll的引用<br/>
+2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。<br/>
 ```
 <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
 ```
-3.在需要使用PanuonUI的xaml文件中添加引用
+3.在需要使用PanuonUI的xaml文件中添加引用<br/>
 ```
 xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 ```
+
 ## 目录
 [Window / MessageBox 窗体控件](#window-窗体控件)<br/>
 [Button / RepeatButton 按钮控件](#button-按钮控件)<br/>
