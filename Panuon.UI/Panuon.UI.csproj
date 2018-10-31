@@ -67,7 +67,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="A1_SlideBar\PUSlider.xaml">
+    <Page Include="A1_Slider\PUSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +117,7 @@
     <Compile Include="9_Special\PUSplitLine.cs" />
     <Compile Include="A0_TabControl\PUTabControl.cs" />
     <Compile Include="A0_TabControl\PUTabItem.cs" />
-    <Compile Include="A1_SlideBar\PUSlider.xaml.cs">
+    <Compile Include="A1_Slider\PUSlider.xaml.cs">
       <DependentUpon>PUSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="A2_ListBox\PUListBox.cs" />

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,19 @@ namespace Panuon.UIBrowser.ViewModels.Partial
     {
         public DatePickersViewModel()
         {
-            SetToday();
-            SelectedDateString = ((DateTime)SelectedDate).ToString("yyyy-MM-dd HH:mm:ss");
+            SelectedDateTimeString = ((DateTime)SelectedDateTime).ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         #region Bindings
-        public DateTime? SelectedDate
+        public DateTime SelectedDateTime
         {
             get { return _selectedDate; }
-            set { _selectedDate = value; NotifyOfPropertyChange(() => SelectedDate); }
+            set {
+                _selectedDate = value;
+                SelectedDateTimeString = ((DateTime)SelectedDateTime).ToString("yyyy-MM-dd HH:mm:ss");
+                NotifyOfPropertyChange(() => SelectedDateTime); }
         }
-        private DateTime? _selectedDate;
+        private DateTime _selectedDate = DateTime.Now.ToDateOnly();
 
         public DateTime? MaxDateTime
         {
@@ -36,10 +39,10 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
         private DateTime? _minDateTime;
 
-        public string SelectedDateString
+        public string SelectedDateTimeString
         {
             get { return _selectedDateString; }
-            set { _selectedDateString = value; NotifyOfPropertyChange(() => SelectedDateString); }
+            set { _selectedDateString = value; NotifyOfPropertyChange(() => SelectedDateTimeString); }
         }
         private string _selectedDateString;
 
@@ -83,29 +86,19 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             }
         }
 
-        public void SetNow()
-        {
-            SelectedDate = DateTime.Now;
-        }
-
-        public void SetToday()
-        {
-            SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        }
-
         public void DateTimeInputChanged()
         {
-            if (String.IsNullOrEmpty(SelectedDateString))
+            if (String.IsNullOrEmpty(SelectedDateTimeString))
             {
                 return;
             }
             DateTime date;
-            if(!DateTime.TryParse(SelectedDateString,out date))
+            if(!DateTime.TryParse(SelectedDateTimeString,out date))
             {
-                SelectedDate = null;
+                SelectedDateTime = DateTime.Now.ToDateOnly();
                 return;
             }
-            SelectedDate = date;
+            SelectedDateTime = date;
         }
         #endregion
     }

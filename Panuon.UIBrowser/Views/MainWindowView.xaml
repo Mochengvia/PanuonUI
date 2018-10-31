@@ -151,6 +151,13 @@
                                       Padding="20,0,0,0"
                                       FontSize="14"
                                       Background="White"
+                                      Content="DatePicker 日期选择"
+                                      cal:Message.Attach="[Event Click]=[Action ChangeSelect('16')]"></pu:PURadioButton>
+                    <pu:PURadioButton RadioButtonStyle="Branch"
+                                      Height="34"
+                                      Padding="20,0,0,0"
+                                      FontSize="14"
+                                      Background="White"
                                       Content="LineCharts 折线图"
                                       cal:Message.Attach="[Event Click]=[Action ChangeSelect('101')]" />
                 </StackPanel>

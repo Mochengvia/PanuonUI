@@ -21,22 +21,22 @@
             </Grid.RowDefinitions>
             <Label Height="50"
                    FontSize="20"
-                   VerticalContentAlignment="Center">PUComboBox/PUListBoxItem 下拉选择框控件</Label>
+                   VerticalContentAlignment="Center">PUListBox/PUListBoxItem 下拉选择框控件</Label>
             <TextBlock Grid.Row="1"
                        Margin="5,10,0,10"
                        TextWrapping="Wrap">
                         <Run Foreground="#FF24618B"
                              FontWeight="Bold">PUListBoxItem</Run><LineBreak />    
                         <Run Foreground="#FF359ECF">Value </Run>
-                        <Run>获取或设置下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
+                        <Run>获取或设置子项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。【Object类型】。默认值为空。</Run><LineBreak />
 
                         <LineBreak />   
                         <Run Foreground="#FF24618B"
                              FontWeight="Bold">PUListBox</Run><LineBreak />
                         <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时下拉选择项的背景颜色。【Brush类型】。默认值为#22E6E6E6。</Run><LineBreak />
+                        <Run>获取或设置鼠标悬浮时子项的背景颜色。【Brush类型】。默认值为#22E6E6E6。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">SelectedBrush </Run>
-                        <Run>获取或设置下拉选择项被选中时的背景颜色。【Brush类型】。默认值为#E6E6E6。</Run><LineBreak />
+                        <Run>获取或设置子项被选中时的背景颜色。【Brush类型】。默认值为#E6E6E6。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">SearchBrush </Run>
                         <Run>获取或设置当子项被搜索到时展现1秒的背景颜色。【Brush类型】。默认值为#44444444。</Run><LineBreak />
                        <Run Foreground="#FF9735CF">SearchItemByContent(string content, bool allowFuzzySearch)</Run>

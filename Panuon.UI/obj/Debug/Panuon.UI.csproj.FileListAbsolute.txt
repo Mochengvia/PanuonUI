@@ -48,5 +48,6 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.Properties.Resources.resou
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.Cache
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.dll
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.pdb
-D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_SlideBar\PUSlider.g.cs
-D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_SlideBar\PUSlider.baml
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.g.cs
+D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.baml

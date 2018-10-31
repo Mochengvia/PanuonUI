@@ -70,6 +70,16 @@ namespace Panuon.UI.Utils
             TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1);
             return Convert.ToInt64(ts.TotalMilliseconds);
         }
+
+        /// <summary>
+        /// 返回一个新的日期，时分秒将被设为0。
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime ToDateOnly(this DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, date.Day);
+        }
         #endregion
 
         #region Long

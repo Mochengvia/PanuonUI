@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:Panuon.UI"
              mc:Ignorable="d"
              Height="300"
-             Width="370"
+             Width="330"
              x:Name="datePicker">
     <Grid>
-        <Grid x:Name="GrdDate">
+
+        <Grid x:Name="GrdDate"
+              Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -79,13 +81,13 @@
                 <StackPanel VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
-                    <local:PUButton x:Name="BtnTitleLeft"
+                    <local:PUButton x:Name="BtnYear"
                                     ButtonStyle="Link"
                                     Foreground="{Binding Foreground,ElementName=datePicker}"
                                     CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
                                     FontSize="16"
                                     Content="2018年"></local:PUButton>
-                    <local:PUButton x:Name="BtnTitleRight"
+                    <local:PUButton x:Name="BtnMonth"
                                     FontSize="16"
                                     Foreground="{Binding Foreground,ElementName=datePicker}"
                                     CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
@@ -161,6 +163,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+
             </Grid>
         </Grid>
         <Grid x:Name="GrdTime"
@@ -171,7 +174,7 @@
                 <RowDefinition Height="200"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid>
-                <local:PUButton x:Name="BtnBack"
+                <local:PUButton x:Name="BtnBackToDate"
                                 ButtonStyle="Link"
                                 Margin="10,0,0,0"
                                 Background="Transparent"
@@ -184,7 +187,7 @@
                                 FontFamily="{StaticResource IconFont}"
                                 Width="40"
                                 Height="40"
-                                Click="BtnBack_Click">
+                                Click="BtnBackToDate_Click">
                 </local:PUButton>
                 <TextBlock VerticalAlignment="Center"
                            HorizontalAlignment="Center"
@@ -223,28 +226,30 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ScrollViewer x:Name="ScrollHour" VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <VirtualizingStackPanel x:Name="StkHour"
-                                            VirtualizingStackPanel.IsVirtualizing="True"></VirtualizingStackPanel>
+                <ScrollViewer x:Name="ScrollHour"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Style="{StaticResource MiniScrollViewer}">
+                    <StackPanel x:Name="StkHour">
+                    </StackPanel>
                 </ScrollViewer>
                 <ScrollViewer x:Name="ScrollMinute"
                               VerticalScrollBarVisibility="Auto"
                               Grid.Column="1"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <VirtualizingStackPanel x:Name="StkMinute"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Style="{StaticResource MiniScrollViewer}">
+                    <StackPanel x:Name="StkMinute"
                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                            VirtualizingStackPanel.IsVirtualizing="True"></VirtualizingStackPanel>
+                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"></StackPanel>
                 </ScrollViewer>
                 <ScrollViewer x:Name="ScrollSecond"
                               VerticalScrollBarVisibility="Auto"
                               Grid.Column="2"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <VirtualizingStackPanel x:Name="StkSecond"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Style="{StaticResource MiniScrollViewer}">
+                    <StackPanel x:Name="StkSecond"
                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                            VirtualizingStackPanel.IsVirtualizing="True"></VirtualizingStackPanel>
+                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"></StackPanel>
                 </ScrollViewer>
             </Grid>
         </Grid>
