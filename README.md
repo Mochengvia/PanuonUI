@@ -1,4 +1,4 @@
-# PanuonUI(v0.0.5 alpha)
+# PanuonUI(v0.0.8 alpha)
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
 本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)。<br/>
 
@@ -35,13 +35,13 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 [ImageCuter 图片裁剪器](#imagecuter-图片裁剪器)<br/>
 [DatePicker 日期时间选择器](#datepicker-日期时间选择器)<br/>
 [PagingNav 分页器](#pagingnav-分页器)<br/>
-图标<br/>
+图表<br/>
 [LineCharts 折线图](#linchart-折线图)<br/>
 
 
 ### Window 窗体
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
-通过设置IsCoverMask和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。
+通过设置IsCoverMask和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。<br/>
 图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.png)<br/>
 
@@ -63,7 +63,7 @@ PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
 
 
-PUWindow包含以下一个方法。<br/>
+PUWindow包含以下一个额外的方法。<br/>
 
 | 方法 | 含义 |
 | ----- | ----- |
@@ -120,4 +120,35 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | ShadowColor | Color | 密码框获得焦点时阴影的颜色。默认值为#888888。  |
 | BorderCornerRadius | CornerRadius | 密码框圆角大小。默认值为0。  |
 
+### ComboBox 下拉框
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/combobox.png)<br/>
+#### PUComboBox依赖属性
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| ShadowColor | Color | 获下拉框激活时阴影的颜色。默认值为#88888。  |
+| CoverBrush | String | 鼠标悬浮在选择项时的背景颜色。默认值为#EEEEEE。  |
+| DeleteMode | DeleteModes枚举 | 当用户点击下拉框子项的删除按钮时，应该执行的操作。默认值为DeleteAndRouted（其他可选项为EventOnly）。  |
+| BindingItems | IList<PUComboBoxItemModel>集合 | 绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。默认值为空。  |
+| SelectedValuePath | SelectedValuePaths枚举 | 当子项目被选中时，SelectedValue应呈现子项PUComboBoxItem的哪一个值。默认值为Header（Value）。  |
+| SelectedValue | Object | 子项PUComboBoxItem的Header或Value属性（取决于SelectedValuePath的值），或通过设置该值来选中指定的子项目。默认值为空。  |
+| BorderCornerRadius | CornerRadius | 下拉框和输入框的圆角大小。默认值为0。  |
+
+PUComboBox包含以下一个额外的路由事件。<br/>
+
+| 路由事件 | 含义 |
+| ----- | ----- |
+| DeleteItem | 当用户点击子项PUComboBoxItem的删除按钮时，触发此路由事件。 |
+
+#### PUComboBoxItem依赖属性
+| 依赖属性  | 类型 | 含义 |
+| --- | --- | ---|
+| DeleteButtonVisibility | Visibility | 下拉选择项后侧删除按钮的显示状态。默认值为Collpased。  |
+| Value | Object | 下拉选择项可以携带的值，仅用于标记该子项的实际内容，不会对前端显示造成影响。默认值为Null。  |
+
+PUComboBoxItem包含以下一个额外的类。<br/>
+
+| 类 | 含义 |
+| ----- | ----- |
+| PUComboBoxItemModel | 用于绑定到PUComboBox子项集合的模型类，参见PUComboBox的BindingItems属性。 |
+  
 （文档更新中）
