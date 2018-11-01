@@ -121,7 +121,7 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | BorderCornerRadius | CornerRadius | 密码框圆角大小。默认值为0。  |
 
 ### ComboBox 下拉框
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox.png)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/combobox.png)<br/>
 #### PUComboBox依赖属性
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
