@@ -307,10 +307,10 @@ namespace Panuon.UI
 
             for (int i = 0; i < firstDay; i++)
             {
-                var date = new DateTime(lastMonth.Year, lastMonth.Month, lastDay - firstDay + i);
+                var date = new DateTime(lastMonth.Year, lastMonth.Month, lastDay - firstDay + i + 1);
                 var radio = GrdDatePanel.Children[i] as PURadioButton;
                 radio.Opacity = 0.7;
-                radio.Content = (lastDay - firstDay + i).ToString();
+                radio.Content = (lastDay - firstDay + i + 1).ToString();
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
@@ -465,8 +465,6 @@ namespace Panuon.UI
                     BtnAddMonth.Visibility = Visibility.Hidden;
                 else
                     BtnAddMonth.Visibility = Visibility.Visible;
-
-                
             }
             else
             {
@@ -478,7 +476,7 @@ namespace Panuon.UI
             {
                 var min = (DateTime)MinDateTime;
 
-                if (SelectedDateTime > min)
+                if (SelectedDateTime < min)
                 {
                     SelectedDateTime = min;
                     return;
