@@ -14,7 +14,8 @@
 xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 ```
 
-## 目录
+## 当前的所有控件
+基础控件<br/>
 [Window / MessageBox 窗体](#window-窗体)<br/>
 [Button / RepeatButton 按钮](#button-按钮)<br/>
 [TextBox 输入框](#textbox-输入框)<br/>
@@ -25,15 +26,16 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 [TreeView / TreeViewItem 树视图](#treeview-树视图)<br/>
 [ProgressBar 进度条](#progressbar-进度条)<br/>
 [TabControl / TabItem 选项卡](#tabcontrol-选项卡)<br/>
+[ListBox / ListBoxItem 列表](#listbox-列表)<br/>
+[Slider 滑块](#slider-滑块控件)<br/>
+特殊控件<br/>
 [ResizeGrid 可调大小容器](#resizegrid-可调大小容器)<br/>
 [Loading 等待控件](#loading-等待控件)<br/>
 [SlideShow 轮播控件](#slideshow-轮播控件)<br/>
-[ListBox / ListBoxItem 列表](#passwordbox-密码框控件)<br/>
-[Slider 滑块](#slider-滑块控件)<br/>
 [ImageCuter 图片裁剪器](#imagecuter-图片裁剪器)<br/>
 [DatePicker 日期时间选择器](#datepicker-日期时间选择器)<br/>
 [PagingNav 分页器](#pagingnav-分页器)<br/>
-<br/>
+图标<br/>
 [LineCharts 折线图](#linchart-折线图)<br/>
 
 
