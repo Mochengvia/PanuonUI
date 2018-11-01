@@ -15,13 +15,31 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 ```
 
 ## 目录
-[Window / MessageBox 窗体控件](#window-窗体控件)<br/>
-[Button / RepeatButton 按钮控件](#button-按钮控件)<br/>
-[TextBox 输入框控件](#textbox-输入框控件)<br/>
-[PasswordBox 输入框控件](#passwordbox-密码框控件)<br/>
+[Window / MessageBox 窗体](#window-窗体)<br/>
+[Button / RepeatButton 按钮](#button-按钮)<br/>
+[TextBox 输入框](#textbox-输入框)<br/>
+[PasswordBox 密码框](#passwordbox-密码框)<br/>
+[ComboBox / ComboBoxItem 下拉框](#combobox-下拉框)<br/>
+[CheckBox 复选框](#checkbox-复选框)<br/>
+[RadioButton 单选按钮](#radiobutton-单选按钮)<br/>
+[TreeView / TreeViewItem 树视图](#treeview-树视图)<br/>
+[ProgressBar 进度条](#progressbar-进度条)<br/>
+[TabControl / TabItem 选项卡](#tabcontrol-选项卡)<br/>
+[ResizeGrid 可调大小容器](#resizegrid-可调大小容器)<br/>
+[Loading 等待控件](#loading-等待控件)<br/>
+[SlideShow 轮播控件](#slideshow-轮播控件)<br/>
+[ListBox / ListBoxItem 列表](#passwordbox-密码框控件)<br/>
+[Slider 滑块](#slider-滑块控件)<br/>
+[ImageCuter 图片裁剪器](#imagecuter-图片裁剪器)<br/>
+[DatePicker 日期时间选择器](#datepicker-日期时间选择器)<br/>
+[PagingNav 分页器](#pagingnav-分页器)<br/>
+<br/>
+[LineCharts 折线图](#linchart-折线图)<br/>
 
-### Window 窗体控件
+
+### Window 窗体
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
+通过设置IsCoverMask和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。
 图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window201810191402.gif)<br/>
 
@@ -59,7 +77,7 @@ PUMessageBox.ShowDialog($"操作成功。");
 PUMessageBox.ShowConfirm($"确定吗？");
 ```
 
-### Button 按钮控件
+### Button 按钮
 PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
 PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/buttons.gif)<br/>
@@ -73,7 +91,7 @@ PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
 | CoverBrush | AnimationStyles枚举 | 鼠标悬浮时遮罩层的背景颜色（Outline和Link样式下为前景色）。默认值为白色（在Outline和Link样式下为灰色）  |
 
 
-### TextBox 输入框控件
+### TextBox 输入框
 PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox201810191448.gif)<br/>
 
@@ -86,7 +104,7 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 | ShadowColor | Color | 输入框获得焦点时阴影的颜色。默认值为#888888。  |
 | BorderCornerRadius | CornerRadius | 输入框圆角大小。默认值为0。  |
 
-### PasswordBox 密码框控件
+### PasswordBox 密码框
 #### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
 不要对Text属性进行赋值，可能会导致意外的错误。按原生PasswordBox的方式使用即可。
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/passwordbox201810191449.gif)<br/>
