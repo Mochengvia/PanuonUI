@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using static Panuon.UI.PUTreeView;
 
 namespace Panuon.UIBrowser.ViewModels.Partial
 {
@@ -38,6 +40,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             set { _choosedValue = value; NotifyOfPropertyChange(() => ChoosedValue); }
         }
         private object _choosedValue;
+        public TreeViewStyles TreeViewStyle
+        {
+            get { return _treeViewStyle; }
+            set { _treeViewStyle = value; NotifyOfPropertyChange(() => TreeViewStyle); }
+        }
+        private TreeViewStyles _treeViewStyle= TreeViewStyles.General;
+        
         #endregion
 
         #region Event
@@ -107,6 +116,20 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                  },
             });
             NotifyOfPropertyChange(() => TreeViewItems);
+        }
+
+        public void SelectionChanged(SelectionChangedEventArgs e)
+        {
+            var comboBoxItem = e.AddedItems[0] as PUComboBoxItem;
+            switch (comboBoxItem.Value.ToString())
+            {
+                case "1":
+                    TreeViewStyle = TreeViewStyles.General;
+                    break;
+                case "2":
+                    TreeViewStyle = TreeViewStyles.Classic;
+                    break;
+            }
         }
         #endregion
     }

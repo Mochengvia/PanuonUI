@@ -3779,177 +3779,314 @@
                 Value="DimGray"></Setter>
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
-
         <Setter Property="FontSize"
                 Value="14"></Setter>
         <Setter Property="IsExpanded"
                 Value="False"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUTreeViewItem}">
-                    <StackPanel>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeView}}">
-                            <Grid>
-                                <Border x:Name="bdrCover"
-                                        Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
-                                        Opacity="0">
-                                </Border>
-                                <Border x:Name="bdrSelectedCover"
-                                        Background="{Binding ChoosedBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
-                                        Opacity="0">
-                                </Border>
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="{TemplateBinding Padding}">
-                                    <ToggleButton x:Name="toggle"
-                                                  Width="20"
-                                                  IsChecked="{TemplateBinding IsExpanded}">
-                                        <ToggleButton.Template>
-                                            <ControlTemplate TargetType="ToggleButton">
-                                                <Border>
-                                                    <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </ToggleButton.Template>
-                                        <ToggleButton.Content>
-                                            <Grid x:Name="arrow"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Left"
-                                                  Width="{TemplateBinding Height}"
-                                                  Height="{TemplateBinding Height}">
-                                                <Path x:Name="arrow1"
-                                                      VerticalAlignment="Center"
-                                                      HorizontalAlignment="Left"
-                                                      Margin="5,0,0,0"
-                                                      Data="M2,5.5 L7,9.5 L12,5.5"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Fill="{x:Null}"
-                                                      Stroke="{TemplateBinding Foreground}"
-                                                      RenderTransformOrigin="0.5,0.5">
-                                                </Path>
-                                                <Path x:Name="arrow2"
-                                                      Opacity="0"
-                                                      VerticalAlignment="Center"
-                                                      HorizontalAlignment="Left"
-                                                      Margin="5,0,0,0"
-                                                      Data="M2,5.5 L7,9.5 L12,5.5"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Fill="{x:Null}"
-                                                      Stroke="{TemplateBinding Foreground}"
-                                                      RenderTransformOrigin="0.5,0.5">
-                                                    <Path.RenderTransform>
-                                                        <RotateTransform Angle="180"></RotateTransform>
-                                                    </Path.RenderTransform>
-                                                </Path>
-                                            </Grid>
-                                        </ToggleButton.Content>
-                                    </ToggleButton>
-                                    <StackPanel x:Name="stkPanel"
-                                                Orientation="Horizontal"
-                                                Margin="10,0,0,0">
-                                        <ContentPresenter x:Name="content"
-                                                          RecognizesAccessKey="True"
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TreeViewStyle,RelativeSource={RelativeSource AncestorType=TreeView}}"
+                         Value="General">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTreeViewItem}">
+                            <StackPanel>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeView}}">
+                                    <Grid>
+                                        <Border x:Name="bdrCover"
+                                                Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
+                                                Opacity="0">
+                                        </Border>
+                                        <Border x:Name="bdrSelectedCover"
+                                                Background="{Binding ChoosedBrush,RelativeSource={RelativeSource AncestorType=TreeView}}"
+                                                Opacity="0">
+                                        </Border>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="{TemplateBinding Padding}">
+                                            <ToggleButton x:Name="toggle"
+                                                          Width="20"
+                                                          IsChecked="{TemplateBinding IsExpanded}">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Border>
+                                                            <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
+                                                <ToggleButton.Content>
+                                                    <Grid x:Name="arrow"
                                                           VerticalAlignment="Center"
-                                                          ContentSource="Header" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                        <ItemsPresenter x:Name="ItemsHost" />
-                    </StackPanel>
-                    <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver"
-                                           Value="True"></Condition>
-                                <Condition Property="IsChoosed"
-                                           Value="False"></Condition>
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation To="1"
-                                                         Duration="0:0:0.2"
-                                                         Storyboard.TargetName="bdrCover"
-                                                         Storyboard.TargetProperty="Opacity" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                            <MultiTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation  Duration="0:0:0.2"
-                                                          Storyboard.TargetName="bdrCover"
-                                                          Storyboard.TargetProperty="Opacity" />
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                                          HorizontalAlignment="Left"
+                                                          Width="{TemplateBinding Height}"
+                                                          Height="{TemplateBinding Height}">
+                                                        <Path x:Name="arrow1"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"
+                                                              Margin="5,0,0,0"
+                                                              Data="M2,5.5 L7,9.5 L12,5.5"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Fill="{x:Null}"
+                                                              Stroke="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5">
+                                                        </Path>
+                                                        <Path x:Name="arrow2"
+                                                              Opacity="0"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"
+                                                              Margin="5,0,0,0"
+                                                              Data="M2,5.5 L7,9.5 L12,5.5"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Fill="{x:Null}"
+                                                              Stroke="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5">
+                                                            <Path.RenderTransform>
+                                                                <RotateTransform Angle="180"></RotateTransform>
+                                                            </Path.RenderTransform>
+                                                        </Path>
+                                                    </Grid>
+                                                </ToggleButton.Content>
+                                            </ToggleButton>
+                                            <Grid Margin="10,0,0,0">
+                                                <ContentPresenter x:Name="content"
+                                                                  RecognizesAccessKey="True"
+                                                                  VerticalAlignment="Center"
+                                                                  ContentSource="Header" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <ItemsPresenter x:Name="ItemsHost" />
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsMouseOver"
+                                                   Value="True"></Condition>
+                                        <Condition Property="IsChoosed"
+                                                   Value="False"></Condition>
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation To="1"
+                                                                 Duration="0:0:0.2"
+                                                                 Storyboard.TargetName="bdrCover"
+                                                                 Storyboard.TargetProperty="Opacity" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </MultiTrigger.EnterActions>
+                                    <MultiTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation  Duration="0:0:0.2"
+                                                                  Storyboard.TargetName="bdrCover"
+                                                                  Storyboard.TargetProperty="Opacity" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
 
-                            </MultiTrigger.ExitActions>
-                        </MultiTrigger>
-                        <Trigger Property="IsExpanded"
-                                 Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="arrow1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.25"></DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="arrow2"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.25"></DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="arrow2"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.25"></DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetName="arrow1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.25"></DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                        <Trigger Property="IsExpanded"
-                                 Value="False">
-                            <Setter TargetName="ItemsHost"
-                                    Property="Visibility"
-                                    Value="Collapsed" />
-                        </Trigger>
-                        <Trigger Property="IsExpanded"
-                                 Value="True">
-                            <Setter TargetName="ItemsHost"
-                                    Property="Visibility"
-                                    Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="HasItems"
-                                 Value="False">
-                            <Setter TargetName="arrow"
-                                    Property="Visibility"
-                                    Value="Hidden" />
-                        </Trigger>
-                        <Trigger Property="IsChoosed"
-                                 Value="True">
-                            <Setter TargetName="bdrSelectedCover"
-                                    Property="Opacity"
-                                    Value="1" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                                    </MultiTrigger.ExitActions>
+                                </MultiTrigger>
+                                <Trigger Property="IsExpanded"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsExpanded"
+                                         Value="False">
+                                    <Setter TargetName="ItemsHost"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
+                                <Trigger Property="IsExpanded"
+                                         Value="True">
+                                    <Setter TargetName="ItemsHost"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                                <Trigger Property="HasItems"
+                                         Value="False">
+                                    <Setter TargetName="arrow"
+                                            Property="Visibility"
+                                            Value="Hidden" />
+                                </Trigger>
+                                <Trigger Property="IsChoosed"
+                                         Value="True">
+                                    <Setter TargetName="bdrSelectedCover"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding TreeViewStyle,RelativeSource={RelativeSource AncestorType=TreeView}}"
+                         Value="Classic">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTreeViewItem}">
+                            <StackPanel>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}"
+                                        Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=TreeView}}">
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="{TemplateBinding Padding}">
+                                            <ToggleButton x:Name="toggle"
+                                                          Width="20"
+                                                          IsChecked="{TemplateBinding IsExpanded}">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Border>
+                                                            <ContentPresenter VerticalAlignment="Center"
+                                                                              HorizontalAlignment="Center" />
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
+                                                <ToggleButton.Content>
+                                                    <Grid x:Name="arrow"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          Width="{TemplateBinding Height}"
+                                                          Height="{TemplateBinding Height}">
+                                                        <Path x:Name="arrow1"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"
+                                                              Margin="5,0,0,0"
+                                                              Data="M 4,3 L10,7.5 L 4,12 Z"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Stroke="{x:Null}"
+                                                              Fill="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5">
+                                                        </Path>
+                                                        <Path x:Name="arrow2"
+                                                              Opacity="0"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Left"
+                                                              Margin="5,0,0,0"
+                                                              Data="M 4,3 L10,7.5 L 4,12 Z"
+                                                              Width="15"
+                                                              Height="15"
+                                                              Stroke="{x:Null}"
+                                                              Fill="{TemplateBinding Foreground}"
+                                                              RenderTransformOrigin="0.5,0.5">
+                                                            <Path.RenderTransform>
+                                                                <RotateTransform Angle="45"></RotateTransform>
+                                                            </Path.RenderTransform>
+                                                        </Path>
+                                                    </Grid>
+                                                </ToggleButton.Content>
+                                            </ToggleButton>
+                                            <Grid Margin="10,0,0,0">
+                                                <Label x:Name="content"
+                                                                  FontFamily="{TemplateBinding FontFamily}"
+                                                       FontSize="{TemplateBinding FontSize}"
+                                                       Foreground="{TemplateBinding Foreground}"
+                                                                  VerticalAlignment="Center"
+                                                                 Content="{TemplateBinding Header}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                <ItemsPresenter x:Name="ItemsHost" />
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsExpanded"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.25"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsExpanded"
+                                         Value="False">
+                                    <Setter TargetName="ItemsHost"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
+                                <Trigger Property="IsExpanded"
+                                         Value="True">
+                                    <Setter TargetName="ItemsHost"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                                <Trigger Property="HasItems"
+                                         Value="False">
+                                    <Setter TargetName="arrow"
+                                            Property="Visibility"
+                                            Value="Hidden" />
+                                </Trigger>
+                                <Trigger Property="IsChoosed"
+                                         Value="True">
+                                    <Setter Property="Foreground"
+                                            TargetName="content"
+                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeViewItem}}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type local:PUTreeView}">
         <Setter Property="BorderThickness"
@@ -3965,10 +4102,10 @@
                 <ControlTemplate>
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled"
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}"
                                   Style="{StaticResource MiniScrollViewer}">
                         <VirtualizingStackPanel Margin="0,0,0,0"
-                                                Height="{TemplateBinding Height}"
-                                                Width="{TemplateBinding Width}"
                                                 IsItemsHost="True">
                         </VirtualizingStackPanel>
                     </ScrollViewer>

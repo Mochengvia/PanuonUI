@@ -64,28 +64,25 @@
                             Margin="0,0,0,40">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                            <ColumnDefinition Width="500"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="默认样式"
-                                   TextWrapping="Wrap"
-                                   Margin="0,5,20,0"
-                                   VerticalAlignment="Top" />
-                        <StackPanel Orientation="Horizontal"
-                                    Grid.Column="1">
-                            <ScrollViewer Height="200"
-                                          Width="200"
-                                          VerticalScrollBarVisibility="Auto"
-                                          HorizontalScrollBarVisibility="Disabled">
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="230" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
                                 <pu:PUTreeView cm:Message.Attach="[Event ChoosedItemChanged]=[Action ChoosedItemChanged($eventArgs)]"
+                                               Height="250"
+                                               Width="200"
                                                BindingItems="{Binding TreeViewItems}"
-                                               ChoosedValuePath="Value"
+                                           TreeViewStyle="{Binding TreeViewStyle}"
                                                ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
                                 </pu:PUTreeView>
-                            </ScrollViewer>
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical"
+                                        Grid.Column="1">
                                 <Grid Height="30"
-                                      Width="220">
+                                      Width="240">
                                     <Label Width="100"
                                            HorizontalAlignment="Left">选中项的标题</Label>
                                     <pu:PUTextBox x:Name="ChoosedHeader"
@@ -93,7 +90,7 @@
                                                   HorizontalAlignment="Right"></pu:PUTextBox>
                                 </Grid>
                                 <Grid Height="30"
-                                      Width="220">
+                                      Width="240">
                                     <Label Width="100"
                                            HorizontalAlignment="Left">选中项的Value</Label>
                                     <pu:PUTextBox x:Name="ChoosedValue"
@@ -102,8 +99,25 @@
                                 </Grid>
                                 <Label Foreground="Gray"
                                        HorizontalAlignment="Left">修改上面的Value值，选中项也会改变。</Label>
+                                <Grid Height="30"
+                                      Width="240">
+                                    <Label Width="100"
+                                           HorizontalAlignment="Left">选择样式</Label>
+                                    <pu:PUComboBox Height="30"
+                                                   Width="140"
+                                                   HorizontalAlignment="Right"
+                                                   cm:Message.Attach="[Event SelectionChanged]=[Action SelectionChanged($eventArgs)]">
+                                        <pu:PUComboBoxItem Content="General"
+                                                           Value="1"
+                                                           IsSelected="True" />
+                                        <pu:PUComboBoxItem Value="2"
+                                                           Content="Classic" />
+                                    </pu:PUComboBox>
+
+                                </Grid>
+
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </Grid>
 
                 </StackPanel>

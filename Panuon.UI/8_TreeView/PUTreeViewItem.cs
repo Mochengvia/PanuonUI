@@ -74,7 +74,9 @@ namespace Panuon.UI
                 if (item.ParentTreeView.ChoosedItem != null)
                     item.ParentTreeView.ChoosedItem.IsChoosed = false;
                 item.ParentTreeView.ChoosedItem = item;
-                item.ParentTreeView.ChoosedValue = (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value);
+
+                item.ParentTreeView.isInternalSetChoosedValue = true;
+                item.ParentTreeView.SetValue(PUTreeView.ChoosedValueProperty, (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value));
             }
         }
 

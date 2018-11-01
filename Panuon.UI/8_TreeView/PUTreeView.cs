@@ -29,6 +29,20 @@ namespace Panuon.UI
         #endregion
 
         #region Property
+
+        /// <summary>
+        /// 获取或设置树视图的基本样式，默认值为General。
+        /// </summary>
+        public TreeViewStyles TreeViewStyle
+        {
+            get { return (TreeViewStyles)GetValue(TreeViewStyleProperty); }
+            set { SetValue(TreeViewStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty TreeViewStyleProperty =
+            DependencyProperty.Register("TreeViewStyle", typeof(TreeViewStyles), typeof(PUTreeView), new PropertyMetadata(TreeViewStyles.General));
+
+
         /// <summary>
         /// 子项目行元素高度，默认值为40。
         /// </summary>
@@ -123,11 +137,20 @@ namespace Panuon.UI
         public static readonly DependencyProperty ChoosedValueProperty =
             DependencyProperty.Register("ChoosedValue", typeof(object), typeof(PUTreeView), new PropertyMetadata(OnChoosedValueChanged));
 
+        internal bool isInternalSetChoosedValue = false;
         private static void OnChoosedValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+          
             var treeView = d as PUTreeView;
+
             if (!treeView.IsLoaded || treeView.ChoosedValue == null)
                 return;
+
+            if (treeView.isInternalSetChoosedValue)
+            {
+                treeView.isInternalSetChoosedValue = false;
+                return;
+            }
 
             var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
 
@@ -294,5 +317,11 @@ namespace Panuon.UI
         }
 
         #endregion
+
+        public enum TreeViewStyles
+        {
+            General,
+            Classic,
+        }
     }
 }

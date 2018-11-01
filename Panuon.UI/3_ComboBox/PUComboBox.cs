@@ -16,7 +16,7 @@ namespace Panuon.UI
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             if (SelectedValuePath == SelectedValuePaths.Header)
-                SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUComboBoxItem).Content.ToString();
+                SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUComboBoxItem).Content;
             else
                 SelectedValue = SelectedItem == null ? null : (SelectedItem as PUComboBoxItem).Value;
             base.OnSelectionChanged(e);
