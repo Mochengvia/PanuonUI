@@ -71,6 +71,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case 16:
                     ActivateItem(new DatePickersViewModel());
                     return;
+                case 17:
+                    ActivateItem(new PagingNavsViewModel());
+                    return;
                 case 101:
                     ActivateItem(new LineChartsViewModel());
                     return;

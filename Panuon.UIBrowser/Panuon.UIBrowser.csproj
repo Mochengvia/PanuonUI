@@ -67,6 +67,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Partial\PagingNavsViewModel.cs" />
     <Compile Include="ViewModels\Partial\SlidersViewModel.cs" />
     <Compile Include="ViewModels\Partial\ListBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\DataGridsViewModel.cs" />
@@ -85,6 +86,10 @@
     <Compile Include="ViewModels\Partial\CheckBoxsViewModel.cs" />
     <Compile Include="ViewModels\Partial\ButtonsViewModel.cs" />
     <Compile Include="ViewModels\Partial\IntroductionViewModel.cs" />
+    <Page Include="Views\Partial\PagingNavsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Partial\SlidersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

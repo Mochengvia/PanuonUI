@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.PagingNavsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <Grid>
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUPagingNav 分页器控件</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,0"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">TotalPage </Run>
+                        <Run>获取或设置分页器的总页数。【Int类型】。默认值为1。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">CurrnetPage </Run>
+                        <Run>获取或设置分页器的当前页码。【Int类型】。默认值为1。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">ButtonCornerRadius </Run>
+                        <Run>获取或设置分页器的按钮圆角大小。【CornerRadius类型】。默认值为3。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">ButtonBrush </Run>
+                        <Run>获取或设置分页器的按钮背景色。【Brush类型】。默认值#AA3E3E3E。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">SelectedBrush </Run>
+                        <Run>获取或设置按钮被选中或点击时的颜色。【Brush类型】。默认值#3E3E3E。</Run><LineBreak />
+                        <Run Foreground="#FFF18C27">CurrentPageChanged </Run>
+                        <Run>当前页码发生改变时，触发此路由事件。</Run>
+            </TextBlock>
+            <StackPanel Grid.Row="2"
+                        Orientation="Vertical">
+                <Grid Height="30"
+                      HorizontalAlignment="Left">
+                    <pu:PUPagingNav 
+                                    TotalPage="{Binding TotalPage,Mode=TwoWay}"
+                                    CurrentPage="{Binding CurrentPage,Mode=TwoWay}" />
+                </Grid>
+                <Grid HorizontalAlignment="Left"
+                      Width="250"
+                      Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="总页数" 
+                               VerticalAlignment="Center"/>
+                    <pu:PUTextBox Grid.Column="1"
+                                  Height="30"
+                                  Text="{Binding TotalPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="1"
+                               Text="当前页码" 
+                               VerticalAlignment="Center"/>
+                    <pu:PUTextBox Grid.Row="1"
+                                  Grid.Column="1"
+                                  Height="30"
+                                  Text="{Binding CurrentPage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+                <Grid Height="30"
+                      Margin="0,20,0,0"
+                      HorizontalAlignment="Left">
+                    <pu:PUPagingNav ButtonBrush="#AA49A9C0"
+                                    ButtonCornerRadius="15"
+                                    SelectedBrush="#FF49A9C0"
+                                    Foreground="White"
+                                    TotalPage="{Binding TotalPage,Mode=TwoWay}"
+                                    CurrentPage="{Binding CurrentPage,Mode=TwoWay}" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

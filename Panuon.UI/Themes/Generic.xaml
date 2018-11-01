@@ -3409,7 +3409,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal"
+                                        Height="{TemplateBinding Height}"
+                                        Width="{TemplateBinding Width}">
                                 <Grid Height="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                       Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=RadioButton}}">
                                     <Border x:Name="bdrOuter"
@@ -3578,7 +3580,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
-                            <Grid>
+                            <Grid  Height="{TemplateBinding Height}"
+                                   Width="{TemplateBinding Width}">
                                 <Grid>
                                     <Border x:Name="bdrCover"
                                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -3691,7 +3694,9 @@
                         <ControlTemplate TargetType="{x:Type local:PURadioButton}">
                             <Grid x:Name="GrdMain"
                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}">
                                 <Border BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RadioButton}}"

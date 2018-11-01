@@ -75,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="A4_PagingNav\PUPagingNav.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +128,9 @@
     <Compile Include="A2_ListBox\PUListBoxItem.cs" />
     <Compile Include="A3_DatePicker\PUDatePicker.xaml.cs">
       <DependentUpon>PUDatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="A4_PagingNav\PUPagingNav.xaml.cs">
+      <DependentUpon>PUPagingNav.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
