@@ -43,7 +43,7 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
 通过设置IsCoverMask和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。
 图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window201810191402.gif)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.png)<br/>
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
@@ -82,7 +82,7 @@ PUMessageBox.ShowConfirm($"确定吗？");
 ### Button 按钮
 PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
 PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/buttons.gif)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/button.png)<br/>
 
 
 | 依赖属性  | 类型 | 含义 |
@@ -95,7 +95,7 @@ PURepeatButton和PUButton的样式、属性、方法完全一致。<br/>
 
 ### TextBox 输入框
 PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox201810191448.gif)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/textbox.png)<br/>
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
@@ -109,7 +109,7 @@ PUTextBox是一个继承自TextBox的控件，目前共有两种样式。<br/>
 ### PasswordBox 密码框
 #### PUPasswordBox继承自TextBox。恶意程序可能会通过内存读取用户输入的密码，请勿在较高安全要求环境中使用。<br/>
 不要对Text属性进行赋值，可能会导致意外的错误。按原生PasswordBox的方式使用即可。
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/passwordbox201810191449.gif)<br/>
+![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/passwordbox.png)<br/>
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
