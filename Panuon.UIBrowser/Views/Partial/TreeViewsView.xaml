@@ -77,6 +77,7 @@
                                                Width="200"
                                                BindingItems="{Binding TreeViewItems}"
                                            TreeViewStyle="{Binding TreeViewStyle}"
+                                               ChoosedValuePath="Value"
                                                ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
                                 </pu:PUTreeView>
                             <StackPanel Orientation="Vertical"

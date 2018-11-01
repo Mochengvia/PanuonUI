@@ -227,7 +227,6 @@ namespace Panuon.UI
                 var tvix = GetTreeViewItemByHeader(tvi, header);
                 if (tvix != null)
                 {
-                    tvi.IsExpanded = true;
                     target = tvix;
                 }
             }
@@ -250,7 +249,6 @@ namespace Panuon.UI
                 var tvix = GetTreeViewItemByValue(tvi, value);
                 if (tvix != null)
                 {
-                    tvi.IsExpanded = true;
                     target = tvix;
                 }
             }
