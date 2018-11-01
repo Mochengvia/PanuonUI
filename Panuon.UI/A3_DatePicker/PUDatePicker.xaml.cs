@@ -114,6 +114,21 @@ namespace Panuon.UI
                 return;
             var oldDate = (DateTime)e.OldValue;
             var newDate = (DateTime)e.NewValue;
+            if(picker.MaxDateTime != null)
+            {
+                var max = (DateTime)picker.MaxDateTime;
+                if (newDate > max)
+                    picker.SelectedDateTime = max;
+                return;
+            }
+
+            if (picker.MinDateTime != null)
+            {
+                var min = (DateTime)picker.MinDateTime;
+                if (newDate < min)
+                    picker.SelectedDateTime = min;
+                return;
+            }
 
             if (oldDate.Year != newDate.Year || (oldDate.Year == newDate.Year && oldDate.Month != newDate.Month))
             {

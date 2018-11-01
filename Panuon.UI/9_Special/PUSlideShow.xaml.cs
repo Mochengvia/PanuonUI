@@ -104,6 +104,12 @@ namespace Panuon.UI
                 slideShow.BtnRight.HorizontalAlignment = HorizontalAlignment.Right;
                 slideShow.BtnLeft.Margin = new Thickness(20, 0, 0, 0);
                 slideShow.BtnRight.Margin = new Thickness(0, 0, 20, 0);
+                slideShow.Indicator.Dircetion = Orientation.Horizontal;
+                slideShow.Indicator.Height = 15;
+                slideShow.Indicator.Width = double.NaN;
+                slideShow.Indicator.VerticalAlignment = VerticalAlignment.Bottom;
+                slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
+                slideShow.Indicator.Margin = new Thickness(0, 0, 0, 20);
             }
             else
             {
@@ -115,6 +121,12 @@ namespace Panuon.UI
                 slideShow.BtnRight.HorizontalAlignment = HorizontalAlignment.Center;
                 slideShow.BtnLeft.Margin = new Thickness(0, 20, 0, 0);
                 slideShow.BtnRight.Margin = new Thickness(0, 0, 0, 20);
+                slideShow.Indicator.Dircetion = Orientation.Vertical;
+                slideShow.Indicator.Height = double.NaN;
+                slideShow.Indicator.Width =15 ;
+                slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
+                slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Left;
+                slideShow.Indicator.Margin = new Thickness(20, 0, 0, 0);
             }
         }
 
@@ -234,49 +246,6 @@ namespace Panuon.UI
             var slideShow = d as PUSlideShow;
             slideShow.Indicator.BorderBrush = slideShow.IndicatorBrush;
             slideShow.Indicator.CoverBrush = slideShow.IndicatorBrush;
-        }
-
-
-        /// <summary>
-        /// 指示器的位置。
-        /// </summary>
-        public IndicatorLocations IndicatorLocation
-        {
-            get { return (IndicatorLocations)GetValue(IndicatorLocationProperty); }
-            set { SetValue(IndicatorLocationProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for IndicatorLocation.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IndicatorLocationProperty =
-            DependencyProperty.Register("IndicatorLocation", typeof(IndicatorLocations), typeof(PUSlideShow), new PropertyMetadata(IndicatorLocations.Bottom, OnIndicatorLocationChanged));
-
-        private static void OnIndicatorLocationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var slideShow = d as PUSlideShow;
-            switch (slideShow.IndicatorLocation)
-            {
-                case IndicatorLocations.Top:
-                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Top;
-                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
-                    break;
-                case IndicatorLocations.Bottom:
-                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Bottom;
-                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
-                    break;
-                case IndicatorLocations.Left:
-                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
-                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Left;
-                    break;
-                case IndicatorLocations.Right:
-                    slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
-                    slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Right;
-                    break;
-            }
-        }
-
-        public enum IndicatorLocations
-        {
-            Left,Top,Right,Bottom
         }
         #endregion
 

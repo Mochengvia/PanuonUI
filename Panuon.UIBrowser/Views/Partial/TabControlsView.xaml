@@ -6,7 +6,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="800"
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
@@ -63,7 +63,8 @@
                     <Grid Height="62"
                           Margin="0,20,0,0">
                         <pu:PUTabControl CoverBrush="#FF2393C7"
-                                         Margin="0,0,469,0"
+                                         HorizontalAlignment="Left"
+                                         Width="250"
                                          BindingItems="{Binding TabItemList,Mode=TwoWay}">
                         </pu:PUTabControl>
                     </Grid>
@@ -77,7 +78,8 @@
                           Margin="0,20,0,0">
                         <pu:PUTabControl TabControlStyle="Classic"
                                          CoverBrush="#FF2393C7"
-                                         Margin="0,0,456,0"
+                                         HorizontalAlignment="Left"
+                                         Width="250"
                                          BindingItems="{Binding TabItemList,Mode=TwoWay}">
                         </pu:PUTabControl>
                     </Grid>

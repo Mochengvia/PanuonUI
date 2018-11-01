@@ -68,19 +68,19 @@ namespace Panuon.UI
         /// 排列方式，默认值为Horizontal（横向）。
         /// <para>若排列方式为横向，需要设置控件的Height属性来计算球体大小；若排列方式为纵向，则需要设置控件的Width属性来计算球体大小。</para>
         /// </summary>
-        public Orientation RankDircetion
+        public Orientation Dircetion
         {
-            get { return (Orientation)GetValue(RankDircetionProperty); }
-            set { SetValue(RankDircetionProperty, value); }
+            get { return (Orientation)GetValue(DircetionProperty); }
+            set { SetValue(DircetionProperty, value); }
         }
 
-        public static readonly DependencyProperty RankDircetionProperty =
-            DependencyProperty.Register("RankDircetion", typeof(Orientation), typeof(PUIndicator), new PropertyMetadata(Orientation.Horizontal, OnRankDircetionRankDircetionChanged));
+        public static readonly DependencyProperty DircetionProperty =
+            DependencyProperty.Register("Dircetion", typeof(Orientation), typeof(PUIndicator), new PropertyMetadata(Orientation.Horizontal, OnDircetionDircetionChanged));
 
-        private static void OnRankDircetionRankDircetionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDircetionDircetionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var indicator = d as PUIndicator;
-            indicator.StkMain.Orientation = indicator.RankDircetion;
+            indicator.StkMain.Orientation = indicator.Dircetion;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Panuon.UI
                 TotalIndex = 1;
 
             var radius = 0.0;
-            if (RankDircetion == Orientation.Horizontal)
+            if (Dircetion == Orientation.Horizontal)
                 radius = this.ActualHeight;
             else
                 radius = this.ActualWidth;
@@ -162,7 +162,11 @@ namespace Panuon.UI
             EllIndicator.Width = (int)(radius * 0.6);
             EllIndicator.Background = CoverBrush;
             EllIndicator.CornerRadius = new CornerRadius(EllIndicator.Height / 2);
-            EllIndicator.Margin = new Thickness((radius - ((int)(radius * 0.6))) / 2, EllIndicator.Height / 2, 0, 0);
+            if (Dircetion == Orientation.Horizontal)
+                EllIndicator.Margin = new Thickness((radius - ((int)(radius * 0.6))) / 2, EllIndicator.Height / 2, 0, 0);
+            else
+                EllIndicator.Margin = new Thickness(EllIndicator.Height / 2, (radius - ((int)(radius * 0.6))) / 2, 0, 0);
+
             EllIndicator.Opacity = 0.8;
             EllIndicator.MouseEnter += delegate
             {
@@ -187,7 +191,7 @@ namespace Panuon.UI
             {
                 var ellipse = new Border()
                 {
-                    Margin = new Thickness(0, 0, (int)(radius * 0.3), 0),
+                    Margin = Dircetion == Orientation.Horizontal ? new Thickness(0, 0, (int)(radius * 0.3), 0) : new Thickness(0, 0, 0, (int)(radius * 0.3)),
                     Height = (int)radius,
                     Width = (int)radius,
                     CornerRadius = new CornerRadius(radius / 2),
@@ -227,7 +231,7 @@ namespace Panuon.UI
         private void ChangeIndex(bool usingAnima)
         {
             var radius = 0.0;
-            if (RankDircetion == Orientation.Horizontal)
+            if (Dircetion == Orientation.Horizontal)
                 radius = this.ActualHeight;
             else
                 radius = this.ActualWidth;
@@ -235,17 +239,33 @@ namespace Panuon.UI
             var left = (Index - 1) * ((int)(radius * 1.3)) + (radius - ((int)(radius * 0.6))) / 2;
             if (!usingAnima || AnimationDuration == 0)
             {
-                EllIndicator.Margin = new Thickness(left, radius * 0.2, 0, 0);
+                if(Dircetion == Orientation.Horizontal)
+                    EllIndicator.Margin = new Thickness(left, radius * 0.2, 0, 0);
+                else
+                    EllIndicator.Margin = new Thickness(radius * 0.2, left, 0, 0);
             }
             else
             {
-                var anima = new ThicknessAnimation()
+                if (Dircetion == Orientation.Horizontal)
                 {
-                    To = new Thickness(left, radius * 0.2, 0, 0),
-                    Duration = TimeSpan.FromMilliseconds(AnimationDuration),
-                    EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseInOut },
-                };
-                EllIndicator.BeginAnimation(MarginProperty, anima);
+                    var anima = new ThicknessAnimation()
+                    {
+                        To = new Thickness(left, radius * 0.2, 0, 0),
+                        Duration = TimeSpan.FromMilliseconds(AnimationDuration),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseInOut },
+                    };
+                    EllIndicator.BeginAnimation(MarginProperty, anima);
+                }
+                else
+                {
+                    var anima = new ThicknessAnimation()
+                    {
+                        To = new Thickness(radius * 0.2, left, 0, 0),
+                        Duration = TimeSpan.FromMilliseconds(AnimationDuration),
+                        EasingFunction = new CircleEase() { EasingMode = EasingMode.EaseInOut },
+                    };
+                    EllIndicator.BeginAnimation(MarginProperty, anima);
+                }
             }
         }
         #endregion

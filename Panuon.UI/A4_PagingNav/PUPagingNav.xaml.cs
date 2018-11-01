@@ -54,7 +54,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 获取或设置当前的页数
+        /// 获取或设置当前的页数。默认值为1。
         /// </summary>
         public int TotalPage
         {
@@ -77,7 +77,7 @@ namespace Panuon.UI
         }
 
         /// <summary>
-        /// 获取或设置当前的页码。
+        /// 获取或设置当前的页码。默认值为1。
         /// </summary>
         public int CurrentPage
         {
@@ -116,7 +116,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取或设置两侧的按钮是否显示。
+        /// 获取或设置两侧的按钮是否显示。默认值为True。
         /// </summary>
         public bool IsSideButtonShow
         {
@@ -178,6 +178,11 @@ namespace Panuon.UI
             if(CurrentPage <= 0)
             {
                 CurrentPage = 1;
+                return;
+            }
+            if (CurrentPage > TotalPage)
+            {
+                CurrentPage = TotalPage;
                 return;
             }
 

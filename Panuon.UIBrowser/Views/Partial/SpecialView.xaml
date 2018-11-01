@@ -6,7 +6,7 @@
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
              x:Class="Panuon.UIBrowser.Views.Partial.SpecialView"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="1500"
              d:DesignWidth="800"
              Background="White">
     <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
@@ -96,7 +96,8 @@
                        TextWrapping="Wrap">
             <Run Text="该控件可以承载任何控件。子控件的长度和宽度将被设置为SlideShow控件的长度和宽度。"></Run>
             <LineBreak /> 
-            <Run Text="设置SlideDirection属性可以更改横向/竖向滑动；通过设置Index来改变当前的索引（从1开始的）。其他的依赖属性包括：IsSlideButtonShow、SlideButtonBrush、AnimationDuration、Recyclable。"></Run>
+            <Run Text="设置SlideDirection属性可以更改横向/竖向滑动；通过设置Index来改变当前的索引（从1开始的）。
+                 其他的依赖属性包括：IsSlideButtonShow、SlideButtonBrush、AnimationDuration、Recyclable。"></Run>
             <LineBreak />
             </TextBlock>
             <Grid Margin="50,20"

@@ -52,4 +52,3 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A4_PagingNav\PUPagingNav.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\A4_PagingNav\PUPagingNav.baml
-D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache

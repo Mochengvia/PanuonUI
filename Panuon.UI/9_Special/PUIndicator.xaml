@@ -14,7 +14,8 @@
         <Border VerticalAlignment="Top"
                  HorizontalAlignment="Left"
                  x:Name="EllIndicator"></Border>
-        <StackPanel x:Name="StkMain" Orientation="Horizontal">
+        <StackPanel x:Name="StkMain" 
+                    Orientation="Horizontal">
 
         </StackPanel>
     </Grid>
