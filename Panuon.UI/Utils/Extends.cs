@@ -45,7 +45,7 @@ namespace Panuon.UI.Utils
 
         #region Integer
         /// <summary>
-        /// 将数字转换为中文大写文字。
+        /// 将数字按位转换为中文大写文字。
         /// </summary>
         public static string ToChineseNumber(this int number)
         {
@@ -72,14 +72,13 @@ namespace Panuon.UI.Utils
         }
 
         /// <summary>
-        /// 返回一个新的日期，时分秒将被设为0。
+        /// 与另一个日期的年月日进行比较，若相同，则返回True。
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public static DateTime ToDateOnly(this DateTime date)
+        public static bool CompareYearMonthDay(this DateTime date1, DateTime date2)
         {
-            return new DateTime(date.Year, date.Month, date.Day);
+            return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day;
         }
+
         #endregion
 
         #region Long

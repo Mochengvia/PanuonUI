@@ -9,9 +9,143 @@
              Width="330"
              x:Name="datePicker">
     <Grid>
+        <Grid x:Name="GrdYear"
+              Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="250"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <local:PUButton x:Name="BtnYearLeft"
+                                ButtonStyle="Link"
+                                Margin="10,0,0,0"
+                                Background="Transparent"
+                                Foreground="{Binding Foreground,ElementName=datePicker}"
+                                CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Content=""
+                                FontSize="20"
+                                FontFamily="{StaticResource IconFont}"
+                                Width="40"
+                                Height="40"
+                                Click="BtnYearLeft_Click">
+                </local:PUButton>
+                <local:PUButton x:Name="BtnYearRight"
+                                ButtonStyle="Link"
+                                Margin="0,0,10,0"
+                                Background="Transparent"
+                                Foreground="{Binding Foreground,ElementName=datePicker}"
+                                CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Content=""
+                                FontSize="20"
+                                FontFamily="{StaticResource IconFont}"
+                                Width="40"
+                                Height="40"
+                                Click="BtnYearRight_Click">
+                </local:PUButton>
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <local:PUButton x:Name="BtnYearInterval"
+                                    ButtonStyle="Link"
+                                    Foreground="{Binding Foreground,ElementName=datePicker}"
+                                    CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                    FontSize="16"
+                                    Content="2017年-2018年"></local:PUButton>
+                </StackPanel>
+                <local:PUSplitLine Margin="10,0"
+                                   LineBrush="Gray"></local:PUSplitLine>
+            </Grid>
+            <Grid x:Name="GrdYearPanel"
+                  Grid.Row="1"
+                  Margin="10,0,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
+            </Grid>
+        </Grid>
+        <Grid x:Name="GrdMonth"
+              Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="250"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <local:PUButton x:Name="BtnMonthLeft"
+                                ButtonStyle="Link"
+                                Margin="10,0,0,0"
+                                Background="Transparent"
+                                Foreground="{Binding Foreground,ElementName=datePicker}"
+                                CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Content=""
+                                FontSize="20"
+                                FontFamily="{StaticResource IconFont}"
+                                Width="40"
+                                Height="40"
+                                Click="BtnMonthLeft_Click">
+                </local:PUButton>
+                <local:PUButton x:Name="BtnMonthRight"
+                                ButtonStyle="Link"
+                                Margin="0,0,10,0"
+                                Background="Transparent"
+                                Foreground="{Binding Foreground,ElementName=datePicker}"
+                                CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Content=""
+                                FontSize="20"
+                                FontFamily="{StaticResource IconFont}"
+                                Width="40"
+                                Height="40"
+                                Click="BtnMonthRight_Click">
+                </local:PUButton>
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <local:PUButton x:Name="BtnMonthInterval"
+                                    ButtonStyle="Link"
+                                    Foreground="{Binding Foreground,ElementName=datePicker}"
+                                    CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
+                                    FontSize="16"
+                                    Content="2018年"
+                                    Click="BtnMonthInterval_Click"></local:PUButton>
+                </StackPanel>
+                <local:PUSplitLine Margin="10,0"
+                                   LineBrush="Gray"></local:PUSplitLine>
+            </Grid>
+            <Grid x:Name="GrdMonthPanel"
+                  Grid.Row="1"
+                  Margin="10,0,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
         <Grid x:Name="GrdDate"
-              Visibility="Visible">
+              Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -86,13 +220,15 @@
                                     Foreground="{Binding Foreground,ElementName=datePicker}"
                                     CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
                                     FontSize="16"
-                                    Content="2018年"></local:PUButton>
+                                    Content="2018年"
+                                    Click="BtnYear_Click"></local:PUButton>
                     <local:PUButton x:Name="BtnMonth"
                                     FontSize="16"
                                     Foreground="{Binding Foreground,ElementName=datePicker}"
                                     CoverBrush="{Binding CoverBrush,ElementName=datePicker}"
                                     ButtonStyle="Link"
-                                    Content="10月"></local:PUButton>
+                                    Content="10月"
+                                    Click="BtnMonth_Click"></local:PUButton>
                 </StackPanel>
                 <local:PUSplitLine Margin="10,0"
                                    LineBrush="Gray"></local:PUSplitLine>

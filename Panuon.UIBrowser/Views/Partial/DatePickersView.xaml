@@ -45,8 +45,15 @@
                                    cm:Message.Attach="[Event Checked]=[Action LimitMaxDate('true')];[Event Unchecked]=[Action LimitMaxDate('false')]"/>
                     <pu:PUCheckBox Margin="0,5,0,0"
                                    x:Name="LimitMinDateIsChecked"
-                                   Content="限制最大时间为上个月的今天"
+                                   Content="限制最小时间为上个月的今天"
                                    cm:Message.Attach="[Event Checked]=[Action LimitMinDate('true')];[Event Unchecked]=[Action LimitMinDate('false')]" />
+                    <pu:PUComboBox Margin="0,5,0,0"
+                                   Height="30"
+                                   cm:Message.Attach="[Event SelectionChanged]=[Action SelectionChanged($eventArgs)]">
+                        <pu:PUComboBoxItem Content="日期 + 时间" Value="1" IsSelected="True"/>
+                        <pu:PUComboBoxItem Content="仅选择日期" Value="2" />
+                        <pu:PUComboBoxItem Content="仅选择时间"  Value="3"/>
+                    </pu:PUComboBox>
                     <pu:PUTextBox Margin="0,5,0,0"
                                   Height="30"
                                   Text="{Binding SelectedDateTimeString,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -55,6 +62,7 @@
                 <pu:PUDatePicker Grid.Column="1"
                                 BorderBrush="Gray"
                                  BorderThickness="1"
+                                 DatePickerMode="{Binding DatePickerMode, Mode=TwoWay}"
                                  HorizontalAlignment="Right"
                                  MaxDateTime="{Binding MaxDateTime,Mode=TwoWay}"
                                  MinDateTime="{Binding MinDateTime,Mode=TwoWay}"

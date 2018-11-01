@@ -50,7 +50,7 @@ namespace Panuon.UI
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUDatePicker), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3E3E3E"))));
 
         /// <summary>
-        /// 获取或设置可以选择的最大日期时间。
+        /// 获取或设置可以选择的最大日期，不能限制时间。
         /// </summary>
         public DateTime? MaxDateTime
         {
@@ -71,7 +71,7 @@ namespace Panuon.UI
         }
 
         /// <summary>
-        /// 获取或设置可以选择的最小日期时间。
+        /// 获取或设置可以选择的最小日期，不能限制时间。
         /// </summary>
         public DateTime? MinDateTime
         {
@@ -89,6 +89,7 @@ namespace Panuon.UI
                 return;
 
                 picker.CheckDateTimeLimit();
+            
         }
 
         public DateTime SelectedDateTime
@@ -98,7 +99,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty SelectedDateTimeProperty =
-            DependencyProperty.Register("SelectedDateTime", typeof(DateTime), typeof(PUDatePicker), new PropertyMetadata(DateTime.Now.ToDateOnly(), OnSelectedDateTimeChanged));
+            DependencyProperty.Register("SelectedDateTime", typeof(DateTime), typeof(PUDatePicker), new PropertyMetadata(DateTime.Now.Date, OnSelectedDateTimeChanged));
 
         private static void OnSelectedDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -113,6 +114,8 @@ namespace Panuon.UI
 
             if (oldDate.Year != newDate.Year || (oldDate.Year == newDate.Year && oldDate.Month != newDate.Month))
             {
+                picker.ResetAndSelectYear(newDate.Year);
+                picker.ResetAndSelectMonth(newDate.Month);
                 picker.ResetDate(newDate.Year, newDate.Month);
                 picker.CheckDateTimeLimit();
             }
@@ -148,11 +151,17 @@ namespace Panuon.UI
         {
             GrdDate.Visibility = Visibility.Visible;
             GrdTime.Visibility = Visibility.Hidden;
+            GrdYear.Visibility = Visibility.Hidden;
+            GrdMonth.Visibility = Visibility.Hidden;
+
             switch (DatePickerMode)
             {
                 case DatePickerModes.DateOnly:
                     ClearTimePanel();
+                    LoadYearPanel();
+                    LoadMonthPanel();
                     LoadDatePanel();
+                    BtnBackToDate.Visibility = Visibility.Visible;
                     ResetDate(SelectedDateTime.Year, SelectedDateTime.Month);
                     SelectDate(SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day);
                     break;
@@ -161,11 +170,17 @@ namespace Panuon.UI
                     GrdTime.Visibility = Visibility.Visible;
                     LoadTimePanel();
                     ClearDatePanel();
+                    ClearYearPanel();
+                    ClearMonthPanel();
+                    BtnBackToDate.Visibility = Visibility.Hidden;
                     SelectTime(SelectedDateTime.Hour, SelectedDateTime.Minute, SelectedDateTime.Second);
                     break;
                 case DatePickerModes.DateTime:
-                    LoadTimePanel();
+                    LoadYearPanel();
+                    LoadMonthPanel();
                     LoadDatePanel();
+                    LoadTimePanel();
+                    BtnBackToDate.Visibility = Visibility.Visible;
                     ResetDate(SelectedDateTime.Year, SelectedDateTime.Month);
                     SelectDate(SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day);
                     SelectTime(SelectedDateTime.Hour, SelectedDateTime.Minute, SelectedDateTime.Second);
@@ -284,6 +299,76 @@ namespace Panuon.UI
         }
 
         /// <summary>
+        /// 清空并重新加载年份Panel。
+        /// </summary>
+        private void LoadYearPanel()
+        {
+            ClearYearPanel();
+            for (int i = 0 ;i < 15 ;i++)
+            {
+                var radio = new PURadioButton
+                {
+                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    Content = i.ToString("00"),
+                    Height = 35,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    Padding = new Thickness(0),
+                    Tag = i,
+                };
+                Grid.SetRow(radio, i / 3);
+                Grid.SetColumn(radio, i % 3);
+                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
+                radio.Click += YearRadioButton_Click;
+                GrdYearPanel.Children.Add(radio);
+            }
+        }
+
+        /// <summary>
+        /// 清空年份Panel。
+        /// </summary>
+        private void ClearYearPanel()
+        {
+            GrdYearPanel.Children.Clear();
+        }
+
+        /// <summary>
+        /// 清空并重新加载月份Panel。
+        /// </summary>
+        private void LoadMonthPanel()
+        {
+            ClearMonthPanel();
+            for (int i = 1; i <= 12; i++)
+            {
+                var radio = new PURadioButton
+                {
+                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    Content = (i < 10 ? i.ToChineseNumber() : i == 10 ? "十" : "十" + (i - 10).ToChineseNumber()) + "月",
+                    Height = 35,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    Padding = new Thickness(0),
+                    Tag = i,
+                };
+                Grid.SetRow(radio, (i - 1) / 4);
+                Grid.SetColumn(radio, (i - 1) % 4);
+                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
+                radio.Click += MonthRadioButton_Click;
+                GrdMonthPanel.Children.Add(radio);
+            }
+        }
+
+        /// <summary>
+        /// 清空月份Panel。
+        /// </summary>
+        private void ClearMonthPanel()
+        {
+            GrdMonthPanel.Children.Clear();
+        }
+
+        /// <summary>
         /// 重新设置RadioButton的日期。
         /// </summary>
         private void ResetDate(int year, int month)
@@ -314,21 +399,33 @@ namespace Panuon.UI
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else if (MaxDateTime != null && MinDateTime != null)
                 {
-                    if (date <= ((DateTime)MaxDateTime).ToDateOnly() && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    if (date <= ((DateTime)MaxDateTime).Date && date >= ((DateTime)MinDateTime).Date)
+                    {
                         radio.IsEnabled = true;
+                        radio.Opacity = 1;
+                    }
                     else
                     {
                         radio.IsEnabled = false;
                         radio.Opacity = 0.2;
                     }
                 }
-                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).ToDateOnly())
+                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).Date)
+                {
                     radio.IsEnabled = true;
-                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    radio.Opacity = 1;
+                }
+                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).Date)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else
                 {
                     radio.IsEnabled = false;
@@ -345,21 +442,33 @@ namespace Panuon.UI
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else if (MaxDateTime != null && MinDateTime != null)
                 {
-                    if (date <= ((DateTime)MaxDateTime).ToDateOnly() && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    if (date <= ((DateTime)MaxDateTime).Date && date >= ((DateTime)MinDateTime).Date)
+                    {
                         radio.IsEnabled = true;
+                        radio.Opacity = 1;
+                    }
                     else
                     {
                         radio.IsEnabled = false;
                         radio.Opacity = 0.2;
                     }
                 }
-                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).ToDateOnly())
+                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).Date)
+                {
                     radio.IsEnabled = true;
-                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    radio.Opacity = 1;
+                }
+                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).Date)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else
                 {
                     radio.IsEnabled = false;
@@ -376,21 +485,33 @@ namespace Panuon.UI
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else if (MaxDateTime != null && MinDateTime != null)
                 {
-                    if (date <= ((DateTime)MaxDateTime).ToDateOnly() && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    if (date <= ((DateTime)MaxDateTime).Date && date >= ((DateTime)MinDateTime).Date)
+                    {
                         radio.IsEnabled = true;
+                        radio.Opacity = 1;
+                    }
                     else
                     {
                         radio.IsEnabled = false;
                         radio.Opacity = 0.2;
                     }
                 }
-                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).ToDateOnly())
+                else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).Date)
+                {
                     radio.IsEnabled = true;
-                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).ToDateOnly())
+                    radio.Opacity = 1;
+                }
+                else if (MinDateTime != null && date >= ((DateTime)MinDateTime).Date)
+                {
                     radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
                 else
                 {
                     radio.IsEnabled = false;
@@ -442,8 +563,113 @@ namespace Panuon.UI
             }
         }
 
+        private void ResetAndSelectYear(int year)
+        {
+            if (GrdYearPanel.Children.Count != 15)
+                return;
+
+            BtnYearInterval.Content = SelectedDateTime.AddYears(-7).Year + "年 - " + SelectedDateTime.AddYears(7).Year + "年";
+
+            for (int i = -7; i < 8;i++)
+            {
+                var radio = GrdYearPanel.Children[i + 7] as PURadioButton;
+                radio.Content =  (year + i ) + "年";
+                radio.Tag = year + i;
+                if (i == 0)
+                    radio.IsChecked = true;
+
+                if (MaxDateTime == null && MinDateTime == null)
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+
+                else if (MaxDateTime != null && MinDateTime != null)
+                {
+                    if ((year + i) <= ((DateTime)MaxDateTime).Year && (year + i) >= ((DateTime)MinDateTime).Year)
+                    {
+                        radio.IsEnabled = true;
+                        radio.Opacity = 1;
+                    }
+                    else
+                    {
+                        radio.IsEnabled = false;
+                        radio.Opacity = 0.2;
+                    }
+                }
+                else if (MaxDateTime != null && (year + i) <= ((DateTime)MaxDateTime).Year)
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+                else if (MinDateTime != null && (year + i) >= ((DateTime)MinDateTime).Year)
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+                else
+                {
+                    radio.IsEnabled = false;
+                    radio.Opacity = 0.2;
+                }
+            }
+        }
+
+        private void ResetAndSelectMonth(int month)
+        {
+            if (GrdMonthPanel.Children.Count != 12)
+                return;
+
+            BtnMonthInterval.Content = SelectedDateTime.Year + "年";
+
+            for(int i = 1;i <= 12; i++)
+            {
+                var radio = GrdMonthPanel.Children[i - 1] as PURadioButton;
+                if (i == month)
+                    radio.IsChecked = true;
+
+                if (MaxDateTime == null && MinDateTime == null)
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+                else if (MaxDateTime != null && MinDateTime != null)
+                {
+                    if ((SelectedDateTime.Year != ((DateTime)MaxDateTime).Year || i <= ((DateTime)MaxDateTime).Month) && (SelectedDateTime.Year != ((DateTime)MinDateTime).Year || i >= ((DateTime)MinDateTime).Month))
+                    {
+                        radio.IsEnabled = true;
+                        radio.Opacity = 1;
+                    }
+                    else
+                    {
+                        radio.IsEnabled = false;
+                        radio.Opacity = 0.2;
+                    }
+                }
+                else if (MaxDateTime != null && (SelectedDateTime.Year != ((DateTime)MaxDateTime).Year || i <= ((DateTime)MaxDateTime).Month))
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+                else if (MinDateTime != null && (SelectedDateTime.Year != ((DateTime)MinDateTime).Year || i >= ((DateTime)MinDateTime).Month))
+                {
+                    radio.IsEnabled = true;
+                    radio.Opacity = 1;
+                }
+                else
+                {
+                    radio.IsEnabled = false;
+                    radio.Opacity = 0.2;
+                }
+            }
+        }
+
         private void CheckDateTimeLimit()
         {
+            ResetAndSelectYear(SelectedDateTime.Year);
+            ResetAndSelectMonth(SelectedDateTime.Month);
+            ResetDate(SelectedDateTime.Year, SelectedDateTime.Month);
+
             if (MaxDateTime != null)
             {
                 var max = (DateTime)MaxDateTime;
@@ -451,25 +677,43 @@ namespace Panuon.UI
                 if (SelectedDateTime > max)
                 {
                     SelectedDateTime = max;
-                    return;
                 }
-                else
-                    ResetDate(SelectedDateTime.Year, SelectedDateTime.Month);
 
                 if (SelectedDateTime.Year >= max.Year)
+                {
                     BtnAddYear.Visibility = Visibility.Hidden;
+                }
                 else
+                {
                     BtnAddYear.Visibility = Visibility.Visible;
+                }
+
+                if (SelectedDateTime.Year + 7 >= max.Year)
+                {
+                    BtnYearRight.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    BtnYearRight.Visibility = Visibility.Visible;
+                }
 
                 if (SelectedDateTime.Year > max.Year || (SelectedDateTime.Year == max.Year && SelectedDateTime.Month >= max.Month))
+                {
                     BtnAddMonth.Visibility = Visibility.Hidden;
+                    BtnMonthRight.Visibility = Visibility.Hidden;
+                }
                 else
+                {
                     BtnAddMonth.Visibility = Visibility.Visible;
+                    BtnMonthRight.Visibility = Visibility.Visible;
+                }
             }
             else
             {
                 BtnAddYear.Visibility = Visibility.Visible;
                 BtnAddMonth.Visibility = Visibility.Visible;
+                BtnYearRight.Visibility = Visibility.Visible;
+                BtnMonthRight.Visibility = Visibility.Visible;
             }
 
             if (MinDateTime != null)
@@ -479,26 +723,44 @@ namespace Panuon.UI
                 if (SelectedDateTime < min)
                 {
                     SelectedDateTime = min;
-                    return;
                 }
-                else
-                    ResetDate(SelectedDateTime.Year, SelectedDateTime.Month);
 
                 if (SelectedDateTime.Year <= min.Year)
+                {
                     BtnDecYear.Visibility = Visibility.Hidden;
+                }
                 else
+                {
                     BtnDecYear.Visibility = Visibility.Visible;
+                }
+
+                if (SelectedDateTime.Year - 7<= min.Year)
+                {
+                    BtnYearLeft.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    BtnYearLeft.Visibility = Visibility.Visible;
+                }
 
                 if (SelectedDateTime.Year < min.Year || (SelectedDateTime.Year == min.Year && SelectedDateTime.Month <= min.Month))
+                {
                     BtnDecMonth.Visibility = Visibility.Hidden;
+                        BtnMonthLeft.Visibility = Visibility.Hidden;
+                }
                 else
+                {
                     BtnDecMonth.Visibility = Visibility.Visible;
+                    BtnMonthLeft.Visibility = Visibility.Visible;
+                }
 
             }
             else
             {
                 BtnDecYear.Visibility = Visibility.Visible;
                 BtnDecMonth.Visibility = Visibility.Visible;
+                BtnYearLeft.Visibility = Visibility.Visible;
+                BtnMonthLeft.Visibility = Visibility.Visible;
             }
         }
         #endregion
@@ -551,6 +813,28 @@ namespace Panuon.UI
             SelectedDateTime = new DateTime(SelectedDateTime.Year, SelectedDateTime.Month, SelectedDateTime.Day, SelectedDateTime.Hour, SelectedDateTime.Minute, second);
         }
 
+        private void YearRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            var radio = sender as PURadioButton;
+            if (radio.Tag == null)
+                return;
+            var year = (int)radio.Tag;
+            SelectedDateTime = new DateTime(year, SelectedDateTime.Month, SelectedDateTime.Day, SelectedDateTime.Hour, SelectedDateTime.Minute, SelectedDateTime.Second);
+            GrdDate.Visibility = Visibility.Visible;
+            GrdYear.Visibility = Visibility.Hidden;
+        }
+
+        private void MonthRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            var radio = sender as PURadioButton;
+            if (radio.Tag == null)
+                return;
+            var month = (int)radio.Tag;
+            SelectedDateTime = new DateTime(SelectedDateTime.Year, month, SelectedDateTime.Day, SelectedDateTime.Hour, SelectedDateTime.Minute, SelectedDateTime.Second);
+            GrdDate.Visibility = Visibility.Visible;
+            GrdMonth.Visibility = Visibility.Hidden;
+        }
+
         private void BtnDecYear_Click(object sender, RoutedEventArgs e)
         {
             if (MinDateTime == null || SelectedDateTime.AddYears(-1) >= MinDateTime)
@@ -583,6 +867,39 @@ namespace Panuon.UI
                 SelectedDateTime = (DateTime)MaxDateTime;
         }
 
+        private void BtnYearLeft_Click(object sender, RoutedEventArgs e)
+        {
+            if (MinDateTime == null || SelectedDateTime.AddYears(-15) >= MinDateTime)
+                SelectedDateTime = SelectedDateTime.AddYears(-15);
+            else
+                SelectedDateTime = (DateTime)MinDateTime;
+        }
+
+        private void BtnYearRight_Click(object sender, RoutedEventArgs e)
+        {
+            if (MaxDateTime == null || SelectedDateTime.AddYears(15) <= MaxDateTime)
+                SelectedDateTime = SelectedDateTime.AddYears(15);
+            else
+                SelectedDateTime = (DateTime)MaxDateTime;
+        }
+
+        private void BtnMonthLeft_Click(object sender, RoutedEventArgs e)
+        {
+            if (MinDateTime == null || SelectedDateTime.AddYears(-1) >= MinDateTime)
+                SelectedDateTime = SelectedDateTime.AddYears(-1);
+            else
+                SelectedDateTime = (DateTime)MinDateTime;
+        }
+
+        private void BtnMonthRight_Click(object sender, RoutedEventArgs e)
+        {
+            if (MaxDateTime == null || SelectedDateTime.AddYears(1) <= MaxDateTime)
+                SelectedDateTime = SelectedDateTime.AddYears(1);
+            else
+                SelectedDateTime = (DateTime)MaxDateTime;
+        }
+
+
         private void BtnBackToDate_Click(object sender, RoutedEventArgs e)
         {
             GrdDate.Visibility = Visibility.Visible;
@@ -607,5 +924,25 @@ namespace Panuon.UI
             DateTime,
         }
 
+        private void BtnYear_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAndSelectYear(SelectedDateTime.Year);
+            GrdDate.Visibility = Visibility.Hidden;
+            GrdYear.Visibility = Visibility.Visible;
+        }
+
+        private void BtnMonth_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAndSelectMonth(SelectedDateTime.Month);
+            GrdDate.Visibility = Visibility.Hidden;
+            GrdMonth.Visibility = Visibility.Visible;
+        }
+
+        private void BtnMonthInterval_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAndSelectYear(SelectedDateTime.Year);
+            GrdMonth.Visibility = Visibility.Hidden;
+            GrdYear.Visibility = Visibility.Visible;
+        }
     }
 }

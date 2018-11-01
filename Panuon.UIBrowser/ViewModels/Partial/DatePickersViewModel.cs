@@ -1,9 +1,13 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI;
 using Panuon.UI.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using static Panuon.UI.PUDatePicker;
 
 namespace Panuon.UIBrowser.ViewModels.Partial
 {
@@ -23,7 +27,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 SelectedDateTimeString = ((DateTime)SelectedDateTime).ToString("yyyy-MM-dd HH:mm:ss");
                 NotifyOfPropertyChange(() => SelectedDateTime); }
         }
-        private DateTime _selectedDate = DateTime.Now.ToDateOnly();
+        private DateTime _selectedDate = DateTime.Now.Date;
 
         public DateTime? MaxDateTime
         {
@@ -59,6 +63,13 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             set { _limitMinDateIsChecked = value; NotifyOfPropertyChange(() => LimitMinDateIsChecked); }
         }
         private bool _limitMinDateIsChecked;
+
+        public DatePickerModes DatePickerMode
+        {
+            get { return _datePickerMode; }
+            set { _datePickerMode = value; NotifyOfPropertyChange(() => DatePickerMode); }
+        }
+        private DatePickerModes _datePickerMode = DatePickerModes.DateTime;
         #endregion
 
         #region Event
@@ -66,7 +77,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             if (toLimit)
             {
-                MaxDateTime = DateTime.Now.AddMonths(1);
+                MaxDateTime = DateTime.Now.AddMonths(1).Date;
             }
             else
             {
@@ -78,11 +89,29 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             if (toLimit)
             {
-                MinDateTime = DateTime.Now.AddMonths(-1);
+                MinDateTime = DateTime.Now.AddMonths(-1).Date;
             }
             else
             {
                 MinDateTime = null;
+            }
+        }
+
+        public void SelectionChanged(SelectionChangedEventArgs e)
+        {
+            var comboBoxItem = e.AddedItems[0] as PUComboBoxItem;
+            var value = Int32.Parse(comboBoxItem.Value.ToString());
+            switch (value)
+            {
+                case 1:
+                    DatePickerMode = DatePickerModes.DateTime;
+                    break;
+                case 2:
+                    DatePickerMode = DatePickerModes.DateOnly;
+                    break;
+                case 3:
+                    DatePickerMode = DatePickerModes.TimeOnly;
+                    break;
             }
         }
 
@@ -95,7 +124,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             DateTime date;
             if(!DateTime.TryParse(SelectedDateTimeString,out date))
             {
-                SelectedDateTime = DateTime.Now.ToDateOnly();
+                SelectedDateTime = DateTime.Now.Date;
                 return;
             }
             SelectedDateTime = date;
