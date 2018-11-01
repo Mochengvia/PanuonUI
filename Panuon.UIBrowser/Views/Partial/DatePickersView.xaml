@@ -24,14 +24,16 @@
             <TextBlock Grid.Row="1"
                        Margin="5,10,0,0"
                        TextWrapping="Wrap">
-                        <Run Foreground="#FF359ECF">ButtonStyle </Run>
-                        <Run>获取或设置按钮的基本样式。【ButtonStyles枚举类型】可选项为：General、Hollow、Outline、Link。默认值为General。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">ClickStyle </Run>
-                        <Run>获取或设置鼠标点击时按钮的效果。【ClickStyles类型】可选项为Classic、Sink。默认值为Classic。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
-                        <Run>获取或设置按钮的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
-                         <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时按钮的背景颜色（General和Hollow样式时）或前景颜色（Outline和Link样式时）。【Brush类型】。默认值为#FFFFFF（作为背景颜色时）或#3E3E3E（作为前景颜色时）。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置主题颜色。【Brush类型】。默认值为#3E3E3E。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">MaxDateTime </Run>
+                        <Run>获取或设置可以选择的最大日期，不能限制时间。【DateTime?类型】。默认值为Null。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">MinDateTime </Run>
+                        <Run>获取或设置可以选择的最小日期，不能限制时间。【DateTime?类型】。默认值为Null。</Run><LineBreak />
+                         <Run Foreground="#FF359ECF">SelectedDateTime </Run>
+                        <Run>获取或设置当前选中的日期和时间。【DateTime类型】。默认值为当天的0时0分0秒。</Run><LineBreak />
+                                 <Run Foreground="#FF359ECF">DatePickerMode </Run>
+                        <Run>获取或设置日期选择器的模式。【DatePickerModes枚举类型】可选项为DateTime、DateOnly、TimeOnly。默认值为DateTime。</Run><LineBreak />
             </TextBlock>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>

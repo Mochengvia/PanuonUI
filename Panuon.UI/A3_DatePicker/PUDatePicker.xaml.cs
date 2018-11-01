@@ -92,6 +92,9 @@ namespace Panuon.UI
             
         }
 
+        /// <summary>
+        /// 获取或设置当前选中的日期和时间。
+        /// </summary>
         public DateTime SelectedDateTime
         {
             get { return (DateTime)GetValue(SelectedDateTimeProperty); }
@@ -125,7 +128,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取或设置日期选择器的模式。默认值为仅年月日（DateOnly）。
+        /// 获取或设置日期选择器的模式。默认值为日期和时间（DateTime）。
         /// </summary>
         public DatePickerModes DatePickerMode
         {
