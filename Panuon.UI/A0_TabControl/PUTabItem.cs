@@ -172,7 +172,7 @@ namespace Panuon.UI
         {
             var tabItem = (parameter as PUTabItem);
             var tabControl = tabItem.Parent as PUTabControl;
-            if (tabControl.DeleteMode == PUTabControl.DeleteModes.DeleteAndRouted)
+            if (tabControl.DeleteMode == PUTabControl.DeleteModes.Delete)
                 tabControl.Items.Remove(tabItem);
             tabControl.OnDeleteItem(null, tabItem);
         }

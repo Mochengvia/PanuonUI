@@ -96,7 +96,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty DeleteModeProperty =
-            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.DeleteAndRouted));
+            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.Delete));
 
 
 
@@ -200,7 +200,7 @@ namespace Panuon.UI
             /// <summary>
             /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
             /// </summary>
-            DeleteAndRouted,
+            Delete,
             /// <summary>
             /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
             /// </summary>

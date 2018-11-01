@@ -117,7 +117,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty DeleteModeProperty =
-            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUTabControl), new PropertyMetadata(DeleteModes.DeleteAndRouted));
+            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUTabControl), new PropertyMetadata(DeleteModes.Delete));
 
         /// <summary>
         /// 获取或设置当某个子项被选中时的前景色。默认值为灰黑色(#3E3E3E)。
@@ -287,7 +287,7 @@ namespace Panuon.UI
             /// <summary>
             /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
             /// </summary>
-            DeleteAndRouted,
+            Delete,
             /// <summary>
             /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
             /// </summary>

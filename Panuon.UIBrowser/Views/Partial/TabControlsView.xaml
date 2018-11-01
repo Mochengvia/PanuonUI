@@ -44,7 +44,7 @@
                          <Run Foreground="#FF359ECF">CoverBrush </Run>
                         <Run>获取或设置当某个子项被选中时的前景色。【Brush类型】。默认值为#3E3E3E</Run><LineBreak />
                         <Run Foreground="#FF359ECF">DeleteMode </Run>
-                        <Run>获取或设置当用户点击下拉框子项的删除按钮时，应该执行的操作。【DeleteModes枚举类型】可选项为DeleteAndRouted、EventOnly。默认值为DeleteAndRouted（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
+                        <Run>获取或设置当用户点击下拉框子项的删除按钮时，应该执行的操作。【DeleteModes枚举类型】可选项为Delete、EventOnly。默认值为Delete（删除项目并触发DeleteItem路由事件）。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">BindingItems </Run>
                         <Run>获取或设置绑定对象模板，通过该属性可以将内容绑定到Model类集合，而不是UI对象集合。【&lt;PUComboBoxItemModel&gt;集合】。默认值为空。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">SelectedValuePath </Run>
