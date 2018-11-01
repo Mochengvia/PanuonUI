@@ -35,7 +35,7 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 [ImageCuter 图片裁剪器](#imagecuter-图片裁剪器)<br/>
 [DatePicker 日期时间选择器](#datepicker-日期时间选择器)<br/>
 [PagingNav 分页器](#pagingnav-分页器)<br/>
-图标<br/>
+图表<br/>
 [LineCharts 折线图](#linchart-折线图)<br/>
 
 
