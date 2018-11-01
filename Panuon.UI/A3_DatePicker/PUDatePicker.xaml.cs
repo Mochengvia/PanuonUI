@@ -397,21 +397,21 @@ namespace Panuon.UI
             {
                 var date = new DateTime(lastMonth.Year, lastMonth.Month, lastDay - firstDay + i + 1);
                 var radio = GrdDatePanel.Children[i] as PURadioButton;
-                radio.Opacity = 0.7;
+                radio.Opacity = 0.5;
                 radio.Content = (lastDay - firstDay + i + 1).ToString();
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else if (MaxDateTime != null && MinDateTime != null)
                 {
                     if (date <= ((DateTime)MaxDateTime).Date && date >= ((DateTime)MinDateTime).Date)
                     {
                         radio.IsEnabled = true;
-                        radio.Opacity = 1;
+                        radio.Opacity = 0.5;
                     }
                     else
                     {
@@ -422,12 +422,12 @@ namespace Panuon.UI
                 else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).Date)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else if (MinDateTime != null && date >= ((DateTime)MinDateTime).Date)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else
                 {
@@ -483,21 +483,21 @@ namespace Panuon.UI
             {
                 var date = new DateTime(nextMonth.Year, nextMonth.Month, i - firstDay - totalDay + 1);
                 var radio = GrdDatePanel.Children[i] as PURadioButton;
-                radio.Opacity = 0.7;
+                radio.Opacity = 0.5;
                 radio.Content = i - firstDay - totalDay + 1;
                 radio.Tag = date;
 
                 if (MaxDateTime == null && MinDateTime == null)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else if (MaxDateTime != null && MinDateTime != null)
                 {
                     if (date <= ((DateTime)MaxDateTime).Date && date >= ((DateTime)MinDateTime).Date)
                     {
                         radio.IsEnabled = true;
-                        radio.Opacity = 1;
+                        radio.Opacity = 0.5;
                     }
                     else
                     {
@@ -508,12 +508,12 @@ namespace Panuon.UI
                 else if (MaxDateTime != null && date <= ((DateTime)MaxDateTime).Date)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else if (MinDateTime != null && date >= ((DateTime)MinDateTime).Date)
                 {
                     radio.IsEnabled = true;
-                    radio.Opacity = 1;
+                    radio.Opacity = 0.5;
                 }
                 else
                 {

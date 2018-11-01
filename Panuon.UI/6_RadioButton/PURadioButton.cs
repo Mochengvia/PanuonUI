@@ -52,7 +52,8 @@ namespace Panuon.UI
             get { return (double)GetValue(InnerHeightProperty); }
             set { SetValue(InnerHeightProperty, value); }
         }
-        public static readonly DependencyProperty InnerHeightProperty = DependencyProperty.Register("InnerHeight", typeof(double), typeof(PURadioButton), new PropertyMetadata((double)20));
+        public static readonly DependencyProperty InnerHeightProperty = 
+            DependencyProperty.Register("InnerHeight", typeof(double), typeof(PURadioButton), new PropertyMetadata((double)20));
 
         /// <summary>
         /// Check时对号的背景颜色（或前景色），默认值为白色。
@@ -63,7 +64,8 @@ namespace Panuon.UI
             get { return (Brush)GetValue(CoverBrushProperty); }
             set { SetValue(CoverBrushProperty, value); }
         }
-        public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PURadioButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty CoverBrushProperty = 
+            DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PURadioButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         #endregion
 

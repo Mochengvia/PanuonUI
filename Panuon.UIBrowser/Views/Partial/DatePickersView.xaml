@@ -63,9 +63,11 @@
                 </StackPanel>
                 <pu:PUDatePicker Grid.Column="1"
                                 BorderBrush="Gray"
+                                 Margin="0,0,0,0"
                                  BorderThickness="1"
                                  DatePickerMode="{Binding DatePickerMode, Mode=TwoWay}"
-                                 HorizontalAlignment="Right"
+                                 HorizontalAlignment="Left"
+                                 Width="300"
                                  MaxDateTime="{Binding MaxDateTime,Mode=TwoWay}"
                                  MinDateTime="{Binding MinDateTime,Mode=TwoWay}"
                                  SelectedDateTime="{Binding SelectedDateTime,Mode=TwoWay}"
