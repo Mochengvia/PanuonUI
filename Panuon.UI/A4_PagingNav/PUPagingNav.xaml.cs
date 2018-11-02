@@ -258,7 +258,7 @@ namespace Panuon.UI
                 Content = content,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
-                Padding = new Thickness(0),
+                Padding = new Thickness(5,0,5,0),
                 Margin = new Thickness(6, 0, 0, 0),
             };
             var back = new Binding() { Source = this, Path = new PropertyPath("ButtonBrush"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
@@ -269,7 +269,6 @@ namespace Panuon.UI
             BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore);
             var height = new Binding() { Source = this, Path = new PropertyPath("ActualHeight"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
             BindingOperations.SetBinding(radio, PURadioButton.HeightProperty, height);
-            BindingOperations.SetBinding(radio, PURadioButton.WidthProperty, height);
             var radius = new Binding() { Source = this, Path = new PropertyPath("ButtonCornerRadius"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
             BindingOperations.SetBinding(radio, PURadioButton.BorderCornerRadiusProperty, radius);
 

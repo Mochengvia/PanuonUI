@@ -154,14 +154,11 @@ namespace Panuon.UI
 
             var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
 
-            if (tvi != null && !tvi.IsChoosed && !tvi.HasItems)
+            if (tvi != null)
             {
-                tvi.IsChoosed = true;
-                var parent = tvi.Parent as PUTreeViewItem;
-                if (parent != null)
-                {
-                    parent.IsExpanded = true;
-                }
+                if ( !tvi.IsChoosed && !tvi.HasItems)
+                    tvi.IsChoosed = true;
+               
             }
             else if (tvi == null)
             {
@@ -227,6 +224,11 @@ namespace Panuon.UI
                 var tvix = GetTreeViewItemByHeader(tvi, header);
                 if (tvix != null)
                 {
+                    var parent = tvix.Parent as PUTreeViewItem;
+                    if (parent != null)
+                    {
+                        parent.IsExpanded = true;
+                    }
                     target = tvix;
                 }
             }
@@ -249,6 +251,11 @@ namespace Panuon.UI
                 var tvix = GetTreeViewItemByValue(tvi, value);
                 if (tvix != null)
                 {
+                    var parent = tvix.Parent as PUTreeViewItem;
+                    if (parent != null)
+                    {
+                        parent.IsExpanded = true;
+                    }
                     target = tvix;
                 }
             }
