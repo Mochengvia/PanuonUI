@@ -88,8 +88,8 @@ namespace Panuon.UI
             if (!picker.IsLoaded)
                 return;
 
-                picker.CheckDateTimeLimit();
-            
+            picker.CheckDateTimeLimit();
+
         }
 
         /// <summary>
@@ -114,20 +114,24 @@ namespace Panuon.UI
                 return;
             var oldDate = (DateTime)e.OldValue;
             var newDate = (DateTime)e.NewValue;
-            if(picker.MaxDateTime != null)
+            if (picker.MaxDateTime != null)
             {
                 var max = (DateTime)picker.MaxDateTime;
                 if (newDate > max)
+                {
                     picker.SelectedDateTime = max;
-                return;
+                    return;
+                }
             }
 
             if (picker.MinDateTime != null)
             {
                 var min = (DateTime)picker.MinDateTime;
                 if (newDate < min)
+                {
                     picker.SelectedDateTime = min;
-                return;
+                    return;
+                }
             }
 
             if (oldDate.Year != newDate.Year || (oldDate.Year == newDate.Year && oldDate.Month != newDate.Month))
@@ -322,7 +326,7 @@ namespace Panuon.UI
         private void LoadYearPanel()
         {
             ClearYearPanel();
-            for (int i = 0 ;i < 15 ;i++)
+            for (int i = 0; i < 15; i++)
             {
                 var radio = new PURadioButton
                 {
@@ -588,10 +592,10 @@ namespace Panuon.UI
 
             BtnYearInterval.Content = SelectedDateTime.AddYears(-7).Year + "年 - " + SelectedDateTime.AddYears(7).Year + "年";
 
-            for (int i = -7; i < 8;i++)
+            for (int i = -7; i < 8; i++)
             {
                 var radio = GrdYearPanel.Children[i + 7] as PURadioButton;
-                radio.Content =  (year + i ) + "年";
+                radio.Content = (year + i) + "年";
                 radio.Tag = year + i;
                 if (i == 0)
                     radio.IsChecked = true;
@@ -640,7 +644,7 @@ namespace Panuon.UI
 
             BtnMonthInterval.Content = SelectedDateTime.Year + "年";
 
-            for(int i = 1;i <= 12; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 var radio = GrdMonthPanel.Children[i - 1] as PURadioButton;
                 if (i == month)
@@ -752,7 +756,7 @@ namespace Panuon.UI
                     BtnDecYear.Visibility = Visibility.Visible;
                 }
 
-                if (SelectedDateTime.Year - 7<= min.Year)
+                if (SelectedDateTime.Year - 7 <= min.Year)
                 {
                     BtnYearLeft.Visibility = Visibility.Hidden;
                 }
@@ -764,7 +768,7 @@ namespace Panuon.UI
                 if (SelectedDateTime.Year < min.Year || (SelectedDateTime.Year == min.Year && SelectedDateTime.Month <= min.Month))
                 {
                     BtnDecMonth.Visibility = Visibility.Hidden;
-                        BtnMonthLeft.Visibility = Visibility.Hidden;
+                    BtnMonthLeft.Visibility = Visibility.Hidden;
                 }
                 else
                 {

@@ -39,3 +39,33 @@ D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A3_DatePicker\PUDatePicker.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\Themes\Control.baml
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A1_SlideBar\PUSilder.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI\obj\Release\A1_SlideBar\PUSilder.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\bin\Release\Panuon.UI.dll
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\bin\Release\Panuon.UI.pdb
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csprojResolveAssemblyReference.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUImageCuter.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUIndicator.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PULoading.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUMessageBox.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUSlideShow.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A1_Slider\PUSlider.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A3_DatePicker\PUDatePicker.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A4_PagingNav\PUPagingNav.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI_MarkupCompile.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI_MarkupCompile.lref
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUImageCuter.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUIndicator.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PULoading.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUMessageBox.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\9_Special\PUSlideShow.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A1_Slider\PUSlider.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A3_DatePicker\PUDatePicker.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\A4_PagingNav\PUPagingNav.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Themes\Control.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Themes\Generic.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.g.resources
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.Properties.Resources.resources
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.GenerateResource.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.dll
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI\obj\Release\Panuon.UI.pdb

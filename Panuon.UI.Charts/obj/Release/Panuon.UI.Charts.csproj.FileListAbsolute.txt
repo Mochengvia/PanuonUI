@@ -12,3 +12,16 @@ D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.bam
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\0_Base\PUChartToolTip.g.cs
 D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\0_Base\PUChartToolTip.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.dll
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.pdb
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\0_Base\PUChartToolTip.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts_MarkupCompile.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts_MarkupCompile.lref
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\0_Base\PUChartToolTip.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.g.resources
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.dll
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.pdb
