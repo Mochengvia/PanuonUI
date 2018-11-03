@@ -13,7 +13,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 获取或设置当鼠标悬浮在子项上时，子项的背景颜色。默认值为#33888888。
+        /// 获取或设置当鼠标悬浮在子项上时，子项的背景颜色。默认值为#33AAAAAA。
         /// </summary>
         public Brush CoverBrush
         {

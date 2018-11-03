@@ -32,7 +32,7 @@
                         <Run Foreground="#FF24618B"
                              FontWeight="Bold">PUContextMenu</Run><LineBreak />
                         <Run Foreground="#FF359ECF">CoverBrush </Run>
-                        <Run>获取或设置鼠标悬浮时子项的背景颜色。【Brush类型】。默认值为#22E6E6E6。</Run><LineBreak />
+                        <Run>获取或设置鼠标悬浮时子项的背景颜色。【Brush类型】。默认值为#33AAAAAA。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
                         <Run>获取或设置边框圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">ShadowColor </Run>

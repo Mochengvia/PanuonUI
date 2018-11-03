@@ -4742,7 +4742,7 @@
         <Setter Property="ShadowColor"
                 Value="#44444444" />
         <Setter Property="CoverBrush"
-                Value="#22E6E6E6" />
+                Value="#33AAAAAA" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PUContextMenu}">
