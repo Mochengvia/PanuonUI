@@ -74,6 +74,12 @@ namespace Panuon.UIBrowser.ViewModels
                 case 17:
                     ActivateItem(new PagingNavsViewModel());
                     return;
+                case 18:
+                    ActivateItem(new BubblesViewModel());
+                    return;
+                case 19:
+                    ActivateItem(new ContextMenusViewModel());
+                    return;
                 case 101:
                     ActivateItem(new LineChartsViewModel());
                     return;

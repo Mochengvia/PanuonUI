@@ -196,3 +196,7 @@ C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBr
 C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.CopyComplete
 C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
 C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\BubblesView.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\BubblesView.g.cs
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ContextMenusView.baml
+C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\ContextMenusView.g.cs

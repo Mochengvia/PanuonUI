@@ -132,6 +132,9 @@
     <Compile Include="A4_PagingNav\PUPagingNav.xaml.cs">
       <DependentUpon>PUPagingNav.xaml</DependentUpon>
     </Compile>
+    <Compile Include="A5_ContextMenu\PUContextMenu.cs" />
+    <Compile Include="A5_ContextMenu\PUContextMenuItem.cs" />
+    <Compile Include="A6_Bubble\PUBubble.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

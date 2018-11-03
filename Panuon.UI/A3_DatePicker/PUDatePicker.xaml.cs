@@ -930,21 +930,7 @@ namespace Panuon.UI
 
         #endregion
 
-        public enum DatePickerModes
-        {
-            /// <summary>
-            /// 年 月 日。
-            /// </summary>
-            DateOnly,
-            /// <summary>
-            /// 时 分 秒。
-            /// </summary>
-            TimeOnly,
-            /// <summary>
-            /// 年 月 日 时 分 秒。
-            /// </summary>
-            DateTime,
-        }
+        
 
         private void BtnYear_Click(object sender, RoutedEventArgs e)
         {
@@ -966,5 +952,21 @@ namespace Panuon.UI
             GrdMonth.Visibility = Visibility.Hidden;
             GrdYear.Visibility = Visibility.Visible;
         }
+    }
+
+    public enum DatePickerModes
+    {
+        /// <summary>
+        /// 年 月 日。
+        /// </summary>
+        DateOnly,
+        /// <summary>
+        /// 时 分 秒。
+        /// </summary>
+        TimeOnly,
+        /// <summary>
+        /// 年 月 日 时 分 秒。
+        /// </summary>
+        DateTime,
     }
 }

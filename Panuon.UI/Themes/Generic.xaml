@@ -14,7 +14,7 @@
     <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
     <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
     <local:ProgressBarConverter x:Key="ProgressBarConverter"></local:ProgressBarConverter>
-
+    <local:BubbleConverter x:Key="BubbleConverter"></local:BubbleConverter>
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
 
     <Style TargetType="{x:Type local:PUResizeGrid}">
@@ -4014,11 +4014,11 @@
                                             </ToggleButton>
                                             <Grid Margin="10,0,0,0">
                                                 <Label x:Name="content"
-                                                                  FontFamily="{TemplateBinding FontFamily}"
+                                                       FontFamily="{TemplateBinding FontFamily}"
                                                        FontSize="{TemplateBinding FontSize}"
                                                        Foreground="{TemplateBinding Foreground}"
-                                                                  VerticalAlignment="Center"
-                                                                 Content="{TemplateBinding Header}" />
+                                                       VerticalAlignment="Center"
+                                                       Content="{TemplateBinding Header}" />
                                             </Grid>
                                         </StackPanel>
                                     </Grid>
@@ -4645,10 +4645,258 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:PUBubble}">
+        <Setter Property="Background"
+                Value="DimGray" />
+        <Setter Property="CoverBrush"
+                Value="#333333" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="False" />
+        <Setter Property="Padding"
+                Value="5,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUBubble}">
+                    <Grid Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}">
+                        <Path x:Name="path"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              StrokeThickness="{TemplateBinding BorderThickness}"
+                              Fill="{TemplateBinding Background}"
+                              Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                              Height="{Binding ActualHeight,RelativeSource={RelativeSource AncestorType=UserControl}}">
+                            <Path.Data>
+                                <MultiBinding Converter="{StaticResource BubbleConverter}">
+                                    <Binding Path="AnglePosition"
+                                             RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                                    <Binding Path="BorderCornerRadius"
+                                             RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                                    <Binding Path="ActualWidth"
+                                             RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                                    <Binding Path="ActualHeight"
+                                             RelativeSource="{RelativeSource AncestorType=UserControl}"></Binding>
+                                </MultiBinding>
+                            </Path.Data>
+                        </Path>
+                        <Grid x:Name="grdContent"
+                              Margin="4,0,0,0">
+                            <Label Content="{TemplateBinding Content}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="AnglePosition"
+                                 Value="BottomLeft">
+                            <Setter TargetName="grdContent"
+                                    Property="Margin"
+                                    Value="0,0,0,4" />
+                        </Trigger>
+                        <Trigger Property="AnglePosition"
+                                 Value="BottomCenter">
+                            <Setter TargetName="grdContent"
+                                    Property="Margin"
+                                    Value="0,0,0,4" />
+                        </Trigger>
+                        <Trigger Property="AnglePosition"
+                                 Value="BottomRight">
+                            <Setter TargetName="grdContent"
+                                    Property="Margin"
+                                    Value="0,0,0,4" />
+                        </Trigger>
+                        <Trigger Property="AnglePosition"
+                                 Value="Right">
+                            <Setter TargetName="grdContent"
+                                    Property="Margin"
+                                    Value="0,0,4,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PUContextMenu}">
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Foreground"
+                Value="{StaticResource Theme}" />
+        <Setter Property="ShadowColor"
+                Value="#44444444" />
+        <Setter Property="CoverBrush"
+                Value="#22E6E6E6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUContextMenu}">
+                    <Grid Margin="5">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0"
+                                                  Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                  BlurRadius="5" />
+                            </Border.Effect>
+                        </Border>
+                        <ScrollViewer CanContentScroll="True"
+                                      Margin="0,3"
+                                      Style="{StaticResource MiniScrollViewer}">
+                            <StackPanel ClipToBounds="True"
+                                        Orientation="Vertical"
+                                        IsItemsHost="True"
+                                        />
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:PUContextMenuItem}">
+        <Setter Property="Foreground"
+                Value="{StaticResource Theme}" />
+        <Setter Property="BorderBrush"
+                Value="Transparent" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="Height"
+                Value="35" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUContextMenuItem}">
+                    <Grid>
+                        <Border x:Name="bdrHover"
+                                Opacity="0"
+                                Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblIcon"
+                                   Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                   Height="{TemplateBinding Height}"
+                                   Width="{TemplateBinding Height}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   FontFamily="{StaticResource IconFont}"
+                                   Foreground="{TemplateBinding Foreground}"/>
+                            <ContentPresenter x:Name="content" Grid.Column="1"
+                                              Margin="0,0,15,0"
+                                              ContentSource="Header"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True" />
+                            <Path x:Name="path"
+                                  Height="15"
+                                  Width="15"
+                                  Margin="2,0,5,0"
+                                  Grid.Column="2"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Data="M7,3 V 12 L 12.5,7.5 Z">
+                                
+                            </Path>
+                        </Grid>
+                        <Popup x:Name="Popup"
+                               Placement="Right"
+                               IsOpen="{TemplateBinding IsSubmenuOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               PopupAnimation="Fade">
+                            <Grid>
+                                <Border x:Name="SubmenuBorder"
+                                        BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                        BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                        Background="{Binding Background,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                        Margin="0,5">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0"
+                                                          Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          BlurRadius="5" />
+                                    </Border.Effect>
+                                </Border>
+                                <ScrollViewer CanContentScroll="True"
+                                              Margin="0,3"
+                                              Style="{StaticResource MiniScrollViewer}">
+                                    <StackPanel IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="bdrHover"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1"
+                                                         Duration="0:0:0.4" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="bdrHover"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0"
+                                                         Duration="0:0:0.4" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="HasItems"
+                                 Value="False">
+                            <Setter TargetName="path"
+                                    Property="Visibility"
+                                    Value="Hidden" />
+                        </Trigger>
+                        <Trigger Property="Icon"
+                                 Value="{x:Null}">
+                            <Setter TargetName="lblIcon"
+                                    Property="Visibility"
+                                    Value="Hidden" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:PUSplitLine}">
-        <Setter Property="LineBrush"
+        <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>
-        <Setter Property="Thickness"
+        <Setter Property="BorderThickness"
                 Value="1"></Setter>
         <Style.Triggers>
             <Trigger Property="Alignment"
@@ -4660,9 +4908,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
-                            <Border Height="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                            <Border Height="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Width="{TemplateBinding Width}"
-                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Margin="{TemplateBinding Margin}">
                             </Border>
                         </ControlTemplate>
@@ -4679,9 +4927,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
-                            <Border Height="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                            <Border Height="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Width="{TemplateBinding Width}"
-                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Margin="{TemplateBinding Margin}">
                             </Border>
                         </ControlTemplate>
@@ -4698,9 +4946,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
-                            <Border Width="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                            <Border Width="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Height="{TemplateBinding Height}"
-                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Margin="{TemplateBinding Margin}">
                             </Border>
                         </ControlTemplate>
@@ -4717,9 +4965,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUSplitLine}">
-                            <Border Width="{Binding Thickness,RelativeSource={RelativeSource AncestorType=Control}}"
+                            <Border Width="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Height="{TemplateBinding Height}"
-                                    Background="{Binding LineBrush,RelativeSource={RelativeSource AncestorType=Control}}"
+                                    Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Margin="{TemplateBinding Margin}">
                             </Border>
                         </ControlTemplate>

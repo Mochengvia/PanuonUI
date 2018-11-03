@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.BubblesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <ScrollViewer x:Name="scrollViewer">
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">PUBubble 气泡</Label>
+            <TextBlock Grid.Row="1"
+                       Margin="5,10,0,0"
+                       TextWrapping="Wrap">
+                        <Run Foreground="#FF359ECF">CoverBrush </Run>
+                        <Run>获取或设置当鼠标悬浮在气泡上时，气泡应呈现的背景色。【Brush类型】。默认值为#333333。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">AnglePosition </Run>
+                        <Run>获取或设置尖角的位置，默认为左侧。【AnglePositions枚举类型】。默认值为Left。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
+                        <Run>获取或设置气泡的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
+            </TextBlock>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+               
+                    <pu:PUComboBox Margin="0,5,40,0"
+                                   HorizontalAlignment="Right"
+                                   Width="200"
+                                   Height="30"
+                                   cm:Message.Attach="[Event SelectionChanged]=[Action SelectionChanged($eventArgs)]">
+                        <pu:PUComboBoxItem Content="Angle - Left" Value="1" IsSelected="True"/>
+                    <pu:PUComboBoxItem Content="Angle - Right" Value="2" />
+                    <pu:PUComboBoxItem Content="Angle - BottomLeft"  Value="3"/>
+                    <pu:PUComboBoxItem Content="Angle - BottomCenter"
+                                       Value="4" />
+                    <pu:PUComboBoxItem Content="Angle - BottomRight"
+                                       Value="5" />
+
+                </pu:PUComboBox>
+                <pu:PUBubble  Grid.Column="1"
+                              Height="35" 
+                              HorizontalAlignment="Left"
+                              Padding="10,0"
+                              Content="Hello World !"
+                              BorderCornerRadius="3"
+                              AnglePosition="{Binding AnglePosition,Mode=TwoWay}"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

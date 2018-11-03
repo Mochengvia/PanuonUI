@@ -165,6 +165,20 @@
                                       Padding="20,0,0,0"
                                       FontSize="14"
                                       Background="White"
+                                      Content="Bubble 气泡"
+                                      cal:Message.Attach="[Event Click]=[Action ChangeSelect('18')]"></pu:PURadioButton>
+                    <pu:PURadioButton RadioButtonStyle="Branch"
+                                      Height="34"
+                                      Padding="20,0,0,0"
+                                      FontSize="14"
+                                      Background="White"
+                                      Content="ContextMenu 右键菜单"
+                                      cal:Message.Attach="[Event Click]=[Action ChangeSelect('19')]"></pu:PURadioButton>
+                    <pu:PURadioButton RadioButtonStyle="Branch"
+                                      Height="34"
+                                      Padding="20,0,0,0"
+                                      FontSize="14"
+                                      Background="White"
                                       Content="LineCharts 折线图"
                                       cal:Message.Attach="[Event Click]=[Action ChangeSelect('101')]" />
                 </StackPanel>

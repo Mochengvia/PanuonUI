@@ -18,28 +18,7 @@ namespace Panuon.UI
         #region Property
 
 
-        public Brush LineBrush
-        {
-            get { return (Brush)GetValue(LineBrushProperty); }
-            set { SetValue(LineBrushProperty, value); }
-        }
-
-        public static readonly DependencyProperty LineBrushProperty =
-            DependencyProperty.Register("LineBrush", typeof(Brush), typeof(PUSplitLine));
-
-    
-        /// <summary>
-        /// 分割线的宽度，默认值为1.0。
-        /// </summary>
-        public double Thickness
-        {
-            get { return (double)GetValue(ThicknessProperty); }
-            set { SetValue(ThicknessProperty, value); }
-        }
-
-        public static readonly DependencyProperty ThicknessProperty =
-            DependencyProperty.Register("Thickness", typeof(double), typeof(PUSplitLine));
-
+      
 
         /// <summary>
         /// 分割线的停靠方向，默认为Bottom（底部）。

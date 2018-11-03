@@ -57,7 +57,7 @@
                                     Content="2017年-2018年"></local:PUButton>
                 </StackPanel>
                 <local:PUSplitLine Margin="10,0"
-                                   LineBrush="Gray"></local:PUSplitLine>
+                                   BorderBrush="Gray"></local:PUSplitLine>
             </Grid>
             <Grid x:Name="GrdYearPanel"
                   Grid.Row="1"
@@ -126,7 +126,7 @@
                                     Click="BtnMonthInterval_Click"></local:PUButton>
                 </StackPanel>
                 <local:PUSplitLine Margin="10,0"
-                                   LineBrush="Gray"></local:PUSplitLine>
+                                   BorderBrush="Gray"></local:PUSplitLine>
             </Grid>
             <Grid x:Name="GrdMonthPanel"
                   Grid.Row="1"
@@ -231,7 +231,7 @@
                                     Click="BtnMonth_Click"></local:PUButton>
                 </StackPanel>
                 <local:PUSplitLine Margin="10,0"
-                                   LineBrush="Gray"></local:PUSplitLine>
+                                   BorderBrush="Gray"></local:PUSplitLine>
             </Grid>
             <Grid Grid.Row="1"
                   Margin="10,0">
@@ -331,7 +331,7 @@
                            Text="时间选择"
                            Foreground="{Binding Foreground,ElementName=datePicker}"></TextBlock>
                 <local:PUSplitLine Margin="10,0"
-                                   LineBrush="Gray"></local:PUSplitLine>
+                                   BorderBrush="Gray"></local:PUSplitLine>
             </Grid>
             <Grid Grid.Row="1"
                   Margin="10,0">

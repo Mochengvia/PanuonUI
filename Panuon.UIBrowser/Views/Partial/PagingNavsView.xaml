@@ -34,7 +34,7 @@
                         <Run Foreground="#FF359ECF">SelectedBrush </Run>
                         <Run>获取或设置按钮被选中或点击时的颜色。【Brush类型】。默认值#3E3E3E。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">IsSideButtonShow </Run>
-                        <Run>获取或设置两侧的按钮是否显示。【Brush类型】。默认值True。</Run><LineBreak />
+                        <Run>获取或设置两侧的按钮是否显示。【Boolean类型】。默认值True。</Run><LineBreak />
                         <Run Foreground="#FFF18C27">CurrentPageChanged </Run>
                         <Run>当前页码发生改变时，触发此路由事件。</Run>
             </TextBlock>
