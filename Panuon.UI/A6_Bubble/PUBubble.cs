@@ -14,7 +14,7 @@ namespace Panuon.UI
         #region Property
 
         /// <summary>
-        /// 获取或设置当鼠标悬浮在气泡上时，气泡的背景颜色。默认值为LightGray。
+        /// 获取或设置当鼠标悬浮在气泡上时，气泡的背景颜色。默认值为#555555。
         /// </summary>
         public Brush CoverBrush
         {
@@ -41,7 +41,9 @@ namespace Panuon.UI
 
 
 
-
+        /// <summary>
+        /// 获取或设置圆角大小。默认值为0。
+        /// </summary>
         public CornerRadius BorderCornerRadius
         {
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }

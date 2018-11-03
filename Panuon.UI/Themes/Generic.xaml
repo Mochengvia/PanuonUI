@@ -4647,9 +4647,9 @@
 
     <Style TargetType="{x:Type local:PUBubble}">
         <Setter Property="Background"
-                Value="DimGray" />
+                Value="#666666" />
         <Setter Property="CoverBrush"
-                Value="#333333" />
+                Value="#555555" />
         <Setter Property="Foreground"
                 Value="White" />
         <Setter Property="BorderBrush"
@@ -4723,6 +4723,12 @@
                             <Setter TargetName="grdContent"
                                     Property="Margin"
                                     Value="0,0,4,0" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter TargetName="path"
+                                    Property="Fill"
+                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
