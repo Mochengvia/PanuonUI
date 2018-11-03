@@ -49,23 +49,24 @@
                     <pu:PUTextBox.ContextMenu>
                         <pu:PUContextMenu>
                             <pu:PUContextMenuItem Icon=""
-                                                  Header="剪切" 
-                                                  MinWidth="150"
+                                                  Header="全部剪切" 
+                                                  MinWidth="200"
                                                   cm:Message.Attach="[Event Click]=[Action Cut]"/>
                             <pu:PUContextMenuItem Icon=""
-                                                  MinWidth="150"
-                                                  Header="复制"
+                                                  MinWidth="200"
+                                                  Header="全部复制"
                                                   cm:Message.Attach="[Event Click]=[Action Copy]"/>
                             <pu:PUContextMenuItem Icon=""
-                                                  MinWidth="150"
-                                                  Header="粘贴"
+                                                  MinWidth="200"
+                                                  Header="追加粘贴"
                                                   cm:Message.Attach="[Event Click]=[Action Paste]" />
-                            <pu:PUContextMenuItem Width="150"
+                            <pu:PUContextMenuItem Width="200"
                                                   Header="其他操作">
-                                <pu:PUContextMenuItem MinWidth="150"
+                                <pu:PUContextMenuItem MinWidth="200"
                                                       Header="没有鱼丸">
                                 </pu:PUContextMenuItem>
-                                <pu:PUContextMenuItem MinWidth="150"
+                                <pu:PUContextMenuItem MinWidth="200"
+                                                      HorizontalContentAlignment="Left"
                                                       Header="也没有粗面">
                                 </pu:PUContextMenuItem>
                             </pu:PUContextMenuItem>

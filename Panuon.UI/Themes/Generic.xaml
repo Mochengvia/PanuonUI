@@ -4789,7 +4789,7 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="HorizontalContentAlignment"
-                Value="Center" />
+                Value="Left" />
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="Template">
@@ -4809,12 +4809,12 @@
                                    Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                    Height="{TemplateBinding Height}"
                                    Width="{TemplateBinding Height}"
-                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"
                                    FontFamily="{StaticResource IconFont}"
-                                   Foreground="{TemplateBinding Foreground}"/>
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Margin="0,0,5,0"/>
                             <ContentPresenter x:Name="content" Grid.Column="1"
-                                              Margin="0,0,15,0"
                                               ContentSource="Header"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -4822,7 +4822,7 @@
                             <Path x:Name="path"
                                   Height="15"
                                   Width="15"
-                                  Margin="2,0,5,0"
+                                  Margin="10,0,5,0"
                                   Grid.Column="2"
                                   Fill="{TemplateBinding Foreground}"
                                   Data="M7,3 V 12 L 12.5,7.5 Z">

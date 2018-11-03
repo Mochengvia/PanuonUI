@@ -36,7 +36,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void Paste()
         {
-            Text = Clipboard.GetText();
+            Text += Clipboard.GetText();
         }
         #endregion
     }
