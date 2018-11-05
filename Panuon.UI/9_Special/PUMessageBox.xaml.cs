@@ -115,7 +115,7 @@ namespace Panuon.UI
         {
             if(_parentWindow != null)
                 _parentWindow.IsCoverMaskShow = false;
-            CloseWindow();
+            Close();
         }
 
         private void PUButtonYes_Click(object sender, RoutedEventArgs e)
@@ -123,7 +123,7 @@ namespace Panuon.UI
             if(_parentWindow != null)
                 _parentWindow.IsCoverMaskShow = false;
             DialogResult = true;
-            CloseWindow();
+            Close();
         }
 
         private void PUButtonNo_Click(object sender, RoutedEventArgs e)
@@ -131,7 +131,7 @@ namespace Panuon.UI
             if(_parentWindow != null)
                 _parentWindow.IsCoverMaskShow = false;
             DialogResult = false;
-            CloseWindow();
+            Close();
         }
         #endregion
 

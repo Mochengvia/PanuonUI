@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -15,6 +16,7 @@ namespace Panuon.UI
         #region Identify
         private PUButton _btnClose;
         #endregion
+
         static PUWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUWindow), new FrameworkPropertyMetadata(typeof(PUWindow)));
@@ -23,16 +25,86 @@ namespace Panuon.UI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            Loaded += delegate
+            {
+                if (AnimateIn)
+                    OnBeginLoadStoryboard();
+                else
+                    OnSkipLoadStoryboard();
+            };
             var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this,0), 0), 0), 0) as Grid;
             grdNavbar.MouseLeftButtonDown += delegate
             {
                 this.DragMove();
             };
             _btnClose = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(grdNavbar, 1), 2) as PUButton;
-
         }
 
+        private bool _animateOutHandle = true;
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if(AnimateOut && _animateOutHandle)
+            {
+                OnBeginCloseStoryboard();
+                _animateOutHandle = false;
+                DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
+                timer.Tick += delegate { Close(); timer.Stop(); };
+                timer.Start();
+
+                e.Cancel = true;
+            }
+            base.OnClosing(e);
+        }
+        #region RoutedEvent
+        /// <summary>
+        /// 使用动画打开窗体。
+        /// </summary>
+        internal static readonly RoutedEvent BeginLoadStoryboardEvent = EventManager.RegisterRoutedEvent("BeginLoadStoryboard", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUWindow>), typeof(PUWindow));
+        internal event RoutedPropertyChangedEventHandler<PUWindow> BeginLoadStoryboard
+        {
+            add { AddHandler(BeginLoadStoryboardEvent, value); }
+            remove { RemoveHandler(BeginLoadStoryboardEvent, value); }
+        }
+        internal void OnBeginLoadStoryboard()
+        {
+            RoutedPropertyChangedEventArgs<PUWindow> arg = new RoutedPropertyChangedEventArgs<PUWindow>(null, this, BeginLoadStoryboardEvent);
+            RaiseEvent(arg);
+        }
+
+        /// <summary>
+        /// 不使用动画打开窗体。
+        /// </summary>
+        internal static readonly RoutedEvent SkipLoadStoryboardEvent = EventManager.RegisterRoutedEvent("SkipLoadStoryboard", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUWindow>), typeof(PUWindow));
+        internal event RoutedPropertyChangedEventHandler<PUWindow> SkipLoadStoryboard
+        {
+            add { AddHandler(SkipLoadStoryboardEvent, value); }
+            remove { RemoveHandler(SkipLoadStoryboardEvent, value); }
+        }
+        internal void OnSkipLoadStoryboard()
+        {
+            RoutedPropertyChangedEventArgs<PUWindow> arg = new RoutedPropertyChangedEventArgs<PUWindow>(null, this, SkipLoadStoryboardEvent);
+            RaiseEvent(arg);
+        }
+
+        /// <summary>
+        /// 使用动画关闭窗体。
+        /// </summary>
+        internal static readonly RoutedEvent BeginCloseStoryboardEvent = EventManager.RegisterRoutedEvent("BeginCloseStoryboard", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUWindow>), typeof(PUWindow));
+        internal event RoutedPropertyChangedEventHandler<PUWindow> BeginCloseStoryboard
+        {
+            add { AddHandler(BeginCloseStoryboardEvent, value); }
+            remove { RemoveHandler(BeginCloseStoryboardEvent, value); }
+        }
+        internal void OnBeginCloseStoryboard()
+        {
+            RoutedPropertyChangedEventArgs<PUWindow> arg = new RoutedPropertyChangedEventArgs<PUWindow>(null, this, BeginCloseStoryboardEvent);
+            RaiseEvent(arg);
+        }
+       
+        #endregion
+
         #region Property
+
         /// <summary>
         /// 打开遮罩层，默认值为False。
         /// </summary>
@@ -240,22 +312,6 @@ namespace Panuon.UI
             /// </summary>
             Fade = 2
         }
-
-        #region APIs
-        public void CloseWindow()
-        {
-            if (!AnimateOut)
-                Close();
-            else
-            {
-                _btnClose.RaiseEvent(new RoutedEventArgs(PUButton.ClickEvent, _btnClose));
-                DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
-                timer.Tick += delegate { Close(); timer.Stop(); };
-                timer.Start();
-            }
-        }
-        #endregion
-
     }
 
     public class CloseWindowCommand : ICommand
@@ -274,14 +330,7 @@ namespace Panuon.UI
         public void Execute(object parameter)
         {
             var window = (parameter as PUWindow);
-            if (!window.AnimateOut)
-                window.Close();
-            else
-            {
-                DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
-                timer.Tick += delegate { window.Close(); timer.Stop(); };
-                timer.Start();
-            }
+            window.Close();
         }
     }
     public class MaxWindowCommand : ICommand

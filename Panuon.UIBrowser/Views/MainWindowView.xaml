@@ -10,8 +10,7 @@
              Height="800"
              Width="1200"
              WindowStartupLocation="CenterScreen"
-             AnimationStyle="Gradual"
-             AllowShowDelay="True">
+             AnimationStyle="Gradual">
     <pu:PUWindow.Icon>
         <TextBlock Text=""
                    FontSize="20"

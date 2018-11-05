@@ -122,7 +122,7 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Window}}">
-                                <Grid>
+                                <Grid x:Name="grdContent" Opacity="0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
@@ -223,18 +223,40 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
+                                <EventTrigger RoutedEvent="BeginLoadStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                              To="1"
-                                                             Duration="0:0:0.4">
+                                                             Duration="0:0:0.3">
                                             </DoubleAnimation>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.4"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <EventTrigger SourceName="btnClose"
-                                              RoutedEvent="Button.Click">
+                                <EventTrigger RoutedEvent="SkipLoadStoryboard">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="BeginCloseStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -244,6 +266,13 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
+                                <Trigger Property="AllowShowDelay"
+                                         Value="False">
+                                    <Setter TargetName="grdContent"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </Trigger>
+
                                 <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -377,7 +406,7 @@
                                         </GradientStopCollection>
                                     </LinearGradientBrush>
                                 </Border.OpacityMask>
-                                <Grid>
+                                <Grid x:Name="grdContent" Opacity="0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
@@ -478,7 +507,7 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
+                                <EventTrigger RoutedEvent="BeginLoadStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="offset2"
@@ -489,12 +518,41 @@
                                                             Storyboard.TargetProperty="Color"
                                                             To="White"
                                                             Duration="0:0:0.1"
-                                                            BeginTime="0:0:0.2"></ColorAnimation>
+                                                            BeginTime="0:0:0.15"></ColorAnimation>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.4"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <EventTrigger SourceName="btnClose"
-                                              RoutedEvent="Button.Click">
+                                <EventTrigger RoutedEvent="SkipLoadStoryboard">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="offset2"
+                                                                           Storyboard.TargetProperty="Offset">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="offset2"
+                                                                          Storyboard.TargetProperty="Color">
+                                                <DiscreteColorKeyFrame KeyTime="0:0:0"
+                                                                       Value="White">
+                                                </DiscreteColorKeyFrame>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="BeginCloseStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetName="offset1"
@@ -509,6 +567,12 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
+                                <Trigger Property="AllowShowDelay"
+                                         Value="False">
+                                    <Setter TargetName="grdContent"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </Trigger>
                                 <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -637,7 +701,7 @@
                                                     ScaleX="0.95"
                                                     ScaleY="0.95" />
                                 </Border.RenderTransform>
-                                <Grid>
+                                <Grid x:Name="grdContent" Opacity="0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="{Binding NavbarHeight,RelativeSource={RelativeSource AncestorType=Window}}"></RowDefinition>
@@ -738,7 +802,7 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
+                                <EventTrigger RoutedEvent="BeginLoadStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="scale"
@@ -752,11 +816,45 @@
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                                              To="1"
                                                              Duration="0:0:0.4" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.4"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                                <EventTrigger SourceName="btnClose"
-                                              RoutedEvent="Button.Click">
+                                <EventTrigger RoutedEvent="SkipLoadStoryboard">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="scale"
+                                                                           Storyboard.TargetProperty="ScaleX">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="scale"
+                                                                           Storyboard.TargetProperty="ScaleY">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="grdContent"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="1">
+                                                </DiscreteDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="BeginCloseStoryboard">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="scale"
@@ -773,6 +871,19 @@
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
+                                <Trigger Property="AllowShowDelay"
+                                         Value="False">
+                                    <Setter TargetName="grdContent"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </Trigger>
+                                <Trigger Property="AllowShowDelay"
+                                         Value="True">
+                                    <Setter TargetName="grdContent"
+                                            Property="Opacity"
+                                            Value="0" />
+                                </Trigger>
+
                                 <Trigger Property="IsCoverMaskShow"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -4768,8 +4879,7 @@
                                       Style="{StaticResource MiniScrollViewer}">
                             <StackPanel ClipToBounds="True"
                                         Orientation="Vertical"
-                                        IsItemsHost="True"
-                                        />
+                                        IsItemsHost="True" />
                         </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
@@ -4813,8 +4923,9 @@
                                    HorizontalContentAlignment="Center"
                                    FontFamily="{StaticResource IconFont}"
                                    Foreground="{TemplateBinding Foreground}"
-                                   Margin="0,0,5,0"/>
-                            <ContentPresenter x:Name="content" Grid.Column="1"
+                                   Margin="0,0,5,0" />
+                            <ContentPresenter x:Name="content"
+                                              Grid.Column="1"
                                               ContentSource="Header"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -4826,7 +4937,7 @@
                                   Grid.Column="2"
                                   Fill="{TemplateBinding Foreground}"
                                   Data="M7,3 V 12 L 12.5,7.5 Z">
-                                
+
                             </Path>
                         </Grid>
                         <Popup x:Name="Popup"
