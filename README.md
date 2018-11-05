@@ -41,7 +41,7 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 
 ### Window 窗体
 PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。<br/>
-通过设置IsCoverMask和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。<br/>
+通过设置IsCoverMaskShow和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。<br/>
 图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.png)<br/>
 
