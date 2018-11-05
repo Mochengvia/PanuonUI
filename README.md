@@ -62,13 +62,7 @@ PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。
 | NavButtonWidth | Double | 控制栏按钮的宽度。默认值为40。  |
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
 
-
-PUWindow包含以下一个额外的方法。<br/>
-
-| 方法 | 含义 |
-| ----- | ----- |
-| CloseWindow | 若要关闭窗体，请使用该方法。否则关闭动画可能不会如期执行。 |
-
+上一个版本的CloseWindow()方法将不再使用，直接使用Close()方法即可触发关闭动画（若AnimateOut为True）。
 扩展：PUMessageBox
 该控件继承自PUWindow，因而可以使用上面任意一个属性来配置它。
 你可以在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。
