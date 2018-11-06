@@ -96,6 +96,13 @@ namespace Panuon.UI.Utils
             RecheckQueue();
         }
 
+        public static void ReleaseAll()
+        {
+            foreach(var task in _taskQueue)
+            {
+                task.Dispose();
+            }
+        }
         #endregion
 
         #region Funtion
@@ -123,7 +130,7 @@ namespace Panuon.UI.Utils
                 RecheckQueue();
             });
             task.Start();
-            if(_taskQueue.Count < MaxTaskQuantity)
+            if(_runningTaskQuantity < MaxTaskQuantity)
                 RecheckQueue();
         }
         #endregion

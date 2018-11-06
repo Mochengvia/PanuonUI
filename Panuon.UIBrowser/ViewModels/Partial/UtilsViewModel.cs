@@ -16,15 +16,18 @@ using Panuon.UI.Utils;
 using System.Threading.Tasks;
 using System.Threading;
 using Caliburn.Micro;
+using System.Collections.Concurrent;
 
 namespace Panuon.UIBrowser.ViewModels.Partial
 {
     public class UtilsViewModel : Screen,IShell
     {
         private PUListBox _listbox;
+        private ConcurrentBag<CancellationTokenSource> _cancellatonBag;
 
         public UtilsViewModel()
         {
+            _cancellatonBag = new ConcurrentBag<CancellationTokenSource>();
             MaxTaskQuantity = 1;
         }
 
@@ -50,34 +53,40 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void Clear()
         {
-            if(TaskPoll.CurrentTaskQuantity != 0)
+            foreach(var cts in _cancellatonBag)
             {
-                PUMessageBox.ShowDialog("必须等所有任务执行结束，才能清空列表。");
-                return;
+                cts.Cancel();
             }
+            _cancellatonBag = new ConcurrentBag<CancellationTokenSource>();
             _listbox.Items.Clear();
         }
 
         public void AddTask()
         {
+            
+            var cts = new CancellationTokenSource();
+
             var pgb = new PUProgressBar() { Height = 30, Width = 200 };
             var task = new Task(() =>
             {
-                for(int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    App.Current.Dispatcher.Invoke(new System.Action(() => 
+                    if (cts.Token.IsCancellationRequested)
+                        return;
+                    App.Current.Dispatcher.Invoke(new System.Action(() =>
                     {
                         pgb.Percent += 0.1;
                     }));
                     Thread.Sleep(1000);
                 }
-            });
+            }, cts.Token);
             _listbox.Items.Add(new PUListBoxItem()
             {
                 Height = 40,
                 VerticalContentAlignment = VerticalAlignment.Center,
                 Content = pgb,
             });
+            _cancellatonBag.Add(cts);
             TaskPoll.StartNew(task);
         }
         #endregion
