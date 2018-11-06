@@ -96,13 +96,6 @@ namespace Panuon.UI.Utils
             RecheckQueue();
         }
 
-        public static void ReleaseAll()
-        {
-            foreach(var task in _taskQueue)
-            {
-                task.Dispose();
-            }
-        }
         #endregion
 
         #region Funtion
