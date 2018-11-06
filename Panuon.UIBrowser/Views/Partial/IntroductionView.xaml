@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Label FontSize="22"
                VerticalContentAlignment="Center"
-               Margin="20,0">PanuonUI for WPF（v0.0.5 beta）</Label>
+               Margin="20,0">PanuonUI for WPF（v0.0.8 alpha）</Label>
         <TextBlock Grid.Row="1"
                    Margin="20,0"
                    TextWrapping="Wrap"><Run Text="PanuonUI是一个开源的、不限制任何使用方式的WPF控件库。" /><LineBreak /><LineBreak />
@@ -27,7 +27,7 @@
                  Text="许可声明：" />
             <Run Text="你可以在任何开发用途上使用该控件库，包括将控件移动到你自己的项目中并重命名。但是，不允许以任何形式抄袭、剽窃并发布新的独立控件库。如果发现类似行为，将依法追究相关责任。" />
             <LineBreak /><LineBreak /><LineBreak /><LineBreak />
-            <Run Text="项目中使用了IconFont图标字体库。" /><LineBreak />
+            <Run Text="项目中使用了FontAwesome图标字体库。" /><LineBreak />
             <Run Text="另外，项目中还使用了Caliburn.Micro开源框架，它提供优雅的MVVM支持，是一个非常优秀的开源项目。" />
         </TextBlock>
         <TextBlock Grid.Row="2"

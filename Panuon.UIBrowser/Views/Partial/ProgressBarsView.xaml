@@ -118,19 +118,19 @@
                                 Orientation="Horizontal">
                         <pu:PUProgressBar Width="120"
                                           BorderCornerRadius="5"
-                                         
                                           Height="30"
                                           Background="#22DD44AA"
                                           Foreground="#AADD44AA"
                                           BorderBrush="#77DD44AA"
                                           CoverBrush="#77DD44AA"
-                                          Percent="0.5"
+                                          Percent="0.4"
+                                          Direction="RightToLeft"
                                           IsPercentShow="True"
                                           HorizontalAlignment="Left"></pu:PUProgressBar>
                         <pu:PUProgressBar Width="120"
                                           BorderCornerRadius="5"
                                           Margin="10,0,0,0"
-                                         
+                                          Direction="RightToLeft"
                                           Height="30"
                                           Background="#22F4A758"
                                           Foreground="#AAF4A758"
@@ -142,7 +142,7 @@
                         <pu:PUProgressBar Width="120"
                                           BorderCornerRadius="5"
                                           Margin="10,0,0,0"
-                                         
+                                          Direction="RightToLeft"
                                           Height="30"
                                           Background="#2289E090"
                                           Foreground="#EE62B669"
@@ -162,14 +162,13 @@
                                           Foreground="#AADD44AA"
                                           BorderBrush="#77DD44AA"
                                           CoverBrush="#77DD44AA"
-                                          Percent="0.5"
+                                          Percent="0.3"
                                           IsPercentShow="True"
                                           HorizontalAlignment="Left"></pu:PUProgressBar>
                         <pu:PUProgressBar Height="120"
                                           BorderCornerRadius="5"
                                           Direction="BottomToTop"
                                           Margin="10,0,0,0"
-                                         
                                           Width="30"
                                           Foreground="#AAF4A758"
                                           BorderBrush="#77F4A758"
@@ -178,15 +177,14 @@
                                           IsPercentShow="True"
                                           HorizontalAlignment="Left"></pu:PUProgressBar>
                         <pu:PUProgressBar Height="120"
-                                          BorderCornerRadius="5"
-                                          Direction="BottomToTop"
+                                          BorderCornerRadius="4"
+                                          Direction="TopToBottom"
                                           Margin="10,0,0,0"
-                                         
                                           Width="30"
                                           Foreground="#EE62B669"
                                           BorderBrush="#7762B669"
                                           CoverBrush="#7762B669"
-                                          Percent="0.5"
+                                          Percent="0.3"
                                           IsPercentShow="True"
                                           HorizontalAlignment="Left"></pu:PUProgressBar>
                     </StackPanel>

@@ -28,6 +28,7 @@
                     <Run Text="StartNew&lt;T&gt;(Task&lt;T&gt; task)  使用默认值来初始化TaskPoll（若尚未初始化），并将新任务安排到TaskPoll中。" /><LineBreak />
                     <Run Text="Init()  使用默认值来初始化TaskPoll（若尚未初始化）。使用StartNew方法将自动调用此方法。" /><LineBreak />
                     <Run Text="Init(int maxTaskQuantity)  指定最大可执行任务数量，并初始化TaskPoll（若尚未初始化）。" /><LineBreak />
+                    <Run Text="MaxTaskQuantity  获取或设置最大可执行任务数量。动态修改此值时，正在执行的任务不会被终止。" /><LineBreak />
                 </TextBlock>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -50,6 +51,7 @@
                                        VerticalAlignment="Center" />
                             <pu:PUComboBox Height="30"
                                            Grid.Column="1"
+                                           Margin="0,0,40,0"
                                            VerticalAlignment="Top"
                                            SelectedValuePath="Value"
                                            SelectedValue="{Binding MaxTaskQuantity,Mode=TwoWay}">
@@ -60,6 +62,10 @@
                                                    Value="2" />
                                 <pu:PUComboBoxItem Content="3"
                                                    Value="3" />
+                                <pu:PUComboBoxItem Content="4"
+                                                   Value="4" />
+                                <pu:PUComboBoxItem Content="5"
+                                                   Value="5" />
                             </pu:PUComboBox>
                         </Grid>
                         <pu:PUButton x:Name="Clear" Height="30"
