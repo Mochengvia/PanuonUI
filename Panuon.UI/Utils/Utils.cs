@@ -33,6 +33,22 @@ namespace Panuon.UI.Utils
         }
         private static int? _maxTaskQuantity;
 
+        /// <summary>
+        /// 获取当前任务池中的任务总数（包括排队中和正在执行的）。
+        /// </summary>
+        public static int CurrentTaskQuantity
+        {
+            get { return _taskQueue == null ? 0 : _taskQueue.Count; }
+        }
+
+        /// <summary>
+        /// 获取当前正在执行的任务数量。
+        /// </summary>
+        public static int RunningTaskQuantity
+        {
+            get { return _runningTaskQuantity; }
+        }
+
         #endregion
 
         #region APIs
@@ -79,6 +95,7 @@ namespace Panuon.UI.Utils
             _taskQueue.Enqueue(task);
             RecheckQueue();
         }
+
         #endregion
 
         #region Funtion
@@ -106,6 +123,8 @@ namespace Panuon.UI.Utils
                 RecheckQueue();
             });
             task.Start();
+            if(_taskQueue.Count < MaxTaskQuantity)
+                RecheckQueue();
         }
         #endregion
 

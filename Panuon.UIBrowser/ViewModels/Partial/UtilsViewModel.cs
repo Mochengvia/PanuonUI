@@ -50,6 +50,11 @@ namespace Panuon.UIBrowser.ViewModels.Partial
 
         public void Clear()
         {
+            if(TaskPoll.CurrentTaskQuantity != 0)
+            {
+                PUMessageBox.ShowDialog("必须等所有任务执行结束，才能清空列表。");
+                return;
+            }
             _listbox.Items.Clear();
         }
 

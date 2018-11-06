@@ -24,10 +24,10 @@
             <StackPanel Grid.Row="2">
                 <TextBlock>
                     <Run Text="TaskPoll任务池（线程安全的）" FontSize="20"/><LineBreak />
-                    <Run Text="StartNew(Task task)  使用默认值初始化线程池（若尚未初始化），并将新任务安排到任务池中。" /><LineBreak />
-                    <Run Text="StartNew&lt;T&gt;(Task&lt;T&gt; task)  使用默认值初始化线程池（若尚未初始化），并将新任务安排到任务池中。" /><LineBreak />
-                    <Run Text="Init()  使用默认值初始化线程池（若尚未初始化）。使用StartNew方法将自动调用此方法。" /><LineBreak />
-                    <Run Text="Init(int maxTaskQuantity)  指定最大可执行任务数量来初始化线程池（若尚未初始化）。" /><LineBreak />
+                    <Run Text="StartNew(Task task)  使用默认值来初始化TaskPoll（若尚未初始化），并将新任务安排到任务池中。" /><LineBreak />
+                    <Run Text="StartNew&lt;T&gt;(Task&lt;T&gt; task)  使用默认值来初始化TaskPoll（若尚未初始化），并将新任务安排到TaskPoll中。" /><LineBreak />
+                    <Run Text="Init()  使用默认值来初始化TaskPoll（若尚未初始化）。使用StartNew方法将自动调用此方法。" /><LineBreak />
+                    <Run Text="Init(int maxTaskQuantity)  指定最大可执行任务数量，并初始化TaskPoll（若尚未初始化）。" /><LineBreak />
                 </TextBlock>
                 <Grid>
                     <Grid.ColumnDefinitions>
