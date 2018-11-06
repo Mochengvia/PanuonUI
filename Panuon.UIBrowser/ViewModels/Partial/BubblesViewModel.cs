@@ -11,7 +11,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
     public class BubblesViewModel : Screen, IShell
     {
 
-        #region Property
+        #region Binding
         public AnglePositions AnglePosition
         {
             get { return _anglePosition; }

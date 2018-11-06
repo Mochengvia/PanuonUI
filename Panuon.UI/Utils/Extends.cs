@@ -43,24 +43,6 @@ namespace Panuon.UI.Utils
         }
         #endregion
 
-        #region Integer
-        /// <summary>
-        /// 将数字按位转换为中文大写文字。
-        /// </summary>
-        public static string ToChineseNumber(this int number)
-        {
-            var result = "";
-            var str = "零一二三四五六七八九";
-            var convert = number.ToString();
-            for(int i = 0; i < convert.Length; i++)
-            {
-                result += str[Int32.Parse(convert[i].ToString())];
-            }
-            return result;
-        }
-
-        #endregion
-
         #region DateTime
         /// <summary>
         /// 将时间转换成时间戳（精确到毫秒）。

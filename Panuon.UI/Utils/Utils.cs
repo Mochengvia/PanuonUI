@@ -13,7 +13,7 @@ namespace Panuon.UI.Utils
     /// <summary>
     /// 提供Task的简易池化管理，并发任务数量可控。
     /// </summary>
-    public class TaskFactory
+    public class TaskPoll
     {
         #region Identity
         private static ConcurrentQueue<Task> _taskQueue;
@@ -29,7 +29,7 @@ namespace Panuon.UI.Utils
         public static int? MaxTaskQuantity
         {
             get { return _maxTaskQuantity; }
-            set { _maxTaskQuantity = value; }
+            set { _maxTaskQuantity = value; RecheckQueue(); }
         }
         private static int? _maxTaskQuantity;
 
@@ -84,6 +84,8 @@ namespace Panuon.UI.Utils
         #region Funtion
         private static void RecheckQueue()
         {
+            if (_taskQueue == null)
+                return;
             if (_taskQueue.Count == 0 || (MaxTaskQuantity != null && _runningTaskQuantity >= MaxTaskQuantity))
                 return;
             Task task;

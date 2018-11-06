@@ -366,7 +366,7 @@ namespace Panuon.UI
                 var radio = new PURadioButton
                 {
                     RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
-                    Content = (i < 10 ? i.ToChineseNumber() : i == 10 ? "十" : "十" + (i - 10).ToChineseNumber()) + "月",
+                    Content = i + "月",
                     Height = 35,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     HorizontalContentAlignment = HorizontalAlignment.Center,

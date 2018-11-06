@@ -267,3 +267,5 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBro
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.GenerateResource.Cache
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.exe
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.pdb
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\UtilsView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Partial\UtilsView.g.cs

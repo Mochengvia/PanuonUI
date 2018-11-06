@@ -80,10 +80,15 @@ namespace Panuon.UIBrowser.ViewModels
                 case 19:
                     ActivateItem(new ContextMenusViewModel());
                     return;
+                case 98:
+                    ActivateItem(new ContextMenusViewModel());
+                    return;
+                case 99:
+                    ActivateItem(new UtilsViewModel());
+                    return;
                 case 101:
                     ActivateItem(new LineChartsViewModel());
                     return;
-
             }
         }
 

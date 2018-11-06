@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.Partial.UtilsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="White">
+    <!---从http://www.fontawesome.com.cn/cheatsheet/上复制图标-->
+    <ScrollViewer x:Name="scrollViewer">
+        <Grid Margin="60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="50"
+                   FontSize="20"
+                   VerticalContentAlignment="Center">Panuon.UI.Utils 工具集</Label>
+            <StackPanel Grid.Row="2">
+                <TextBlock>
+                    <Run Text="TaskPoll任务池（线程安全的）" FontSize="20"/><LineBreak />
+                    <Run Text="StartNew(Task task)  使用默认值初始化线程池（若尚未初始化），并将新任务安排到任务池中。" /><LineBreak />
+                    <Run Text="StartNew&lt;T&gt;(Task&lt;T&gt; task)  使用默认值初始化线程池（若尚未初始化），并将新任务安排到任务池中。" /><LineBreak />
+                    <Run Text="Init()  使用默认值初始化线程池（若尚未初始化）。使用StartNew方法将自动调用此方法。" /><LineBreak />
+                    <Run Text="Init(int maxTaskQuantity)  指定最大可执行任务数量来初始化线程池（若尚未初始化）。" /><LineBreak />
+                </TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <pu:PUListBox x:Name="listBox"
+                                  Height="300"
+                                  cm:Message.Attach="[Event Loaded]=[Action ListBoxLoaded($source)]">
+                    </pu:PUListBox>
+                    <StackPanel Grid.Column="1">
+                        <Grid VerticalAlignment="Top"
+                              Height="30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="最大任务数："
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center" />
+                            <pu:PUComboBox Height="30"
+                                           Grid.Column="1"
+                                           VerticalAlignment="Top"
+                                           SelectedValuePath="Value"
+                                           SelectedValue="{Binding MaxTaskQuantity,Mode=TwoWay}">
+                                <pu:PUComboBoxItem Content="1"
+                                                   IsSelected="True"
+                                                   Value="1" />
+                                <pu:PUComboBoxItem Content="2"
+                                                   Value="2" />
+                                <pu:PUComboBoxItem Content="3"
+                                                   Value="3" />
+                            </pu:PUComboBox>
+                        </Grid>
+                        <pu:PUButton x:Name="Clear" Height="30"
+                                      Margin="40,10,40,0"
+                                      ButtonStyle="Hollow"
+                                      Content="清空列表" />
+                        <pu:PUButton  x:Name="AddTask" Height="30"
+                                      Margin="40,5,40,0"
+                                      Content="添加新任务"/>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
