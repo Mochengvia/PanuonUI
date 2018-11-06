@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Panuon Repo\PanuonUI\Panuon.UI.Charts\obj\Release\
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Release\
 Panuon.UI.Charts
 none
 false
@@ -16,5 +16,5 @@ TRACE
 14217404969
 0_Base\PUChartToolTip.xaml;1_LineChart\PULineChart.xaml;
 
-False
+True
 

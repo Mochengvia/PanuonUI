@@ -1855,7 +1855,7 @@
         <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="BorderThickness"
-                Value="0.3"></Setter>
+                Value="0.7"></Setter>
         <Setter Property="Foreground"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
@@ -1865,9 +1865,11 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="6,0,0,0"></Setter>
+                Value="10,0,0,0"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
+        <Setter Property="ShadowColor"
+                Value="#888888" />
         <Style.Triggers>
             <Trigger Property="TextBoxStyle"
                      Value="General">
@@ -1876,6 +1878,7 @@
                         <ControlTemplate TargetType="{x:Type local:PUTextBox}">
                             <Grid>
                                 <Border x:Name="bdrOuter"
+                                        Margin="1"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -1883,9 +1886,9 @@
                                     <Border.Effect>
                                         <DropShadowEffect x:Name="effect"
                                                           ShadowDepth="0"
-                                                          BlurRadius="0"
+                                                          BlurRadius="5"
                                                           Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                                          Opacity="0.4" />
+                                                          Opacity="0" />
                                     </Border.Effect>
                                 </Border>
                                 <Border x:Name="bdrInner"
@@ -1910,8 +1913,7 @@
                                             </ScrollViewer.Height>
                                         </ScrollViewer>
                                         <TextBlock  x:Name="tbWatermark"
-                                                    Margin="3,0,0,0"
-                                                    Padding="{TemplateBinding Padding}"
+                                                    Margin="{TemplateBinding Padding}"
                                                     TextWrapping="Wrap"
                                                     Focusable="False"
                                                     IsHitTestVisible="False"
@@ -1929,10 +1931,10 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="5"
+                                                <DoubleAnimation To="0.4"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
@@ -1942,7 +1944,7 @@
                                                 <DoubleAnimation To="0"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
@@ -1966,7 +1968,7 @@
             <Trigger Property="TextBoxStyle"
                      Value="IconGroup">
                 <Setter Property="Padding"
-                        Value="30,0,0,0"></Setter>
+                        Value="0,0,0,0"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUTextBox}">
@@ -1979,15 +1981,19 @@
                                     <Border.Effect>
                                         <DropShadowEffect x:Name="effect"
                                                           ShadowDepth="0"
-                                                          BlurRadius="0"
+                                                          BlurRadius="5"
                                                           Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                                          Opacity="0.4" />
+                                                          Opacity="0" />
                                     </Border.Effect>
                                 </Border>
                                 <Border x:Name="bdrInner"
                                         ClipToBounds="True"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
                                     <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
                                         <Label Width="{Binding IconWidth,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Left"
@@ -1996,7 +2002,7 @@
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
                                                FontFamily="{StaticResource IconFont}"></Label>
-                                        <Grid>
+                                        <Grid Grid.Column="1">
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Style="{StaticResource MiniScrollViewer}"
                                                           Margin="{TemplateBinding Padding}"
@@ -2017,8 +2023,7 @@
                                                 </ScrollViewer.Height>
                                             </ScrollViewer>
                                             <TextBlock  x:Name="tbWatermark"
-                                                        Margin="3,0,0,0"
-                                                        Padding="{TemplateBinding Padding}"
+                                                        Margin="{TemplateBinding Padding}"
                                                         TextWrapping="Wrap"
                                                         Focusable="False"
                                                         IsHitTestVisible="False"
@@ -2037,10 +2042,10 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="5"
+                                                <DoubleAnimation To="0.4"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
@@ -2050,7 +2055,7 @@
                                                 <DoubleAnimation To="0"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
@@ -2353,7 +2358,7 @@
         <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="BorderThickness"
-                Value="0.3"></Setter>
+                Value="0.7"></Setter>
         <Setter Property="Foreground"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
@@ -2363,11 +2368,13 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="6,0,0,0"></Setter>
+                Value="10,0,0,0"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="InputMethod.IsInputMethodEnabled"
                 Value="False"></Setter>
+        <Setter Property="ShadowColor"
+                Value="#888888" />
         <Style.Triggers>
             <Trigger Property="PasswordBoxStyle"
                      Value="General">
@@ -2383,9 +2390,9 @@
                                     <Border.Effect>
                                         <DropShadowEffect x:Name="effect"
                                                           ShadowDepth="0"
-                                                          BlurRadius="0"
+                                                          BlurRadius="5"
                                                           Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                                          Opacity="0.4" />
+                                                          Opacity="0" />
                                     </Border.Effect>
                                 </Border>
                                 <Border x:Name="bdrInner"
@@ -2410,8 +2417,7 @@
                                             </ScrollViewer.Height>
                                         </ScrollViewer>
                                         <TextBlock  x:Name="tbWatermark"
-                                                    Margin="3,0,0,0"
-                                                    Padding="{TemplateBinding Padding}"
+                                                    Margin="{TemplateBinding Padding}"
                                                     TextWrapping="Wrap"
                                                     Focusable="False"
                                                     IsHitTestVisible="False"
@@ -2429,10 +2435,10 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="5"
+                                                <DoubleAnimation To="0.4"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
@@ -2442,7 +2448,7 @@
                                                 <DoubleAnimation To="0"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
@@ -2466,7 +2472,7 @@
             <Trigger Property="PasswordBoxStyle"
                      Value="IconGroup">
                 <Setter Property="Padding"
-                        Value="30,0,0,0"></Setter>
+                        Value="0,0,0,0"></Setter>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUPasswordBox}">
@@ -2479,15 +2485,19 @@
                                     <Border.Effect>
                                         <DropShadowEffect x:Name="effect"
                                                           ShadowDepth="0"
-                                                          BlurRadius="0"
+                                                          BlurRadius="5"
                                                           Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                                          Opacity="0.4" />
+                                                          Opacity="0" />
                                     </Border.Effect>
                                 </Border>
                                 <Border x:Name="bdrInner"
                                         ClipToBounds="True"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
                                     <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
                                         <Label Width="{Binding IconWidth,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                VerticalAlignment="Center"
                                                HorizontalAlignment="Left"
@@ -2496,7 +2506,7 @@
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
                                                FontFamily="{StaticResource IconFont}"></Label>
-                                        <Grid>
+                                        <Grid Grid.Column="1">
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Style="{StaticResource MiniScrollViewer}"
                                                           Margin="{TemplateBinding Padding}"
@@ -2517,8 +2527,7 @@
                                                 </ScrollViewer.Height>
                                             </ScrollViewer>
                                             <TextBlock  x:Name="tbWatermark"
-                                                        Margin="3,0,0,0"
-                                                        Padding="{TemplateBinding Padding}"
+                                                        Margin="{TemplateBinding Padding}"
                                                         TextWrapping="Wrap"
                                                         Focusable="False"
                                                         IsHitTestVisible="False"
@@ -2537,10 +2546,10 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="5"
+                                                <DoubleAnimation To="0.4"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
@@ -2550,7 +2559,7 @@
                                                 <DoubleAnimation To="0"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
-                                                                 Storyboard.TargetProperty="BlurRadius" />
+                                                                 Storyboard.TargetProperty="Opacity" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
