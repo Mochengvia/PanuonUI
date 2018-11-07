@@ -205,16 +205,20 @@ namespace Panuon.UI.Charts
         {
             var actualWidth = this.ActualWidth;
             var actualHeight = this.ActualHeight;
+            if (Points == null)
+                return;
+
             LoadXAxis(actualWidth);
             LoadYAxis(actualHeight);
             DrawGrid(actualWidth, actualHeight);
-            if (Points == null)
-                return;
             InitLine(actualWidth, actualHeight, AnimationMode != AnimationModes.None);
         }
 
         private void LoadYAxis(double actualHeight)
         {
+            if (YAxis == null)
+                return;
+
             var yAxis = YAxis.Reverse().ToArray();
 
             var xHeight = (actualHeight - _xHeight) / (yAxis.Length - 0.5);
@@ -253,6 +257,9 @@ namespace Panuon.UI.Charts
 
         private void LoadXAxis(double actualWidth)
         {
+            if (XAxis == null)
+                return;
+
             var yWidth = (actualWidth - _yWidth) / (XAxis.Length - 0.5);
 
             if (canvasXAxis.Children.Count > XAxis.Length)
@@ -289,6 +296,9 @@ namespace Panuon.UI.Charts
 
         private void DrawGrid(double actualWidth, double actualHeight)
         {
+            if (YAxis == null || XAxis == null)
+                return;
+
             var cvaHeight = actualHeight - _xHeight;
             var cvaWidth = actualWidth - _yWidth;
 
