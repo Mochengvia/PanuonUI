@@ -51,7 +51,11 @@ namespace Panuon.UI
 
             var path = "";
 
-            if (percent < 0.5)
+            if(percent == 0)
+            {
+                path = "";
+            }
+            else if (percent < 0.5)
             {
                 path = "M " + width / 2 + "," + radius / 2 + " A " + (width - radius) / 2 + "," + (width - radius) / 2 + " 0 0 1 " + point2X + "," + point2Y + "";
             }

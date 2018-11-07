@@ -77,7 +77,7 @@ namespace Panuon.UI
         /// <summary>
         /// 要显示的名称。可以作为SelectValuePath的值。
         /// </summary>
-        public string Header
+        public object Header
         {
             get { return _header; }
             set
@@ -85,7 +85,7 @@ namespace Panuon.UI
                 _header = value; OnPropertyChanged("Header");
             }
         }
-        private string _header = "";
+        private object _header = "";
 
         /// <summary>
         /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。

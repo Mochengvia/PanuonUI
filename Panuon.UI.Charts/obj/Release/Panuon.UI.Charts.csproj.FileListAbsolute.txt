@@ -27,8 +27,6 @@ C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI
 C:\Users\DELL\Source\Repos\Ruris\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.pdb
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.dll
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Release\Panuon.UI.Charts.pdb
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Release\System.Net.Http.dll
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Release\System.Net.Http.xml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Release\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Release\0_Base\PUChartToolTip.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Release\1_LineChart\PULineChart.g.cs
