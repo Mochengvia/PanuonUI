@@ -232,3 +232,5 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Part
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.g.resources
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.Properties.Resources.resources
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.csproj.GenerateResource.Cache
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\HelpersView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Release\Views\Partial\HelpersView.g.cs

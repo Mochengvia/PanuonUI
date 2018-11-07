@@ -124,7 +124,7 @@
                                          CoverBrush="#AAE089B8" />
                         </Grid>
                         <Grid>
-                            <pu:PUTextBox Padding="30,0,30,0"
+                            <pu:PUTextBox Padding="0,0,30,0"
                                           TextBoxStyle="IconGroup"
                                           Text="与PUButton组合起来"
                                           Icon=""

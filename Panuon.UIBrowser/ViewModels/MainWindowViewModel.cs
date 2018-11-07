@@ -89,6 +89,10 @@ namespace Panuon.UIBrowser.ViewModels
                 case 101:
                     ActivateItem(new LineChartsViewModel());
                     return;
+                case 201:
+                    ActivateItem(new GridsViewModel());
+                    return;
+
             }
         }
 

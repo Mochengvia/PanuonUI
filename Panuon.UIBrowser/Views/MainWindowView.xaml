@@ -37,6 +37,13 @@
                                       Padding="20,0,0,0"
                                       FontSize="14"
                                       Background="White"
+                                      Content="Helper 辅助类"
+                                      cal:Message.Attach="[Event Click]=[Action ChangeSelect('201')]"></pu:PURadioButton>
+                    <pu:PURadioButton RadioButtonStyle="Branch"
+                                      Height="34"
+                                      Padding="20,0,0,0"
+                                      FontSize="14"
+                                      Background="White"
                                       Content="Window 窗体"
                                       cal:Message.Attach="[Event Click]=[Action ChangeSelect('1')]"></pu:PURadioButton>
                     <pu:PURadioButton RadioButtonStyle="Branch"
