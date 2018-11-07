@@ -24,6 +24,19 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
+        /// 获取或设置进度条的样式。默认值为General。
+        /// </summary>
+        public ProgressBarStyles ProgressBarStyle
+        {
+            get { return (ProgressBarStyles)GetValue(ProgressBarStyleProperty); }
+            set { SetValue(ProgressBarStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProgressBarStyleProperty =
+            DependencyProperty.Register("ProgressBarStyle", typeof(ProgressBarStyles), typeof(PUProgressBar), new PropertyMetadata(ProgressBarStyles.General));
+
+
+        /// <summary>
         /// 获取或设置进度条的填充颜色。
         /// </summary>
         public Brush CoverBrush
@@ -118,6 +131,23 @@ namespace Panuon.UI
         }
 
 
+
+        public new Thickness BorderThickness
+        {
+            get { return (Thickness)GetValue(BorderThicknessProperty); }
+            set { SetValue(BorderThicknessProperty, value); }
+        }
+
+        public new static readonly DependencyProperty BorderThicknessProperty =
+            DependencyProperty.Register("BorderThickness", typeof(Thickness), typeof(PUProgressBar), new PropertyMetadata(OnBorderThicknessChanged));
+
+        private static void OnBorderThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var bar = d as PUProgressBar;
+            bar.StrokeThickness = bar.BorderThickness.Left;
+        }
+
+
         #endregion
 
         #region Internal Property
@@ -141,6 +171,17 @@ namespace Panuon.UI
 
         internal static readonly DependencyProperty InnerWidthProperty =
             DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUProgressBar));
+
+        
+
+        internal double StrokeThickness
+        {
+            get { return (double)GetValue(StrokeThicknessProperty); }
+            set { SetValue(StrokeThicknessProperty, value); }
+        }
+
+        internal static readonly DependencyProperty StrokeThicknessProperty =
+            DependencyProperty.Register("StrokeThickness", typeof(double), typeof(PUProgressBar));
 
 
         #endregion
@@ -178,5 +219,16 @@ namespace Panuon.UI
             BottomToTop,
         }
 
+        public enum ProgressBarStyles
+        {
+            /// <summary>
+            /// 一个标准的进度条。
+            /// </summary>
+            General,
+            /// <summary>
+            /// 一个环形的进度条。
+            /// </summary>
+            Ring
+        }
     }
 }

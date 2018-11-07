@@ -26,7 +26,7 @@
                        TextWrapping="Wrap">
                         <Run Foreground="#FF359ECF"
                              FontSize="18">栅格 </Run><LineBreak />
-                        <Run FontSize="14">通过简单配值来设置父容器（必须是Grid）的 RowDefinition或ColomnDefinition。若没有在设计器中立即生效，请重新生成当前项目。</Run><LineBreak />
+                        <Run FontSize="14">仅适用于单行或单列元素。通过简单配值来设置父容器（必须是Grid）的 RowDefinition或ColomnDefinition。若没有在设计器中立即生效，请重新生成当前项目。</Run><LineBreak />
             </TextBlock>
             <Grid Grid.Row="2"
                   Margin="0">
@@ -36,13 +36,13 @@
                            Background="#66888888">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Text="ColumnDefinition=4" />
+                                   Text="pu:Helper.ColumnDefinition=4" />
                     </Grid>
                     <Grid  pu:Helper.ColumnDefinition="6"
                            Background="#44888888">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Text="ColumnDefinition=6" />
+                                   Text="pu:Helper.ColumnDefinition=6" />
                     </Grid>
                 </Grid>
                 <Grid VerticalAlignment="Top"
@@ -52,13 +52,13 @@
                            Background="#66888888">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Text="RowDefinition=6" />
+                                   Text="pu:Helper.RowDefinition=6" />
                     </Grid>
                     <Grid  pu:Helper.RowDefinition="4"
                            Background="#44888888">
                         <TextBlock VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Text="RowDefinition=4" />
+                                   Text="pu:Helper.RowDefinition=4" />
                     </Grid>
                 </Grid>
 

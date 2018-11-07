@@ -13,10 +13,12 @@
     <local:TextBoxInnerHeightConverter x:Key="TextBoxInnerHeightConverter"></local:TextBoxInnerHeightConverter>
     <local:HeaderConverter x:Key="HeaderConverter"></local:HeaderConverter>
     <local:IconFontSizeConverter x:Key="IconFontSizeConverter"></local:IconFontSizeConverter>
-    <local:ProgressBarConverter x:Key="ProgressBarConverter"></local:ProgressBarConverter>
+    <local:GeneralProgressBarConverter x:Key="GeneralProgressBarConverter"></local:GeneralProgressBarConverter>
     <local:BubbleConverter x:Key="BubbleConverter"></local:BubbleConverter>
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
-
+    <local:RingProgressBarConverter x:Key="RingProgressBarConverter"></local:RingProgressBarConverter>
+    <local:MarginToWidthConverter x:Key="MarginToWidthConverter"></local:MarginToWidthConverter>
+    
     <Style TargetType="{x:Type local:PUResizeGrid}">
         <Setter Property="Template">
             <Setter.Value>
@@ -4236,7 +4238,7 @@
 
     <Style TargetType="{x:Type local:PUProgressBar}">
         <Setter Property="BorderBrush"
-                Value="DimGray"></Setter>
+                Value="LightGray"></Setter>
         <Setter Property="BorderThickness"
                 Value="1"></Setter>
         <Setter Property="Background"
@@ -4248,8 +4250,13 @@
         <Setter Property="FontSize"
                 Value="12"></Setter>
         <Style.Triggers>
-            <Trigger Property="Direction"
-                     Value="LeftToRight">
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Direction"
+                               Value="LeftToRight" />
+                    <Condition Property="ProgressBarStyle"
+                               Value="General" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
@@ -4263,7 +4270,7 @@
                                             Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             HorizontalAlignment="Left">
                                         <Border.CornerRadius>
-                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                            <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                                 <Binding Path="Direction"
@@ -4273,19 +4280,35 @@
                                     </Border>
                                 </Border>
 
-                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent" 
+                                       Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       FontFamily="{TemplateBinding FontFamily}"></Label>
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Visibility="Collapsed"></Label>
                             </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPercentShow"
+                                         Value="True">
+                                    <Setter TargetName="lblContent"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Direction"
-                     Value="RightToLeft">
+
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Direction"
+                               Value="RightToLeft" />
+                    <Condition Property="ProgressBarStyle"
+                               Value="General" />
+                </MultiTrigger.Conditions>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
@@ -4299,7 +4322,7 @@
                                             Width="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             HorizontalAlignment="Right">
                                         <Border.CornerRadius>
-                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                            <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                                 <Binding Path="Direction"
@@ -4309,19 +4332,32 @@
                                     </Border>
 
                                 </Border>
-                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
                                        FontFamily="{TemplateBinding FontFamily}"></Label>
                             </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPercentShow"
+                                         Value="True">
+                                    <Setter TargetName="lblContent"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Direction"
-                     Value="BottomToTop">
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Direction"
+                               Value="BottomToTop" />
+                    <Condition Property="ProgressBarStyle"
+                               Value="General" />
+                </MultiTrigger.Conditions>
                 <Setter Property="FontSize"
                         Value="10"></Setter>
                 <Setter Property="Template">
@@ -4337,7 +4373,7 @@
                                             Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             VerticalAlignment="Bottom">
                                         <Border.CornerRadius>
-                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                            <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                                 <Binding Path="Direction"
@@ -4346,19 +4382,32 @@
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
-                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
                                        FontFamily="{TemplateBinding FontFamily}"></Label>
                             </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPercentShow"
+                                         Value="True">
+                                    <Setter TargetName="lblContent"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="Direction"
-                     Value="TopToBottom">
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Direction"
+                               Value="TopToBottom" />
+                    <Condition Property="ProgressBarStyle"
+                               Value="General" />
+                </MultiTrigger.Conditions>
                 <Setter Property="FontSize"
                         Value="10"></Setter>
                 <Setter Property="Template">
@@ -4374,7 +4423,7 @@
                                             Height="{Binding InnerWidth,RelativeSource={RelativeSource AncestorType=Control}}"
                                             VerticalAlignment="Top">
                                         <Border.CornerRadius>
-                                            <MultiBinding Converter="{StaticResource ProgressBarConverter}">
+                                            <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                                 <Binding Path="Direction"
@@ -4383,18 +4432,87 @@
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
-                                <Label Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
                                        FontFamily="{TemplateBinding FontFamily}"></Label>
                             </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPercentShow"
+                                         Value="True">
+                                    <Setter TargetName="lblContent"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiTrigger>
+            <Trigger Property="ProgressBarStyle"
+                     Value="Ring">
+                <Setter Property="FontSize"
+                        Value="10"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
+                            <Grid>
+                                <Path StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      Stroke="{TemplateBinding BorderBrush}"
+                                      StrokeThickness="{Binding StrokeThickness,RelativeSource={RelativeSource AncestorType=Control} }">
+                                    <Path.Data>
+                                        <MultiBinding Converter="{StaticResource RingProgressBarConverter}">
+                                            <Binding Path="ActualWidth"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            <Binding Path="ActualHeight"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            <Binding Path="StrokeThickness"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                        </MultiBinding>
+                                    </Path.Data>
+                                </Path>
+                                <Path
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      Stroke="{TemplateBinding CoverBrush}"
+                                      StrokeThickness="{Binding StrokeThickness,RelativeSource={RelativeSource AncestorType=Control} }">
+                                    <Path.Data>
+                                        <MultiBinding Converter="{StaticResource RingProgressBarConverter}">
+                                            <Binding Path="ActualWidth"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            <Binding Path="ActualHeight"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            <Binding Path="StrokeThickness"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                            <Binding Path="Percent"
+                                                     RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
+                                        </MultiBinding>
+                                    </Path.Data>
+                                </Path>
+                                <Label x:Name="lblContent" 
+                                       Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Visibility="Collapsed"></Label>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPercentShow"
+                                         Value="True">
+                                    <Setter TargetName="lblContent"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
-
         </Style.Triggers>
     </Style>
 
