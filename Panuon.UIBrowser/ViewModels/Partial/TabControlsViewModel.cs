@@ -28,6 +28,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 Content = "2",
                 Value = 2.2,
             });
+
             list.Add(new PUTabItemModel()
             {
                 Header = "Test3",

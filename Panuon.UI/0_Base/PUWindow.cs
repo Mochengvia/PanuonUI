@@ -41,10 +41,12 @@ namespace Panuon.UI
         }
 
         private bool _animateOutHandle = true;
+        private bool? _dialogResult;
         protected override void OnClosing(CancelEventArgs e)
         {
             if(AnimateOut && _animateOutHandle)
             {
+                _dialogResult = DialogResult;
                 OnBeginCloseStoryboard();
                 _animateOutHandle = false;
                 DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
@@ -52,9 +54,13 @@ namespace Panuon.UI
                 timer.Start();
 
                 e.Cancel = true;
+                return;
             }
+            if (System.Windows.Interop.ComponentDispatcher.IsThreadModal)
+                DialogResult  = _dialogResult;
             base.OnClosing(e);
         }
+
         #region RoutedEvent
         /// <summary>
         /// 使用动画打开窗体。
