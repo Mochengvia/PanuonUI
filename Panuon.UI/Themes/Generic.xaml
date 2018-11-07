@@ -4487,7 +4487,7 @@
                                                      RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                             <Binding Path="StrokeThickness"
                                                      RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
-                                            <Binding Path="Percent"
+                                            <Binding Path="InnerPercent"
                                                      RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                         </MultiBinding>
                                     </Path.Data>

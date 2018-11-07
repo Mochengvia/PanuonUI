@@ -37,6 +37,20 @@ namespace Panuon.UI
 
 
         /// <summary>
+        /// 获取或设置进度条的填充动画持续时间。默认值为0.4。
+        /// </summary>
+        public TimeSpan AnimationDuration
+        {
+            get { return (TimeSpan)GetValue(AnimationDurationProperty); }
+            set { SetValue(AnimationDurationProperty, value); }
+        }
+
+        public static readonly DependencyProperty AnimationDurationProperty =
+            DependencyProperty.Register("AnimationDuration", typeof(TimeSpan), typeof(PUProgressBar), new PropertyMetadata(TimeSpan.FromSeconds(0.6)));
+
+
+
+        /// <summary>
         /// 获取或设置进度条的填充颜色。
         /// </summary>
         public Brush CoverBrush
@@ -46,18 +60,6 @@ namespace Panuon.UI
         }
         public static readonly DependencyProperty CoverBrushProperty =
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUProgressBar));
-
-        /// <summary>
-        /// 获取或设置当百分比改变时是否使用渐进或渐退动画。默认值为True。
-        /// </summary>
-        public bool UsingAnimation
-        {
-            get { return (bool)GetValue(UsingAnimationProperty); }
-            set { SetValue(UsingAnimationProperty, value); }
-        }
-
-        public static readonly DependencyProperty UsingAnimationProperty =
-            DependencyProperty.Register("UsingAnimation", typeof(bool), typeof(PUProgressBar), new PropertyMetadata(true));
 
 
         /// <summary>
@@ -172,7 +174,15 @@ namespace Panuon.UI
         internal static readonly DependencyProperty InnerWidthProperty =
             DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUProgressBar));
 
-        
+        internal double InnerPercent
+        {
+            get { return (double)GetValue(InnerPercentProperty); }
+            set { SetValue(InnerPercentProperty, value); }
+        }
+
+        internal static readonly DependencyProperty InnerPercentProperty =
+            DependencyProperty.Register("InnerPercent", typeof(double), typeof(PUProgressBar));
+
 
         internal double StrokeThickness
         {
@@ -189,26 +199,32 @@ namespace Panuon.UI
         #region Function
         private void Change()
         {
-            var to = ActualWidth * Percent;
-            if (Direction == Directions.TopToBottom || Direction == Directions.BottomToTop)
+            if (ProgressBarStyle == ProgressBarStyles.General)
             {
-                to = ActualHeight * Percent;
-            }
-
-            if (UsingAnimation)
-            {
+                var toValue = ActualWidth * Percent;
+                if (Direction == Directions.TopToBottom || Direction == Directions.BottomToTop)
+                {
+                    toValue = ActualHeight * Percent;
+                }
                 var anima = new DoubleAnimation()
                 {
-                    To = to,
+                    To = toValue,
                     EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                    Duration = TimeSpan.FromSeconds(0.2),
+                    Duration = AnimationDuration,
                 };
                 BeginAnimation(InnerWidthProperty, anima);
             }
             else
             {
-                InnerWidth = to;
+                var anima = new DoubleAnimation()
+                {
+                    To = Percent,
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
+                    Duration = AnimationDuration,
+                };
+                BeginAnimation(InnerPercentProperty, anima);
             }
+
         }
         #endregion
         public enum Directions

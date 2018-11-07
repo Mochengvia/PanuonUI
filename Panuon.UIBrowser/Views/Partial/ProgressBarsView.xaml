@@ -25,8 +25,8 @@
                         <Run>获取或设置进度条的基础样式。【ProgressBarStyles枚举类型】可选项为General、Ring。默认值为General。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">CoverBrush </Run>
                         <Run>获取或设置进度条的填充颜色。【Brush类型】。默认值为灰黑色。</Run><LineBreak />
-                        <Run Foreground="#FF359ECF">UsingAnimation </Run>
-                        <Run>获取或设置当百分比改变时是否使用渐进或渐退动画。仅在General样式下生效。【Boolean类型】。默认值为True。</Run><LineBreak />
+                        <Run Foreground="#FF359ECF">AnimationDuration </Run>
+                        <Run>获取或设置当百分比改变时渐进或渐退动画的持续时间。【TimeSpan类型】。默认值为0.6秒。</Run><LineBreak />
                          <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
                         <Run>获取或设置圆角大小。仅在General样式下生效。【CornerRadius类型】。默认值为0。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">Direction </Run>
@@ -202,8 +202,10 @@
                                           HorizontalAlignment="Left"></pu:PUProgressBar>
                         <pu:PUProgressBar Height="120"
                                           Width="120"
+                                          
                                           ProgressBarStyle="Ring"
                                           BorderThickness="10"
+                                          FontSize="14"
                                           Margin="10,0,0,0"
                                           Foreground="#FF44AADD"
                                           BorderBrush="#2244AADD"
