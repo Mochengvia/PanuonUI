@@ -1,10 +1,4 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/10/19 10:43:55
-*说明： 
-*日志：2018/10/19 10:43:55 创建。
-*==============================================================*/
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;

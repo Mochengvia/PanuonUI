@@ -66,7 +66,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             
             var cts = new CancellationTokenSource();
 
-            var pgb = new PUProgressBar() { Height = 30, Width = 200 };
+            var pgb = new PUProgressBar() { Height = 30, Width = 200 ,IsPercentShow = true};
             var task = new Task(() =>
             {
                 for (int i = 0; i < 10; i++)

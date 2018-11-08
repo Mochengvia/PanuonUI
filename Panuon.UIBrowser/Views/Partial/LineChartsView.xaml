@@ -5,6 +5,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:chart="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts"
              xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:cm="http://www.caliburnproject.org"
              x:Class="Panuon.UIBrowser.Views.Partial.LineChartsView"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -36,11 +37,26 @@
                                GridBrush="{Binding GridBrush}"
                                AreaBrush="{Binding AreaBrush}"
                                XAxisGap="{Binding XAxisGap}"
-                               AnimationMode="OneTime"
+                               AnimationMode="{Binding AnimationMode}"
                                LineThickness="2"
                                Margin="0,10,70,40"
                                Width="600"
                                HorizontalAlignment="Right" />
+            <pu:PUComboBox HorizontalAlignment="Left"
+                           Margin="10,28,0,0"
+                           VerticalAlignment="Top"
+                           Height="32"
+                           Width="140"
+                           SelectedValuePath="Value"
+                           cm:Message.Attach="[Event SelectionChanged]=[Action SelectionChanged($source)]">
+                <pu:PUComboBoxItem Content="仅首次启动"
+                                   Value="1"
+                                   IsSelected="True"/>
+                <pu:PUComboBoxItem Content="始终使用动画" 
+                                   Value="2"/>
+                <pu:PUComboBoxItem Content="禁用动画"
+                                   Value="3" />
+            </pu:PUComboBox>
             <pu:PUButton x:Name="RandomValue"
                          Content="产生随机数"
                          HorizontalAlignment="Left"

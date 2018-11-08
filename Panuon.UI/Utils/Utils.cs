@@ -1,10 +1,4 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/10/15 12:26:44
-*说明： 辅助工具。
-*日志：2018/10/15 12:26:44 创建。
-*==============================================================*/
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 

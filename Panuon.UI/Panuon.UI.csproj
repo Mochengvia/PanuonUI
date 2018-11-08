@@ -71,11 +71,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="A3_DatePicker\PUDatePicker.xaml">
+    <Page Include="A4_DatePicker\PUDatePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="A4_PagingNav\PUPagingNav.xaml">
+    <Page Include="A5_PagingNav\PUPagingNav.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,17 +92,17 @@
     <Compile Include="0_Base\PUResizeGrid.cs" />
     <Compile Include="0_Base\PUResizeThumb.cs" />
     <Compile Include="0_Base\PUWindow.cs" />
-    <Compile Include="1_Button\PUButton.cs" />
-    <Compile Include="1_Button\PURepeatButton.cs" />
-    <Compile Include="2_TextBox\PUTextBox.cs" />
-    <Compile Include="3_ComboBox\PUComboBox.cs" />
-    <Compile Include="3_ComboBox\PUComboBoxItem.cs" />
-    <Compile Include="5_PasswordBox\PUPasswordBox.cs" />
-    <Compile Include="4_CheckBox\PUCheckBox.cs" />
-    <Compile Include="6_RadioButton\PURadioButton.cs" />
-    <Compile Include="8_TreeView\PUTreeView.cs" />
-    <Compile Include="8_TreeView\PUTreeViewItem.cs" />
-    <Compile Include="7_ProgressBar\PUProgressBar.cs" />
+    <Compile Include="2_Button\PUButton.cs" />
+    <Compile Include="2_Button\PURepeatButton.cs" />
+    <Compile Include="3_TextBox\PUTextBox.cs" />
+    <Compile Include="5_ComboBox\PUComboBox.cs" />
+    <Compile Include="5_ComboBox\PUComboBoxItem.cs" />
+    <Compile Include="4_PasswordBox\PUPasswordBox.cs" />
+    <Compile Include="6_CheckBox\PUCheckBox.cs" />
+    <Compile Include="7_RadioButton\PURadioButton.cs" />
+    <Compile Include="A0_TreeView\PUTreeView.cs" />
+    <Compile Include="A0_TreeView\PUTreeViewItem.cs" />
+    <Compile Include="8_ProgressBar\PUProgressBar.cs" />
     <Compile Include="9_Special\PUImageCuter.xaml.cs">
       <DependentUpon>PUImageCuter.xaml</DependentUpon>
     </Compile>
@@ -119,22 +119,22 @@
       <DependentUpon>PUSlideShow.xaml</DependentUpon>
     </Compile>
     <Compile Include="9_Special\PUSplitLine.cs" />
-    <Compile Include="A0_TabControl\PUTabControl.cs" />
-    <Compile Include="A0_TabControl\PUTabItem.cs" />
+    <Compile Include="A2_TabControl\PUTabControl.cs" />
+    <Compile Include="A2_TabControl\PUTabItem.cs" />
     <Compile Include="A1_Slider\PUSlider.xaml.cs">
       <DependentUpon>PUSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="A2_ListBox\PUListBox.cs" />
-    <Compile Include="A2_ListBox\PUListBoxItem.cs" />
-    <Compile Include="A3_DatePicker\PUDatePicker.xaml.cs">
+    <Compile Include="A3_ListBox\PUListBox.cs" />
+    <Compile Include="A3_ListBox\PUListBoxItem.cs" />
+    <Compile Include="A4_DatePicker\PUDatePicker.xaml.cs">
       <DependentUpon>PUDatePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="A4_PagingNav\PUPagingNav.xaml.cs">
+    <Compile Include="A5_PagingNav\PUPagingNav.xaml.cs">
       <DependentUpon>PUPagingNav.xaml</DependentUpon>
     </Compile>
-    <Compile Include="A5_ContextMenu\PUContextMenu.cs" />
-    <Compile Include="A5_ContextMenu\PUContextMenuItem.cs" />
-    <Compile Include="A6_Bubble\PUBubble.cs" />
+    <Compile Include="A6_ContextMenu\PUContextMenu.cs" />
+    <Compile Include="A6_ContextMenu\PUContextMenuItem.cs" />
+    <Compile Include="A7_Bubble\PUBubble.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -56,8 +53,11 @@ namespace Panuon.UI
                 e.Cancel = true;
                 return;
             }
-            if (System.Windows.Interop.ComponentDispatcher.IsThreadModal)
-                DialogResult  = _dialogResult;
+            if (AnimateOut)
+            {
+                if (System.Windows.Interop.ComponentDispatcher.IsThreadModal)
+                    DialogResult = _dialogResult;
+            }
             base.OnClosing(e);
         }
 

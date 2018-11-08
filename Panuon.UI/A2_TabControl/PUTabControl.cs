@@ -1,18 +1,10 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/10/17 15:18:59
-*说明： 
-*日志：2018/10/17 15:18:59 创建。
-*==============================================================*/
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Input;
 using System.Windows.Controls.Primitives;
-using System.Collections.Specialized;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Panuon.UI
 {

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Panuon.UI;
 using Panuon.UI.Charts;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,15 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
         private string[] _xAxis;
 
+
+        public PULineChart.AnimationModes AnimationMode
+        {
+            get { return _animationMode; }
+            set { _animationMode = value; NotifyOfPropertyChange(() => AnimationMode); }
+        }
+        private PULineChart.AnimationModes _animationMode = PULineChart.AnimationModes.OneTime;
+
+        
         public string[] YAxis
         {
             get { return _yAxis; }
@@ -89,7 +99,6 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         private int _xAxisGap = 0;
         
         #endregion
-
 
         #region Event
         public void RandomValue()
@@ -181,6 +190,23 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 Points = new ObservableCollection<PUChartPoint>(valuelist);
             }
            
+        }
+
+        public void SelectionChanged(object sender)
+        {
+            var comboBox = sender as PUComboBox;
+            switch (comboBox.SelectedValue.ToString())
+            {
+                case "1":
+                    AnimationMode = PULineChart.AnimationModes.OneTime;
+                    return;
+                case "2":
+                    AnimationMode = PULineChart.AnimationModes.Always;
+                    return;
+                case "3":
+                    AnimationMode = PULineChart.AnimationModes.None;
+                    return;
+            }
         }
 
         public void ChangeColor()

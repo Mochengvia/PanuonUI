@@ -1,16 +1,5 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/11/6 17:05:09
-*说明： 
-*日志：2018/11/6 17:05:09 创建。
-*==============================================================*/
-using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 
 namespace Panuon.UI

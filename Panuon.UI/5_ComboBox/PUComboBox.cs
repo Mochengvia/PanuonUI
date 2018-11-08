@@ -189,6 +189,7 @@ namespace Panuon.UI
 
         #endregion
 
+        #region Enums
         public enum SelectedValuePaths
         {
             Header,
@@ -206,6 +207,6 @@ namespace Panuon.UI
             /// </summary>
             EventOnly,
         }
-
+        #endregion
     }
 }

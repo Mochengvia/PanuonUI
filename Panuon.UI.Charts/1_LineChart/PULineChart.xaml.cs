@@ -364,7 +364,7 @@ namespace Panuon.UI.Charts
                 Canvas.SetLeft(ell, yWidth * i - PointSize / 2);
                 if (usingAnima)
                 {
-                    Canvas.SetTop(ell, cvaHeight);
+                    Canvas.SetTop(ell, cvaHeight - PointSize / 2);
                     ell.BeginAnimation(Canvas.TopProperty, GetDoubleAnimation((1 - Points[i].Value) * realHeight + 0.5 * xHeight - PointSize / 2,1));
                 }
                 else
@@ -377,7 +377,10 @@ namespace Panuon.UI.Charts
 
             polygon.Points.Add(new Point(yWidth * (Points.Count - 1), cvaHeight));
             polygon.Points.Add(new Point(0, cvaHeight));
-            scale.BeginAnimation(ScaleTransform.ScaleYProperty, GetDoubleAnimation(1, 1));
+            if (usingAnima)
+            {
+                scale.BeginAnimation(ScaleTransform.ScaleYProperty, GetDoubleAnimation(1, 1));
+            }
         }
 
         private DoubleAnimation GetDoubleAnimation(double to, double duration = 0.2)

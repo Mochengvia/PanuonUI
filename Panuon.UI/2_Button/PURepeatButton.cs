@@ -1,10 +1,4 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/10/17 15:28:09
-*说明： 
-*日志：2018/10/17 15:28:09 创建。
-*==============================================================*/
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
@@ -62,6 +56,7 @@ namespace Panuon.UI
 
         #endregion
 
+        #region Enums
         public enum RepeatButtonStyles
         {
             /// <summary>
@@ -96,5 +91,6 @@ namespace Panuon.UI
             /// </summary>
             Sink,
         }
+        #endregion
     }
 }
