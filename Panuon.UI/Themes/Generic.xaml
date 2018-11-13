@@ -1857,7 +1857,7 @@
         <Setter Property="BorderBrush"
                 Value="LightGray"></Setter>
         <Setter Property="BorderThickness"
-                Value="0.7"></Setter>
+                Value="1"></Setter>
         <Setter Property="Foreground"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
@@ -2358,9 +2358,9 @@
         <Setter Property="AcceptsReturn"
                 Value="False"></Setter>
         <Setter Property="BorderBrush"
-                Value="{StaticResource Theme}"></Setter>
+                Value="LightGray"></Setter>
         <Setter Property="BorderThickness"
-                Value="0.7"></Setter>
+                Value="1"></Setter>
         <Setter Property="Foreground"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
