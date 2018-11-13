@@ -73,7 +73,7 @@ namespace Panuon.UI
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = 
+        public static readonly DependencyProperty BorderCornerRadiusProperty =
             DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUComboBox), new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
@@ -167,22 +167,24 @@ namespace Panuon.UI
         {
             var comboBox = d as PUComboBox;
             if (comboBox.SelectedValue == null)
-                return;
-            var selectedItem = comboBox.SelectedItem as PUComboBoxItem;
-
-            if (selectedItem == null)
             {
-                foreach (var item in comboBox.Items)
+                comboBox.SelectedItem = null;
+                return;
+            }
+            if (e.NewValue == e.OldValue)
+                return;
+
+            var selectedItem = comboBox.SelectedItem as PUComboBoxItem;
+            foreach (var item in comboBox.Items)
+            {
+                var comboBoxItem = item as PUComboBoxItem;
+                if ((comboBox.SelectedValuePath == SelectedValuePaths.Header ?
+                    (comboBoxItem.Content == null ? false : comboBoxItem.Content.ToString() == comboBox.SelectedValue.ToString()) :
+                    (comboBoxItem.Value == null ? false : comboBoxItem.Value.Equals(comboBox.SelectedValue))))
                 {
-                    var comboBoxItem = item as PUComboBoxItem;
-                    if ((comboBox.SelectedValuePath == SelectedValuePaths.Header ?
-                        (comboBoxItem.Content == null ? false : comboBoxItem.Content.ToString() == comboBox.SelectedValue.ToString()) :
-                        (comboBoxItem.Value == null ? false : comboBoxItem.Value.Equals(comboBox.SelectedValue))))
-                    {
-                        if (!comboBoxItem.IsSelected)
-                            comboBoxItem.IsSelected = true;
-                        return;
-                    }
+                    if (!comboBoxItem.IsSelected)
+                        comboBoxItem.IsSelected = true;
+                    return;
                 }
             }
         }

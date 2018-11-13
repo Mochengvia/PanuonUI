@@ -91,8 +91,6 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PULoading
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUMessageBox.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUSlideShow.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.g.cs
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A3_DatePicker\PUDatePicker.g.cs
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A4_PagingNav\PUPagingNav.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.cache
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI_MarkupCompile.lref
@@ -102,8 +100,6 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PULoading
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUMessageBox.baml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\9_Special\PUSlideShow.baml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A1_Slider\PUSlider.baml
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A3_DatePicker\PUDatePicker.baml
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A4_PagingNav\PUPagingNav.baml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Themes\Control.baml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Themes\Generic.baml
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.g.resources
@@ -111,3 +107,8 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.Propertie
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.Cache
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.dll
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.pdb
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A4_DatePicker\PUDatePicker.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A5_PagingNav\PUPagingNav.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A4_DatePicker\PUDatePicker.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\A5_PagingNav\PUPagingNav.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache

@@ -1855,7 +1855,7 @@
 
     <Style TargetType="{x:Type local:PUTextBox}">
         <Setter Property="BorderBrush"
-                Value="{StaticResource Theme}"></Setter>
+                Value="LightGray"></Setter>
         <Setter Property="BorderThickness"
                 Value="0.7"></Setter>
         <Setter Property="Foreground"
