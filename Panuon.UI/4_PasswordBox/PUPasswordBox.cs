@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -20,6 +21,17 @@ namespace Panuon.UI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            PUButton btnShowPwd;
+            if(PasswordBoxStyle == PasswordBoxStyles.General)
+                 btnShowPwd = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 2) as PUButton;
+            else
+                btnShowPwd = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1), 2) as PUButton;
+
+
+            btnShowPwd.PreviewMouseLeftButtonDown += BtnShowPwd_MouseLeftButtonDown;
+            btnShowPwd.PreviewMouseLeftButtonUp += BtnShowPwd_MouseLeftButtonUp;
+
             ContextMenu = null;
 
             Text = "";
@@ -29,6 +41,18 @@ namespace Panuon.UI
 
             PreviewTextInput += PUPasswordBox_TextInput;
             PreviewKeyDown += PUPasswordBox_PreviewKeyDown;
+        }
+
+        private void BtnShowPwd_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Text = "";
+            for (int i = 0; i < Password.Length; i++)
+                Text += PasswordChar;
+        }
+
+        private void BtnShowPwd_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Text = Password;
         }
 
         #region Sys
@@ -105,7 +129,7 @@ namespace Panuon.UI
             }
             e.Handled = true;
         }
-
+       
         #endregion
 
         #region RoutedEvent
@@ -216,6 +240,20 @@ namespace Panuon.UI
             set { SetValue(IconWidthProperty, value); }
         }
         public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register("IconWidth", typeof(double), typeof(PUPasswordBox), new PropertyMetadata((double)30));
+
+
+        /// <summary>
+        /// 获取或设置当鼠标悬浮时是否显示 显示密码 按钮。默认值为False。
+        /// </summary>
+        public bool IsShowPwdButtonShow
+        {
+            get { return (bool)GetValue(IsShowPwdButtonShowProperty); }
+            set { SetValue(IsShowPwdButtonShowProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsShowPwdButtonShowProperty =
+            DependencyProperty.Register("IsShowPwdButtonShow", typeof(bool), typeof(PUPasswordBox), new PropertyMetadata(false));
+
 
         #endregion
 

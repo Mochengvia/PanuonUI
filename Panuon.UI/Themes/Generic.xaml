@@ -140,12 +140,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -424,12 +424,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -719,12 +719,12 @@
                                                        VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}"></Label>
                                                 <Label VerticalContentAlignment="Center"
                                                        HorizontalContentAlignment="Left"
                                                        FontSize="{TemplateBinding FontSize}"
-                                                       FontFamily="{StaticResource IconFont}"
+                                                       FontFamily="{DynamicResource IconFont}"
                                                        Foreground="{TemplateBinding Foreground}">
                                                     <Label.Content>
                                                         <MultiBinding Converter="{StaticResource HeaderConverter}">
@@ -1872,6 +1872,8 @@
                 Value="{x:Null}"></Setter>
         <Setter Property="ShadowColor"
                 Value="#888888" />
+        <Setter Property="Height"
+                Value="30" />
         <Style.Triggers>
             <Trigger Property="TextBoxStyle"
                      Value="General">
@@ -1880,7 +1882,6 @@
                         <ControlTemplate TargetType="{x:Type local:PUTextBox}">
                             <Grid>
                                 <Border x:Name="bdrOuter"
-                                        Margin="1"
                                         BorderThickness="{TemplateBinding BorderThickness}"
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -1915,6 +1916,7 @@
                                             </ScrollViewer.Height>
                                         </ScrollViewer>
                                         <TextBlock  x:Name="tbWatermark"
+                                                    Padding="2,0,0,0"
                                                     Margin="{TemplateBinding Padding}"
                                                     TextWrapping="Wrap"
                                                     Focusable="False"
@@ -1924,10 +1926,28 @@
                                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                     Opacity="0.6" />
+                                        <local:PUButton x:Name="btnClear" 
+                                                        ButtonStyle="Link"
+                                                        Visibility="Collapsed"
+                                                        Opacity="0"
+                                                        Content="×"
+                                                        Tag="Clear"
+                                                        Margin="0,0,3,0"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        CoverBrush="{TemplateBinding Foreground}"
+                                                        FontSize="16"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right"/>
                                     </Grid>
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsClearButtonShow"
+                                         Value="True">
+                                    <Setter TargetName="btnClear"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
                                 <Trigger Property="IsFocused"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -1961,6 +1981,12 @@
                                           Value="False">
                                     <Setter Property="Opacity"
                                             Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="btnClear"
+                                            Property="Opacity"
+                                            Value="1" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -2003,7 +2029,7 @@
                                                HorizontalContentAlignment="Center"
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="{StaticResource IconFont}"></Label>
+                                               FontFamily="{DynamicResource IconFont}"></Label>
                                         <Grid Grid.Column="1">
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Style="{StaticResource MiniScrollViewer}"
@@ -2025,6 +2051,7 @@
                                                 </ScrollViewer.Height>
                                             </ScrollViewer>
                                             <TextBlock  x:Name="tbWatermark"
+                                                        Padding="2,0,0,0"
                                                         Margin="{TemplateBinding Padding}"
                                                         TextWrapping="Wrap"
                                                         Focusable="False"
@@ -2034,11 +2061,29 @@
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                         Opacity="0.6" />
+                                            <local:PUButton x:Name="btnClear"
+                                                            ButtonStyle="Link"
+                                                            Visibility="Collapsed"
+                                                            Opacity="0"
+                                                            Content="×"
+                                                            Tag="Clear"
+                                                            Margin="0,0,3,0"
+                                                            Foreground="{TemplateBinding Foreground}"
+                                                            CoverBrush="{TemplateBinding Foreground}"
+                                                            FontSize="16"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Right" />
                                         </Grid>
                                     </Grid>
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsClearButtonShow"
+                                         Value="True">
+                                    <Setter TargetName="btnClear"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
                                 <Trigger Property="IsFocused"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -2072,6 +2117,12 @@
                                           Value="False">
                                     <Setter Property="Opacity"
                                             Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="btnClear"
+                                            Property="Opacity"
+                                            Value="1" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -2201,7 +2252,6 @@
                                     </Style>
                                 </ToggleButton.Style>
                             </ToggleButton>
-                            <!--必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它-->
                             <local:PUTextBox Visibility="Hidden"
                                              BorderThickness="0"
                                              Margin="2,0,25,0"
@@ -2213,7 +2263,6 @@
                                              BorderBrush="{TemplateBinding BorderBrush}"
                                              Foreground="{TemplateBinding Foreground}"
                                              IsReadOnly="{TemplateBinding IsReadOnly}" />
-                            <!--Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen-->
                             <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
                                    Placement="Bottom"
                                    x:Name="Popup"
@@ -2236,21 +2285,64 @@
                                                               Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ComboBox}}"></DropShadowEffect>
                                         </Border.Effect>
                                     </Border>
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                                  HorizontalScrollBarVisibility="Auto"
-                                                  Style="{StaticResource MiniScrollViewer}"
-                                                  Margin="1,5,1,15"
-                                                  MaxHeight="250">
-                                        <StackPanel IsItemsHost="True"
-                                                    KeyboardNavigation.DirectionalNavigation="Contained"
-                                                    Orientation="Vertical">
-                                        </StackPanel>
-                                    </ScrollViewer>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <local:PUTextBox x:Name="tbSearch" 
+                                                         Visibility="Collapsed"
+                                                         Height="30"
+                                                         Tag="Search"
+                                                         IsClearButtonShow="True"
+                                                         BorderBrush="Transparent"
+                                                         BorderThickness="0"
+                                                         ShadowColor="Transparent"
+                                                         Foreground="{TemplateBinding Foreground}"
+                                                         Watermark="  搜 索"
+                                                         FontFamily="{DynamicResource IconFont}"
+                                                         Margin="2,5,2,0"/>
+                                        <ScrollViewer Grid.Row="1"
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Auto"
+                                                      Style="{StaticResource MiniScrollViewer}"
+                                                      Margin="1,5,1,15"
+                                                      MaxHeight="250">
+                                            <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Contained"
+                                                        Orientation="Vertical">
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                        <local:PUButton x:Name="btnClear"
+                                                        Grid.Row="1"
+                                                        ButtonStyle="Link"
+                                                        Visibility="Collapsed"
+                                                        Content="×"
+                                                        Tag="Clear"
+                                                        Margin="0,0,3,0"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        CoverBrush="{TemplateBinding Foreground}"
+                                                        FontSize="16"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right" />
+                                    </Grid>
                                 </Grid>
                             </Popup>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="SearchMode"
+                                 Value="TextChanged">
+                            <Setter TargetName="tbSearch"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="SearchMode"
+                                 Value="Enter">
+                            <Setter TargetName="tbSearch"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </Trigger>
                         <Trigger Property="IsEditable"
                                  Value="True">
                             <Setter TargetName="PART_EditableTextBox"
@@ -2419,6 +2511,7 @@
                                             </ScrollViewer.Height>
                                         </ScrollViewer>
                                         <TextBlock  x:Name="tbWatermark"
+                                                    Padding="2,0,0,0"
                                                     Margin="{TemplateBinding Padding}"
                                                     TextWrapping="Wrap"
                                                     Focusable="False"
@@ -2428,10 +2521,29 @@
                                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                     Opacity="0.6" />
+                                        <local:PUButton x:Name="btnShowPwd"
+                                                        ButtonStyle="Link"
+                                                        Opacity="0"
+                                                        Visibility="Collapsed"
+                                                        FontFamily="{DynamicResource IconFont}"
+                                                        Content=""
+                                                        Tag="ShowPwd"
+                                                        Margin="0,0,3,0"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        CoverBrush="{TemplateBinding Foreground}"
+                                                        FontSize="16"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right" />
                                     </Grid>
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsShowPwdButtonShow"
+                                         Value="True">
+                                    <Setter TargetName="btnShowPwd"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
                                 <Trigger Property="IsFocused"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -2465,6 +2577,12 @@
                                           Value="False">
                                     <Setter Property="Opacity"
                                             Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="btnShowPwd"
+                                            Property="Opacity"
+                                            Value="1" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -2507,7 +2625,7 @@
                                                HorizontalContentAlignment="Center"
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="{StaticResource IconFont}"></Label>
+                                               FontFamily="{DynamicResource IconFont}"></Label>
                                         <Grid Grid.Column="1">
                                             <ScrollViewer x:Name="PART_ContentHost"
                                                           Style="{StaticResource MiniScrollViewer}"
@@ -2529,6 +2647,7 @@
                                                 </ScrollViewer.Height>
                                             </ScrollViewer>
                                             <TextBlock  x:Name="tbWatermark"
+                                                        Padding="2,0,0,0"
                                                         Margin="{TemplateBinding Padding}"
                                                         TextWrapping="Wrap"
                                                         Focusable="False"
@@ -2538,11 +2657,30 @@
                                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                         Opacity="0.6" />
+                                            <local:PUButton x:Name="btnShowPwd"
+                                                            ButtonStyle="Link"
+                                                            Opacity="0"
+                                                            Visibility="Collapsed"
+                                                            FontFamily="{DynamicResource IconFont}"
+                                                            Content=""
+                                                            Tag="ShowPwd"
+                                                            Margin="0,0,3,0"
+                                                            Foreground="{TemplateBinding Foreground}"
+                                                            CoverBrush="{TemplateBinding Foreground}"
+                                                            FontSize="16"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Right" />
                                         </Grid>
                                     </Grid>
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsShowPwdButtonShow"
+                                         Value="True">
+                                    <Setter TargetName="btnShowPwd"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                </Trigger>
                                 <Trigger Property="IsFocused"
                                          Value="True">
                                     <Trigger.EnterActions>
@@ -2576,6 +2714,12 @@
                                           Value="False">
                                     <Setter Property="Opacity"
                                             Value="0.4"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="btnShowPwd"
+                                            Property="Opacity"
+                                            Value="1" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -4553,7 +4697,7 @@
                                                   Foreground="{TemplateBinding Foreground}"
                                                   Content=""
                                                   FontSize="18"
-                                                  FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
+                                                  FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
                             <Grid  Grid.Column="1">
                                 <ScrollViewer x:Name="scrollViewer"
                                               Style="{StaticResource MiniScrollViewer}"
@@ -4582,7 +4726,7 @@
                                                   Foreground="{StaticResource Theme}"
                                                   Content=""
                                                   FontSize="18"
-                                                  FontFamily="{StaticResource IconFont}"></local:PURepeatButton>
+                                                  FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
                         </Grid>
                         <ContentPresenter x:Name="PART_SelectedContentHost"
                                           Grid.Row="1"
@@ -4624,7 +4768,7 @@
                                            HorizontalAlignment="Left"
                                            Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
                                            FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
-                                           FontFamily="{StaticResource IconFont}"></Label>
+                                           FontFamily="{DynamicResource IconFont}"></Label>
                                     <Label x:Name="lblContent"
                                            Content="{TemplateBinding Header}"
                                            VerticalAlignment="Center"
@@ -4708,7 +4852,7 @@
                                            HorizontalAlignment="Left"
                                            Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TabControl}}"
                                            FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl}}"
-                                           FontFamily="{StaticResource IconFont}"></Label>
+                                           FontFamily="{DynamicResource IconFont}"></Label>
                                     <Label x:Name="lblContent"
                                            Content="{TemplateBinding Header}"
                                            VerticalAlignment="Center"
@@ -5048,7 +5192,7 @@
                                    Width="{TemplateBinding Height}"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"
-                                   FontFamily="{StaticResource IconFont}"
+                                   FontFamily="{DynamicResource IconFont}"
                                    Foreground="{TemplateBinding Foreground}"
                                    Margin="0,0,5,0" />
                             <ContentPresenter x:Name="content"

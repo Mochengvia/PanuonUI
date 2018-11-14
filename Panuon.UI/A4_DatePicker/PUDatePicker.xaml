@@ -26,7 +26,7 @@
                                 HorizontalAlignment="Left"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnYearLeft_Click">
@@ -41,7 +41,7 @@
                                 HorizontalAlignment="Right"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnYearRight_Click">
@@ -94,7 +94,7 @@
                                 HorizontalAlignment="Left"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnMonthLeft_Click">
@@ -109,7 +109,7 @@
                                 HorizontalAlignment="Right"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnMonthRight_Click">
@@ -162,7 +162,7 @@
                                 HorizontalAlignment="Left"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnDecYear_Click">
@@ -177,7 +177,7 @@
                                 HorizontalAlignment="Left"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnDecMonth_Click">
@@ -192,7 +192,7 @@
                                 HorizontalAlignment="Right"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnAddMonth_Click">
@@ -207,7 +207,7 @@
                                 HorizontalAlignment="Right"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnAddYear_Click">
@@ -320,7 +320,7 @@
                                 HorizontalAlignment="Left"
                                 Content=""
                                 FontSize="20"
-                                FontFamily="{StaticResource IconFont}"
+                                FontFamily="{DynamicResource IconFont}"
                                 Width="40"
                                 Height="40"
                                 Click="BtnBackToDate_Click">

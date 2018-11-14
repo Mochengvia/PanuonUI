@@ -17,7 +17,7 @@
     <pu:PUWindow.Icon>
         <TextBlock Text=""
                    FontSize="20"
-                   FontFamily="{StaticResource IconFont}"></TextBlock>
+                   FontFamily="{DynamicResource IconFont}"></TextBlock>
     </pu:PUWindow.Icon>
 
     <Grid>

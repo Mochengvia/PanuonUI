@@ -80,29 +80,32 @@
                         <pu:PUComboBox Width="180"
                                        Margin="15,0,0,0"
                                        Height="30"
+                                       SearchMode="TextChanged"
                                        HorizontalAlignment="Left">
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="带搜索框的"
                                                IsSelected="True"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value1"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value2"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value3"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value4"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value5"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value11"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value22"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value33"
                                                DeleteButtonVisibility="Visible" />
-                            <pu:PUComboBoxItem Content="显示删除按钮"
+                            <pu:PUComboBoxItem Content="Value44"
                                                DeleteButtonVisibility="Visible" />
-                            
+                            <pu:PUComboBoxItem Content="Value55"
+                                               DeleteButtonVisibility="Visible" />
+
                         </pu:PUComboBox>
 
                     </StackPanel>

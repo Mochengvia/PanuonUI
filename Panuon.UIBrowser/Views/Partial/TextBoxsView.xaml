@@ -27,7 +27,9 @@
                         <Run>获取或设置输入框的基本样式。【TextBoxStyles枚举类型】可选项为：General、IconGroup。默认值为General。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">BorderCornerRadius </Run>
                         <Run>获取或设置输入框的圆角大小。【CornerRadius类型】。默认值为0。</Run><LineBreak />
-                         <Run Foreground="#FF359ECF">ShadowColor </Run>
+                        <Run Foreground="#FF359ECF">IsClearButtonShow </Run>
+                        <Run>获取或设置当鼠标悬浮时是否显示 清空 按钮。【Boolean类型】。默认值为False。</Run><LineBreak /> 
+                        <Run Foreground="#FF359ECF">ShadowColor </Run>
                         <Run>获取或设置输入框获得焦点时的阴影颜色。【Color类型】。默认值为#888888。</Run><LineBreak />
                         <Run Foreground="#FF359ECF">Watermark </Run>
                         <Run>获取或设置输入框的水印。【String类型】。默认值为空。</Run><LineBreak />
@@ -50,11 +52,13 @@
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal">
                         <pu:PUTextBox Text="General"
+                                      IsClearButtonShow="True"
                                       Width="180"
                                       Height="30"
                                       HorizontalAlignment="Left"></pu:PUTextBox>
                         <pu:PUTextBox TextBoxStyle="IconGroup"
                                       Text="IconGroup"
+                                      IsClearButtonShow="True"
                                       Icon=""
                                       Width="180"
                                       Height="30"

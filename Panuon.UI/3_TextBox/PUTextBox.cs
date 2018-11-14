@@ -15,17 +15,31 @@ namespace Panuon.UI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            AddHandler(PUButton.ClickEvent, new RoutedEventHandler(OnClearButtonClick));
             ScrollViewer scrollViewer = new ScrollViewer();
             if (TextBoxStyle == TextBoxStyles.General)
             {
-                scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 0) as ScrollViewer;
+                    scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 0) as ScrollViewer;
             }
             else if (TextBoxStyle == TextBoxStyles.IconGroup)
             {
                 scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 1), 0) as ScrollViewer;
             }
+
             if(scrollViewer != null)
                 scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
+        }
+
+
+        #endregion
+
+        #region Sys
+        private void OnClearButtonClick(object sender, RoutedEventArgs e)
+        {
+            var btnClear = e.OriginalSource as PUButton;
+            if (btnClear.Tag == null || btnClear.Tag.ToString() != "Clear")
+                return;
+            Text = "";
         }
 
         private void ScrollViewer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
@@ -119,6 +133,20 @@ namespace Panuon.UI
         }
         public static readonly DependencyProperty IconWidthProperty = 
             DependencyProperty.Register("IconWidth", typeof(double), typeof(PUTextBox), new PropertyMetadata((double)30));
+
+
+        /// <summary>
+        /// 获取或设置当鼠标悬浮时是否显示清除按钮。默认值为False。
+        /// </summary>
+        public bool IsClearButtonShow
+        {
+            get { return (bool)GetValue(IsClearButtonShowProperty); }
+            set { SetValue(IsClearButtonShowProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsClearButtonShowProperty =
+            DependencyProperty.Register("IsClearButtonShow", typeof(bool), typeof(PUTextBox), new PropertyMetadata(false));
+
 
         #endregion
 

@@ -15,11 +15,55 @@ namespace Panuon.UI
 
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
+
             if (SelectedValuePath == SelectedValuePaths.Header)
                 SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUComboBoxItem).Content;
             else
                 SelectedValue = SelectedItem == null ? null : (SelectedItem as PUComboBoxItem).Value;
             base.OnSelectionChanged(e);
+            if (SearchMode == SearchModes.None)
+                return;
+            else if(SearchMode == SearchModes.TextChanged)
+                AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(OnSearchTextChanged));
+            else
+                AddHandler(PUTextBox.PreviewKeyDownEvent, new RoutedEventHandler(OnSearchKeyDown));
+        }
+
+        private void OnSearchKeyDown(object sender, RoutedEventArgs e)
+        {
+            var eve = e as System.Windows.Input.KeyEventArgs;
+            if (eve.Key != System.Windows.Input.Key.Enter)
+                return;
+            var tbSearch = e.OriginalSource as PUTextBox;
+            if (tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
+                return;
+            var text = tbSearch.Text;
+            foreach (var item in Items)
+            {
+                var comboItem = item as ComboBoxItem;
+                if (comboItem.Content.ToString().Contains(text))
+                    comboItem.Visibility = Visibility.Visible;
+                else
+                    comboItem.Visibility = Visibility.Collapsed;
+            }
+            e.Handled = true;
+        }
+
+        private void OnSearchTextChanged(object sender, RoutedEventArgs e)
+        {
+            var tbSearch = e.OriginalSource as PUTextBox;
+            if (tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
+                return;
+
+            var text = tbSearch.Text;
+            foreach(var item in Items)
+            {
+                var comboItem = item as ComboBoxItem;
+                if (comboItem.Content.ToString().Contains(text))
+                    comboItem.Visibility = Visibility.Visible;
+                else
+                    comboItem.Visibility = Visibility.Collapsed;
+            }
         }
 
         #region RoutedEvent
@@ -97,8 +141,6 @@ namespace Panuon.UI
 
         public static readonly DependencyProperty DeleteModeProperty =
             DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.Delete));
-
-
 
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
@@ -188,6 +230,36 @@ namespace Panuon.UI
             }
         }
 
+        /// <summary>
+        /// 获取或设置搜索模式。默认为不显示搜索。
+        /// </summary>
+        public SearchModes SearchMode
+        {
+            get { return (SearchModes)GetValue(SearchModeProperty); }
+            set { SetValue(SearchModeProperty, value); }
+        }
+
+        public static readonly DependencyProperty SearchModeProperty =
+            DependencyProperty.Register("SearchMode", typeof(SearchModes), typeof(PUComboBox), new PropertyMetadata(SearchModes.None,OnSearchModeChanged));
+
+        private static void OnSearchModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var comboBox = d as PUComboBox;
+            if (!comboBox.IsLoaded)
+                return;
+
+            comboBox.RemoveHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(comboBox.OnSearchTextChanged));
+            comboBox.RemoveHandler(PUTextBox.KeyDownEvent, new RoutedEventHandler(comboBox.OnSearchKeyDown));
+
+            if (comboBox.SearchMode == SearchModes.None)
+                return;
+            else if (comboBox.SearchMode == SearchModes.TextChanged)
+                comboBox.AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(comboBox.OnSearchTextChanged));
+            else
+                comboBox.AddHandler(PUTextBox.KeyDownEvent, new RoutedEventHandler(comboBox.OnSearchKeyDown));
+        }
+
+
         #endregion
 
         #region Enums
@@ -207,6 +279,22 @@ namespace Panuon.UI
             /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
             /// </summary>
             EventOnly,
+        }
+
+        public enum SearchModes
+        {
+            /// <summary>
+            /// 不显示搜索框。
+            /// </summary>
+            None,
+            /// <summary>
+            /// 在搜索框按下键盘时搜索。
+            /// </summary>
+            TextChanged,
+            /// <summary>
+            /// 当按下Enter键时发起搜索。
+            /// </summary>
+            Enter,
         }
         #endregion
     }
