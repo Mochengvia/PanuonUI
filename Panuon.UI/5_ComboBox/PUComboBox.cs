@@ -168,7 +168,6 @@ namespace Panuon.UI
             var comboBox = d as PUComboBox;
             if (comboBox.SelectedValue == null)
             {
-                comboBox.SelectedItem = null;
                 return;
             }
             if (e.NewValue == e.OldValue)
