@@ -80,7 +80,7 @@
                         <pu:PUComboBox Width="180"
                                        Margin="15,0,0,0"
                                        Height="30"
-                                       SearchMode="TextChanged"
+                                       SearchMode="Enter"
                                        HorizontalAlignment="Left">
                             <pu:PUComboBoxItem Content="带搜索框的"
                                                IsSelected="True"

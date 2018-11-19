@@ -13,19 +13,22 @@ namespace Panuon.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBox), new FrameworkPropertyMetadata(typeof(PUComboBox)));
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            if (SearchMode == SearchModes.TextChanged)
+                AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(OnSearchTextChanged));
+            else if (SearchMode == SearchModes.Enter)
+                AddHandler(PUTextBox.PreviewKeyDownEvent, new RoutedEventHandler(OnSearchKeyDown));
+        }
+
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
-
             if (SelectedValuePath == SelectedValuePaths.Header)
                 SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUComboBoxItem).Content;
             else
                 SelectedValue = SelectedItem == null ? null : (SelectedItem as PUComboBoxItem).Value;
             base.OnSelectionChanged(e);
-
-             if(SearchMode == SearchModes.TextChanged)
-                AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(OnSearchTextChanged));
-            else if(SearchMode == SearchModes.Enter)
-                AddHandler(PUTextBox.PreviewKeyDownEvent, new RoutedEventHandler(OnSearchKeyDown));
         }
 
         private void OnSearchKeyDown(object sender, RoutedEventArgs e)
@@ -34,7 +37,7 @@ namespace Panuon.UI
             if (eve.Key != System.Windows.Input.Key.Enter)
                 return;
             var tbSearch = e.OriginalSource as PUTextBox;
-            if (tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
+            if (tbSearch == null || tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
                 return;
             var text = tbSearch.Text;
             foreach (var item in Items)
@@ -51,11 +54,11 @@ namespace Panuon.UI
         private void OnSearchTextChanged(object sender, RoutedEventArgs e)
         {
             var tbSearch = e.OriginalSource as PUTextBox;
-            if (tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
+            if (tbSearch == null || tbSearch.Tag == null || tbSearch.Tag.ToString() != "Search")
                 return;
 
             var text = tbSearch.Text;
-            foreach(var item in Items)
+            foreach (var item in Items)
             {
                 var comboItem = item as ComboBoxItem;
                 if (comboItem.Content.ToString().Contains(text))
@@ -139,7 +142,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty DeleteModeProperty =
-            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBoxItem), new PropertyMetadata(DeleteModes.Delete));
+            DependencyProperty.Register("DeleteMode", typeof(DeleteModes), typeof(PUComboBox), new PropertyMetadata(DeleteModes.Delete));
 
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
@@ -239,7 +242,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty SearchModeProperty =
-            DependencyProperty.Register("SearchMode", typeof(SearchModes), typeof(PUComboBox), new PropertyMetadata(SearchModes.None,OnSearchModeChanged));
+            DependencyProperty.Register("SearchMode", typeof(SearchModes), typeof(PUComboBox), new PropertyMetadata(SearchModes.None, OnSearchModeChanged));
 
         private static void OnSearchModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -250,12 +253,10 @@ namespace Panuon.UI
             comboBox.RemoveHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(comboBox.OnSearchTextChanged));
             comboBox.RemoveHandler(PUTextBox.KeyDownEvent, new RoutedEventHandler(comboBox.OnSearchKeyDown));
 
-            if (comboBox.SearchMode == SearchModes.None)
-                return;
-            else if (comboBox.SearchMode == SearchModes.TextChanged)
+            if (comboBox.SearchMode == SearchModes.TextChanged)
                 comboBox.AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(comboBox.OnSearchTextChanged));
-            else
-                comboBox.AddHandler(PUTextBox.KeyDownEvent, new RoutedEventHandler(comboBox.OnSearchKeyDown));
+            else if (comboBox.SearchMode == SearchModes.Enter)
+                comboBox.AddHandler(PUTextBox.PreviewKeyDownEvent, new RoutedEventHandler(comboBox.OnSearchKeyDown));
         }
 
 
