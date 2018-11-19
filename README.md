@@ -61,6 +61,11 @@ PUWindow是一个继承自Window的控件，但尚不支持边角拖动缩放。
 | NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
 | NavButtonWidth | Double | 控制栏按钮的宽度。默认值为40。  |
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
+| AllowAutoCoverMask* | Boolean | 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。  |
+
+| 方法  | 含义 |
+| --- | --- |
+| AppendNavButton(object content, RoutedEventHandler clickHandler) | 向标题栏右侧控制按钮组中添加一个新的按钮，该按钮将被添加在按钮组的最左侧。 |
 
 注意：上一个版本的CloseWindow()方法将不再使用，直接使用Close()方法即可触发关闭动画（若AnimateOut为True）。<br/>
 扩展：PUMessageBox<br/>
