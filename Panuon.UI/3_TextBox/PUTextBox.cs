@@ -30,10 +30,6 @@ namespace Panuon.UI
                 scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
         }
 
-
-        #endregion
-
-        #region Sys
         private void OnClearButtonClick(object sender, RoutedEventArgs e)
         {
             var btnClear = e.OriginalSource as PUButton;
@@ -67,7 +63,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 按钮样式，默认值为General。
+        /// 获取或设置文本框的基本样式。默认值为General。
         /// </summary>
         public TextBoxStyles TextBoxStyle
         {
@@ -78,7 +74,7 @@ namespace Panuon.UI
             DependencyProperty.Register("TextBoxStyle", typeof(TextBoxStyles), typeof(PUTextBox), new PropertyMetadata(TextBoxStyles.General));
 
         /// <summary>
-        /// 圆角大小，默认值为0。
+        /// 获取或设置文本框的圆角大小，默认值为0。
         /// </summary>
         public CornerRadius BorderCornerRadius
         {
@@ -86,10 +82,10 @@ namespace Panuon.UI
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
         public static readonly DependencyProperty BorderCornerRadiusProperty = 
-            DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox), new PropertyMetadata(new CornerRadius(0)));
+            DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox));
 
         /// <summary>
-        ///  输入框获得焦点时阴影的颜色，默认值为#33888888。
+        ///  获取或设置输入框获得焦点时阴影的颜色，默认值为#888888。
         /// </summary>
         public Color ShadowColor
         {
@@ -108,7 +104,7 @@ namespace Panuon.UI
             set { SetValue(WatermarkProperty, value); }
         }
         public static readonly DependencyProperty WatermarkProperty = 
-            DependencyProperty.Register("Watermark", typeof(string), typeof(PUTextBox), new PropertyMetadata(""));
+            DependencyProperty.Register("Watermark", typeof(string), typeof(PUTextBox));
 
         /// <summary>
         /// 放置在输入框前的图标。
@@ -145,7 +141,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IsClearButtonShowProperty =
-            DependencyProperty.Register("IsClearButtonShow", typeof(bool), typeof(PUTextBox), new PropertyMetadata(false));
+            DependencyProperty.Register("IsClearButtonShow", typeof(bool), typeof(PUTextBox));
 
 
         #endregion

@@ -68,7 +68,7 @@ namespace Panuon.UI
         /// </summary>
         Classic,
         /// <summary>
-        /// 点击按钮时下沉。
+        /// 点击时按钮下沉2个px。
         /// </summary>
         Sink,
     }

@@ -1462,6 +1462,8 @@
         <Style.Triggers>
             <Trigger Property="RepeatButtonStyle"
                      Value="General">
+                <Setter Property="CoverBrush"
+                        Value="#26FFFFFF" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PURepeatButton}">
@@ -1474,13 +1476,7 @@
                                             Background="{TemplateBinding Background}"
                                             BorderThickness="0"
                                             ClipToBounds="True"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}">
-                                        <ContentPresenter x:Name="content"
-                                                          Margin="{TemplateBinding Padding}"
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                          ContentSource="Content"></ContentPresenter>
-                                    </Border>
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}" />
                                 </Border>
                                 <Border x:Name="bdrHoverCover"
                                         Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
@@ -1490,6 +1486,11 @@
                                         Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=RepeatButton}}"
                                         Opacity="0"></Border>
+                                <ContentPresenter x:Name="content"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  ContentSource="Content"></ContentPresenter>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled"
@@ -1501,7 +1502,7 @@
                                          Value="True">
                                     <Setter TargetName="bdrPressedCover"
                                             Property="Opacity"
-                                            Value="0.1"></Setter>
+                                            Value="1"></Setter>
                                 </Trigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
@@ -1523,7 +1524,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 To="0.2"
+                                                                 To="1"
                                                                  Duration="0:0:0.3"></DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -1829,7 +1830,7 @@
                                          Value="True">
                                     <Setter TargetName="lblPressedCover"
                                             Property="Opacity"
-                                            Value="0.4"></Setter>
+                                            Value="0.2"></Setter>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
@@ -1889,7 +1890,7 @@
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="ShadowColor"
-                Value="#888888" />
+                Value="#66888888" />
         <Setter Property="Height"
                 Value="30" />
         <Style.Triggers>
@@ -1971,7 +1972,7 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.4"
+                                                <DoubleAnimation To="1"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
                                                                  Storyboard.TargetProperty="Opacity" />
@@ -2107,7 +2108,7 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.4"
+                                                <DoubleAnimation To="1"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
                                                                  Storyboard.TargetProperty="Opacity" />

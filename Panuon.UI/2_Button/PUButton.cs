@@ -23,7 +23,7 @@ namespace Panuon.UI
         public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(ButtonStyles), typeof(PUButton), new PropertyMetadata(ButtonStyles.General));
 
         /// <summary>
-        /// 获取或设置鼠标点击时按钮的效果。默认为无效果（Classic）。
+        /// 获取或设置鼠标点击时按钮的效果。默认为无特殊效果（Classic）。
         /// </summary>
         public ClickStyles ClickStyle
         {
@@ -46,7 +46,7 @@ namespace Panuon.UI
             DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUButton));
 
         /// <summary>
-        /// 获取或设置鼠标悬浮时遮罩层的背景颜色（在Outline和Link样式下为前景色），默认值为#4DFFFFFF（在Hollow、Outline和Link样式下为灰黑色）。
+        /// 获取或设置鼠标悬浮时遮罩层的背景颜色（在Outline和Link样式下为前景色），默认值为#26FFFFFF（在Hollow、Outline和Link样式下为灰黑色）。
         /// </summary>
         public Brush CoverBrush
         {
@@ -57,7 +57,6 @@ namespace Panuon.UI
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUButton));
 
         #endregion
-
     }
 
 }
