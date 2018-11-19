@@ -2480,7 +2480,7 @@
         <Setter Property="InputMethod.IsInputMethodEnabled"
                 Value="False"></Setter>
         <Setter Property="ShadowColor"
-                Value="#888888" />
+                Value="#66888888" />
         <Style.Triggers>
             <Trigger Property="PasswordBoxStyle"
                      Value="General">
@@ -2561,7 +2561,7 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.4"
+                                                <DoubleAnimation To="1"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
                                                                  Storyboard.TargetProperty="Opacity" />
@@ -2698,7 +2698,7 @@
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimation To="0.4"
+                                                <DoubleAnimation To="1"
                                                                  Duration="0:0:0.2"
                                                                  Storyboard.TargetName="effect"
                                                                  Storyboard.TargetProperty="Opacity" />
