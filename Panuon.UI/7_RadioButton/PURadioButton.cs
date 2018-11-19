@@ -69,29 +69,6 @@ namespace Panuon.UI
 
         #endregion
 
-        public enum RadioButtonStyles
-        {
-            /// <summary>
-            /// 一个标准的RadioButton。
-            /// </summary>
-            General = 1,
-            /// <summary>
-            /// 一个经典样式的RadioButton。
-            /// </summary>
-            Classic = 2,
-            /// <summary>
-            /// 一个开关样式的RadioButton。
-            /// </summary>
-            Switch = 3,
-            /// <summary>
-            /// 一个带有左边线的RadioButton。
-            /// </summary>
-            Branch = 4,
-            /// <summary>
-            ///  一个类似于按钮样式的选择框。
-            /// </summary>
-            Button = 5,
-        }
 
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -10,8 +13,21 @@ namespace Panuon.UI
 {
     public class PUWindow : Window
     {
+        #region Import
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+        #endregion
+
         #region Identify
         private PUButton _btnClose;
+
+        private StackPanel _stkNav;
+
+        private PUWindow _parentWindow;
+
+        private bool _animateOutHandle = true;
+
+        private bool? _dialogResult;
         #endregion
 
         static PUWindow()
@@ -19,17 +35,33 @@ namespace Panuon.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUWindow), new FrameworkPropertyMetadata(typeof(PUWindow)));
         }
 
+        public PUWindow()
+        {
+            try
+            {
+                _parentWindow = GetOwnerWindow();
+                if (_parentWindow != null && Owner == null)
+                    Owner = _parentWindow;
+            }
+            catch { }
+        }
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             Loaded += delegate
             {
+                if (AllowAutoCoverMask && _parentWindow != null)
+                {
+                        _parentWindow.IsCoverMaskShow = true;
+                }
                 if (AnimateIn)
                     OnBeginLoadStoryboard();
                 else
                     OnSkipLoadStoryboard();
             };
             var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this,0), 0), 0), 0) as Grid;
+            _stkNav = VisualTreeHelper.GetChild(grdNavbar, 1) as StackPanel;
             grdNavbar.MouseLeftButtonDown += delegate
             {
                 this.DragMove();
@@ -37,11 +69,12 @@ namespace Panuon.UI
             _btnClose = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(grdNavbar, 1), 2) as PUButton;
         }
 
-        private bool _animateOutHandle = true;
-        private bool? _dialogResult;
         protected override void OnClosing(CancelEventArgs e)
         {
-            if(AnimateOut && _animateOutHandle)
+            if (AllowAutoCoverMask && _parentWindow != null)
+                _parentWindow.IsCoverMaskShow = false;
+
+            if (AnimateOut && _animateOutHandle)
             {
                 _dialogResult = DialogResult;
                 OnBeginCloseStoryboard();
@@ -106,13 +139,27 @@ namespace Panuon.UI
             RoutedPropertyChangedEventArgs<PUWindow> arg = new RoutedPropertyChangedEventArgs<PUWindow>(null, this, BeginCloseStoryboardEvent);
             RaiseEvent(arg);
         }
-       
+
         #endregion
 
         #region Property
 
         /// <summary>
-        /// 打开遮罩层，默认值为False。
+        /// 获取或设置窗体的返回结果，不会对前端显示造成影响。默认值为Null
+        /// </summary>
+        public object Result
+        {
+            get { return (object)GetValue(ResultProperty); }
+            set { SetValue(ResultProperty, value); }
+        }
+
+        public static readonly DependencyProperty ResultProperty =
+            DependencyProperty.Register("Result", typeof(object), typeof(PUWindow));
+
+
+
+        /// <summary>
+        ///获取或设置是否打开窗体的遮罩层。默认值为False。
         /// </summary>
         public bool IsCoverMaskShow
         {
@@ -120,10 +167,10 @@ namespace Panuon.UI
             set { SetValue(IsCoverMaskShowProperty, value); }
         }
         public static readonly DependencyProperty IsCoverMaskShowProperty = 
-            DependencyProperty.Register("IsCoverMaskShow", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+            DependencyProperty.Register("IsCoverMaskShow", typeof(bool), typeof(PUWindow));
 
         /// <summary>
-        /// 显示延迟，默认值为False。
+        /// 获取或设置是否允许延迟显示内容。当页面内容较为复杂时，启用此选项有助于减少启动动画卡顿。默认值为False。
         /// </summary>
         public bool AllowShowDelay
         {
@@ -131,10 +178,10 @@ namespace Panuon.UI
             set { SetValue(AllowShowDelayProperty, value); }
         }
         public static readonly DependencyProperty AllowShowDelayProperty = 
-            DependencyProperty.Register("AllowShowDelay", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+            DependencyProperty.Register("AllowShowDelay", typeof(bool), typeof(PUWindow));
 
         /// <summary>
-        /// 隐藏所有的控制栏右侧按钮。
+        /// 获取或设置右侧标题栏按钮的显示状态。默认值为Visible。
         /// </summary>
         public Visibility NavButtonVisibility
         {
@@ -146,44 +193,48 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 窗体打开时使用动画，默认值为true。
+        /// 获取或设置是否在窗体打开时使用动画。默认值为True。
         /// </summary>
         public bool AnimateIn
         {
             get { return (bool)GetValue(AnimateInProperty); }
             set { SetValue(AnimateInProperty, value); }
         }
-        public static readonly DependencyProperty AnimateInProperty = DependencyProperty.Register("AnimateIn", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
+        public static readonly DependencyProperty AnimateInProperty = 
+            DependencyProperty.Register("AnimateIn", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
 
         /// <summary>
-        /// 窗体关闭时使用动画，默认值为true。
+        /// 获取或设置是否在窗体关闭时使用动画，默认值为True。
         /// </summary>
         public bool AnimateOut
         {
             get { return (bool)GetValue(AnimateOutProperty); }
             set { SetValue(AnimateOutProperty, value); }
         }
-        public static readonly DependencyProperty AnimateOutProperty = DependencyProperty.Register("AnimateOut", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
+        public static readonly DependencyProperty AnimateOutProperty = 
+            DependencyProperty.Register("AnimateOut", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
 
         /// <summary>
-        /// 动画类型，默认值为Gradual（一个从上到下的渐变显示）。
+        /// 获取或设置窗体动画类型。默认值为Gradual（一个从上到下的渐变显示）。
         /// </summary>
         public AnimationStyles AnimationStyle
         {
             get { return (AnimationStyles)GetValue(AnimationStyleProperty); }
             set { SetValue(AnimationStyleProperty, value); }
         }
-        public static readonly DependencyProperty AnimationStyleProperty = DependencyProperty.Register("AnimationStyle", typeof(AnimationStyles), typeof(PUWindow), new PropertyMetadata(AnimationStyles.Scale));
+        public static readonly DependencyProperty AnimationStyleProperty = 
+            DependencyProperty.Register("AnimationStyle", typeof(AnimationStyles), typeof(PUWindow), new PropertyMetadata(AnimationStyles.Scale));
 
         /// <summary>
-        /// 窗体圆角大小，默认值为0。
+        /// 获取或设置窗体的圆角大小，默认值为0。
         /// </summary>
         public CornerRadius BorderCornerRadius
         {
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUWindow), new PropertyMetadata(new CornerRadius(0)));
+        public static readonly DependencyProperty BorderCornerRadiusProperty = 
+            DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUWindow));
 
         /// <summary>
         /// 左上角标题，默认值为null。
@@ -195,7 +246,7 @@ namespace Panuon.UI
             set { SetValue(HeaderProperty, value); }
         }
         public static readonly DependencyProperty HeaderProperty = 
-            DependencyProperty.Register("Header", typeof(object), typeof(PUWindow), new PropertyMetadata());
+            DependencyProperty.Register("Header", typeof(object), typeof(PUWindow));
 
         /// <summary>
         /// 左上角图标，默认值为null。
@@ -205,7 +256,8 @@ namespace Panuon.UI
             get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public new static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(object), typeof(PUWindow), new PropertyMetadata(null));
+        public new static readonly DependencyProperty IconProperty = 
+            DependencyProperty.Register("Icon", typeof(object), typeof(PUWindow));
 
         /// <summary>
         /// 控制栏背景色，默认值为White（白色）。
@@ -216,7 +268,7 @@ namespace Panuon.UI
             set { SetValue(NavbarBackgroundProperty, value); }
         }
         public static readonly DependencyProperty NavbarBackgroundProperty =
-            DependencyProperty.Register("NavbarBackground", typeof(Brush), typeof(PUWindow), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+            DependencyProperty.Register("NavbarBackground", typeof(Brush), typeof(PUWindow));
 
         /// <summary>
         /// 控制栏高度，默认值为30。
@@ -226,7 +278,8 @@ namespace Panuon.UI
             get { return (double)GetValue(NavbarHeightProperty); }
             set { SetValue(NavbarHeightProperty, value); }
         }
-        public static readonly DependencyProperty NavbarHeightProperty = DependencyProperty.Register("NavbarHeight", typeof(double), typeof(PUWindow), new PropertyMetadata((double)30));
+        public static readonly DependencyProperty NavbarHeightProperty = 
+            DependencyProperty.Register("NavbarHeight", typeof(double), typeof(PUWindow));
 
         /// <summary>
         /// 控制按钮高度，默认值为30。
@@ -236,7 +289,8 @@ namespace Panuon.UI
             get { return (double)GetValue(NavButtonHeightProperty); }
             set { SetValue(NavButtonHeightProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonHeightProperty = DependencyProperty.Register("NavButtonHeight", typeof(double), typeof(PUWindow), new PropertyMetadata((double)30));
+        public static readonly DependencyProperty NavButtonHeightProperty = 
+            DependencyProperty.Register("NavButtonHeight", typeof(double), typeof(PUWindow));
 
         /// <summary>
         /// 控制按钮宽度，默认值为40。
@@ -247,7 +301,7 @@ namespace Panuon.UI
             set { SetValue(NavButtonWidthProperty, value); }
         }
         public static readonly DependencyProperty NavButtonWidthProperty = 
-            DependencyProperty.Register("NavButtonWidth", typeof(double), typeof(PUWindow), new PropertyMetadata((double)40));
+            DependencyProperty.Register("NavButtonWidth", typeof(double), typeof(PUWindow));
 
         /// <summary>
         /// 是否打开遮罩层并显示等待控件。
@@ -263,6 +317,18 @@ namespace Panuon.UI
 
 
 
+        /// <summary>
+        /// 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。
+        /// <para>若没有父窗体或父窗体不是PUWindow类型，则不会触发任何效果。</para>
+        /// </summary>
+        public bool AllowAutoCoverMask
+        {
+            get { return (bool)GetValue(AllowAutoCoverMaskProperty); }
+            set { SetValue(AllowAutoCoverMaskProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowAutoCoverMaskProperty =
+            DependencyProperty.Register("AllowAutoCoverMask", typeof(bool), typeof(PUWindow));
 
         #endregion
 
@@ -303,6 +369,63 @@ namespace Panuon.UI
 
         #endregion
 
+        #region APIs
+        /// <summary>
+        /// 向控制栏的左侧添加一个新的按钮。
+        /// <para>警告：当Window的前景色发生改变时，该按钮的前景色不会随之变化。</para>
+        /// </summary>
+        /// <param name="content">按钮的内容</param>
+        /// <param name="clickHandler">点击按钮时应该触发的事件。</param>
+        public void AppendNavButton(object content, RoutedEventHandler clickHandler)
+        {
+            var btn = new PUButton()
+            {
+                Content = content,
+                ButtonStyle = ButtonStyles.Hollow,
+                Foreground = Foreground,
+                BorderBrush = new SolidColorBrush(Colors.Transparent),
+                CoverBrush = new SolidColorBrush(((Color)ColorConverter.ConvertFromString("#99999999"))),
+                HorizontalAlignment = HorizontalAlignment.Right,
+            };
+            var visibility = new Binding() { Path = new PropertyPath("NavButtonVisibility"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this ,Mode = BindingMode.OneWay };
+            BindingOperations.SetBinding(btn, VisibilityProperty, visibility);
+        
+            var width = new Binding() { Path = new PropertyPath("NavButtonWidth"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this ,Mode = BindingMode.OneWay };
+            BindingOperations.SetBinding(btn, WidthProperty, width);
+            var height = new Binding() { Path = new PropertyPath("NavButtonHeight"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
+            BindingOperations.SetBinding(btn, HeightProperty, height);
+            var fontsize = new Binding() { Path = new PropertyPath("FontSize"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
+            BindingOperations.SetBinding(btn, FontSizeProperty, fontsize);
+            btn.Click += clickHandler;
+            if (IsLoaded)
+                _stkNav.Children.Insert(0, btn);
+            else
+            {
+                Loaded += delegate
+                {
+                    _stkNav.Children.Insert(0, btn);
+                };
+            }
+        }
+        #endregion
+
+        #region Function
+        private static PUWindow GetWindowFromHwnd(IntPtr hwnd)
+        {
+            var visual = HwndSource.FromHwnd(hwnd).RootVisual;
+            return visual as PUWindow;
+        }
+        private static PUWindow GetOwnerWindow()
+        {
+            var hwnd = GetForegroundWindow();
+            if (hwnd == null)
+                return null;
+
+            return GetWindowFromHwnd(hwnd);
+        }
+
+        #endregion
+
         public enum AnimationStyles
         {
             /// <summary>
@@ -320,7 +443,7 @@ namespace Panuon.UI
         }
     }
 
-    public class CloseWindowCommand : ICommand
+    internal class CloseWindowCommand : ICommand
     {
         event EventHandler ICommand.CanExecuteChanged
         {
@@ -339,7 +462,7 @@ namespace Panuon.UI
             window.Close();
         }
     }
-    public class MaxWindowCommand : ICommand
+    internal class MaxWindowCommand : ICommand
     {
         event EventHandler ICommand.CanExecuteChanged
         {
@@ -361,7 +484,7 @@ namespace Panuon.UI
                 window.WindowState = WindowState.Maximized;
         }
     }
-    public class MinWindowCommand : ICommand
+    internal class MinWindowCommand : ICommand
     {
         event EventHandler ICommand.CanExecuteChanged
         {

@@ -59,12 +59,4 @@ namespace Panuon.UI
 
     }
 
-    public enum AnglePositions
-    {
-        Left,
-        BottomLeft,
-        BottomCenter,
-        BottomRight,
-        Right,
-    }
 }

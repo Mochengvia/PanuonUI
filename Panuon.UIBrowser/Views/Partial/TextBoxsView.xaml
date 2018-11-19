@@ -125,7 +125,7 @@
                                          BorderBrush="Transparent"
                                          BorderCornerRadius="0,0,3,3"
                                          Background="Transparent"
-                                         CoverBrush="#AAE089B8" />
+                                         CoverBrush="#3DE089B8" />
                         </Grid>
                         <Grid>
                             <pu:PUTextBox Padding="0,0,30,0"
@@ -150,7 +150,7 @@
                                          BorderBrush="Transparent"
                                          BorderCornerRadius="0,0,3,3"
                                          Background="Transparent"
-                                         CoverBrush="#AAE089B8" />
+                                         CoverBrush="#3DE089B8" />
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="2"

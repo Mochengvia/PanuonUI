@@ -257,16 +257,5 @@ namespace Panuon.UI
 
         #endregion
 
-        public enum PasswordBoxStyles
-        {
-            /// <summary>
-            /// 一个标准的密码框。
-            /// </summary>
-            General = 1,
-            /// <summary>
-            /// 一个密码框前带图标的密码框。
-            /// </summary>
-            IconGroup = 2,
-        }
     }
 }

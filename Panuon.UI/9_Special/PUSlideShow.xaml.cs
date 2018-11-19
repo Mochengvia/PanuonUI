@@ -226,7 +226,16 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IsIndicatorShowProperty =
-            DependencyProperty.Register("IsIndicatorShow", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(true));
+            DependencyProperty.Register("IsIndicatorShow", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(true, OnIsIndicatorShowChanged));
+
+        private static void OnIsIndicatorShowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var slide = d as PUSlideShow;
+            if (slide.IsIndicatorShow)
+                slide.Indicator.Visibility = Visibility.Visible;
+            else
+                slide.Indicator.Visibility = Visibility.Hidden;
+        }
 
 
         /// <summary>

@@ -13,12 +13,12 @@ namespace Panuon.UI
         {
             //0是CornerRadius，1是Direction
             var cr = (CornerRadius)values[0];
-            var dir = (PUProgressBar.Directions)values[1];
-            if (dir == PUProgressBar.Directions.LeftToRight)
+            var dir = (ProgressDirections)values[1];
+            if (dir == ProgressDirections.LeftToRight)
                 return new CornerRadius(cr.TopLeft, 0, 0, cr.BottomLeft);
-            else if (dir == PUProgressBar.Directions.RightToLeft)
+            else if (dir == ProgressDirections.RightToLeft)
                 return new CornerRadius(0, cr.TopRight, cr.BottomRight, 0);
-            else if (dir == PUProgressBar.Directions.TopToBottom)
+            else if (dir == ProgressDirections.TopToBottom)
                 return new CornerRadius(cr.TopLeft, cr.TopRight, 0, 0);
             else
                 return new CornerRadius(0, 0, cr.BottomRight, cr.BottomLeft);

@@ -399,8 +399,6 @@
                 Value="#E6E6E6"></Setter>
         <Setter Property="IsReadOnly"
                 Value="True"></Setter>
-        <Setter Property="RowHeight"
-                Value="35"></Setter>
         <Setter Property="Background"
                 Value="Transparent"></Setter>
         <Setter Property="BorderBrush"
@@ -505,14 +503,14 @@
     <Style  TargetType="DataGridRow">
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
-        <Setter Property="Opacity"
-                Value="0.8"></Setter>
         <Setter Property="Padding"
                 Value="10,0,0,0"></Setter>
         <Setter Property="Background"
                 Value="Transparent"></Setter>
         <Setter Property="SnapsToDevicePixels"
                 Value="True" />
+        <Setter Property="MinHeight"
+                Value="35" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridRow">

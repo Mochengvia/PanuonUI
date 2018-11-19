@@ -149,6 +149,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\Converters.cs" />
+    <Compile Include="Others\Enums.cs" />
     <Compile Include="Utils\Extends.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Utils\Utils.cs" />

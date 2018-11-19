@@ -245,7 +245,7 @@ namespace Panuon.UI
         {
             var radio = new PURadioButton()
             {
-                RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                RadioButtonStyle = RadioButtonStyles.Button,
                 Content = content,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 HorizontalContentAlignment = HorizontalAlignment.Center,

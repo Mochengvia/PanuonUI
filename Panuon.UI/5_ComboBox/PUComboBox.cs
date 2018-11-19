@@ -21,11 +21,10 @@ namespace Panuon.UI
             else
                 SelectedValue = SelectedItem == null ? null : (SelectedItem as PUComboBoxItem).Value;
             base.OnSelectionChanged(e);
-            if (SearchMode == SearchModes.None)
-                return;
-            else if(SearchMode == SearchModes.TextChanged)
+
+             if(SearchMode == SearchModes.TextChanged)
                 AddHandler(PUTextBox.TextChangedEvent, new RoutedEventHandler(OnSearchTextChanged));
-            else
+            else if(SearchMode == SearchModes.Enter)
                 AddHandler(PUTextBox.PreviewKeyDownEvent, new RoutedEventHandler(OnSearchKeyDown));
         }
 
@@ -220,7 +219,7 @@ namespace Panuon.UI
             {
                 var comboBoxItem = item as PUComboBoxItem;
                 if ((comboBox.SelectedValuePath == SelectedValuePaths.Header ?
-                    (comboBoxItem.Content == null ? false : comboBoxItem.Content.ToString() == comboBox.SelectedValue.ToString()) :
+                    (comboBoxItem.Content == null ? false : comboBoxItem.Content.Equals(comboBox.SelectedValue)) :
                     (comboBoxItem.Value == null ? false : comboBoxItem.Value.Equals(comboBox.SelectedValue))))
                 {
                     if (!comboBoxItem.IsSelected)
@@ -262,40 +261,5 @@ namespace Panuon.UI
 
         #endregion
 
-        #region Enums
-        public enum SelectedValuePaths
-        {
-            Header,
-            Value
-        }
-
-        public enum DeleteModes
-        {
-            /// <summary>
-            /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
-            /// </summary>
-            Delete,
-            /// <summary>
-            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
-            /// </summary>
-            EventOnly,
-        }
-
-        public enum SearchModes
-        {
-            /// <summary>
-            /// 不显示搜索框。
-            /// </summary>
-            None,
-            /// <summary>
-            /// 在搜索框按下键盘时搜索。
-            /// </summary>
-            TextChanged,
-            /// <summary>
-            /// 当按下Enter键时发起搜索。
-            /// </summary>
-            Enter,
-        }
-        #endregion
     }
 }

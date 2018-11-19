@@ -6,7 +6,7 @@ namespace Panuon.UI
 {
     public class Helper : DependencyObject
     {
-
+        #region Column & Row
         public static double GetColumnDefinition(DependencyObject obj)
         {
             return (double)obj.GetValue(ColumnDefinitionProperty);
@@ -59,5 +59,68 @@ namespace Panuon.UI
             Grid.SetRow(ele, parent.RowDefinitions.Count);
             parent.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(value, GridUnitType.Star) });
         }
+        #endregion
+
+        #region Height & Width
+
+
+        public static double GetHeight(DependencyObject obj)
+        {
+            return (double)obj.GetValue(HeightProperty);
+        }
+
+        public static void SetHeight(DependencyObject obj, double value)
+        {
+            obj.SetValue(HeightProperty, value);
+        }
+
+        public static readonly DependencyProperty HeightProperty =
+            DependencyProperty.RegisterAttached("Height", typeof(double), typeof(Helper), new PropertyMetadata(OnHeightChanged));
+
+        private static void OnHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var value = (double)e.NewValue;
+            var ele = d as FrameworkElement;
+            var parent = ele.Parent as FrameworkElement;
+
+            if (parent == null)
+                return;
+
+            parent.Loaded += delegate
+            {
+                ele.Height = parent.ActualWidth * value;
+            };
+        }
+
+
+
+        public static double GetWidth(DependencyObject obj)
+        {
+            return (double)obj.GetValue(WidthProperty);
+        }
+
+        public static void SetWidth(DependencyObject obj, double value)
+        {
+            obj.SetValue(WidthProperty, value);
+        }
+
+        public static readonly DependencyProperty WidthProperty =
+            DependencyProperty.RegisterAttached("Width", typeof(double), typeof(Helper), new PropertyMetadata(OnWidthChanged));
+
+        private static void OnWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var value = (double)e.NewValue;
+            var ele = d as FrameworkElement;
+            var parent = ele.Parent as FrameworkElement;
+
+            if (parent == null)
+                return;
+
+            parent.Loaded += delegate
+            {
+                ele.Width = parent.ActualWidth * value;
+            };
+        }
+        #endregion
     }
 }

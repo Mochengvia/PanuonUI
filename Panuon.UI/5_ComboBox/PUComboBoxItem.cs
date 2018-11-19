@@ -68,7 +68,7 @@ namespace Panuon.UI
         {
             var comItem = (parameter as PUComboBoxItem);
             var combox = comItem.Parent as PUComboBox;
-            if (combox.DeleteMode == PUComboBox.DeleteModes.Delete)
+            if (combox.DeleteMode == DeleteModes.Delete)
                 combox.Items.Remove(comItem);
             combox.OnDeleteItem(null, comItem);
         }

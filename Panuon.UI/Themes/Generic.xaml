@@ -110,6 +110,14 @@
                 Value="14"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
+        <Setter Property="NavbarBackground"
+                Value="White" />
+        <Setter Property="NavbarHeight"
+                Value="30" />
+        <Setter Property="NavButtonHeight"
+                Value="30" />
+        <Setter Property="NavButtonWidth"
+                Value="40" />
         <Style.Triggers>
             <Trigger Property="AnimationStyle"
                      Value="Fade">
@@ -171,6 +179,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnMax"
@@ -183,6 +192,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnClose"
@@ -195,6 +205,7 @@
                                                                 CoverBrush="#CCC53434"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
                                             </StackPanel>
@@ -455,6 +466,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnMax"
@@ -467,6 +479,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnClose"
@@ -479,6 +492,7 @@
                                                                 CoverBrush="#CCC53434"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
                                             </StackPanel>
@@ -750,6 +764,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnMax"
@@ -762,6 +777,7 @@
                                                                 CoverBrush="#99999999"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"></local:PUButton>
                                                 <local:PUButton x:Name="btnClose"
@@ -774,6 +790,7 @@
                                                                 CoverBrush="#CCC53434"
                                                                 Foreground="{TemplateBinding Foreground}"
                                                                 Width="{Binding NavButtonWidth,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                Height="{Binding NavButtonHeight,RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 HorizontalAlignment="Right"
                                                                 FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}" />
                                             </StackPanel>
@@ -1017,6 +1034,8 @@
         <Style.Triggers>
             <Trigger Property="ButtonStyle"
                      Value="General">
+                <Setter Property="CoverBrush" 
+                        Value="#26FFFFFF"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
@@ -1029,13 +1048,7 @@
                                             Background="{TemplateBinding Background}"
                                             BorderThickness="0"
                                             ClipToBounds="True"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}">
-                                        <ContentPresenter x:Name="content"
-                                                          Margin="{TemplateBinding Padding}"
-                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                          ContentSource="Content"></ContentPresenter>
-                                    </Border>
+                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}" />
                                 </Border>
                                 <Border x:Name="bdrHoverCover"
                                         Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}"
@@ -1045,6 +1058,11 @@
                                         Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=Button}}"
                                         CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=Button}}"
                                         Opacity="0"></Border>
+                                <ContentPresenter x:Name="content"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  ContentSource="Content"></ContentPresenter>
                             </Grid>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled"
@@ -1056,7 +1074,7 @@
                                          Value="True">
                                     <Setter TargetName="bdrPressedCover"
                                             Property="Opacity"
-                                            Value="0.1"></Setter>
+                                            Value="1"></Setter>
                                 </Trigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
@@ -1078,7 +1096,7 @@
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="bdrHoverCover"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 To="0.2"
+                                                                 To="1"
                                                                  Duration="0:0:0.3"></DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -1384,7 +1402,7 @@
                                          Value="True">
                                     <Setter TargetName="lblPressedCover"
                                             Property="Opacity"
-                                            Value="0.4"></Setter>
+                                            Value="0.2"></Setter>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
@@ -1867,7 +1885,7 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="10,0,0,0"></Setter>
+                Value="5,0,0,0"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="ShadowColor"
@@ -2290,9 +2308,9 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
-                                        <local:PUTextBox x:Name="tbSearch" 
-                                                         Visibility="Collapsed"
+                                        <local:PUTextBox x:Name="tbSearch"
                                                          Height="30"
+                                                         Padding="5,0,0,0"
                                                          Tag="Search"
                                                          IsClearButtonShow="True"
                                                          BorderBrush="Transparent"
@@ -2301,7 +2319,7 @@
                                                          Foreground="{TemplateBinding Foreground}"
                                                          Watermark="  搜 索"
                                                          FontFamily="{DynamicResource IconFont}"
-                                                         Margin="2,5,2,0"/>
+                                                         Margin="1,5,1,0"/>
                                         <ScrollViewer Grid.Row="1"
                                                       VerticalScrollBarVisibility="Auto"
                                                       HorizontalScrollBarVisibility="Auto"
@@ -2332,16 +2350,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="SearchMode"
-                                 Value="TextChanged">
+                                     Value="None">
                             <Setter TargetName="tbSearch"
                                     Property="Visibility"
-                                    Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="SearchMode"
-                                 Value="Enter">
-                            <Setter TargetName="tbSearch"
-                                    Property="Visibility"
-                                    Value="Visible" />
+                                    Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsEditable"
                                  Value="True">
@@ -2393,12 +2405,11 @@
                           Width="{TemplateBinding Width}">
                         <Border x:Name="bdrMain"
                                 Background="Transparent" />
-                        <TextBlock Margin="{TemplateBinding Padding}"
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
                                    x:Name="txtContent"
                                    Opacity="0.8"
-                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                   Text="{Binding Content,RelativeSource={RelativeSource TemplatedParent}}" />
+                                   ContentSource="Content" />
                         <local:PUButton x:Name="btnDelete"
                                         ButtonStyle="Link"
                                         Opacity="0.7"
@@ -2462,7 +2473,7 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left"></Setter>
         <Setter Property="Padding"
-                Value="10,0,0,0"></Setter>
+                Value="5,0,0,0"></Setter>
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="InputMethod.IsInputMethodEnabled"
@@ -4038,7 +4049,7 @@
 
     <Style TargetType="{x:Type local:PUTreeViewItem}">
         <Setter Property="Background"
-                Value="White"></Setter>
+                Value="Transparent"></Setter>
         <Setter Property="BorderBrush"
                 Value="Transparent"></Setter>
         <Setter Property="Foreground"
@@ -4345,7 +4356,7 @@
                                          Value="True">
                                     <Setter Property="Foreground"
                                             TargetName="content"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TreeViewItem}}" />
+                                            Value="{Binding ChoosedBrush,RelativeSource={RelativeSource AncestorType=TreeView}}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -4751,6 +4762,10 @@
     <Style TargetType="{x:Type local:PUTabItem}">
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
         <Setter Property="Background"
                 Value="Transparent"></Setter>
         <Style.Triggers>

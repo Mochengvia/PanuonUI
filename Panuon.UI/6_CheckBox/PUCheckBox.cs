@@ -70,29 +70,6 @@ namespace Panuon.UI
 
         #endregion
 
-        public enum CheckBoxStyles
-        {
-            /// <summary>
-            /// 一个标准的选择框。
-            /// </summary>
-            General = 1,
-            /// <summary>
-            /// 一个经典样式的选择框。
-            /// </summary>
-            Classic = 2,
-            /// <summary>
-            /// 一个开关样式的选择框。
-            /// </summary>
-            Switch = 3,
-            /// <summary>
-            /// 一个带有左边线的选择框。
-            /// </summary>
-            Branch = 4,
-            /// <summary>
-            /// 一个类似于按钮样式的选择框。
-            /// </summary>
-            Button = 5,
-        }
 
     }
 

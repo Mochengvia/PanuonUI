@@ -177,7 +177,7 @@ namespace Panuon.UI.Utils
         }
 
         /// <summary>
-        /// 查找指定ID的值。若找不到，则返回Null。
+        /// 查找指定ID的值。若找不到，则返回默认值。
         /// </summary>
         /// <param name="uid">标识该对象的唯一ID。</param>
         /// <returns></returns>

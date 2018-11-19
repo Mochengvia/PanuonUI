@@ -268,29 +268,8 @@ namespace Panuon.UI
         }
         #endregion
 
-        public enum TabControlStyles
-        {
-            General,
-            Classic,
-        }
 
-        public enum DeleteModes
-        {
-            /// <summary>
-            /// 当用户点击删除按钮时，删除项目并触发DeleteItem路由事件。
-            /// </summary>
-            Delete,
-            /// <summary>
-            /// 当用户点击删除按钮时，不直接删除项目（只触发DeleteItem路由事件）。
-            /// </summary>
-            EventOnly,
-        }
 
-        public enum SelectedValuePaths
-        {
-            Header,
-            Value
-        }
     }
 
     internal sealed class PUTabControlLeftCommand : ICommand

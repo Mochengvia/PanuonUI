@@ -323,10 +323,6 @@ namespace Panuon.UI
 
         #endregion
 
-        public enum TreeViewStyles
-        {
-            General,
-            Classic,
-        }
+      
     }
 }

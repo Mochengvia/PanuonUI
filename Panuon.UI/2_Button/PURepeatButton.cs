@@ -56,41 +56,5 @@ namespace Panuon.UI
 
         #endregion
 
-        #region Enums
-        public enum RepeatButtonStyles
-        {
-            /// <summary>
-            /// 一个常规按钮。
-            /// </summary>
-            General = 1,
-            /// <summary>
-            /// 一个带边框的空心按钮，当鼠标悬浮时才会显示背景色。
-            /// <para>当鼠标移入时，该按钮的背景色将由Background变为指定的CoverBrush。</para>
-            /// </summary>
-            Hollow = 2,
-            /// <summary>
-            /// 一个带边框的空心按钮，当鼠标悬浮时才会显示前景色。
-            /// <para>当鼠标移入时，该按钮的边框和前景色将由BorderBrush和Foreground变为指定的CoverBrush。</para>
-            /// </summary>
-            Outline = 3,
-            /// <summary>
-            /// 一个不带任何边框和背景色的文字按钮。
-            /// <para>当鼠标移入时，该按钮的前景色将由Foreground变为指定的CoverBrush。</para>
-            /// </summary>
-            Link = 4,
-        }
-
-        public enum ClickStyles
-        {
-            /// <summary>
-            /// 点击按钮时不触发下沉操作。
-            /// </summary>
-            Classic,
-            /// <summary>
-            /// 点击按钮时下沉。
-            /// </summary>
-            Sink,
-        }
-        #endregion
     }
 }

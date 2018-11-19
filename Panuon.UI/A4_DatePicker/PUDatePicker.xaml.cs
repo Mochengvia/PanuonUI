@@ -211,7 +211,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Content = i.ToString("00"),
                     VerticalAlignment = VerticalAlignment.Stretch,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -245,7 +245,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Content = i.ToString("00"),
                     Height = 30,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -264,7 +264,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Height = 30,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
@@ -283,7 +283,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Height = 30,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
@@ -320,7 +320,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Content = i.ToString("00"),
                     Height = 35,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -355,7 +355,7 @@ namespace Panuon.UI
             {
                 var radio = new PURadioButton
                 {
-                    RadioButtonStyle = PURadioButton.RadioButtonStyles.Button,
+                    RadioButtonStyle = RadioButtonStyles.Button,
                     Content = i + "月",
                     Height = 35,
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -944,19 +944,4 @@ namespace Panuon.UI
         }
     }
 
-    public enum DatePickerModes
-    {
-        /// <summary>
-        /// 年 月 日。
-        /// </summary>
-        DateOnly,
-        /// <summary>
-        /// 时 分 秒。
-        /// </summary>
-        TimeOnly,
-        /// <summary>
-        /// 年 月 日 时 分 秒。
-        /// </summary>
-        DateTime,
-    }
 }

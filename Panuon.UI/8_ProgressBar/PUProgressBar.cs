@@ -77,14 +77,14 @@ namespace Panuon.UI
         /// <summary>
         /// 获取或设置进度条填充方向，默认值为LeftToRight。
         /// </summary>
-        public Directions Direction
+        public ProgressDirections Direction
         {
-            get { return (Directions)GetValue(DirectionProperty); }
+            get { return (ProgressDirections)GetValue(DirectionProperty); }
             set { SetValue(DirectionProperty, value); }
         }
 
         public static readonly DependencyProperty DirectionProperty =
-            DependencyProperty.Register("Direction", typeof(Directions), typeof(PUProgressBar), new PropertyMetadata(Directions.LeftToRight));
+            DependencyProperty.Register("Direction", typeof(ProgressDirections), typeof(PUProgressBar), new PropertyMetadata(ProgressDirections.LeftToRight));
 
         /// <summary>
         /// 获取或设置是否显示百分比。默认值为False。
@@ -202,7 +202,7 @@ namespace Panuon.UI
             if (ProgressBarStyle == ProgressBarStyles.General)
             {
                 var toValue = ActualWidth * Percent;
-                if (Direction == Directions.TopToBottom || Direction == Directions.BottomToTop)
+                if (Direction == ProgressDirections.TopToBottom || Direction == ProgressDirections.BottomToTop)
                 {
                     toValue = ActualHeight * Percent;
                 }
@@ -227,24 +227,5 @@ namespace Panuon.UI
 
         }
         #endregion
-        public enum Directions
-        {
-            LeftToRight,
-            RightToLeft,
-            TopToBottom,
-            BottomToTop,
-        }
-
-        public enum ProgressBarStyles
-        {
-            /// <summary>
-            /// 一个标准的进度条。
-            /// </summary>
-            General,
-            /// <summary>
-            /// 一个环形的进度条。
-            /// </summary>
-            Ring
-        }
     }
 }

@@ -150,18 +150,5 @@ namespace Panuon.UI
 
         #endregion
 
-        #region Enums
-        public enum TextBoxStyles
-        {
-            /// <summary>
-            /// 一个标准的输入框。
-            /// </summary>
-            General = 1,
-            /// <summary>
-            /// 一个输入框前带图标的输入框。
-            /// </summary>
-            IconGroup = 2,
-        }
-        #endregion
     }
 }

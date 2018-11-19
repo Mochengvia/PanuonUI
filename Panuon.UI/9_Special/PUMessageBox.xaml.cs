@@ -10,23 +10,11 @@ namespace Panuon.UI
     /// </summary>
     public partial class PUMessageBox : UI.PUWindow
     {
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        private PUWindow _parentWindow;
         private PUMessageBox(string title, string content,bool isConfirm, bool showInTaskBar, AnimationStyles animateStyle)
         {
             InitializeComponent();
             Title = title;
             txtContent.Text = content;
-            try
-            {
-                _parentWindow = GetOwnerWindow();
-            }
-            catch(Exception ex)
-            { }
-            if (_parentWindow != null)
-                _parentWindow.IsCoverMaskShow =  true;
             if(isConfirm)
             {
                 groupTip.Visibility = Visibility.Collapsed;
@@ -34,8 +22,6 @@ namespace Panuon.UI
             }
             ShowInTaskbar = showInTaskBar;
             AnimationStyle = animateStyle;
-            if (_parentWindow != null)
-                Owner = _parentWindow;
         }
         #region APIs
         /// <summary>
@@ -92,43 +78,21 @@ namespace Panuon.UI
 
         #endregion
 
-        #region Function
-        private static PUWindow GetWindowFromHwnd(IntPtr hwnd)
-        {
-            var visual = HwndSource.FromHwnd(hwnd).RootVisual;
-            return visual as PUWindow;
-        }
-        private static PUWindow GetOwnerWindow()
-        {
-            var hwnd = GetForegroundWindow();
-            if (hwnd == null)
-                return null;
-
-            return GetWindowFromHwnd(hwnd);
-        }
-
-        #endregion
 
         #region Sys
         private void PUButton_Click(object sender, RoutedEventArgs e)
         {
-            if(_parentWindow != null)
-                _parentWindow.IsCoverMaskShow = false;
             Close();
         }
 
         private void PUButtonYes_Click(object sender, RoutedEventArgs e)
         {
-            if(_parentWindow != null)
-                _parentWindow.IsCoverMaskShow = false;
             DialogResult = true;
             Close();
         }
 
         private void PUButtonNo_Click(object sender, RoutedEventArgs e)
         {
-            if(_parentWindow != null)
-                _parentWindow.IsCoverMaskShow = false;
             DialogResult = false;
             Close();
         }

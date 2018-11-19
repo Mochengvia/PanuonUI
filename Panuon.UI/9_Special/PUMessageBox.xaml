@@ -13,6 +13,7 @@
              WindowStartupLocation="CenterOwner"
              FontSize="16"
              ResizeMode="NoResize"
+             AllowAutoCoverMask="True"
              NavButtonVisibility="Hidden">
     <pu:PUWindow.Icon>
         <TextBlock Text=""
