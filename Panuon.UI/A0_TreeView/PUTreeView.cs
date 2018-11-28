@@ -195,7 +195,7 @@ namespace Panuon.UI
                 treeView.BindingItems.CollectionChanged -= treeView.BindingItemChanged;
                 treeView.BindingItems.CollectionChanged += treeView.BindingItemChanged;
             }
-            treeView.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            treeView.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             if (treeView.ChoosedValue != null)
             {
                 var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
@@ -219,7 +219,7 @@ namespace Panuon.UI
         }
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RecheckBindindItems(e);
+            GenerateBindindItems(e);
         }
 
         #endregion
@@ -321,7 +321,7 @@ namespace Panuon.UI
             return null;
         }
 
-        private void RecheckBindindItems(NotifyCollectionChangedEventArgs e)
+        private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
