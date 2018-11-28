@@ -196,12 +196,12 @@ namespace Panuon.UI
                 tabControl.BindingItems.CollectionChanged -= tabControl.BindingItemChanged;
                 tabControl.BindingItems.CollectionChanged += tabControl.BindingItemChanged;
             }
-            tabControl.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            tabControl.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RecheckBindindItems(e);
+            GenerateBindindItems(e);
         }
         #endregion
 
@@ -258,7 +258,7 @@ namespace Panuon.UI
             }
         }
 
-        private void RecheckBindindItems(NotifyCollectionChangedEventArgs e)
+        private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {

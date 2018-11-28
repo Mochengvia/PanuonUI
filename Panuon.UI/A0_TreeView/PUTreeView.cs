@@ -196,6 +196,26 @@ namespace Panuon.UI
                 treeView.BindingItems.CollectionChanged += treeView.BindingItemChanged;
             }
             treeView.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            if (treeView.ChoosedValue != null)
+            {
+                var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
+
+                if (tvi != null)
+                {
+                    if (!tvi.IsChoosed && !tvi.HasItems)
+                        tvi.IsChoosed = true;
+                }
+                else if (tvi == null)
+                {
+                    if (treeView.ChoosedItem != null)
+                    {
+                        treeView.ChoosedItem.IsChoosed = false;
+                        treeView.ChoosedItem.IsSelected = false;
+                        treeView.ChoosedItem = null;
+                    }
+                    treeView.ChoosedValue = null;
+                }
+            }
         }
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {

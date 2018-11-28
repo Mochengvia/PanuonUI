@@ -166,11 +166,11 @@ namespace Panuon.UI
                 comboBox.BindingItems.CollectionChanged -= comboBox.BindingItemChanged;
                 comboBox.BindingItems.CollectionChanged += comboBox.BindingItemChanged;
             }
-            comboBox.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            comboBox.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RecheckBindindItems(e);
+            GenerateBindindItems(e);
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace Panuon.UI
         #endregion
 
         #region Function
-        private void RecheckBindindItems(NotifyCollectionChangedEventArgs e)
+        private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
