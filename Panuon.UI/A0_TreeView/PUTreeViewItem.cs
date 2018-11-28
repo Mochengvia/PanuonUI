@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -132,6 +133,15 @@ namespace Panuon.UI
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Constructor
+        public PUTreeViewItemModel()
+        {
+            Uid = Guid.NewGuid().ToString("N");
+            Padding = new Thickness(10, 0, 0, 0);
+        }
+        #endregion
+
+        #region Property
         /// <summary>
         /// 要显示的名称。可以作为SelectValuePath的值。
         /// </summary>
@@ -171,6 +181,31 @@ namespace Panuon.UI
             }
         }
         private List<PUTreeViewItemModel> _items;
+
+        /// <summary>
+        /// 缩进。默认值为10,0,0,0。
+        /// </summary>
+        public Thickness Padding
+        {
+            get { return _padding; }
+            set
+            {
+                _padding = value; OnPropertyChanged("Padding");
+            }
+        }
+        private Thickness _padding;
+        #endregion
+
+        #region Internal Property
+        internal string Uid
+        {
+            get { return _uid; }
+            set { _uid = value; }
+        }
+        private string _uid;
+
+
+        #endregion
 
     }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -172,45 +174,34 @@ namespace Panuon.UI
                     }
                 }
             }
-
         }
 
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
         /// </summary>
-        public IList<PUTabItemModel> BindingItems
+        public ObservableCollection<PUTabItemModel> BindingItems
         {
-            get { return (IList<PUTabItemModel>)GetValue(BindingItemsProperty); }
+            get { return (ObservableCollection<PUTabItemModel>)GetValue(BindingItemsProperty); }
             set { SetValue(BindingItemsProperty, value); }
         }
 
         public static readonly DependencyProperty BindingItemsProperty =
-            DependencyProperty.Register("BindingItems", typeof(IList<PUTabItemModel>), typeof(PUTabControl), new PropertyMetadata(null, OnBindingItemsChanged));
+            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUTabItemModel>), typeof(PUTabControl), new PropertyMetadata(OnBindingItemsChanged));
 
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var tabControl = d as PUTabControl;
-            var items = tabControl.BindingItems;
-            if (items == null)
-                return;
-            tabControl.Items.Clear();
-
-            foreach (var item in items)
+            if (tabControl.BindingItems != null)
             {
-                var comboBoxItem = new PUTabItem()
-                {
-                    Header = item.Header,
-                    Content = item.Content,
-                    Height = item.Height,
-                    Icon = item.Icon,
-                    Value = item.Value,
-                    DeleteButtonVisibility = item.CanDelete ? Visibility.Visible : Visibility.Collapsed,
-                };
-
-                if (tabControl.Items.Count == 0)
-                    comboBoxItem.IsSelected = true;
-                tabControl.Items.Add(comboBoxItem);
+                tabControl.BindingItems.CollectionChanged -= tabControl.BindingItemChanged;
+                tabControl.BindingItems.CollectionChanged += tabControl.BindingItemChanged;
             }
+            tabControl.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RecheckBindindItems(e);
         }
         #endregion
 
@@ -266,6 +257,79 @@ namespace Panuon.UI
                 SideButtonVisibility = Visibility.Collapsed;
             }
         }
+
+        private void RecheckBindindItems(NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Reset:
+                    Items.Clear();
+                    if (BindingItems == null)
+                        break;
+                    foreach (var item in BindingItems)
+                    {
+                        var tabItem = GenerateTabItem(item);
+                        Items.Add(tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateTabItem(item as PUTabItemModel);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var item in e.OldItems)
+                    {
+                        Items.RemoveAt(e.OldStartingIndex);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateTabItem(item as PUTabItemModel);
+                        Items[e.OldStartingIndex] = tabItem;
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    {
+                        var tabItem = Items[e.OldStartingIndex];
+                        Items.RemoveAt(e.OldStartingIndex);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+            }
+        }
+
+        private PUTabItem GenerateTabItem(PUTabItemModel model)
+        {
+            var tabItem = new PUTabItem()
+            {
+                Header = model.Header,
+                Content = model.Content,
+                Height = model.Height,
+                Icon = model.Icon,
+                Value = model.Value,
+                DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Collapsed,
+            };
+
+            if (Items.Count == 0)
+                tabItem.IsSelected = true;
+
+            model.PropertyChanged += delegate
+            {
+                tabItem.Header = model.Header;
+                tabItem.Content = model.Content;
+                tabItem.Height = model.Height;
+                tabItem.Icon = model.Icon;
+                tabItem.Value = model.Value;
+                tabItem.DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Collapsed;
+            };
+
+            return tabItem;
+        }
+
         #endregion
 
 

@@ -4085,6 +4085,7 @@
                                                     Margin="{TemplateBinding Padding}">
                                             <ToggleButton x:Name="toggle"
                                                           Width="20"
+                                                          Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView}}"
                                                           IsChecked="{TemplateBinding IsExpanded}">
                                                 <ToggleButton.Template>
                                                     <ControlTemplate TargetType="ToggleButton">
@@ -4108,7 +4109,7 @@
                                                               Width="15"
                                                               Height="15"
                                                               Fill="{x:Null}"
-                                                              Stroke="{TemplateBinding Foreground}"
+                                                              Stroke="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
                                                               RenderTransformOrigin="0.5,0.5">
                                                         </Path>
                                                         <Path x:Name="arrow2"
@@ -4120,7 +4121,7 @@
                                                               Width="15"
                                                               Height="15"
                                                               Fill="{x:Null}"
-                                                              Stroke="{TemplateBinding Foreground}"
+                                                              Stroke="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
                                                               RenderTransformOrigin="0.5,0.5">
                                                             <Path.RenderTransform>
                                                                 <RotateTransform Angle="180"></RotateTransform>
@@ -4129,11 +4130,14 @@
                                                     </Grid>
                                                 </ToggleButton.Content>
                                             </ToggleButton>
-                                            <Grid Margin="10,0,0,0">
-                                                <ContentPresenter x:Name="content"
-                                                                  RecognizesAccessKey="True"
-                                                                  VerticalAlignment="Center"
-                                                                  ContentSource="Header" />
+                                            <Grid>
+                                                <Label x:Name="content"
+                                                       Margin="5,0,0,0"
+                                                       Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
+                                                       FontSize="{Binding FontSize,RelativeSource={RelativeSource  AncestorType=TreeView}}"
+                                                       FontFamily="{Binding FontFamily,RelativeSource={RelativeSource  AncestorType=TreeView}}"
+                                                       VerticalAlignment="Center"
+                                                       Content="{TemplateBinding Header}" />
                                             </Grid>
                                         </StackPanel>
                                     </Grid>
@@ -4246,6 +4250,7 @@
                                                     Margin="{TemplateBinding Padding}">
                                             <ToggleButton x:Name="toggle"
                                                           Width="20"
+                                                          Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
                                                           IsChecked="{TemplateBinding IsExpanded}">
                                                 <ToggleButton.Template>
                                                     <ControlTemplate TargetType="ToggleButton">
@@ -4269,7 +4274,7 @@
                                                               Width="15"
                                                               Height="15"
                                                               Stroke="{x:Null}"
-                                                              Fill="{TemplateBinding Foreground}"
+                                                              Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
                                                               RenderTransformOrigin="0.5,0.5">
                                                         </Path>
                                                         <Path x:Name="arrow2"
@@ -4281,7 +4286,7 @@
                                                               Width="15"
                                                               Height="15"
                                                               Stroke="{x:Null}"
-                                                              Fill="{TemplateBinding Foreground}"
+                                                              Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
                                                               RenderTransformOrigin="0.5,0.5">
                                                             <Path.RenderTransform>
                                                                 <RotateTransform Angle="45"></RotateTransform>
@@ -4290,11 +4295,12 @@
                                                     </Grid>
                                                 </ToggleButton.Content>
                                             </ToggleButton>
-                                            <Grid Margin="10,0,0,0">
+                                            <Grid>
                                                 <Label x:Name="content"
-                                                       FontFamily="{TemplateBinding FontFamily}"
-                                                       FontSize="{TemplateBinding FontSize}"
-                                                       Foreground="{TemplateBinding Foreground}"
+                                                       Margin="2,0,0,0"
+                                                       Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView} }"
+                                                       FontSize="{Binding FontSize,RelativeSource={RelativeSource  AncestorType=TreeView}}"
+                                                       FontFamily="{Binding FontFamily,RelativeSource={RelativeSource  AncestorType=TreeView}}"
                                                        VerticalAlignment="Center"
                                                        Content="{TemplateBinding Header}" />
                                             </Grid>
@@ -4375,21 +4381,35 @@
                 Value="#22666666"></Setter>
         <Setter Property="InnerHeight"
                 Value="40"></Setter>
+        <Setter Property="Foreground"
+                Value="#696969" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Disabled"
-                                  Height="{TemplateBinding Height}"
-                                  Width="{TemplateBinding Width}"
-                                  Style="{StaticResource MiniScrollViewer}">
-                        <VirtualizingStackPanel Margin="0,0,0,0"
-                                                IsItemsHost="True">
-                        </VirtualizingStackPanel>
-                    </ScrollViewer>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      Height="{TemplateBinding Height}"
+                                      Width="{TemplateBinding Width}"
+                                      Style="{StaticResource MiniScrollViewer}">
+                            <VirtualizingStackPanel Margin="0,0,0,0"
+                                                    IsItemsHost="True">
+                            </VirtualizingStackPanel>
+                        </ScrollViewer>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="TreeViewStyle"
+                     Value="Classic">
+                <Setter Property="ChoosedBrush"
+                        Value="#000000" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type local:PUProgressBar}">

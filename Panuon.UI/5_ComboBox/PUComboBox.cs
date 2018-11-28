@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -147,38 +149,29 @@ namespace Panuon.UI
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
         /// </summary>
-        public IList<PUComboBoxItemModel> BindingItems
+        public ObservableCollection<PUComboBoxItemModel> BindingItems
         {
-            get { return (IList<PUComboBoxItemModel>)GetValue(BindingItemsProperty); }
+            get { return (ObservableCollection<PUComboBoxItemModel>)GetValue(BindingItemsProperty); }
             set { SetValue(BindingItemsProperty, value); }
         }
 
         public static readonly DependencyProperty BindingItemsProperty =
-            DependencyProperty.Register("BindingItems", typeof(IList<PUComboBoxItemModel>), typeof(PUComboBox), new PropertyMetadata(null, OnBindingItemsChanged));
+            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUComboBoxItemModel>), typeof(PUComboBox), new PropertyMetadata(null, OnBindingItemsChanged));
 
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var comboBox = d as PUComboBox;
-            var items = comboBox.BindingItems;
-            if (items == null)
-                return;
-            comboBox.Items.Clear();
-
-            foreach (var item in items)
+            if (comboBox.BindingItems != null)
             {
-                var comboBoxItem = new PUComboBoxItem()
-                {
-                    Content = item.Header,
-                    Value = item.Value,
-                    DeleteButtonVisibility = item.CanDelete ? Visibility.Visible : Visibility.Collapsed,
-                };
-
-                if (comboBox.Items.Count == 0)
-                    comboBoxItem.IsSelected = true;
-                comboBox.Items.Add(comboBoxItem);
+                comboBox.BindingItems.CollectionChanged -= comboBox.BindingItemChanged;
+                comboBox.BindingItems.CollectionChanged += comboBox.BindingItemChanged;
             }
+            comboBox.RecheckBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
-
+        private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RecheckBindindItems(e);
+        }
 
         /// <summary>
         /// 该属性指定了当子项目被选中时，SelectedValue应呈现子项目的哪一个值。
@@ -262,5 +255,73 @@ namespace Panuon.UI
 
         #endregion
 
+        #region Function
+        private void RecheckBindindItems(NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Reset:
+                    Items.Clear();
+                    if (BindingItems == null)
+                        break;
+                    foreach (var item in BindingItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item);
+                        Items.Add(tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item as PUComboBoxItemModel);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var item in e.OldItems)
+                    {
+                        Items.RemoveAt(e.OldStartingIndex);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item as PUComboBoxItemModel);
+                        Items[e.OldStartingIndex] = tabItem;
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    {
+                        var tabItem = Items[e.OldStartingIndex];
+                        Items.RemoveAt(e.OldStartingIndex);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+            }
+        }
+
+        private PUComboBoxItem GenerateComboBoxItem(PUComboBoxItemModel model)
+        {
+            var comboBoxItem = new PUComboBoxItem()
+            {
+                Content = model.Header,
+                Value = model.Value,
+                DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Hidden,
+            };
+
+            if (Items.Count == 0)
+                comboBoxItem.IsSelected = true;
+
+            model.PropertyChanged += delegate
+            {
+                comboBoxItem.Content = model.Header;
+                comboBoxItem.Value = model.Value;
+                comboBoxItem.DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Hidden;
+            };
+
+            return comboBoxItem;
+        }
+
+        #endregion
     }
 }
