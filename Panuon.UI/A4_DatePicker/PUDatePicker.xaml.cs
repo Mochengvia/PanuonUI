@@ -220,6 +220,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, (int)(i / 7));
                 Grid.SetColumn(radio, i % 7);
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore);
                 var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += DateRadioButton_Click;
@@ -255,7 +257,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, i / 7);
                 Grid.SetColumn(radio, i % 7);
-                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore); var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += HourRadioButton_Click;
                 StkHour.Children.Add(radio);
@@ -274,7 +277,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, i / 7);
                 Grid.SetColumn(radio, i % 7);
-                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore); var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += MinuteRadioButton_Click;
                 StkMinute.Children.Add(radio);
@@ -293,7 +297,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, i / 7);
                 Grid.SetColumn(radio, i % 7);
-                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore); var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += SecondRadioButton_Click;
                 StkSecond.Children.Add(radio);
@@ -330,7 +335,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, i / 3);
                 Grid.SetColumn(radio, i % 3);
-                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore); var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += YearRadioButton_Click;
                 GrdYearPanel.Children.Add(radio);
@@ -365,7 +371,8 @@ namespace Panuon.UI
                 };
                 Grid.SetRow(radio, (i - 1) / 4);
                 Grid.SetColumn(radio, (i - 1) % 4);
-                var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                var fore = new Binding { Path = new PropertyPath("Foreground"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
+                BindingOperations.SetBinding(radio, PURadioButton.ForegroundProperty, fore); var cover = new Binding { Path = new PropertyPath("CoverBrush"), Source = this, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };
                 BindingOperations.SetBinding(radio, PURadioButton.CoverBrushProperty, cover);
                 radio.Click += MonthRadioButton_Click;
                 GrdMonthPanel.Children.Add(radio);
@@ -561,17 +568,17 @@ namespace Panuon.UI
             {
                 var radio = StkHour.Children[hour] as PURadioButton;
                 radio.IsChecked = true;
-                ScrollHour.ScrollToVerticalOffset((hour - 2) * radio.ActualHeight);
+                ScrollHour.ScrollToVerticalOffset((hour - 2) * radio.Height);
             }
             {
                 var radio = StkMinute.Children[minute] as PURadioButton;
                 radio.IsChecked = true;
-                ScrollMinute.ScrollToVerticalOffset((minute - 2) * radio.ActualHeight);
+                ScrollMinute.ScrollToVerticalOffset((minute - 2) * radio.Height);
             }
             {
                 var radio = StkSecond.Children[second] as PURadioButton;
                 radio.IsChecked = true;
-                ScrollSecond.ScrollToVerticalOffset((second - 2) * radio.ActualHeight);
+                ScrollSecond.ScrollToVerticalOffset((second - 2) * radio.Height);
             }
         }
 
@@ -920,7 +927,7 @@ namespace Panuon.UI
 
         #endregion
 
-        
+
 
         private void BtnYear_Click(object sender, RoutedEventArgs e)
         {
