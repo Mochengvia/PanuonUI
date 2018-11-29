@@ -95,6 +95,19 @@ namespace Panuon.UI
         private static void OnChoosedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var treeView = d as PUTreeView;
+            if (treeView.ChoosedItem == null)
+            {
+                treeView.ChoosedValue = null;
+            }
+            else
+            {
+                var value = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.ChoosedItem.Header : treeView.ChoosedItem.Value;
+                if (treeView.ChoosedValue != value)
+                {
+                    treeView.isInternalSetChoosedValue = true;
+                    treeView.ChoosedValue = value;
+                }
+            }
             treeView.OnChoosedItemChanged(e.OldValue as PUTreeViewItem, e.NewValue as PUTreeViewItem);
         }
 

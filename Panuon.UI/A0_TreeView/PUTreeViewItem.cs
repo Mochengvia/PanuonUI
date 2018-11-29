@@ -68,14 +68,11 @@ namespace Panuon.UI
         private static void OnIsChoosedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var item = d as PUTreeViewItem;
-            if (item.IsChoosed == true)
+            if (item.IsChoosed)
             {
                 if (item.ParentTreeView.ChoosedItem != null)
                     item.ParentTreeView.ChoosedItem.IsChoosed = false;
                 item.ParentTreeView.ChoosedItem = item;
-
-                item.ParentTreeView.isInternalSetChoosedValue = true;
-                item.ParentTreeView.SetValue(PUTreeView.ChoosedValueProperty, (item.ParentTreeView.ChoosedValuePath == PUTreeView.ChoosedValuePaths.Header ? item.Header : item.Value));
             }
         }
 
