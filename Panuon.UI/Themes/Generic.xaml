@@ -5025,9 +5025,13 @@
                         <Border x:Name="bdrSearched"
                                 Opacity="0"
                                 Background="{Binding SearchBrush,RelativeSource={RelativeSource AncestorType=ListBox}}"></Border>
-                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}" />
+                        <Label Content="{TemplateBinding Content}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ListBox}}"
+                               FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=ListBox}}"
+                               FontFamily="{Binding FontFamily,RelativeSource={RelativeSource AncestorType=ListBox}}"
+                               Margin="{TemplateBinding Padding}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"

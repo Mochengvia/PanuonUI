@@ -156,24 +156,28 @@ namespace Panuon.UI
         {
             var tabControl = d as PUTabControl;
             if (tabControl.SelectedValue == null)
-                return;
-            var selectedItem = tabControl.SelectedItem as PUTabItem;
-
-            if (selectedItem == null)
             {
-                foreach (var item in tabControl.Items)
+                return;
+            }
+            if (e.NewValue == e.OldValue)
+                return;
+
+            var selectedItem = tabControl.SelectedItem as PUListBoxItem;
+            foreach (var item in tabControl.Items)
+            {
+                var tabItem = item as PUTabItem;
+                if ((tabControl.SelectedValuePath == SelectedValuePaths.Header ?
+                    (tabItem.Content == null ? false : tabItem.Content.Equals(tabControl.SelectedValue)) :
+                    (tabItem.Value == null ? false : tabItem.Value.Equals(tabControl.SelectedValue))))
                 {
-                    var tabItem = item as PUTabItem;
-                    if ((tabControl.SelectedValuePath == SelectedValuePaths.Header ?
-                        (tabItem.Content == null ? false : tabItem.Content.ToString() == tabControl.SelectedValue.ToString()) :
-                        (tabItem.Value == null ? false : tabItem.Value.Equals(tabControl.SelectedValue))))
+                    if (!tabItem.IsSelected)
                     {
-                        if (!tabItem.IsSelected)
-                            tabItem.IsSelected = true;
-                        return;
+                        tabItem.IsSelected = true;
                     }
+                    return;
                 }
             }
+
         }
 
         /// <summary>

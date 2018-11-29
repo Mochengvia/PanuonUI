@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -11,7 +16,82 @@ namespace Panuon.UI
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUListBox), new FrameworkPropertyMetadata(typeof(PUListBox)));
         }
 
+        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            if (SelectedValuePath == SelectedValuePaths.Header)
+                SelectedValue = SelectedItem == null ? "" : (SelectedItem as PUListBoxItem).Content;
+            else
+                SelectedValue = SelectedItem == null ? null : (SelectedItem as PUListBoxItem).Value;
+            base.OnSelectionChanged(e);
+        }
+
         #region Property
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。", true)]
+        public new IEnumerable ItemsSource
+        {
+            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            private set { SetValue(ItemsSourceProperty, value); }
+        }
+
+        public new static readonly DependencyProperty ItemsSourceProperty =
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(PUListBox));
+
+        /// <summary>
+        /// 获取或设置当子项目被选中时，SelectedValue应呈现子项目的哪一个值。（在ComboBox中，Header属性表示展现子项的Content属性）
+        /// 可选项为Header或Value，默认值为Header。
+        /// </summary>
+        public new SelectedValuePaths SelectedValuePath
+        {
+            get { return (SelectedValuePaths)GetValue(SelectedValuePathProperty); }
+            set { SetValue(SelectedValuePathProperty, value); }
+        }
+
+        public new static readonly DependencyProperty SelectedValuePathProperty =
+            DependencyProperty.Register("SelectedValuePath", typeof(SelectedValuePaths), typeof(PUListBox), new PropertyMetadata(SelectedValuePaths.Header));
+
+
+        /// <summary>
+        /// 获取被选中PUComboBoxItem的Header或Value属性（这取决于SelectedValuePath），
+        /// 或根据设置的SelectedValue来选中子项目。
+        /// </summary>
+        public new object SelectedValue
+        {
+            get { return (object)GetValue(SelectedValueProperty); }
+            set { SetValue(SelectedValueProperty, value); }
+        }
+
+        public new static readonly DependencyProperty SelectedValueProperty =
+            DependencyProperty.Register("SelectedValue", typeof(object), typeof(PUListBox), new PropertyMetadata("", OnSelectedValueChanged));
+
+        private static void OnSelectedValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var listBox = d as PUListBox;
+            if (listBox.SelectedValue == null)
+            {
+                return;
+            }
+            if (e.NewValue == e.OldValue)
+                return;
+
+            var selectedItem = listBox.SelectedItem as PUListBoxItem;
+            foreach (var item in listBox.Items)
+            {
+                var listBoxItem = item as PUListBoxItem;
+                if ((listBox.SelectedValuePath == SelectedValuePaths.Header ?
+                    (listBoxItem.Content == null ? false : listBoxItem.Content.Equals(listBox.SelectedValue)) :
+                    (listBoxItem.Value == null ? false : listBoxItem.Value.Equals(listBox.SelectedValue))))
+                {
+                    if (!listBoxItem.IsSelected)
+                    {
+                        listBoxItem.IsSelected = true;
+                        listBox.ScrollIntoView(listBoxItem);
+                    }
+                    return;
+                }
+            }
+        }
+
         /// <summary>
         /// 获取或设置当鼠标悬浮时ListBoxItem的背景色。
         /// </summary>
@@ -48,6 +128,37 @@ namespace Panuon.UI
         public static readonly DependencyProperty SearchBrushProperty =
             DependencyProperty.Register("SearchBrush", typeof(Brush), typeof(PUListBox));
 
+
+
+        /// <summary>
+        /// 若使用MVVM绑定，请使用此依赖属性。
+        /// </summary>
+        public ObservableCollection<PUListBoxItemModel> BindingItems
+        {
+            get { return (ObservableCollection<PUListBoxItemModel>)GetValue(BindingItemsProperty); }
+            set { SetValue(BindingItemsProperty, value); }
+        }
+
+        public static readonly DependencyProperty BindingItemsProperty =
+            DependencyProperty.Register("BindingItems", typeof(ObservableCollection<PUListBoxItemModel>), typeof(PUListBox), new PropertyMetadata(null, OnBindingItemsChanged));
+
+        private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var listBox = d as PUListBox;
+            if (listBox.BindingItems != null)
+            {
+                listBox.BindingItems.CollectionChanged -= listBox.BindingItemChanged;
+                listBox.BindingItems.CollectionChanged += listBox.BindingItemChanged;
+            }
+            listBox.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            GenerateBindindItems(e);
+        }
+
+
         #endregion
 
         #region APIs
@@ -78,7 +189,7 @@ namespace Panuon.UI
         /// </summary>
         /// <param name="content">子项的内容。</param>
         /// <param name="allowFuzzySearch">是否允许模糊查询。</param>
-        public void SearchItemByContent(string content, bool allowFuzzySearch)
+        public void SearchItemByContent(string content, bool allowFuzzySearch = true)
         {
             foreach (var item in Items)
             {
@@ -103,5 +214,130 @@ namespace Panuon.UI
 
         #endregion
 
+        #region Function
+        private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Reset:
+                    Items.Clear();
+                    if (BindingItems == null)
+                        break;
+                    foreach (var item in BindingItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item);
+                        Items.Add(tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Add:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item as PUListBoxItemModel);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (var item in e.OldItems)
+                    {
+                        Items.RemoveAt(e.OldStartingIndex);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Replace:
+                    foreach (var item in e.NewItems)
+                    {
+                        var tabItem = GenerateComboBoxItem(item as PUListBoxItemModel);
+                        Items[e.OldStartingIndex] = tabItem;
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Move:
+                    {
+                        var tabItem = Items[e.OldStartingIndex];
+                        Items.RemoveAt(e.OldStartingIndex);
+                        Items.Insert(e.NewStartingIndex, tabItem);
+                    }
+                    break;
+            }
+        }
+
+        private PUListBoxItem GenerateComboBoxItem(PUListBoxItemModel model)
+        {
+            var comboBoxItem = new PUListBoxItem()
+            {
+                Uid = model.Uid,
+                Content = model.Header,
+                Value = model.Value,
+            };
+
+            if (Items.Count == 0)
+                comboBoxItem.IsSelected = true;
+
+            model.PropertyChanged += delegate
+            {
+                comboBoxItem.Content = model.Header;
+                comboBoxItem.Value = model.Value;
+            };
+
+            return comboBoxItem;
+        }
+
+        #endregion
     }
+
+    public class PUListBoxItemModel : INotifyPropertyChanged
+    {
+        protected internal virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Constructor
+        public PUListBoxItemModel()
+        {
+            Uid = Guid.NewGuid().ToString("N");
+        }
+        #endregion
+
+        #region Property
+        /// <summary>
+        /// 要显示的内容。可以作为SelectValuePath的值。用于设置ListBoxItem的Content属性。
+        /// </summary>
+        public object Header
+        {
+            get { return _header; }
+            set
+            {
+                _header = value; OnPropertyChanged("Header");
+            }
+        }
+        private object _header = "";
+
+        /// <summary>
+        /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。
+        /// </summary>
+        public object Value
+        {
+            get { return _value; }
+            set
+            {
+                _value = value; OnPropertyChanged("Value");
+            }
+        }
+        private object _value;
+        #endregion
+
+        #region Internal Property
+        internal string Uid
+        {
+            get { return _uid; }
+            set { _uid = value; }
+        }
+        private string _uid;
+
+
+        #endregion
+
+    }
+
 }

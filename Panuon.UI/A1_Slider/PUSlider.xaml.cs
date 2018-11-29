@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -20,14 +21,14 @@ namespace Panuon.UI
         private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
             var left = 0.0;
-            if (e.HorizontalChange >= _delta/2)
+            if (e.HorizontalChange >= _delta / 2)
             {
                 var per = (int)(e.HorizontalChange / _delta) + 1;
                 left = Canvas.GetLeft(tmbToggle) + _delta * per;
                 if (Value < Maximuim - per)
                     Value += per;
                 else
-                        Value = Maximuim;
+                    Value = Maximuim;
 
                 if (left > canvas.ActualWidth - tmbToggle.ActualWidth)
                 {
@@ -35,12 +36,12 @@ namespace Panuon.UI
                     Value = Maximuim;
                 }
             }
-            else if (e.HorizontalChange <= -_delta/2)
+            else if (e.HorizontalChange <= -_delta / 2)
             {
                 var per = (int)(e.HorizontalChange / -_delta) + 1;
 
                 left = Canvas.GetLeft(tmbToggle) - _delta * per;
-                if(Value > Minimuim + per)
+                if (Value > Minimuim + per)
                     Value -= per;
                 else
                     Value = Minimuim;
@@ -58,6 +59,9 @@ namespace Panuon.UI
         }
 
         #region Property
+        /// <summary>
+        /// 获取或设置滑块覆盖区域（左侧）的颜色。默认值为#696969。
+        /// </summary>
         public Brush CoverBrush
         {
             get { return (Brush)GetValue(CoverBrushProperty); }
@@ -67,8 +71,9 @@ namespace Panuon.UI
         public static readonly DependencyProperty CoverBrushProperty =
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUSlider), new PropertyMetadata(new SolidColorBrush(Colors.DimGray)));
 
-
-
+        /// <summary>
+        /// 获取或设置滑块的最大值。默认值为100。
+        /// </summary>
         public int Maximuim
         {
             get { return (int)GetValue(MaximuimProperty); }
@@ -76,10 +81,11 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty MaximuimProperty =
-            DependencyProperty.Register("Maximuim", typeof(int), typeof(PUSlider), new PropertyMetadata(100));
+            DependencyProperty.Register("Maximuim", typeof(int), typeof(PUSlider), new PropertyMetadata(100, OnValuesChanged));
 
-
-
+        /// <summary>
+        /// 获取或设置滑块的最小值。默认值为0。
+        /// </summary>
         public int Minimuim
         {
             get { return (int)GetValue(MinimuimProperty); }
@@ -87,8 +93,11 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty MinimuimProperty =
-            DependencyProperty.Register("Minimuim", typeof(int), typeof(PUSlider), new PropertyMetadata(0));
+            DependencyProperty.Register("Minimuim", typeof(int), typeof(PUSlider), new PropertyMetadata(0, OnValuesChanged));
 
+        /// <summary>
+        /// 获取或设置滑块当前选择的值。默认值为0。
+        /// </summary>
         public int Value
         {
             get { return (int)GetValue(ValueProperty); }
@@ -96,41 +105,43 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(PUSlider), new PropertyMetadata(0,OnValueChanged));
+            DependencyProperty.Register("Value", typeof(int), typeof(PUSlider), new PropertyMetadata(0, OnValuesChanged));
 
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnValuesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slider = d as PUSlider;
             if (!slider.IsLoaded)
                 return;
-            if(slider.Value < slider.Minimuim)
-            {
-                slider.Value = slider.Minimuim;
-                return;
-            }
-            if(slider.Value > slider.Maximuim)
-            {
-                slider.Value = slider.Maximuim;
-                return;
-            }
-            slider.bdrCover.Width = slider.Value * slider._delta;
-            Canvas.SetLeft(slider.tmbToggle, slider.Value * slider._delta);
+            slider.RecheckSlideBar();
         }
 
-
         #endregion
+        private void RecheckSlideBar()
+        {
+            if (Value < Minimuim)
+            {
+                Value = Minimuim;
+                return;
+            }
+            if (Value > Maximuim)
+            {
+                Value = Maximuim;
+                return;
+            }
+
+            canvas.Width = this.ActualWidth;
+            _totalWidth = (canvas.ActualWidth - tmbToggle.ActualWidth);
+            _delta = _totalWidth / (Maximuim - Minimuim);
+            bdrCover.Width = (Value - Minimuim) * _delta;
+            Canvas.SetLeft(tmbToggle, (Value - Minimuim) * _delta);
+        }
 
         private void slider_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (Minimuim > Maximuim)
                 Minimuim = Maximuim - 1;
 
-            canvas.Width = this.ActualWidth;
-            _totalWidth = (canvas.ActualWidth - tmbToggle.ActualWidth);
-            _delta = _totalWidth / (Maximuim - Minimuim);
-
-            Canvas.SetLeft(tmbToggle, _delta * Value);
-            bdrCover.Width = _delta * Value;
+            RecheckSlideBar();
         }
     }
 }

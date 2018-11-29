@@ -28,7 +28,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 获取或设置主题颜色。
+        /// 获取或设置主题颜色，默认值为#3E3E3E。
         /// </summary>
         public Brush CoverBrush
         {
@@ -40,7 +40,7 @@ namespace Panuon.UI
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUDatePicker), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3E3E3E"))));
 
         /// <summary>
-        /// 获取或设置可以选择的最大日期，不能限制时间。
+        /// 获取或设置可以选择的最大日期。该属性不能限制用户选择的时间，
         /// </summary>
         public DateTime? MaxDateTime
         {
@@ -61,7 +61,7 @@ namespace Panuon.UI
         }
 
         /// <summary>
-        /// 获取或设置可以选择的最小日期，不能限制时间。
+        /// 获取或设置可以选择的最小日期。该属性不能限制用户选择的时间，
         /// </summary>
         public DateTime? MinDateTime
         {
@@ -555,7 +555,6 @@ namespace Panuon.UI
                     return;
                 }
             }
-
         }
 
         /// <summary>
@@ -693,7 +692,7 @@ namespace Panuon.UI
             {
                 var max = (DateTime)MaxDateTime;
 
-                if (SelectedDateTime > max)
+                if (SelectedDateTime.Date > max.Date)
                 {
                     SelectedDateTime = max;
                 }
@@ -739,7 +738,7 @@ namespace Panuon.UI
             {
                 var min = (DateTime)MinDateTime;
 
-                if (SelectedDateTime < min)
+                if (SelectedDateTime.Date < min.Date)
                 {
                     SelectedDateTime = min;
                 }
