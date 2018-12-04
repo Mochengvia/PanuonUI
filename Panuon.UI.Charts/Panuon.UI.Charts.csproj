@@ -52,11 +52,13 @@
     <Compile Include="1_LineChart\PULineChart.xaml.cs">
       <DependentUpon>PULineChart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Others\Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2_DoughnutChart\" />
     <Folder Include="3_PointChart\" />
+    <Folder Include="Z_Models\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="0_Base\PUChartToolTip.xaml">
