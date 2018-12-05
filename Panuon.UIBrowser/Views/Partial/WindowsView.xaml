@@ -54,6 +54,12 @@
                              HorizontalAlignment="Left"
                              Margin="0,5"
                              cal:Message.Attach="[Event Click]=[Action OpenDialog('fade')]"></pu:PUButton>
+                <pu:PUButton Content="显示可以取消的等待"
+                             Width="206"
+                             Height="30"
+                             HorizontalAlignment="Left"
+                             Margin="0,5"
+                             cal:Message.Attach="[Event Click]=[Action ShowCancelableAwait]"></pu:PUButton>
                 <pu:PUButton Content="显示等待并在2s后关闭"
                              Width="206"
                              Height="30"

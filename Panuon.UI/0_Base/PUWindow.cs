@@ -80,6 +80,11 @@ namespace Panuon.UI
                     OnBeginLoadStoryboard();
                 else
                     OnSkipLoadStoryboard();
+
+                if (!AllowForcingClose)
+                {
+                    DisableAltF4(this);
+                }
             };
 
             var grdResize = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1) as Grid;
@@ -173,20 +178,24 @@ namespace Panuon.UI
                 }
             }
         }
+
         private void ResizeWindow(ResizeDirection direction)
         {
             SendMessage(_hwndSource.Handle, 0x112, (IntPtr)(61440 + direction), IntPtr.Zero);
         }
+
         protected override void OnInitialized(EventArgs e)
         {
             SourceInitialized += MainWindow_SourceInitialized;
 
             base.OnInitialized(e);
         }
+
         private void MainWindow_SourceInitialized(object sender, EventArgs e)
         {
             _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
         }
+
         protected void OnPreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (ResizeMode != ResizeMode.CanResize)
@@ -195,6 +204,7 @@ namespace Panuon.UI
             if (Mouse.LeftButton != MouseButtonState.Pressed)
                 Cursor = Cursors.Arrow;
         }
+
         private void ResizeRectangle_MouseMove(object sender, MouseEventArgs e)
         {
             Rectangle rectangle = sender as Rectangle;
@@ -231,6 +241,32 @@ namespace Panuon.UI
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Alt + F4 无效化处理
+        /// </summary>
+        private static Action DisableAltF4(Window window)
+        {
+            var source = HwndSource.FromHwnd(new WindowInteropHelper(window).Handle);
+            source.AddHook(DisableAltF4WndHookProc);
+            return () => source.RemoveHook(DisableAltF4WndHookProc);
+        }
+
+        /// <summary>
+        /// Alt + F4无效化窗口消息
+        /// </summary>
+        private static IntPtr DisableAltF4WndHookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            const int WM_SYSKEYDOWN = 0x0104;
+            const int VK_F4 = 0x73;
+
+            if (msg == WM_SYSKEYDOWN && wParam.ToInt32() == VK_F4)
+            {
+                handled = true;
+            }
+
+            return IntPtr.Zero;
         }
 
         #endregion
@@ -470,6 +506,19 @@ namespace Panuon.UI
 
         public static readonly DependencyProperty AllowAutoCoverMaskProperty =
             DependencyProperty.Register("AllowAutoCoverMask", typeof(bool), typeof(PUWindow));
+
+        /// <summary>
+        /// 获取或设置是否允许用户使用Alt + F4按键组合强制关闭窗体。该属性在窗体加载后的更改将无效。默认值为True（允许）。
+        /// </summary>
+        public bool AllowForcingClose
+        {
+            get { return (bool)GetValue(AllowForcingCloseProperty); }
+            set { SetValue(AllowForcingCloseProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowForcingCloseProperty =
+            DependencyProperty.Register("AllowForcingClose", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
+
 
         #endregion
 

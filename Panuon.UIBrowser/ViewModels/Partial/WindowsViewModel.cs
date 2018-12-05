@@ -21,10 +21,10 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                     PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。");
                     return;
                 case "gradual":
-                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Gradual);
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", PUMessageBox.Buttons.Sure, true, UI.PUWindow.AnimationStyles.Gradual);
                     return;
                 case "fade":
-                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", true, UI.PUWindow.AnimationStyles.Fade);
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", PUMessageBox.Buttons.Sure, true, UI.PUWindow.AnimationStyles.Gradual);
                     return;
             }
         }
@@ -42,6 +42,14 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 }));
             });
             task.Start();
+        }
+
+        public void ShowCancelableAwait()
+        {
+            PUMessageBox.ShowAwait("正在执行......", delegate
+            {
+                PUMessageBox.CloseAwait();
+            });
         }
     }
 }

@@ -24,8 +24,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Margin="20,0"
                HorizontalContentAlignment="Center"
@@ -35,9 +35,30 @@
                        TextWrapping="Wrap"
                        Text="" />
         </Label>
+        <Grid x:Name="grdAwait">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1.4*" />
+            </Grid.ColumnDefinitions>
+            <pu:PULoading x:Name="loading"
+                          Width="40"
+                          Height="40"
+                          HorizontalAlignment="Right"
+                          Margin="0,0,15,0" />
+            <Grid Grid.Column="1">
+                <TextBlock Margin="10,0"
+                           VerticalAlignment="Center"
+                           x:Name="txtAwait"
+                           TextWrapping="Wrap"
+                           Text="" />
+            </Grid>
+
+        </Grid>
         <Grid Grid.Row="1"
               x:Name="groupTip">
-            <pu:PUButton Margin="30,0,30,5"
+            <pu:PUButton x:Name="btnOK"
+                         Margin="30,0,30,0"
+                         Height="35"
                          Content="好"
                          Click="PUButton_Click"></pu:PUButton>
         </Grid>
@@ -49,11 +70,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <pu:PUButton x:Name="BtnYes"
-                         Margin="20,0,10,5"
+                         Margin="20,0,10,0"
+                         Height="35"
                          Content="是"
                          Click="PUButtonYes_Click"></pu:PUButton>
             <pu:PUButton x:Name="BtnNo"
-                         Margin="10,0,20,5"
+                         Margin="10,0,20,0"
+                         Height="35"
                          Grid.Column="1"
                          ButtonStyle="Outline"
                          Foreground="DimGray"
