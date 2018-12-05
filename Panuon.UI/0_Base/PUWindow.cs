@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Panuon.UI
@@ -16,9 +17,26 @@ namespace Panuon.UI
         #region Import
         [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, UInt32 msg, IntPtr wParam, IntPtr lParam);
         #endregion
 
         #region Identify
+        private enum ResizeDirection
+        {
+            Left = 1,
+            Right = 2,
+            Top = 3,
+            TopLeft = 4,
+            TopRight = 5,
+            Bottom = 6,
+            BottomLeft = 7,
+            BottomRight = 8,
+        }
+
+        private HwndSource _hwndSource;
+
         private PUButton _btnClose;
 
         private StackPanel _stkNav;
@@ -44,7 +62,10 @@ namespace Panuon.UI
                     Owner = _parentWindow;
             }
             catch { }
+
+            PreviewMouseMove += OnPreviewMouseMove;
         }
+
 
         public override void OnApplyTemplate()
         {
@@ -53,14 +74,25 @@ namespace Panuon.UI
             {
                 if (AllowAutoCoverMask && _parentWindow != null)
                 {
-                        _parentWindow.IsCoverMaskShow = true;
+                    _parentWindow.IsCoverMaskShow = true;
                 }
                 if (AnimateIn)
                     OnBeginLoadStoryboard();
                 else
                     OnSkipLoadStoryboard();
             };
-            var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this,0), 0), 0), 0) as Grid;
+
+            var grdResize = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1) as Grid;
+            if (grdResize != null)
+            {
+                foreach (Rectangle resizeRectangle in grdResize.Children)
+                {
+                    resizeRectangle.PreviewMouseDown += ResizeRectangle_PreviewMouseDown;
+                    resizeRectangle.MouseMove += ResizeRectangle_MouseMove;
+                }
+            }
+
+            var grdNavbar = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 0), 0), 0), 0) as Grid;
             _stkNav = VisualTreeHelper.GetChild(grdNavbar, 1) as StackPanel;
             grdNavbar.MouseLeftButtonDown += delegate
             {
@@ -69,6 +101,8 @@ namespace Panuon.UI
             _btnClose = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(grdNavbar, 1), 2) as PUButton;
         }
 
+
+        #region Sys
         protected override void OnClosing(CancelEventArgs e)
         {
             if (AllowAutoCoverMask && _parentWindow != null)
@@ -93,6 +127,113 @@ namespace Panuon.UI
             }
             base.OnClosing(e);
         }
+
+        private void ResizeRectangle_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Rectangle rectangle = sender as Rectangle;
+
+            if (rectangle != null)
+            {
+                switch (rectangle.Name)
+                {
+                    case "Top":
+                        Cursor = Cursors.SizeNS;
+                        ResizeWindow(ResizeDirection.Top);
+                        break;
+                    case "Bottom":
+                        Cursor = Cursors.SizeNS;
+                        ResizeWindow(ResizeDirection.Bottom);
+                        break;
+                    case "Left":
+                        Cursor = Cursors.SizeWE;
+                        ResizeWindow(ResizeDirection.Left);
+                        break;
+                    case "Right":
+                        Cursor = Cursors.SizeWE;
+                        ResizeWindow(ResizeDirection.Right);
+                        break;
+                    case "TopLeft":
+                        Cursor = Cursors.SizeNWSE;
+                        ResizeWindow(ResizeDirection.TopLeft);
+                        break;
+                    case "TopRight":
+                        Cursor = Cursors.SizeNESW;
+                        ResizeWindow(ResizeDirection.TopRight);
+                        break;
+                    case "BottomLeft":
+                        Cursor = Cursors.SizeNESW;
+                        ResizeWindow(ResizeDirection.BottomLeft);
+                        break;
+                    case "BottomRight":
+                        Cursor = Cursors.SizeNWSE;
+                        ResizeWindow(ResizeDirection.BottomRight);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        private void ResizeWindow(ResizeDirection direction)
+        {
+            SendMessage(_hwndSource.Handle, 0x112, (IntPtr)(61440 + direction), IntPtr.Zero);
+        }
+        protected override void OnInitialized(EventArgs e)
+        {
+            SourceInitialized += MainWindow_SourceInitialized;
+
+            base.OnInitialized(e);
+        }
+        private void MainWindow_SourceInitialized(object sender, EventArgs e)
+        {
+            _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
+        }
+        protected void OnPreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (ResizeMode != ResizeMode.CanResize)
+                return;
+
+            if (Mouse.LeftButton != MouseButtonState.Pressed)
+                Cursor = Cursors.Arrow;
+        }
+        private void ResizeRectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            Rectangle rectangle = sender as Rectangle;
+
+            if (rectangle != null)
+            {
+                switch (rectangle.Name)
+                {
+                    case "Top":
+                        Cursor = Cursors.SizeNS;
+                        break;
+                    case "Bottom":
+                        Cursor = Cursors.SizeNS;
+                        break;
+                    case "Left":
+                        Cursor = Cursors.SizeWE;
+                        break;
+                    case "Right":
+                        Cursor = Cursors.SizeWE;
+                        break;
+                    case "TopLeft":
+                        Cursor = Cursors.SizeNWSE;
+                        break;
+                    case "TopRight":
+                        Cursor = Cursors.SizeNESW;
+                        break;
+                    case "BottomLeft":
+                        Cursor = Cursors.SizeNESW;
+                        break;
+                    case "BottomRight":
+                        Cursor = Cursors.SizeNWSE;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        #endregion
 
         #region RoutedEvent
         /// <summary>
@@ -166,7 +307,7 @@ namespace Panuon.UI
             get { return (bool)GetValue(IsCoverMaskShowProperty); }
             set { SetValue(IsCoverMaskShowProperty, value); }
         }
-        public static readonly DependencyProperty IsCoverMaskShowProperty = 
+        public static readonly DependencyProperty IsCoverMaskShowProperty =
             DependencyProperty.Register("IsCoverMaskShow", typeof(bool), typeof(PUWindow));
 
         /// <summary>
@@ -177,7 +318,7 @@ namespace Panuon.UI
             get { return (bool)GetValue(AllowShowDelayProperty); }
             set { SetValue(AllowShowDelayProperty, value); }
         }
-        public static readonly DependencyProperty AllowShowDelayProperty = 
+        public static readonly DependencyProperty AllowShowDelayProperty =
             DependencyProperty.Register("AllowShowDelay", typeof(bool), typeof(PUWindow));
 
         /// <summary>
@@ -188,7 +329,7 @@ namespace Panuon.UI
             get { return (Visibility)GetValue(NavButtonVisibilityProperty); }
             set { SetValue(NavButtonVisibilityProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonVisibilityProperty = 
+        public static readonly DependencyProperty NavButtonVisibilityProperty =
             DependencyProperty.Register("NavButtonVisibility", typeof(Visibility), typeof(PUWindow), new PropertyMetadata(Visibility.Visible));
 
 
@@ -200,7 +341,7 @@ namespace Panuon.UI
             get { return (bool)GetValue(AnimateInProperty); }
             set { SetValue(AnimateInProperty, value); }
         }
-        public static readonly DependencyProperty AnimateInProperty = 
+        public static readonly DependencyProperty AnimateInProperty =
             DependencyProperty.Register("AnimateIn", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
 
         /// <summary>
@@ -211,7 +352,7 @@ namespace Panuon.UI
             get { return (bool)GetValue(AnimateOutProperty); }
             set { SetValue(AnimateOutProperty, value); }
         }
-        public static readonly DependencyProperty AnimateOutProperty = 
+        public static readonly DependencyProperty AnimateOutProperty =
             DependencyProperty.Register("AnimateOut", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
 
         /// <summary>
@@ -222,7 +363,7 @@ namespace Panuon.UI
             get { return (AnimationStyles)GetValue(AnimationStyleProperty); }
             set { SetValue(AnimationStyleProperty, value); }
         }
-        public static readonly DependencyProperty AnimationStyleProperty = 
+        public static readonly DependencyProperty AnimationStyleProperty =
             DependencyProperty.Register("AnimationStyle", typeof(AnimationStyles), typeof(PUWindow), new PropertyMetadata(AnimationStyles.Scale));
 
         /// <summary>
@@ -233,7 +374,7 @@ namespace Panuon.UI
             get { return (CornerRadius)GetValue(BorderCornerRadiusProperty); }
             set { SetValue(BorderCornerRadiusProperty, value); }
         }
-        public static readonly DependencyProperty BorderCornerRadiusProperty = 
+        public static readonly DependencyProperty BorderCornerRadiusProperty =
             DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUWindow));
 
         /// <summary>
@@ -245,7 +386,7 @@ namespace Panuon.UI
             get { return (object)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
-        public static readonly DependencyProperty HeaderProperty = 
+        public static readonly DependencyProperty HeaderProperty =
             DependencyProperty.Register("Header", typeof(object), typeof(PUWindow));
 
         /// <summary>
@@ -256,7 +397,7 @@ namespace Panuon.UI
             get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public new static readonly DependencyProperty IconProperty = 
+        public new static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(object), typeof(PUWindow));
 
         /// <summary>
@@ -278,7 +419,7 @@ namespace Panuon.UI
             get { return (double)GetValue(NavbarHeightProperty); }
             set { SetValue(NavbarHeightProperty, value); }
         }
-        public static readonly DependencyProperty NavbarHeightProperty = 
+        public static readonly DependencyProperty NavbarHeightProperty =
             DependencyProperty.Register("NavbarHeight", typeof(double), typeof(PUWindow));
 
         /// <summary>
@@ -289,7 +430,7 @@ namespace Panuon.UI
             get { return (double)GetValue(NavButtonHeightProperty); }
             set { SetValue(NavButtonHeightProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonHeightProperty = 
+        public static readonly DependencyProperty NavButtonHeightProperty =
             DependencyProperty.Register("NavButtonHeight", typeof(double), typeof(PUWindow));
 
         /// <summary>
@@ -300,7 +441,7 @@ namespace Panuon.UI
             get { return (double)GetValue(NavButtonWidthProperty); }
             set { SetValue(NavButtonWidthProperty, value); }
         }
-        public static readonly DependencyProperty NavButtonWidthProperty = 
+        public static readonly DependencyProperty NavButtonWidthProperty =
             DependencyProperty.Register("NavButtonWidth", typeof(double), typeof(PUWindow));
 
         /// <summary>
@@ -387,10 +528,10 @@ namespace Panuon.UI
                 CoverBrush = new SolidColorBrush(((Color)ColorConverter.ConvertFromString("#99999999"))),
                 HorizontalAlignment = HorizontalAlignment.Right,
             };
-            var visibility = new Binding() { Path = new PropertyPath("NavButtonVisibility"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this ,Mode = BindingMode.OneWay };
+            var visibility = new Binding() { Path = new PropertyPath("NavButtonVisibility"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
             BindingOperations.SetBinding(btn, VisibilityProperty, visibility);
-        
-            var width = new Binding() { Path = new PropertyPath("NavButtonWidth"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this ,Mode = BindingMode.OneWay };
+
+            var width = new Binding() { Path = new PropertyPath("NavButtonWidth"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
             BindingOperations.SetBinding(btn, WidthProperty, width);
             var height = new Binding() { Path = new PropertyPath("NavButtonHeight"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
             BindingOperations.SetBinding(btn, HeightProperty, height);

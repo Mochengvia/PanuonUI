@@ -449,8 +449,8 @@ namespace Panuon.UI.Charts
         #region Sys
         private void chart_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (ActualWidth == 0)
-                throw new Exception("折线图控件的实际宽度为0。");
+            if (ActualWidth <= 0)
+                throw new Exception("折线图控件的实际宽度必须大于0。");
 
             canvasYAxis.Height = this.ActualHeight;
             canvasYAxis.Width = _yWidth;
