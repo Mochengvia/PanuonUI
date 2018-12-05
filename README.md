@@ -61,7 +61,8 @@ PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
 | NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
 | NavButtonWidth | Double | 控制栏按钮的宽度。默认值为40。  |
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| AllowAutoCoverMask* | Boolean | 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。  |
+| AllowAutoCoverMask* | Boolean | 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。默认值为False。  |
+| AllowForcingClose | Boolean | 获取或设置是否允许用户使用Alt+F4组合键强制关闭窗体（在窗体Load事件之后设置此属性无效）。默认值为True。  |
 
 | 方法  | 含义 |
 | --- | --- |
