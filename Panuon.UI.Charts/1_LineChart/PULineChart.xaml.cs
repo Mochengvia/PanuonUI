@@ -154,6 +154,7 @@ namespace Panuon.UI.Charts
             {
                 chart.XAxis.CollectionChanged -= chart.XAxisChanged;
                 chart.XAxis.CollectionChanged += chart.XAxisChanged;
+                chart.XAxisChanged(null, null);
             }
         }
 
@@ -183,6 +184,7 @@ namespace Panuon.UI.Charts
             {
                 chart.YAxis.CollectionChanged -= chart.YAxisChanged;
                 chart.YAxis.CollectionChanged += chart.YAxisChanged;
+                chart.YAxisChanged(null, null);
             }
         }
 
@@ -212,6 +214,7 @@ namespace Panuon.UI.Charts
             {
                 chart.Points.CollectionChanged -= chart.PointsChanged;
                 chart.Points.CollectionChanged += chart.PointsChanged;
+                chart.PointsChanged(null, null);
             }
         }
 
