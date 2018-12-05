@@ -3,6 +3,8 @@
 本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)，QQ亦可（969954321，请务必备注来意）。<br/>
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
+#### 目前该版本已完成一轮Review，已发现的问题皆已修复。此版本即将封存，新代码将命名为1.0版本。
+
 ## 使用方式
 1.添加对Panuon.UI.dll的引用<br/>
 2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。<br/>
@@ -61,7 +63,8 @@ PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
 | NavButtonHeight | Double | 控制栏按钮的高度。默认值为30。  |
 | NavButtonWidth | Double | 控制栏按钮的宽度。默认值为40。  |
 | BorderCornerRadius | CornerRadius | 窗体圆角大小。默认值为0。  |
-| AllowAutoCoverMask* | Boolean | 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。  |
+| AllowAutoCoverMask* | Boolean | 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。默认值为False。  |
+| AllowForcingClose | Boolean | 获取或设置是否允许用户使用Alt+F4组合键强制关闭窗体（在窗体Load事件之后设置此属性无效）。默认值为True。  |
 
 | 方法  | 含义 |
 | --- | --- |
