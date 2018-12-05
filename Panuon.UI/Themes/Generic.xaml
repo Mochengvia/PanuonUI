@@ -5387,7 +5387,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <Style TargetType="{x:Type local:PUContextMenuItem}">
         <Setter Property="Foreground"
                 Value="{StaticResource Theme}" />
@@ -5423,22 +5422,23 @@
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"
                                    FontFamily="{DynamicResource IconFont}"
-                                   Foreground="{TemplateBinding Foreground}"
+                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                    Margin="0,0,5,0" />
-                            <ContentPresenter x:Name="content"
-                                              Grid.Column="1"
-                                              ContentSource="Header"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              RecognizesAccessKey="True" />
+                            <Label x:Name="content"
+                                   Grid.Column="1"
+                                   Content="{TemplateBinding Header}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   FontFamily="{Binding FontFamily,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                   Margin="0,0,5,0" />
                             <Path x:Name="path"
                                   Height="15"
                                   Width="15"
                                   Margin="10,0,5,0"
                                   Grid.Column="2"
-                                  Fill="{TemplateBinding Foreground}"
+                                  Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                   Data="M7,3 V 12 L 12.5,7.5 Z">
-
                             </Path>
                         </Grid>
                         <Popup x:Name="Popup"
@@ -5467,6 +5467,7 @@
                                                 KeyboardNavigation.DirectionalNavigation="Cycle" />
                                 </ScrollViewer>
                             </Grid>
+
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -5510,6 +5511,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style TargetType="{x:Type local:PUSplitLine}">
         <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>

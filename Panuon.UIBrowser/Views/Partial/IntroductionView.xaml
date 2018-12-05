@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Label FontSize="22"
                VerticalContentAlignment="Center"
-               Margin="20,0">PanuonUI for WPF（v0.0.8 alpha）</Label>
+               Margin="20,0">PanuonUI for WPF（v0.1.2 beta）</Label>
         <TextBlock Grid.Row="1"
                    Margin="20,0"
                    TextWrapping="Wrap"><Run Text="PanuonUI是一个开源的、不限制任何使用方式的WPF控件库。" /><LineBreak /><LineBreak />
