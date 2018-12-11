@@ -49,6 +49,36 @@ PUWindow在创建时总是尝试将<b>排在最前面的活动窗口</b>设置�
 图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，一个询问对话框，或一个可以取消的等待框。<br/>
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.png)<br/>
 你可以使用PUMessageBox.ShowAwait(string content)来打开一个等待对话框，并用PUMessageBox.CloseAwait()方法来将其关闭。但如果你希望在CloseAwait之后立即打开一个新的PUWindow窗体（PUMessageBox的所有Show方法亦在此列），你必须指定新窗体的Owner为当前的主窗体，或者使用另一个重载方法PUMessageBox.CloseAwait(EventHandle closedCallback)关闭等待窗口，并将打开窗体的方法放入此事件处理中。否则新打开的窗体将被立即关闭。
+示例：
+```
+
+//这种代码会导致弹框刚显示就被关闭
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait();
+PUMessageBox.Show("任务已完成");
+
+//必须像下面这样
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait(delegate
+{
+  PUMessageBox.Show("任务已完成");
+});
+
+//或这样
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait();
+await Task.Delay(400);
+PUMessageBox.Show("任务已完成");
+
+//或者向下面这样
+PUMessageBox.CloseAwait();
+var testWindow = new TestWindow();
+testWindow.Owner = this;
+testWindow.ShowDialog();
+
+
+
+```
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
