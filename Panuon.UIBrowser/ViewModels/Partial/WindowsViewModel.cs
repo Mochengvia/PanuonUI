@@ -24,7 +24,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                     PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", PUMessageBox.Buttons.Sure, true, UI.PUWindow.AnimationStyles.Gradual);
                     return;
                 case "fade":
-                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", PUMessageBox.Buttons.Sure, true, UI.PUWindow.AnimationStyles.Gradual);
+                    PUMessageBox.ShowDialog("这是一个PUMessageBox对话框。", "提示", PUMessageBox.Buttons.Sure, true, UI.PUWindow.AnimationStyles.Fade);
                     return;
             }
         }
@@ -48,7 +48,10 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         {
             PUMessageBox.ShowAwait("正在执行......", delegate
             {
-                PUMessageBox.CloseAwait();
+                PUMessageBox.CloseAwait(delegate 
+                {
+                    PUMessageBox.ShowDialog("任务已取消。");
+                });
             });
         }
     }

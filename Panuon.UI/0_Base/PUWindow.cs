@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,6 +47,8 @@ namespace Panuon.UI
         private bool _animateOutHandle = true;
 
         private bool? _dialogResult;
+
+        private bool _needToSetDialogResult;
         #endregion
 
         static PUWindow()
@@ -69,12 +72,13 @@ namespace Panuon.UI
 
         public override void OnApplyTemplate()
         {
+
             base.OnApplyTemplate();
             Loaded += delegate
             {
-                if (AllowAutoCoverMask && _parentWindow != null)
+                if (AllowAutoCoverMask && (Owner as PUWindow) != null)
                 {
-                    _parentWindow.IsCoverMaskShow = true;
+                    (Owner as PUWindow).IsCoverMaskShow = true;
                 }
                 if (AnimateIn)
                     OnBeginLoadStoryboard();
@@ -110,12 +114,22 @@ namespace Panuon.UI
         #region Sys
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (AllowAutoCoverMask && _parentWindow != null)
-                _parentWindow.IsCoverMaskShow = false;
+            if (AllowAutoCoverMask && (Owner as PUWindow) != null)
+            {
+                var owner = Owner as PUWindow;
+                if (owner.OwnedWindows.Count == 1)
+                {
+                    owner.IsCoverMaskShow = false;
+                }
+            }
 
             if (AnimateOut && _animateOutHandle)
             {
-                _dialogResult = DialogResult;
+                if (IsModal(this))
+                {
+                    _dialogResult = DialogResult;
+                    _needToSetDialogResult = true;
+                }
                 OnBeginCloseStoryboard();
                 _animateOutHandle = false;
                 DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.4) };
@@ -127,8 +141,10 @@ namespace Panuon.UI
             }
             if (AnimateOut)
             {
-                if (System.Windows.Interop.ComponentDispatcher.IsThreadModal)
+                if (_needToSetDialogResult)
+                {
                     DialogResult = _dialogResult;
+                }
             }
             base.OnClosing(e);
         }
@@ -600,6 +616,12 @@ namespace Panuon.UI
         #endregion
 
         #region Function
+        private static bool IsModal(Window window)
+        {
+            return (bool)typeof(Window).GetField("_showingAsDialog", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(window);
+        }
+
+
         private static PUWindow GetWindowFromHwnd(IntPtr hwnd)
         {
             var visual = HwndSource.FromHwnd(hwnd).RootVisual;

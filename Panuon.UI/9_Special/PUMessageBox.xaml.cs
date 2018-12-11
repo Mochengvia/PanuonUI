@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -29,7 +31,6 @@ namespace Panuon.UI
             ShowInTaskbar = showInTaskBar;
             AnimationStyle = animateStyle;
         }
-
         #region APIs
         /// <summary>
         /// 打开一个消息提示对话框，并打开父窗体的遮罩层。
@@ -124,13 +125,36 @@ namespace Panuon.UI
 
         /// <summary>
         /// 尝试关闭最后打开的一个等待界面。
+        /// 若要在其关闭之后立即打开另一个PUMessageBox，请使用另一个重载方法，或等待400ms后再打开。
         /// </summary>
         public static void CloseAwait()
         {
             if (_instance != null)
             {
+                _instance.Closed += delegate
+                {
+                    _instance = null;
+                };
+
                 _instance.Close();
-                _instance = null;
+            }
+        }
+
+        /// <summary>
+        /// 尝试关闭最后打开的一个等待界面。
+        /// 若要关闭之后立即打开另一个PUMessageBox，请指定关闭事件后的回调处理。
+        /// <param name="closedCallback"></param>
+        public static void CloseAwait(EventHandler closedCallback)
+        {
+            if (_instance != null)
+            {
+                _instance.Closed += delegate
+                {
+                    _instance = null;
+                    closedCallback(null, null);
+                };
+
+                _instance.Close();
             }
         }
         #endregion
@@ -242,5 +266,8 @@ namespace Panuon.UI
             /// </summary>
             AcceptOrRefused,
         }
+
     }
+
+
 }
