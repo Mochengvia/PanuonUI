@@ -55,20 +55,20 @@ PUWindow在创建时总是尝试将<b>排在最前面的活动窗口</b>设置�
 //这种代码会导致弹框刚显示就被关闭
 PUMessageBox.ShowAwait("正在执行...");
 PUMessageBox.CloseAwait();
-PUMessageBox.Show("任务已完成");
+PUMessageBox.ShowDialog("任务已完成");
 
 //必须像下面这样
 PUMessageBox.ShowAwait("正在执行...");
 PUMessageBox.CloseAwait(delegate
 {
-  PUMessageBox.Show("任务已完成");
+  PUMessageBox.ShowDialog("任务已完成");
 });
 
 //或这样
 PUMessageBox.ShowAwait("正在执行...");
 PUMessageBox.CloseAwait();
 await Task.Delay(400);
-PUMessageBox.Show("任务已完成");
+PUMessageBox.ShowDialog("任务已完成");
 
 //或者向下面这样
 PUMessageBox.CloseAwait();
