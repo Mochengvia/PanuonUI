@@ -130,15 +130,6 @@ testWindow.ShowDialog();
 | AppendNavButton(object content, RoutedEventHandler clickHandler) | 向标题栏右侧控制按钮组中添加一个新的按钮，该按钮将被添加在按钮组的最左侧。 |
 
 注意：上一个版本的CloseWindow()方法将不再使用，直接使用Close()方法即可触发关闭动画（若AnimateOut为True）。<br/>
-扩展：PUMessageBox<br/>
-该控件继承自PUWindow，因而可以使用上面任意一个属性来配置它。<br/>
-你可以在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。<br/>
-```
-//像下面这样调用，来显示一段提示
-PUMessageBox.ShowDialog("操作成功。");
-//或显示一个询问对话框
-PUMessageBox.ShowConfirm("确定吗？");
-```
 
 ### Button 按钮
 PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
