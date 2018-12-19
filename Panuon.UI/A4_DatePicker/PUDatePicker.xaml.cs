@@ -926,7 +926,7 @@ namespace Panuon.UI
 
         #endregion
 
-
+        
 
         private void BtnYear_Click(object sender, RoutedEventArgs e)
         {

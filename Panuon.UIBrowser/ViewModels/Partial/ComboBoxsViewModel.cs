@@ -36,7 +36,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
                 Value = 456,
             });
             ComboBoxItemsList = new BindableCollection<PUComboBoxItemModel>(comboList);
-            SelectedValue = 456;
+
         }
 
         #region Binding
@@ -59,7 +59,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             get { return _selectedValue; }
             set { _selectedValue = value; NotifyOfPropertyChange(() => SelectedValue); }
         }
-        private object _selectedValue;
+        private object _selectedValue ;
 
         #endregion
 

@@ -588,6 +588,23 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Visibility}"
+                         Value="Collapsed">
+                <Setter Property="Visibility"
+                        Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Visibility}"
+                         Value="Hidden">
+                <Setter Property="Visibility"
+                        Value="Hidden" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Visibility}"
+                         Value="Visible">
+                <Setter Property="Visibility"
+                        Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
     <Style x:Key="HoverToShowCell" TargetType="DataGridCell">
         <Setter Property="Background"

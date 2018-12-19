@@ -85,7 +85,7 @@ namespace Panuon.UI
             DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUTextBox));
 
         /// <summary>
-        ///  获取或设置输入框获得焦点时阴影的颜色，默认值为#888888。
+        ///  获取或设置输入框获得焦点时阴影的颜色，默认值为#66888888。
         /// </summary>
         public Color ShadowColor
         {
@@ -96,7 +96,7 @@ namespace Panuon.UI
             DependencyProperty.Register("ShadowColor", typeof(Color), typeof(PUTextBox));
 
         /// <summary>
-        ///  水印内容，默认值为空。
+        ///  获取或设置水印内容。默认值为空。
         /// </summary>
         public string Watermark
         {
@@ -107,7 +107,7 @@ namespace Panuon.UI
             DependencyProperty.Register("Watermark", typeof(string), typeof(PUTextBox));
 
         /// <summary>
-        /// 放置在输入框前的图标。
+        /// 获取或设置i放置在输入框前的图标。
         /// <para>仅当输入框样式为IconGroup时有效。</para>
         /// </summary>
         public object Icon
@@ -119,7 +119,7 @@ namespace Panuon.UI
             DependencyProperty.Register("Icon", typeof(object), typeof(PUTextBox));
 
         /// <summary>
-        /// 图标的宽度，默认值为30。
+        /// 获取或设置图标的宽度，默认值为30。
         /// <para>仅当输入框样式为IconGroup时有效。</para>
         /// </summary>
         public double IconWidth

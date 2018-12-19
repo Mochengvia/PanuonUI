@@ -1,10 +1,4 @@
-﻿/*==============================================================
-*作者：ZEOUN
-*时间：2018/10/29 12:27:29
-*说明： 
-*日志：2018/10/29 12:27:29 创建。
-*==============================================================*/
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,6 +9,9 @@ using System.Text;
 
 namespace Panuon.UI.Charts
 {
+    /// <summary>
+    /// 适用于LineChart折线图的Points属性。
+    /// </summary>
     public class PUChartPoint
     {
         /// <summary>

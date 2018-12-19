@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using Panuon.UI;
 using Panuon.UI.Charts;
 using System;
 using System.Collections.Generic;
@@ -18,8 +17,8 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         private int _currentColor = 0;
         public LineChartsViewModel()
         {
-            XAxis = new ObservableCollection<string> { "1", "2", "3", "4", "5", "6" };
-            YAxis = new ObservableCollection<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+            XAxis = new string[] { "1", "2", "3", "4", "5", "6" };
+            YAxis = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
             Points = new ObservableCollection<PUChartPoint>()
             {
                 new PUChartPoint() { Value = 0.1, ValueTip = "1" },
@@ -32,28 +31,19 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         }
 
         #region Bindings
-        public ObservableCollection<string> XAxis
+        public string[] XAxis
         {
             get { return _xAxis; }
             set { _xAxis = value; NotifyOfPropertyChange(() => XAxis); }
         }
-        private ObservableCollection<string> _xAxis;
+        private string[] _xAxis;
 
-
-        public AnimationModes AnimationMode
-        {
-            get { return _animationMode; }
-            set { _animationMode = value; NotifyOfPropertyChange(() => AnimationMode); }
-        }
-        private AnimationModes _animationMode = AnimationModes.OneTime;
-
-        
-        public ObservableCollection<string> YAxis
+        public string[] YAxis
         {
             get { return _yAxis; }
             set { _yAxis = value; NotifyOfPropertyChange(() => YAxis); }
         }
-        private ObservableCollection<string> _yAxis;
+        private string[] _yAxis;
 
         public ObservableCollection<PUChartPoint> Points
         {
@@ -100,6 +90,7 @@ namespace Panuon.UIBrowser.ViewModels.Partial
         
         #endregion
 
+
         #region Event
         public void RandomValue()
         {
@@ -140,16 +131,16 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             if (_currentMode == 0)
             {
                 _currentQuantity = 7;
-                XAxis = new ObservableCollection<string>() { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
-                YAxis = new ObservableCollection<string>() { "等级一", "等级二", "等级三", "等级四", "等级五", "等级六" };
+                XAxis = new string[] { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
+                YAxis = new string[] { "等级一", "等级二", "等级三", "等级四", "等级五", "等级六" };
                 _currentMode = 1;
                 RandomValue();
             }
             else if (_currentMode == 1)
             {
                 _currentQuantity = 6;
-                XAxis = new ObservableCollection <string> { "1", "2", "3", "4", "5", "6" };
-                YAxis = new ObservableCollection<string> { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+                XAxis = new string[] { "1", "2", "3", "4", "5", "6" };
+                YAxis = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
                 _currentMode = 0;
                 RandomValue();
             }
@@ -160,47 +151,36 @@ namespace Panuon.UIBrowser.ViewModels.Partial
             if(_currentMode == 0)
             {
                 _currentQuantity++;
+                var list = XAxis.ToList();
 
-                    XAxis.Add(_currentQuantity.ToString());
+                    list.Add(_currentQuantity.ToString());
 
-                if(XAxis.Count > 60)
+                if(list.Count > 60)
                 {
                     XAxisGap = 3;
                 }
-                else if (XAxis.Count > 40)
+                else if (list.Count > 40)
                 {
                     XAxisGap = 2;
                 }
-                else if (XAxis.Count > 20)
+                else if (list.Count > 20)
                 {
                     XAxisGap = 1;
                 }
 
+                XAxis = list.ToArray();
+
                 var value = GetRandomDecimal1();
-                Points.Add(new PUChartPoint()
+                var valuelist = Points.ToList();
+                valuelist.Add(new PUChartPoint()
                 {
                     Value = value,
                     ValueTip = (value * 10).ToString("f2"),
                 });
+               
+                Points = new ObservableCollection<PUChartPoint>(valuelist);
             }
            
-        }
-
-        public void SelectionChanged(object sender)
-        {
-            var comboBox = sender as PUComboBox;
-            switch (comboBox.SelectedValue.ToString())
-            {
-                case "1":
-                    AnimationMode = AnimationModes.OneTime;
-                    return;
-                case "2":
-                    AnimationMode = AnimationModes.Always;
-                    return;
-                case "3":
-                    AnimationMode = AnimationModes.None;
-                    return;
-            }
         }
 
         public void ChangeColor()

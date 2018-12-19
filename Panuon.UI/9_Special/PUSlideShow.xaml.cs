@@ -13,26 +13,30 @@ namespace Panuon.UI
     [ContentProperty(nameof(Content))]
     public partial class PUSlideShow : UserControl
     {
+        #region Identity
+        private bool isFirstTime = true;
+        #endregion
+
         public PUSlideShow()
         {
             InitializeComponent();
-            Content = StkMain.Children;
-            Indicator.IndexChanged += delegate
+            Content = PART_STKMAIN.Children;
+            PART_INDICATOR.IndexChanged += delegate
             {
-                Index = Indicator.Index;
+                Index = PART_INDICATOR.Index;
             };
 
             if (Index == 1 && !Recyclable)
-                BtnLeft.IsEnabled = false;
+                PART_BTNLEFT.IsEnabled = false;
             else
-                BtnLeft.IsEnabled = true;
+                PART_BTNLEFT.IsEnabled = true;
 
             if (Index == Content.Count && !Recyclable)
-                BtnRight.IsEnabled = false;
+                PART_BTNRIGHT.IsEnabled = false;
             else
-                BtnRight.IsEnabled = true;
+                PART_BTNRIGHT.IsEnabled = true;
 
-            Indicator.AnimationDuration = AnimationDuration;
+            PART_INDICATOR.AnimationDuration = AnimationDuration;
         }
 
         #region Property
@@ -52,7 +56,7 @@ namespace Panuon.UI
             if (!slideShow.IsLoaded || slideShow.Content == null)
                 return;
             slideShow.Draw();
-            slideShow.Indicator.TotalIndex = slideShow.Content.Count;
+            slideShow.PART_INDICATOR.TotalIndex = slideShow.Content.Count;
         }
 
         /// <summary>
@@ -74,8 +78,8 @@ namespace Panuon.UI
             var slideShow = d as PUSlideShow;
             if (!slideShow.IsLoaded || slideShow.Content == null)
                 return;
-            slideShow.Indicator.Index = slideShow.Index;
-            slideShow.ChangeIndex(false);
+            slideShow.PART_INDICATOR.Index = slideShow.Index;
+            slideShow.ChangeIndex();
         }
 
         /// <summary>
@@ -93,40 +97,40 @@ namespace Panuon.UI
         private static void OnSlideDirectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
-            slideShow.StkMain.Orientation = slideShow.SlideDirection;
+            slideShow.PART_STKMAIN.Orientation = slideShow.SlideDirection;
             if (slideShow.SlideDirection == Orientation.Horizontal)
             {
-                slideShow.BtnLeft.Content = "";
-                slideShow.BtnRight.Content = "";
-                slideShow.BtnLeft.VerticalAlignment = VerticalAlignment.Center;
-                slideShow.BtnLeft.HorizontalAlignment = HorizontalAlignment.Left;
-                slideShow.BtnRight.VerticalAlignment = VerticalAlignment.Center;
-                slideShow.BtnRight.HorizontalAlignment = HorizontalAlignment.Right;
-                slideShow.BtnLeft.Margin = new Thickness(20, 0, 0, 0);
-                slideShow.BtnRight.Margin = new Thickness(0, 0, 20, 0);
-                slideShow.Indicator.Dircetion = Orientation.Horizontal;
-                slideShow.Indicator.Height = 15;
-                slideShow.Indicator.Width = double.NaN;
-                slideShow.Indicator.VerticalAlignment = VerticalAlignment.Bottom;
-                slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Center;
-                slideShow.Indicator.Margin = new Thickness(0, 0, 0, 20);
+                slideShow.PART_BTNLEFT.Content = "";
+                slideShow.PART_BTNRIGHT.Content = "";
+                slideShow.PART_BTNLEFT.VerticalAlignment = VerticalAlignment.Center;
+                slideShow.PART_BTNLEFT.HorizontalAlignment = HorizontalAlignment.Left;
+                slideShow.PART_BTNRIGHT.VerticalAlignment = VerticalAlignment.Center;
+                slideShow.PART_BTNRIGHT.HorizontalAlignment = HorizontalAlignment.Right;
+                slideShow.PART_BTNLEFT.Margin = new Thickness(20, 0, 0, 0);
+                slideShow.PART_BTNRIGHT.Margin = new Thickness(0, 0, 20, 0);
+                slideShow.PART_INDICATOR.Dircetion = Orientation.Horizontal;
+                slideShow.PART_INDICATOR.Height = 15;
+                slideShow.PART_INDICATOR.Width = double.NaN;
+                slideShow.PART_INDICATOR.VerticalAlignment = VerticalAlignment.Bottom;
+                slideShow.PART_INDICATOR.HorizontalAlignment = HorizontalAlignment.Center;
+                slideShow.PART_INDICATOR.Margin = new Thickness(0, 0, 0, 20);
             }
             else
             {
-                slideShow.BtnLeft.Content = "";
-                slideShow.BtnRight.Content = "";
-                slideShow.BtnLeft.VerticalAlignment = VerticalAlignment.Top;
-                slideShow.BtnLeft.HorizontalAlignment = HorizontalAlignment.Center;
-                slideShow.BtnRight.VerticalAlignment = VerticalAlignment.Bottom;
-                slideShow.BtnRight.HorizontalAlignment = HorizontalAlignment.Center;
-                slideShow.BtnLeft.Margin = new Thickness(0, 20, 0, 0);
-                slideShow.BtnRight.Margin = new Thickness(0, 0, 0, 20);
-                slideShow.Indicator.Dircetion = Orientation.Vertical;
-                slideShow.Indicator.Height = double.NaN;
-                slideShow.Indicator.Width =15 ;
-                slideShow.Indicator.VerticalAlignment = VerticalAlignment.Center;
-                slideShow.Indicator.HorizontalAlignment = HorizontalAlignment.Left;
-                slideShow.Indicator.Margin = new Thickness(20, 0, 0, 0);
+                slideShow.PART_BTNLEFT.Content = "";
+                slideShow.PART_BTNRIGHT.Content = "";
+                slideShow.PART_BTNLEFT.VerticalAlignment = VerticalAlignment.Top;
+                slideShow.PART_BTNLEFT.HorizontalAlignment = HorizontalAlignment.Center;
+                slideShow.PART_BTNRIGHT.VerticalAlignment = VerticalAlignment.Bottom;
+                slideShow.PART_BTNRIGHT.HorizontalAlignment = HorizontalAlignment.Center;
+                slideShow.PART_BTNLEFT.Margin = new Thickness(0, 20, 0, 0);
+                slideShow.PART_BTNRIGHT.Margin = new Thickness(0, 0, 0, 20);
+                slideShow.PART_INDICATOR.Dircetion = Orientation.Vertical;
+                slideShow.PART_INDICATOR.Height = double.NaN;
+                slideShow.PART_INDICATOR.Width =15 ;
+                slideShow.PART_INDICATOR.VerticalAlignment = VerticalAlignment.Center;
+                slideShow.PART_INDICATOR.HorizontalAlignment = HorizontalAlignment.Left;
+                slideShow.PART_INDICATOR.Margin = new Thickness(20, 0, 0, 0);
             }
         }
 
@@ -147,13 +151,13 @@ namespace Panuon.UI
             var slideShow = d as PUSlideShow;
             if (slideShow.IsSlideButtonShow)
             {
-                slideShow.BtnLeft.Visibility = Visibility.Visible;
-                slideShow.BtnRight.Visibility = Visibility.Visible;
+                slideShow.PART_BTNLEFT.Visibility = Visibility.Visible;
+                slideShow.PART_BTNRIGHT.Visibility = Visibility.Visible;
             }
             else
             {
-                slideShow.BtnLeft.Visibility = Visibility.Collapsed;
-                slideShow.BtnRight.Visibility = Visibility.Collapsed;
+                slideShow.PART_BTNLEFT.Visibility = Visibility.Collapsed;
+                slideShow.PART_BTNRIGHT.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -174,12 +178,12 @@ namespace Panuon.UI
             var slideShow = d as PUSlideShow;
             if (slideShow.SlideButtonBrush != null)
             {
-                slideShow.BtnLeft.Foreground = slideShow.SlideButtonBrush;
-                slideShow.BtnLeft.Background = slideShow.SlideButtonBrush;
-                slideShow.BtnLeft.CoverBrush = slideShow.SlideButtonBrush;
-                slideShow.BtnRight.Foreground = slideShow.SlideButtonBrush;
-                slideShow.BtnRight.Background = slideShow.SlideButtonBrush;
-                slideShow.BtnRight.CoverBrush = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNLEFT.Foreground = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNLEFT.Background = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNLEFT.CoverBrush = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNRIGHT.Foreground = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNRIGHT.Background = slideShow.SlideButtonBrush;
+                slideShow.PART_BTNRIGHT.CoverBrush = slideShow.SlideButtonBrush;
             }
         }
 
@@ -198,7 +202,7 @@ namespace Panuon.UI
         private static void OnAnimationDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
-            slideShow.Indicator.AnimationDuration = slideShow.AnimationDuration;
+            slideShow.PART_INDICATOR.AnimationDuration = slideShow.AnimationDuration;
         }
 
 
@@ -232,9 +236,9 @@ namespace Panuon.UI
         {
             var slide = d as PUSlideShow;
             if (slide.IsIndicatorShow)
-                slide.Indicator.Visibility = Visibility.Visible;
+                slide.PART_INDICATOR.Visibility = Visibility.Visible;
             else
-                slide.Indicator.Visibility = Visibility.Hidden;
+                slide.PART_INDICATOR.Visibility = Visibility.Hidden;
         }
 
 
@@ -253,16 +257,15 @@ namespace Panuon.UI
         private static void OnIndicatorBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var slideShow = d as PUSlideShow;
-            slideShow.Indicator.BorderBrush = slideShow.IndicatorBrush;
-            slideShow.Indicator.CoverBrush = slideShow.IndicatorBrush;
+            slideShow.PART_INDICATOR.BorderBrush = slideShow.IndicatorBrush;
+            slideShow.PART_INDICATOR.CoverBrush = slideShow.IndicatorBrush;
         }
         #endregion
-
 
         #region APIs
         private void Draw()
         {
-            Indicator.TotalIndex = Content.Count;
+            PART_INDICATOR.TotalIndex = Content.Count;
             foreach (var item in Content)
             {
                 var grid = item as FrameworkElement;
@@ -271,7 +274,7 @@ namespace Panuon.UI
             }
         }
 
-        private void ChangeIndex(bool isFirstSet)
+        private void ChangeIndex()
         {
             if (Index < 1)
             {
@@ -301,22 +304,22 @@ namespace Panuon.UI
             }
 
             if (Index == 1 && !Recyclable)
-                BtnLeft.IsEnabled = false;
+                PART_BTNLEFT.IsEnabled = false;
             else
-                BtnLeft.IsEnabled = true;
+                PART_BTNLEFT.IsEnabled = true;
 
             if (Index == Content.Count && !Recyclable)
-                BtnRight.IsEnabled = false;
+                PART_BTNRIGHT.IsEnabled = false;
             else
-                BtnRight.IsEnabled = true;
+                PART_BTNRIGHT.IsEnabled = true;
 
 
-            if (isFirstSet || AnimationDuration == 0)
+            if (isFirstTime || AnimationDuration == 0)
             {
                 if (SlideDirection == Orientation.Horizontal)
-                    StkMain.Margin = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0);
+                    PART_STKMAIN.Margin = new Thickness(-1 * (Index - 1) * ActualWidth, 0, 0, 0);
                 else
-                    StkMain.Margin = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0);
+                    PART_STKMAIN.Margin = new Thickness(0, -1 * (Index - 1) * ActualHeight, 0, 0);
             }
             else
             {
@@ -328,7 +331,7 @@ namespace Panuon.UI
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };
-                    StkMain.BeginAnimation(MarginProperty, anima);
+                    PART_STKMAIN.BeginAnimation(MarginProperty, anima);
                 }
                 else
                 {
@@ -338,12 +341,14 @@ namespace Panuon.UI
                         Duration = TimeSpan.FromMilliseconds(AnimationDuration),
                         EasingFunction = new CubicEase() { EasingMode = EasingMode.EaseInOut },
                     };
-                    StkMain.BeginAnimation(MarginProperty, anima);
+                    PART_STKMAIN.BeginAnimation(MarginProperty, anima);
                 }
             }
+            isFirstTime = false;
         }
         #endregion
 
+        #region Sys
         private void BtnLeft_Click(object sender, RoutedEventArgs e)
         {
             Index--;
@@ -357,7 +362,8 @@ namespace Panuon.UI
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Draw();
-            ChangeIndex(true);
+            ChangeIndex();
         }
+        #endregion
     }
 }

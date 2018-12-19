@@ -9,6 +9,7 @@
              Title="PanuonUI Broswer"
              Height="800"
              Width="1200"
+             AllowShowDelay="True"
              WindowStartupLocation="CenterScreen"
              AnimationStyle="Gradual">
     <pu:PUWindow.Icon>

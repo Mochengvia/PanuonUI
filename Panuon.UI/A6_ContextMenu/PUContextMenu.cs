@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -12,6 +15,17 @@ namespace Panuon.UI
         }
 
         #region Property
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。",true)]
+        public new IEnumerable ItemsSource
+        {
+            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            private set { SetValue(ItemsSourceProperty, value); }
+        }
+
+        public new static readonly DependencyProperty ItemsSourceProperty =
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(PUContextMenu));
+
         /// <summary>
         /// 获取或设置当鼠标悬浮在子项上时，子项的背景颜色。默认值为#33AAAAAA。
         /// </summary>

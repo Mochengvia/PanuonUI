@@ -42,38 +42,41 @@ namespace Panuon.UI
 
         private StackPanel _stkNav;
 
-        private PUWindow _parentWindow;
-
         private bool _animateOutHandle = true;
 
         private bool? _dialogResult;
 
         private bool _needToSetDialogResult;
+
+        private Window _autoOwner;
         #endregion
 
+        #region Constructor
         static PUWindow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUWindow), new FrameworkPropertyMetadata(typeof(PUWindow)));
         }
 
+        /// <summary>
+        /// 初始化一个窗体实例。
+        /// 若您期望从当前窗体中连续Show出多个窗体，请务必分别指定这些子窗体的Owner，否则将出现显示问题。
+        /// </summary>
         public PUWindow()
         {
             try
             {
-                _parentWindow = GetOwnerWindow();
-                if (_parentWindow != null && Owner == null)
-                    Owner = _parentWindow;
+                Owner = GetOwnerWindow();
             }
-            catch { }
+            catch (Exception ex) { }
 
             PreviewMouseMove += OnPreviewMouseMove;
         }
+        #endregion
 
-
+        #region Sys
         public override void OnApplyTemplate()
         {
-
-            base.OnApplyTemplate();
+            var auto = Owner;
             Loaded += delegate
             {
                 if (AllowAutoCoverMask && (Owner as PUWindow) != null)
@@ -110,8 +113,6 @@ namespace Panuon.UI
             _btnClose = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(grdNavbar, 1), 2) as PUButton;
         }
 
-
-        #region Sys
         protected override void OnClosing(CancelEventArgs e)
         {
             if (AllowAutoCoverMask && (Owner as PUWindow) != null)
@@ -508,8 +509,6 @@ namespace Panuon.UI
         public static readonly DependencyProperty IsAwaitShowProperty =
             DependencyProperty.Register("IsAwaitShow", typeof(bool), typeof(PUWindow));
 
-
-
         /// <summary>
         /// 获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体的遮罩层，并在Close时将其关闭。
         /// <para>若没有父窗体或父窗体不是PUWindow类型，则不会触发任何效果。</para>
@@ -521,7 +520,8 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty AllowAutoCoverMaskProperty =
-            DependencyProperty.Register("AllowAutoCoverMask", typeof(bool), typeof(PUWindow));
+            DependencyProperty.Register("AllowAutoCoverMask", typeof(bool), typeof(PUWindow), new PropertyMetadata(false));
+
 
         /// <summary>
         /// 获取或设置是否允许用户使用Alt + F4按键组合强制关闭窗体。该属性在窗体加载后的更改将无效。默认值为True（允许）。
@@ -535,6 +535,27 @@ namespace Panuon.UI
         public static readonly DependencyProperty AllowForcingCloseProperty =
             DependencyProperty.Register("AllowForcingClose", typeof(bool), typeof(PUWindow), new PropertyMetadata(true));
 
+
+        /// <summary>
+        /// 获取或设置是否允许自动将当前的活动窗口设置为自己的Owner。默认值为True。
+        /// </summary>
+        public bool AllowAutoOwner
+        {
+            get { return (bool)GetValue(AllowAutoOwnerProperty); }
+            set { SetValue(AllowAutoOwnerProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowAutoOwnerProperty =
+            DependencyProperty.Register("AllowAutoOwner", typeof(bool), typeof(PUWindow), new PropertyMetadata(true, OnAllowAutoOwnerChanged));
+
+        private static void OnAllowAutoOwnerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var window = d as PUWindow;
+            if(window.AllowAutoOwner == false)
+            {
+                    window.Owner = null;
+            }
+        }
 
         #endregion
 
@@ -582,7 +603,7 @@ namespace Panuon.UI
         /// </summary>
         /// <param name="content">按钮的内容</param>
         /// <param name="clickHandler">点击按钮时应该触发的事件。</param>
-        public void AppendNavButton(object content, RoutedEventHandler clickHandler)
+        public void AppendNavButton(object content, RoutedEventHandler clickHandler, bool isIconFont = true, object tooltip = null)
         {
             var btn = new PUButton()
             {
@@ -593,6 +614,10 @@ namespace Panuon.UI
                 CoverBrush = new SolidColorBrush(((Color)ColorConverter.ConvertFromString("#99999999"))),
                 HorizontalAlignment = HorizontalAlignment.Right,
             };
+            if (isIconFont)
+                btn.FontFamily = FindResource("IconFont") as FontFamily;
+            if (tooltip != null)
+                btn.ToolTip = tooltip;
             var visibility = new Binding() { Path = new PropertyPath("NavButtonVisibility"), UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged, Source = this, Mode = BindingMode.OneWay };
             BindingOperations.SetBinding(btn, VisibilityProperty, visibility);
 
@@ -621,7 +646,6 @@ namespace Panuon.UI
             return (bool)typeof(Window).GetField("_showingAsDialog", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(window);
         }
 
-
         private static PUWindow GetWindowFromHwnd(IntPtr hwnd)
         {
             var visual = HwndSource.FromHwnd(hwnd).RootVisual;
@@ -637,22 +661,6 @@ namespace Panuon.UI
         }
 
         #endregion
-
-        public enum AnimationStyles
-        {
-            /// <summary>
-            /// 缩放。
-            /// </summary>
-            Scale = 0,
-            /// <summary>
-            /// 一个从上到下的渐变显示。
-            /// </summary>
-            Gradual = 1,
-            /// <summary>
-            /// 渐入渐出。
-            /// </summary>
-            Fade = 2
-        }
     }
 
     internal class CloseWindowCommand : ICommand

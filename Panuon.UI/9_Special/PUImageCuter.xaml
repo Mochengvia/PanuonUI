@@ -29,7 +29,7 @@
                                     MinWidth="50"
                                     Canvas.Left="0"
                                     Canvas.Top="0">
-                    <Grid>
+                    <Grid Background="#77AAAAAA">
                         <Grid>
                             <Rectangle StrokeThickness="1"
                                        Stroke="#77AAAAAA"
@@ -81,14 +81,6 @@
                                        Stroke="#FFFFFF"
                                        StrokeDashArray="2,1"></Rectangle>
                         </Grid>
-                        <Thumb Background="Transparent"
-                               DragDelta="Thumb_DragDelta">
-                            <Thumb.Template>
-                                <ControlTemplate>
-                                    <Grid Background="#77AAAAAA"></Grid>
-                                </ControlTemplate>
-                            </Thumb.Template>
-                        </Thumb>
                     </Grid>
                 </local:PUResizeGrid>
             </Canvas>

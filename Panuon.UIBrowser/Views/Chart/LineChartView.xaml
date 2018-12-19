@@ -1,0 +1,448 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.ViewModels.Chart.LineChartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:chart="clr-namespace:Panuon.UI.Charts;assembly=Panuon.UI.Charts"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.ViewModels.Chart"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <pu:PUSlideShow IsIndicatorShow="False"
+                        ClipToBounds="True"
+                        Index="1">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              cm:Message.Attach="[Event PreviewMouseWheel]=[Action HandleMouseWheel($source,$eventArgs)]">
+                    <StackPanel Margin="60,20">
+                        <TextBlock FontSize="30"
+                                   Margin="0,0,0,30">PULineChart 折线图</TextBlock>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF1E9CB0">依赖属性概览</TextBlock>
+                        <DataGrid ItemsSource="{Binding DependencyPropertyList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"
+                                                    Header="属性名称"
+                                                    Binding="{Binding Name}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="类型"
+                                                    Binding="{Binding Type}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="默认值"
+                                                    Binding="{Binding DefaultValue}" />
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="描述">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF2AA065">注解</TextBlock>
+                        <DataGrid ItemsSource="{Binding AnnotationList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"
+                                                    Header="注解对象"
+                                                    Binding="{Binding Name}" />
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="提示">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="60,20">
+                        <TextBlock FontSize="30"
+                                   Margin="0,0,0,30">PUButton 按钮示例</TextBlock>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF1E9CB0">实例</TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1.5*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical">
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="动画状态："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUComboBox pu:Helper.ColumnDefinition="3*"
+                                                   SelectedValuePath="Value"
+                                                   cm:Message.Attach="[Event SelectionChanged]=[Action AnimationModeChanged($this.SelectedValue)]">
+                                        <pu:PUComboBoxItem Value="OneTime"
+                                                           Content="仅首次启动">
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="Always"
+                                                           Content="始终使用动画">
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="Disabled"
+                                                           Content="禁用动画">
+                                        </pu:PUComboBoxItem>
+                                    </pu:PUComboBox>
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="点大小："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUTextBox pu:Helper.ColumnDefinition="3*"
+                                                  Text="{Binding PointSizeInteger, UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="线宽："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUTextBox pu:Helper.ColumnDefinition="3*"
+                                                  Text="{Binding LineThicknessInteger, UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="X轴间隔："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUTextBox pu:Helper.ColumnDefinition="3*"
+                                                  Text="{Binding XAxisGap, UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="前景色："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUComboBox pu:Helper.ColumnDefinition="3*"
+                                                   SelectedValuePath="Value"
+                                                   cm:Message.Attach="[Event SelectionChanged]=[Action ForegroundChanged($this.SelectedValue)]">
+                                        <pu:PUComboBoxItem Value="#FFFFFF">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#FFFFFF" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="默认颜色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#3E3E3E">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#3E3E3E" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="默认颜色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem IsSelected="True"
+                                                           Value="#DDDDDD">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#DDDDDD" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="银灰色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#CC49A9C0">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#CC49A9C0" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="蓝色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#CCE089B8">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#CCE089B8" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="粉色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#CCF4A758">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#CCF4A758" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="橙色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                    </pu:PUComboBox>
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="线条（点）颜色："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUComboBox pu:Helper.ColumnDefinition="3*"
+                                                   SelectedValuePath="Value"
+                                                   cm:Message.Attach="[Event SelectionChanged]=[Action LineBrushChanged($this.SelectedValue)]">
+                                        <pu:PUComboBoxItem IsSelected="True"
+                                                           Value="#3E3E3E">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#3E3E3E" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="默认颜色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#49A9C0">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#49A9C0" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="蓝色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#E089B8">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#E089B8" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="粉色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#F4A758">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#F4A758" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="橙色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                    </pu:PUComboBox>
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="网格颜色："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUComboBox pu:Helper.ColumnDefinition="3*"
+                                                   SelectedValuePath="Value"
+                                                   cm:Message.Attach="[Event SelectionChanged]=[Action GridBrushChanged($this.SelectedValue)]">
+                                        <pu:PUComboBoxItem IsSelected="True"
+                                                           Value="#22FFFFFF">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#22FFFFFF" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="默认颜色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#3E3E3E">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#3E3E3E" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="默认颜色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#49A9C0">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#49A9C0" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="蓝色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#E089B8">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#E089B8" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="粉色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                        <pu:PUComboBoxItem Value="#F4A758">
+                                            <pu:PUComboBoxItem.Content>
+                                                <Grid>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Width="20"
+                                                               Height="20"
+                                                               Fill="#F4A758" />
+                                                    <TextBlock Margin="25,0,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="橙色" />
+                                                </Grid>
+                                            </pu:PUComboBoxItem.Content>
+                                        </pu:PUComboBoxItem>
+                                    </pu:PUComboBox>
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text=""
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUButton pu:Helper.ColumnDefinition="3*"
+                                                 Content="添加一个"
+                                                 cm:Message.Attach="[Event Click]=[Action AddItem]" />
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text=""
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUButton pu:Helper.ColumnDefinition="3*"
+                                                 Content="移除最后一个"
+                                                 cm:Message.Attach="[Event Click]=[Action RemoveItem]" />
+                                </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text=""
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUButton pu:Helper.ColumnDefinition="3*"
+                                                 Content="切换坐标轴"
+                                                 cm:Message.Attach="[Event Click]=[Action RemoveItem]" />
+                                </Grid>
+                            </StackPanel>
+                            <chart:PULineChart Grid.Column="1"
+                                               Height="300"
+                                               VerticalAlignment="Center"
+                                               Margin="50,0,50,0"
+                                               XAxis="{Binding XAxis}"
+                                               YAxis="{Binding YAxis}"
+                                               Points="{Binding Points}"
+                                               XAxisGap="{Binding XAxisGap}"
+                                               Background="{Binding Background}"
+                                               Foreground="{Binding Foreground}"
+                                               BorderBrush="{Binding Foreground}"
+                                               GridBrush="{Binding GridBrush}"
+                                               LineBrush="{Binding LineBrush}"
+                                               LineThickness="{Binding LineThickness}"
+                                               PointSize="{Binding PointSize}" />
+                        </Grid>
+                        <TextBlock Margin="0,20,0,0"
+                                   Text="*默认的前景色和遮罩颜色是白色，因此在切换到General之外的样式时，需要手动更改前景色和遮罩颜色。" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </pu:PUSlideShow>
+    </Grid>
+</UserControl>

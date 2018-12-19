@@ -227,47 +227,5 @@ namespace Panuon.UI
         }
         #endregion
 
-        public enum Buttons
-        {
-            /// <summary>
-            /// 好
-            /// </summary>
-            Sure,
-            /// <summary>
-            /// 是
-            /// </summary>
-            Yes,
-            /// <summary>
-            /// 确定
-            /// </summary>
-            OK,
-            /// <summary>
-            /// 取消
-            /// </summary>
-            Cancel,
-            /// <summary>
-            /// 是/否
-            /// </summary>
-            YesOrNo,
-            /// <summary>
-            /// 是/取消
-            /// </summary>
-            YesOrCancel,
-            /// <summary>
-            /// 确定/取消
-            /// </summary>
-            OKOrCancel,
-            /// <summary>
-            /// 接受/取消
-            /// </summary>
-            AcceptOrCancel,
-            /// <summary>
-            /// 接受/拒绝
-            /// </summary>
-            AcceptOrRefused,
-        }
-
     }
-
-
 }

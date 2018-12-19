@@ -1,0 +1,18 @@
+﻿<pu:PUWindow x:Class="Panuon.UIBrowser.Views.Control.Examples.MultiNavWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.Views.Control.Examples"
+             mc:Ignorable="d"
+             Title="多控制按钮窗体"
+             Height="400"
+             Width="500"
+             AllowAutoCoverMask="True"
+             WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock VerticalAlignment="Center"
+                   HorizontalAlignment="Center">注意看右上角的按钮组，试试点击</TextBlock>
+    </Grid>
+</pu:PUWindow>

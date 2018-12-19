@@ -27,7 +27,7 @@ namespace Panuon.UI
 
         #region Property
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。", true)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。",true)]
         public new IEnumerable ItemsSource
         {
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
@@ -38,8 +38,7 @@ namespace Panuon.UI
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(PUListBox));
 
         /// <summary>
-        /// 获取或设置当子项目被选中时，SelectedValue应呈现子项目的哪一个值。（在ComboBox中，Header属性表示展现子项的Content属性）
-        /// 可选项为Header或Value，默认值为Header。
+        /// 该属性指定了当子项目被选中时，SelectedValue应呈现子项目的哪一个值。默认值为Header。
         /// </summary>
         public new SelectedValuePaths SelectedValuePath
         {
@@ -52,8 +51,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取被选中PUComboBoxItem的Header或Value属性（这取决于SelectedValuePath），
-        /// 或根据设置的SelectedValue来选中子项目。
+        /// 获取被选中PUTabItem的Header（即ListBoxItem的Content属性）或Value属性（这取决于SelectedValuePath），或反向选中子项目。
         /// </summary>
         public new object SelectedValue
         {
@@ -128,8 +126,6 @@ namespace Panuon.UI
         public static readonly DependencyProperty SearchBrushProperty =
             DependencyProperty.Register("SearchBrush", typeof(Brush), typeof(PUListBox));
 
-
-
         /// <summary>
         /// 若使用MVVM绑定，请使用此依赖属性。
         /// </summary>
@@ -162,6 +158,9 @@ namespace Panuon.UI
         #endregion
 
         #region APIs
+        /// <summary>
+        /// 通过Value获取符合条件的第一个子项。
+        /// </summary>
         public PUListBoxItem GetListBoxItemByValue(object value)
         {
             foreach (var item in Items)
@@ -173,6 +172,9 @@ namespace Panuon.UI
             return null;
         }
 
+        /// <summary>
+        /// 通过内容获取符合条件的第一个子项。
+        /// </summary>
         public PUListBoxItem GetListBoxItemByContent(object content)
         {
             foreach (var item in Items)
@@ -185,7 +187,22 @@ namespace Panuon.UI
         }
 
         /// <summary>
-        /// 通过内容查询符合条件的第一个子项，滚动到该项目并高亮。
+        /// 通过Uid获取符合条件的第一个子项。
+        /// <para>通过BindingItems属性生成子项时，Model的Uid属性（只读，自动生成）会赋值给生成的子项。你可以获取BindingItems集合中的Uid来获取子项。</para>
+        /// </summary>
+        public PUListBoxItem GetListBoxItemByUid(string uid)
+        {
+            foreach (var item in Items)
+            {
+                var listBoxItem = item as PUListBoxItem;
+                if (listBoxItem.Uid == uid)
+                    return listBoxItem;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 通过内容查询符合条件的第一个子项，滚动到该项目并高亮（子项的内容须为string类型）。
         /// </summary>
         /// <param name="content">子项的内容。</param>
         /// <param name="allowFuzzySearch">是否允许模糊查询。</param>
@@ -203,6 +220,9 @@ namespace Panuon.UI
             }
         }
 
+        /// <summary>
+        /// 通过Value查询符合条件的第一个子项，滚动到该项目并高亮。
+        /// </summary>
         public void SearchItemByValue(object value)
         {
             var item = GetListBoxItemByValue(value);
@@ -212,6 +232,18 @@ namespace Panuon.UI
             item.OnSearched();
         }
 
+        /// <summary>
+        /// 通过Uid查询符合条件的第一个子项，滚动到该项目并高亮。
+        /// <para>通过BindingItems属性生成子项时，Model的Uid属性（只读，自动生成）会赋值给生成的子项。你可以获取BindingItems集合中的Uid来获取子项。</para>
+        /// <param name="uid">子项的Uid。</param>
+        public void SearchItemByUid(string uid)
+        {
+            var item = GetListBoxItemByUid(uid);
+            if (item == null)
+                return;
+            ScrollIntoView(item);
+            item.OnSearched();
+        }
         #endregion
 
         #region Function
@@ -220,6 +252,7 @@ namespace Panuon.UI
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Reset:
+                    var selectedValue = SelectedValue;
                     Items.Clear();
                     if (BindingItems == null)
                         break;
@@ -228,6 +261,7 @@ namespace Panuon.UI
                         var tabItem = GenerateComboBoxItem(item);
                         Items.Add(tabItem);
                     }
+                    SelectedValue = selectedValue;
                     break;
                 case NotifyCollectionChangedAction.Add:
                     foreach (var item in e.NewItems)
@@ -282,62 +316,4 @@ namespace Panuon.UI
 
         #endregion
     }
-
-    public class PUListBoxItemModel : INotifyPropertyChanged
-    {
-        protected internal virtual void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #region Constructor
-        public PUListBoxItemModel()
-        {
-            Uid = Guid.NewGuid().ToString("N");
-        }
-        #endregion
-
-        #region Property
-        /// <summary>
-        /// 要显示的内容。可以作为SelectValuePath的值。用于设置ListBoxItem的Content属性。
-        /// </summary>
-        public object Header
-        {
-            get { return _header; }
-            set
-            {
-                _header = value; OnPropertyChanged("Header");
-            }
-        }
-        private object _header = "";
-
-        /// <summary>
-        /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。
-        /// </summary>
-        public object Value
-        {
-            get { return _value; }
-            set
-            {
-                _value = value; OnPropertyChanged("Value");
-            }
-        }
-        private object _value;
-        #endregion
-
-        #region Internal Property
-        internal string Uid
-        {
-            get { return _uid; }
-            set { _uid = value; }
-        }
-        private string _uid;
-
-
-        #endregion
-
-    }
-
 }

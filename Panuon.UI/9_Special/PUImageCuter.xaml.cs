@@ -54,30 +54,17 @@ namespace Panuon.UI
         /// <summary>
         /// 剪切后的图片。
         /// </summary>
-        public Bitmap CutImageSource
+        public BitmapSource CutImageSource
         {
             get
             {
                 if (ImageSource == null)
                     return null;
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    var widthScale = ImageSource.PixelWidth / _width;
-                    var heightScale = ImageSource.PixelHeight / _height;
 
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(ImageSource));
-                    enc.Save(outStream);
-                    Bitmap bitmap = new System.Drawing.Bitmap(outStream);
+                var widthScale = ImageSource.PixelWidth / canvas.ActualWidth;
+                var heightScale = ImageSource.PixelHeight / _height;
 
-                    Rectangle section = new Rectangle(new System.Drawing.Point((int)(_left * widthScale), (int)(_top * heightScale)), new System.Drawing.Size((int)(resizeGrid.ActualWidth * widthScale), (int)(resizeGrid.ActualHeight * heightScale)));
-                    Bitmap bmp = new Bitmap(section.Width, section.Height);
-
-                    Graphics g = Graphics.FromImage(bmp);
-
-                    g.DrawImage(bitmap, 0, 0, section, GraphicsUnit.Pixel);
-                    return bmp;
-                }
+                return new CroppedBitmap(BitmapFrame.Create(ImageSource), new Int32Rect((int)(_left * widthScale), (int)(_top * heightScale), (int)(resizeGrid.ActualWidth * widthScale), (int)(resizeGrid.ActualHeight * heightScale)));
             }
         }
 
@@ -92,7 +79,13 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty AreaStyleProperty =
-            DependencyProperty.Register("AreaStyle", typeof(AreaStyles), typeof(PUImageCuter), new PropertyMetadata(AreaStyles.Rectangle));
+            DependencyProperty.Register("AreaStyle", typeof(AreaStyles), typeof(PUImageCuter), new PropertyMetadata(AreaStyles.Rectangle,OnAreaStyleChanged));
+
+        private static void OnAreaStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var cuter = d as PUImageCuter;
+            cuter.resizeGrid.IsSquare = cuter.AreaStyle == AreaStyles.Square;
+        }
 
 
         #endregion
@@ -146,26 +139,26 @@ namespace Panuon.UI
             {
                 var top = _top + resizeGrid.ActualHeight;
                 if (top > _height)
-                    resizeGrid.Height = _height - _top;
-                if(AreaStyle == AreaStyles.Square)
                 {
-                    if (resizeGrid.Height > resizeGrid.MaxWidth)
-                        resizeGrid.Height = resizeGrid.MaxWidth;
-                    resizeGrid.Width = resizeGrid.Height;
-                    return;
+                    resizeGrid.Height = _height - _top;
+                    if (AreaStyle == AreaStyles.Square)
+                    {
+                        resizeGrid.Width = resizeGrid.Height;
+                    }
                 }
+               
             }
             if(e.WidthChanged)
             {
                 var left = _left + resizeGrid.ActualWidth;
                 if (left > _width)
+                {
                     resizeGrid.Width = _width - _left;
 
-                if (AreaStyle == AreaStyles.Square)
-                {
-                    if (resizeGrid.Width > resizeGrid.MaxHeight)
-                        resizeGrid.Width = resizeGrid.MaxHeight;
-                    resizeGrid.Height = resizeGrid.Width;
+                    if (AreaStyle == AreaStyles.Square)
+                    {
+                        resizeGrid.Height = resizeGrid.Width;
+                    }
                 }
             }
 

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.ViewModels.Special.ResizeGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.ViewModels.Special"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <StackPanel Margin="60,20">
+            <TextBlock FontSize="30"
+                       Margin="0,0,0,30">PUResizeGrid 可变大小容器</TextBlock>
+        </StackPanel>
+        <Grid VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <pu:PUResizeGrid MinWidth="150"
+                             MinHeight="100"
+                             Width="150"
+                             Height="100"
+                             MaxHeight="300"
+                             MaxWidth="300">
+                <pu:PUButton>拖动四周改变大小</pu:PUButton>
+            </pu:PUResizeGrid>
+        </Grid>
+    </Grid>
+</UserControl>

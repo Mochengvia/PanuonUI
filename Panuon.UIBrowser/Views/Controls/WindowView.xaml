@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.ViewModels.Control.WindowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.ViewModels.Control"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <pu:PUSlideShow IsIndicatorShow="False"
+                        ClipToBounds="True"
+                        Index="1">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              cm:Message.Attach="[Event PreviewMouseWheel]=[Action HandleMouseWheel($source,$eventArgs)]">
+                    <StackPanel Margin="60,20">
+                        <TextBlock FontSize="30"
+                                   Margin="0,0,0,30">PUWindow 窗体</TextBlock>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF1E9CB0">依赖属性概览</TextBlock>
+                        <DataGrid ItemsSource="{Binding DependencyPropertyList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"
+                                                    Header="属性名称"
+                                                    Binding="{Binding Name}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="类型"
+                                                    Binding="{Binding Type}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="默认值"
+                                                    Binding="{Binding DefaultValue}" />
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="描述">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FFA442E8">方法概览</TextBlock>
+                        <DataGrid ItemsSource="{Binding APIList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="方法">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Name}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="描述">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF2AA065">注解</TextBlock>
+                        <DataGrid ItemsSource="{Binding AnnotationList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"
+                                                    Header="注解对象"
+                                                    Binding="{Binding Name}" />
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="提示">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+            </Grid>
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="60,20">
+                        <TextBlock FontSize="30"
+                                   Margin="0,0,0,30">PUWindow 窗体示例</TextBlock>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF1E9CB0">实例</TextBlock>
+                        <StackPanel>
+                            <pu:PUButton Content="使用Scale动画打开一个带有多个控制按钮的窗口"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('1')]" />
+                            <pu:PUButton  Content="使用Gradual动画打开一个登录窗口"
+                                          Height="35"
+                                          Padding="20,0"
+                                          HorizontalAlignment="Left"
+                                          Margin="0,10"
+                                          cm:Message.Attach="[Event Click]=[Action Display('2')]" />
+                            <pu:PUButton Content="使用Fade动画打开一个聊天窗口"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('3')]" />
+                            <pu:PUButton Content="打开一个提示框"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('5')]" />
+                            <pu:PUButton Content="打开一个询问框"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('6')]" />
+                            <pu:PUButton Content="打开可取消的等待界面"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('7')]" />
+                            <pu:PUButton Content="显示等待并在2s后关闭"
+                                         Height="35"
+                                         Padding="20,0"
+                                         HorizontalAlignment="Left"
+                                         Margin="0,10"
+                                         cm:Message.Attach="[Event Click]=[Action Display('4')]" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+        </pu:PUSlideShow>
+    </Grid>
+</UserControl>

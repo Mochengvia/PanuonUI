@@ -9,10 +9,11 @@
              d:DesignWidth="300"
              SizeChanged="UserControl_SizeChanged">
     <Grid>
-        <StackPanel x:Name="StkMain"
+        <VirtualizingStackPanel x:Name="PART_STKMAIN"
+                               VirtualizationMode="Recycling"
                     Orientation="Horizontal">
-        </StackPanel>
-        <local:PUButton x:Name="BtnLeft"
+        </VirtualizingStackPanel>
+        <local:PUButton x:Name="PART_BTNLEFT"
                         Content=""
                         FontFamily="{DynamicResource IconFont}"
                         ButtonStyle="Hollow"
@@ -22,7 +23,7 @@
                         Margin="20,0,0,0"
                         BorderCornerRadius="17.5"
                         Click="BtnLeft_Click"></local:PUButton>
-        <local:PUButton x:Name="BtnRight"
+        <local:PUButton x:Name="PART_BTNRIGHT"
                         Content=""
                         FontFamily="{DynamicResource IconFont}"
                         ButtonStyle="Hollow"
@@ -32,7 +33,7 @@
                         Margin="0,0,20,0"
                         BorderCornerRadius="17.5"
                         Click="BtnRight_Click"></local:PUButton>
-        <local:PUIndicator x:Name="Indicator"
+        <local:PUIndicator x:Name="PART_INDICATOR"
                            Height="14"
                            VerticalAlignment="Bottom"
                            HorizontalAlignment="Center"

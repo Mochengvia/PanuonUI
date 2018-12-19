@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -17,10 +19,10 @@ namespace Panuon.UI
         {
             get
             {
-                if(_tabPanel == null)
+                if (_tabPanel == null)
                 {
                     var scrollViewer = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 0), 1), 0) as ScrollViewer;
-                    _tabPanel = (scrollViewer.Content as StackPanel).Children[0] as TabPanel;
+                    _tabPanel = (scrollViewer.Content as VirtualizingStackPanel).Children[0] as TabPanel;
                 }
                 return _tabPanel;
             }
@@ -58,12 +60,12 @@ namespace Panuon.UI
         {
             var tabPanel = sender as TabPanel;
 
-            var scrollViewer = (tabPanel.Parent as StackPanel).Parent as ScrollViewer;
+            var scrollViewer = (tabPanel.Parent as VirtualizingStackPanel).Parent as ScrollViewer;
             if (e.Delta > 0)
-                    scrollViewer.LineLeft();
+                scrollViewer.LineLeft();
             else
                 scrollViewer.LineRight();
-          
+
             if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible || scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
                 e.Handled = true;
         }
@@ -88,6 +90,22 @@ namespace Panuon.UI
         #endregion
 
         #region Property
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。", true)]
+        public new IEnumerable ItemsSource
+        {
+            get { return base.ItemsSource; }
+            private set { base.ItemsSource = value; }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。BindingItems属性中的Header属性即为要显示的内容。", true)]
+        public new string DisplayMemberPath
+        {
+            get { return base.DisplayMemberPath; }
+            private set { base.DisplayMemberPath = value; }
+        }
 
         /// <summary>
         /// 获取或设置选项卡的基础样式。默认值为General。
@@ -102,7 +120,7 @@ namespace Panuon.UI
             DependencyProperty.Register("TabControlStyle", typeof(TabControlStyles), typeof(PUTabControl), new PropertyMetadata(TabControlStyles.General));
 
         /// <summary>
-        /// 当子项目删除按钮可见时，用户点击删除按钮后的操作。默认为删除项目并触发DeleteItem路由事件。
+        /// 获取或设置当子项设置为可删除时，用户点击删除按钮后应执行的操作。默认为删除项目并触发DeleteItem路由事件。
         /// </summary>
         public DeleteModes DeleteMode
         {
@@ -116,14 +134,14 @@ namespace Panuon.UI
         /// <summary>
         /// 获取或设置当某个子项被选中时的前景色。默认值为灰黑色(#3E3E3E)。
         /// </summary>
-        public Brush CoverBrush
+        public Brush SelectedBrush
         {
-            get { return (Brush)GetValue(CoverBrushProperty); }
-            set { SetValue(CoverBrushProperty, value); }
+            get { return (Brush)GetValue(SelectedBrushProperty); }
+            set { SetValue(SelectedBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty CoverBrushProperty =
-            DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PUTabControl));
+        public static readonly DependencyProperty SelectedBrushProperty =
+            DependencyProperty.Register("SelectedBrush", typeof(Brush), typeof(PUTabControl));
 
         /// <summary>
         /// 该属性指定了当子项目被选中时，SelectedValue应呈现子项目的哪一个值。
@@ -140,8 +158,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取被选中PUTabItem的Header或Value属性（这取决于SelectedValuePath），
-        /// 或根据设置的SelectedValue来选中子项目。
+        /// 获取被选中PUTabItem的Header或Value属性（这取决于SelectedValuePath），或反向选中子项目。
         /// </summary>
         public new object SelectedValue
         {
@@ -195,11 +212,11 @@ namespace Panuon.UI
         private static void OnBindingItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var tabControl = d as PUTabControl;
-            if (tabControl.BindingItems != null)
+            if(tabControl.BindingItems != null)
             {
                 tabControl.BindingItems.CollectionChanged -= tabControl.BindingItemChanged;
                 tabControl.BindingItems.CollectionChanged += tabControl.BindingItemChanged;
-            }
+            } 
             tabControl.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
@@ -277,10 +294,10 @@ namespace Panuon.UI
                     }
                     break;
                 case NotifyCollectionChangedAction.Add:
-                    foreach (var item in e.NewItems)
+                    foreach(var item in e.NewItems)
                     {
                         var tabItem = GenerateTabItem(item as PUTabItemModel);
-                        Items.Insert(e.NewStartingIndex, tabItem);
+                        Items.Insert(e.NewStartingIndex, tabItem); 
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -310,12 +327,13 @@ namespace Panuon.UI
         {
             var tabItem = new PUTabItem()
             {
+                Uid = model.Uid,
                 Header = model.Header,
                 Content = model.Content,
                 Height = model.Height,
                 Icon = model.Icon,
                 Value = model.Value,
-                DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Collapsed,
+                CanDelete = model.CanDelete,
             };
 
             if (Items.Count == 0)
@@ -328,18 +346,13 @@ namespace Panuon.UI
                 tabItem.Height = model.Height;
                 tabItem.Icon = model.Icon;
                 tabItem.Value = model.Value;
-                tabItem.DeleteButtonVisibility = model.CanDelete ? Visibility.Visible : Visibility.Collapsed;
+                tabItem.CanDelete = model.CanDelete;
             };
 
             return tabItem;
         }
-
         #endregion
-
-
-
     }
-
     internal sealed class PUTabControlLeftCommand : ICommand
     {
         event EventHandler ICommand.CanExecuteChanged

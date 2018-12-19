@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,20 +18,20 @@ namespace Panuon.UI
         #region Property
 
         /// <summary>
-        /// 是否显示删除按钮，默认值为Collapsed（不显示）。
+        /// 获取或设置是否显示删除按钮，默认值为False（不显示）。
         /// </summary>
-        public Visibility DeleteButtonVisibility
+        public bool CanDelete
         {
-            get { return (Visibility)GetValue(DeleteButtonVisibilityProperty); }
-            set { SetValue(DeleteButtonVisibilityProperty, value); }
+            get { return (bool)GetValue(CanDeleteProperty); }
+            set { SetValue(CanDeleteProperty, value); }
         }
 
-        public static readonly DependencyProperty DeleteButtonVisibilityProperty =
-            DependencyProperty.Register("DeleteButtonVisibility", typeof(Visibility), typeof(PUComboBoxItem), new PropertyMetadata(Visibility.Collapsed));
+        public static readonly DependencyProperty CanDeleteProperty =
+            DependencyProperty.Register("CanDelete", typeof(bool), typeof(PUComboBoxItem));
 
 
         /// <summary>
-        /// 用以标记该项目，或该项目可以额外携带的内容。
+        /// 获取或设置用以标记该项目的值。默认值为Null。
         /// </summary>
         public object Value
         {
@@ -69,62 +70,21 @@ namespace Panuon.UI
             var comItem = (parameter as PUComboBoxItem);
             var combox = comItem.Parent as PUComboBox;
             if (combox.DeleteMode == DeleteModes.Delete)
-                combox.Items.Remove(comItem);
+            {
+                if (combox.BindingItems != null && !String.IsNullOrEmpty((comItem.Uid)))
+                {
+                    var model = combox.BindingItems.FirstOrDefault(x => x.Uid == comItem.Uid);
+                    if (model != null)
+                        combox.BindingItems.Remove(model);
+                    else
+                        combox.Items.Remove(comItem);
+                }
+                else
+                {
+                    combox.Items.Remove(comItem);
+                }
+            }
             combox.OnDeleteItem(null, comItem);
         }
     }
-
-    /// <summary>
-    /// 用于ComboBox绑定的模型。
-    /// </summary>
-
-    public class PUComboBoxItemModel : INotifyPropertyChanged
-    {
-        protected internal virtual void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// 要显示的名称。可以作为SelectValuePath的值。
-        /// </summary>
-        public string Header
-        {
-            get { return _header; }
-            set
-            {
-                _header = value; OnPropertyChanged("Header");
-            }
-        }
-        private string _header = "";
-
-        /// <summary>
-        /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。
-        /// </summary>
-        public object Value
-        {
-            get { return _value; }
-            set
-            {
-                _value = value; OnPropertyChanged("Value");
-            }
-        }
-        private object _value;
-
-        /// <summary>
-        /// 是否显示删除按钮。
-        /// </summary>
-        public bool CanDelete
-        {
-            get { return _canDelete; }
-            set
-            {
-                _canDelete = value; OnPropertyChanged("CanDelete");
-            }
-        }
-        private bool _canDelete = false;
-    }
-
 }

@@ -375,6 +375,9 @@ namespace Panuon.UI.Charts
 
         private void InitLine(double actualWidth, double actualHeight, bool usingAnima)
         {
+            if (XAxis == null || YAxis == null || Points == null)
+                return;
+
             ScaleTransform scale;
             if (usingAnima)
                 scale = new ScaleTransform() { ScaleY = 0 };

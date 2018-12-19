@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UIBrowser\obj\Release\
+C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\
 Panuon.UIBrowser
 none
 false
 TRACE
-C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UIBrowser\App.xaml
-24-675286668
+C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\App.xaml
+25-579403956
 
-311434691693
-19-1932756839
-Views\Partial\HelpersView.xaml;Views\Partial\UtilsView.xaml;Views\Partial\ContextMenusView.xaml;Views\Partial\BubblesView.xaml;Views\Partial\PagingNavsView.xaml;Views\Partial\SlidersView.xaml;Views\Partial\ListBoxsView.xaml;Views\Partial\DataGridsView.xaml;Views\Partial\ImageCuterView.xaml;Views\Partial\TabControlsView.xaml;Views\Partial\DatePickersView.xaml;Views\Partial\SpecialView.xaml;Views\Partial\LineChartsView.xaml;Views\Partial\ProgressBarsView.xaml;Views\Partial\ComboBoxsView.xaml;Views\Partial\TreeViewsView.xaml;Views\Partial\PasswordBoxsView.xaml;Views\Partial\WindowsView.xaml;Views\Partial\RadioButtonsView.xaml;Views\Partial\CheckBoxsView.xaml;Views\MainWindowView.xaml;Views\Partial\TextBoxsView.xaml;Views\Partial\ButtonsView.xaml;Views\Partial\IntroductionView.xaml;
+36-1451456643
+19-1451160368
+Views\Chart\LineChartView.xaml;Views\Controls\ListBoxView.xaml;Views\Controls\SliderView.xaml;Views\Controls\DatePickerView.xaml;Views\Controls\ContextMenuView.xaml;Views\Controls\TreeViewView.xaml;Views\Controls\ProgressBarView.xaml;Views\Controls\RadioButtonView.xaml;Views\Controls\CheckBoxView.xaml;Views\Controls\PasswordBoxView.xaml;Views\Controls\ComboBoxView.xaml;Views\Controls\TextBoxView.xaml;Views\Controls\TabControlView.xaml;Views\Controls\Examples\ChatWindow.xaml;Views\Controls\Examples\LoginWindow.xaml;Views\Controls\Examples\MultiNavWindow.xaml;Views\Controls\ButtonView.xaml;Views\Controls\WindowView.xaml;Views\ShellWindowView.xaml;Views\Special\ImageCuterView.xaml;Views\Special\IndicatorView.xaml;Views\Special\SplitLineView.xaml;Views\Special\LoadingView.xaml;Views\Special\ResizeGridView.xaml;Views\Special\BubbleView.xaml;
 
 True
 

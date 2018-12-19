@@ -13,7 +13,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 选择框样式，默认值为General。
+        /// 获取或设置选择框的基本样式。默认值为General。
         /// </summary>
         public CheckBoxStyles CheckBoxStyle
         {
@@ -23,7 +23,7 @@ namespace Panuon.UI
         public static readonly DependencyProperty CheckBoxStyleProperty = DependencyProperty.Register("CheckBoxStyle", typeof(CheckBoxStyles), typeof(PUCheckBox), new PropertyMetadata(CheckBoxStyles.General));
 
         /// <summary>
-        /// 圆角大小，默认值为0。
+        /// 获取或设置选择框的圆角大小。默认值为0。
         /// </summary>
         public CornerRadius BorderCornerRadius
         {
@@ -33,8 +33,7 @@ namespace Panuon.UI
         public static readonly DependencyProperty BorderCornerRadiusProperty = DependencyProperty.Register("BorderCornerRadius", typeof(CornerRadius), typeof(PUCheckBox), new PropertyMetadata(new CornerRadius(0)));
 
         /// <summary>
-        /// 内部选择框的宽度，默认值为20。
-        /// <para>Switch样式下默认值为30。</para>
+        /// 获取或设置选择框的宽度。默认值为20（Switch样式下为30）。
         /// </summary>
         public double InnerWidth
         {
@@ -46,7 +45,7 @@ namespace Panuon.UI
             DependencyProperty.Register("InnerWidth", typeof(double), typeof(PUCheckBox), new PropertyMetadata((double)20));
 
         /// <summary>
-        /// 内部选择框的高度，默认值为20。
+        /// 获取或设置选择框的高度。默认值为20。
         /// </summary>
         public double InnerHeight
         {

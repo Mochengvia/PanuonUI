@@ -1,0 +1,68 @@
+﻿<pu:PUWindow x:Class="Panuon.UIBrowser.Views.Control.Examples.ChatWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.Views.Control.Examples"
+             mc:Ignorable="d"
+             AnimationStyle="Fade"
+             AllowAutoCoverMask="True"
+             Title="末城via"
+             Height="600"
+             NavbarHeight="60"
+             Width="800"
+             WindowStartupLocation="CenterOwner">
+    <pu:PUWindow.Icon>
+        <Image Source="/Resources/head_img.jpg" />
+    </pu:PUWindow.Icon>
+    <Grid>
+        <pu:PUSplitLine BorderBrush="LightGray"
+                        Alignment="Top" />
+        <Grid>
+            <Grid pu:Helper.ColumnDefinition="7*">
+                <Grid pu:Helper.RowDefinition="6*">
+                    <ScrollViewer x:Name="svMain"
+                                  Style="{StaticResource MiniScrollViewer}">
+                        <StackPanel x:Name="stkMain"
+                               />
+                    </ScrollViewer>
+                </Grid>
+                <Grid pu:Helper.RowDefinition="3*">
+                    <pu:PUTextBox x:Name="tbInput"
+                                  ShadowColor="Transparent"
+                                  Height="Auto"
+                                  TextWrapping="Wrap"
+                                  BorderThickness="0,1,0,0"
+                                  Padding="5"
+                                  Margin="0,0,0,50"
+                                  VerticalContentAlignment="Top" />
+                    <pu:PUButton x:Name="btnSend"
+                                 VerticalAlignment="Bottom"
+                                 HorizontalAlignment="Right"
+                                 Width="90"
+                                 Height="30"
+                                 Content="发  送"
+                                 IsDefault="True"
+                                 Margin="0,0,10,10"
+                                 Click="btnSend_Click" />
+                    <pu:PUButton x:Name="btnClose"
+                                 VerticalAlignment="Bottom"
+                                 HorizontalAlignment="Right"
+                                 Width="90"
+                                 Height="30"
+                                 ButtonStyle="Outline"
+                                 Content="关  闭"
+                                 Margin="0,0,120,10"
+                                 Click="btnClose_Click" />
+                </Grid>
+            </Grid>
+            <Grid pu:Helper.ColumnDefinition="3*">
+                <pu:PUSplitLine Alignment="Left"
+                                BorderBrush="LightGray" />
+                <StackPanel />
+            </Grid>
+        </Grid>
+
+    </Grid>
+</pu:PUWindow>

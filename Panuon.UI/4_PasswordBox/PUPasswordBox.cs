@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -145,6 +146,12 @@ namespace Panuon.UI
         #endregion
 
         #region Property
+        [Obsolete("不能对密码框的Text属性赋值。")]
+        public new string Text
+        {
+            get { return base.Text; }
+            private set { base.Text = value; }
+        }
 
         /// <summary>
         /// 密码属性
@@ -154,7 +161,8 @@ namespace Panuon.UI
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
-        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(PUPasswordBox), new PropertyMetadata("", OnPasswordChanged));
+        public static readonly DependencyProperty PasswordProperty = 
+            DependencyProperty.Register("Password", typeof(string), typeof(PUPasswordBox), new PropertyMetadata("", OnPasswordChanged));
 
         private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

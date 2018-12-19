@@ -22,9 +22,26 @@ namespace Panuon.UI
             };
         }
 
+        #region RoutedEvent
+        /// <summary>
+        /// 进度改变事件。
+        /// </summary>
+        public static readonly RoutedEvent PercentChangedEvent = EventManager.RegisterRoutedEvent("PercentChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<double>), typeof(PUProgressBar));
+        public event RoutedPropertyChangedEventHandler<double> PercentChanged
+        {
+            add { AddHandler(PercentChangedEvent, value); }
+            remove { RemoveHandler(PercentChangedEvent, value); }
+        }
+        internal void OnPercentChanged(double oldValue, double newValue)
+        {
+            RoutedPropertyChangedEventArgs<double> arg = new RoutedPropertyChangedEventArgs<double>(oldValue, newValue, PercentChangedEvent);
+            RaiseEvent(arg);
+        }
+        #endregion
+
         #region Property
         /// <summary>
-        /// 获取或设置进度条的样式。默认值为General。
+        /// 获取或设置进度条的基本样式。默认值为General。
         /// </summary>
         public ProgressBarStyles ProgressBarStyle
         {
@@ -37,7 +54,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取或设置进度条的填充动画持续时间。默认值为0.4。
+        /// 获取或设置进度条的填充动画持续时间。默认值为0.4秒。
         /// </summary>
         public TimeSpan AnimationDuration
         {
@@ -48,10 +65,8 @@ namespace Panuon.UI
         public static readonly DependencyProperty AnimationDurationProperty =
             DependencyProperty.Register("AnimationDuration", typeof(TimeSpan), typeof(PUProgressBar), new PropertyMetadata(TimeSpan.FromSeconds(0.6)));
 
-
-
         /// <summary>
-        /// 获取或设置进度条的填充颜色。
+        /// 获取或设置进度条的填充颜色。默认值为灰黑色。
         /// </summary>
         public Brush CoverBrush
         {
@@ -63,7 +78,7 @@ namespace Panuon.UI
 
 
         /// <summary>
-        /// 获取或设置圆角大小，默认值为0。
+        /// 获取或设置进度条的圆角大小，默认值为0。
         /// </summary>
         public CornerRadius BorderCornerRadius
         {
@@ -77,14 +92,14 @@ namespace Panuon.UI
         /// <summary>
         /// 获取或设置进度条填充方向，默认值为LeftToRight。
         /// </summary>
-        public ProgressDirections Direction
+        public ProgressDirections ProgressDirection
         {
-            get { return (ProgressDirections)GetValue(DirectionProperty); }
-            set { SetValue(DirectionProperty, value); }
+            get { return (ProgressDirections)GetValue(ProgressDirectionroperty); }
+            set { SetValue(ProgressDirectionroperty, value); }
         }
 
-        public static readonly DependencyProperty DirectionProperty =
-            DependencyProperty.Register("Direction", typeof(ProgressDirections), typeof(PUProgressBar), new PropertyMetadata(ProgressDirections.LeftToRight));
+        public static readonly DependencyProperty ProgressDirectionroperty =
+            DependencyProperty.Register("ProgressDirection", typeof(ProgressDirections), typeof(PUProgressBar), new PropertyMetadata(ProgressDirections.LeftToRight));
 
         /// <summary>
         /// 获取或设置是否显示百分比。默认值为False。
@@ -95,7 +110,6 @@ namespace Panuon.UI
             set { SetValue(IsPercentShowProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for IsPercentShow.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsPercentShowProperty =
             DependencyProperty.Register("IsPercentShow", typeof(bool), typeof(PUProgressBar));
 
@@ -125,14 +139,12 @@ namespace Panuon.UI
                 return;
             }
             pgBar.PercentString = pgBar.Percent * 100 + "%";
-
+            pgBar.OnPercentChanged((double)e.OldValue, (double)e.NewValue);
             if (!pgBar.IsLoaded)
                 return;
 
             pgBar.Change();
         }
-
-
 
         public new Thickness BorderThickness
         {
@@ -199,33 +211,28 @@ namespace Panuon.UI
         #region Function
         private void Change()
         {
-            if (ProgressBarStyle == ProgressBarStyles.General)
+            var toValue = ActualWidth * Percent;
+            if (ProgressDirection == ProgressDirections.TopToBottom || ProgressDirection == ProgressDirections.BottomToTop)
             {
-                var toValue = ActualWidth * Percent;
-                if (Direction == ProgressDirections.TopToBottom || Direction == ProgressDirections.BottomToTop)
-                {
-                    toValue = ActualHeight * Percent;
-                }
-                var anima = new DoubleAnimation()
-                {
-                    To = toValue,
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                    Duration = AnimationDuration,
-                };
-                BeginAnimation(InnerWidthProperty, anima);
+                toValue = ActualHeight * Percent;
             }
-            else
+            var anima = new DoubleAnimation()
             {
-                var anima = new DoubleAnimation()
-                {
-                    To = Percent,
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
-                    Duration = AnimationDuration,
-                };
-                BeginAnimation(InnerPercentProperty, anima);
-            }
+                To = toValue,
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
+                Duration = AnimationDuration,
+            };
+            BeginAnimation(InnerWidthProperty, anima);
 
+            var anima2 = new DoubleAnimation()
+            {
+                To = Percent,
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
+                Duration = AnimationDuration,
+            };
+            BeginAnimation(InnerPercentProperty, anima2);
         }
+
         #endregion
     }
 }

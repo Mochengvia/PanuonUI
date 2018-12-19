@@ -21,14 +21,14 @@ namespace Panuon.UI
         private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
             var left = 0.0;
-            if (e.HorizontalChange >= _delta / 2)
+            if (e.HorizontalChange >= _delta/2)
             {
                 var per = (int)(e.HorizontalChange / _delta) + 1;
                 left = Canvas.GetLeft(tmbToggle) + _delta * per;
                 if (Value < Maximuim - per)
                     Value += per;
                 else
-                    Value = Maximuim;
+                        Value = Maximuim;
 
                 if (left > canvas.ActualWidth - tmbToggle.ActualWidth)
                 {
@@ -36,12 +36,12 @@ namespace Panuon.UI
                     Value = Maximuim;
                 }
             }
-            else if (e.HorizontalChange <= -_delta / 2)
+            else if (e.HorizontalChange <= -_delta/2)
             {
                 var per = (int)(e.HorizontalChange / -_delta) + 1;
 
                 left = Canvas.GetLeft(tmbToggle) - _delta * per;
-                if (Value > Minimuim + per)
+                if(Value > Minimuim + per)
                     Value -= per;
                 else
                     Value = Minimuim;
@@ -105,7 +105,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(PUSlider), new PropertyMetadata(0, OnValuesChanged));
+            DependencyProperty.Register("Value", typeof(int), typeof(PUSlider), new PropertyMetadata(0,OnValuesChanged));
 
         private static void OnValuesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

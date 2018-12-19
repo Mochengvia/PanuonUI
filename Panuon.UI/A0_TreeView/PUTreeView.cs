@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,6 +15,11 @@ namespace Panuon.UI
         static PUTreeView()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUTreeView), new FrameworkPropertyMetadata(typeof(PUTreeView)));
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
         }
 
         #region Event
@@ -31,6 +39,37 @@ namespace Panuon.UI
         #endregion
 
         #region Property
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。",true)]
+        public new IEnumerable ItemsSource
+        {
+            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            private set { SetValue(ItemsSourceProperty, value); }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。请该用ChoosedValuePath属性替代。", true)]
+        public new string SelectedValuePath
+        {
+            get { return base.SelectedValuePath; }
+            private set { base.SelectedValuePath = value; }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [ObsoleteAttribute("该属性对此控件无效。请该用ChoosedValue属性替代。", true)]
+        public new object SelectedValue
+        {
+            get { return base.SelectedValue; }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("该属性对此控件无效。BindingItems属性中的Header属性即为要显示的内容。", true)]
+        public new string DisplayMemberPath
+        {
+            get { return base.DisplayMemberPath; }
+            private set { base.DisplayMemberPath = value; }
+        }
+
         /// <summary>
         /// 获取或设置树视图的基本样式，默认值为General。
         /// </summary>
@@ -43,8 +82,9 @@ namespace Panuon.UI
         public static readonly DependencyProperty TreeViewStyleProperty =
             DependencyProperty.Register("TreeViewStyle", typeof(TreeViewStyles), typeof(PUTreeView), new PropertyMetadata(TreeViewStyles.General));
 
+
         /// <summary>
-        /// 子项目行元素高度，默认值为40。
+        /// 获取或设置子项目的单行元素高度，默认值为40。
         /// </summary>
         public double InnerHeight
         {
@@ -55,7 +95,7 @@ namespace Panuon.UI
             DependencyProperty.Register("InnerHeight", typeof(double), typeof(PUTreeView), new PropertyMetadata((double)40));
 
         /// <summary>
-        /// 鼠标悬浮时遮罩层的背景颜色，默认值为#22666666。
+        /// 获取或设置鼠标悬浮时遮罩层的背景颜色，默认值为#22666666。
         /// </summary>
         public Brush CoverBrush
         {
@@ -77,17 +117,13 @@ namespace Panuon.UI
         public static readonly DependencyProperty ChoosedBrushProperty =
             DependencyProperty.Register("ChoosedBrush", typeof(Brush), typeof(PUTreeView));
 
-
-
-       
-
         /// <summary>
-        /// 请使用本属性获取被选中的元素，而不是SelectedItem。
+        /// 获取被选中的元素。
         /// </summary>
         public PUTreeViewItem ChoosedItem
         {
             get { return (PUTreeViewItem)GetValue(ChoosedItemProperty); }
-            set { SetValue(ChoosedItemProperty, value); }
+            internal set { SetValue(ChoosedItemProperty, value); }
         }
         public static readonly DependencyProperty ChoosedItemProperty =
             DependencyProperty.Register("ChoosedItem", typeof(PUTreeViewItem), typeof(PUTreeView), new PropertyMetadata(OnChoosedItemChanged));
@@ -95,7 +131,7 @@ namespace Panuon.UI
         private static void OnChoosedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var treeView = d as PUTreeView;
-            if (treeView.ChoosedItem == null)
+            if(treeView.ChoosedItem == null)
             {
                 treeView.ChoosedValue = null;
             }
@@ -111,16 +147,18 @@ namespace Panuon.UI
             treeView.OnChoosedItemChanged(e.OldValue as PUTreeViewItem, e.NewValue as PUTreeViewItem);
         }
 
+
         /// <summary>
-        /// 是否需要双击才展开列表，默认为False。
+        /// 获取或设置是否需要展开父项的方式，默认为Click。
         /// </summary>
-        public bool IsExpandDoubleClick
+        public ExpandModes ExpandMode
         {
-            get { return (bool)GetValue(IsExpandDoubleClickProperty); }
-            set { SetValue(IsExpandDoubleClickProperty, value); }
+            get { return (ExpandModes)GetValue(ExpandModeProperty); }
+            set { SetValue(ExpandModeProperty, value); }
         }
-        public static readonly DependencyProperty IsExpandDoubleClickProperty =
-            DependencyProperty.Register("IsExpandDoubleClick", typeof(bool), typeof(PUTreeView), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty ExpandModeProperty =
+            DependencyProperty.Register("ExpandMode", typeof(ExpandModes), typeof(PUTreeView), new PropertyMetadata(ExpandModes.Click));
 
         /// <summary>
         /// 该属性指定了当子项目被选中时，ChoosedValue应呈现子项目的哪一个值。
@@ -134,12 +172,6 @@ namespace Panuon.UI
 
         public static readonly DependencyProperty ChoosedValuePathProperty =
             DependencyProperty.Register("ChoosedValuePath", typeof(ChoosedValuePaths), typeof(PUTreeView), new PropertyMetadata(ChoosedValuePaths.Header));
-
-
-        public enum ChoosedValuePaths
-        {
-            Header, Value
-        }
 
         /// <summary>
         /// 获取被选中PUTreeViewItem的Header或Value属性（这取决于SelectedValuePath），
@@ -158,8 +190,7 @@ namespace Panuon.UI
         private static void OnChoosedValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var treeView = d as PUTreeView;
-
-            if (!treeView.IsLoaded || treeView.ChoosedValue == null)
+            if (treeView.ChoosedValue == null)
                 return;
 
             if (treeView.isInternalSetChoosedValue)
@@ -174,17 +205,14 @@ namespace Panuon.UI
             {
                 if ( !tvi.IsChoosed && !tvi.HasItems)
                     tvi.IsChoosed = true;
-               
             }
-            else if (tvi == null)
+            else
             {
                 if (treeView.ChoosedItem != null)
                 {
                     treeView.ChoosedItem.IsChoosed = false;
-                    treeView.ChoosedItem.IsSelected = false;
                     treeView.ChoosedItem = null;
                 }
-                treeView.ChoosedValue = null;
             }
         }
 
@@ -209,7 +237,7 @@ namespace Panuon.UI
                 treeView.BindingItems.CollectionChanged += treeView.BindingItemChanged;
             }
             treeView.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            if (treeView.ChoosedValue != null)
+            if(treeView.ChoosedValue != null)
             {
                 var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
 
@@ -223,18 +251,36 @@ namespace Panuon.UI
                     if (treeView.ChoosedItem != null)
                     {
                         treeView.ChoosedItem.IsChoosed = false;
-                        treeView.ChoosedItem.IsSelected = false;
                         treeView.ChoosedItem = null;
                     }
                     treeView.ChoosedValue = null;
                 }
             }
         }
+
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             GenerateBindindItems(e);
-        }
+            if (ChoosedValue != null)
+            {
+                var tvi = ChoosedValuePath == ChoosedValuePaths.Header ? GetTreeViewItemByHeader(ChoosedValue) : GetTreeViewItemByValue(ChoosedValue);
 
+                if (tvi != null)
+                {
+                    if (!tvi.IsChoosed && !tvi.HasItems)
+                        tvi.IsChoosed = true;
+                }
+                else if (tvi == null)
+                {
+                    if (ChoosedItem != null)
+                    {
+                        ChoosedItem.IsChoosed = false;
+                        ChoosedItem = null;
+                    }
+                    ChoosedValue = null;
+                }
+            }
+        }
         #endregion
 
         #region APIs
@@ -339,20 +385,22 @@ namespace Panuon.UI
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Reset:
+                    var _choosedValue = ChoosedValue;
                     Items.Clear();
                     if (BindingItems == null)
                         break;
                     foreach (var item in BindingItems)
                     {
-                        var tabItem = GenerateTreeViewItem(item);
-                        Items.Add(tabItem);
+                        var treeViewItem = GenerateTreeViewItem(item);
+                        Items.Add(treeViewItem);
                     }
                     break;
+                    ChoosedValue = _choosedValue;
                 case NotifyCollectionChangedAction.Add:
                     foreach (var item in e.NewItems)
                     {
-                        var tabItem = GenerateTreeViewItem(item as PUTreeViewItemModel);
-                        Items.Insert(e.NewStartingIndex, tabItem);
+                        var treeViewItem = GenerateTreeViewItem(item as PUTreeViewItemModel);
+                        Items.Insert(e.NewStartingIndex, treeViewItem);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -387,9 +435,24 @@ namespace Panuon.UI
                 Value = model.Value,
                 Padding = model.Padding,
             };
+            if (model.ToolTip != null)
+                treeViewItem.ToolTip = model.ToolTip;
 
             foreach (var child in Generate(model.Items))
             {
+                if (ChoosedValue != null)
+                {
+                    if (ChoosedValuePath == ChoosedValuePaths.Header && treeViewItem.Header != null && child.Header.Equals(ChoosedValuePath))
+                    {
+                        treeViewItem.IsSelected = true;
+                        treeViewItem.IsChoosed = true;
+                    }
+                    else if (ChoosedValuePath == ChoosedValuePaths.Value && treeViewItem.Value != null && child.Value.Equals(ChoosedValuePath))
+                    {
+                        treeViewItem.IsSelected = true;
+                        treeViewItem.IsChoosed = true;
+                    }
+                }
                 treeViewItem.Items.Add(child);
             }
 
@@ -398,38 +461,55 @@ namespace Panuon.UI
                 treeViewItem.Header = model.Header;
                 treeViewItem.Value = model.Value;
                 treeViewItem.Padding = model.Padding;
+                if (model.ToolTip != null)
+                    treeViewItem.ToolTip = model.ToolTip;
+
                 treeViewItem.Items.Clear();
                 foreach (var child in Generate(model.Items))
                 {
+                    if (ChoosedValue != null)
+                    {
+                        if (ChoosedValuePath == ChoosedValuePaths.Header && treeViewItem.Header != null && child.Header.Equals(ChoosedValuePath))
+                        {
+                            treeViewItem.IsSelected = true;
+                            treeViewItem.IsChoosed = true;
+                        }
+                        else if (ChoosedValuePath == ChoosedValuePaths.Value && treeViewItem.Value != null && child.Value.Equals(ChoosedValuePath))
+                        {
+                            treeViewItem.IsSelected = true;
+                            treeViewItem.IsChoosed = true;
+                        }
+                    }
                     treeViewItem.Items.Add(child);
                 }
             };
             return treeViewItem;
         }
 
-        private IList<PUTreeViewItem> Generate(IList<PUTreeViewItemModel> models)
+        private IEnumerable<PUTreeViewItem> Generate(IList<PUTreeViewItemModel> models)
         {
             if (models == null || models.Count == 0)
-                return new List<PUTreeViewItem>();
+                yield break;
 
-            var itemList = new List<PUTreeViewItem>();
-            foreach (var model in models)
+            foreach(var model in models)
             {
-                var item = new UI.PUTreeViewItem()
+               var item = new UI.PUTreeViewItem()
                 {
                     Uid = model.Uid,
                     Header = model.Header,
                     Value = model.Value,
                     Padding = model.Padding,
                 };
-                foreach (var child in Generate(model.Items))
+                if (model.ToolTip != null)
+                    item.ToolTip = model.ToolTip;
+
+                foreach(var child in Generate(model.Items))
                 {
                     item.Items.Add(child);
                 }
-                itemList.Add(item);
+                yield return item;
             }
 
-            return itemList;
         }
         #endregion
 

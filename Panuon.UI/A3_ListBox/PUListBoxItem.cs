@@ -13,7 +13,7 @@ namespace Panuon.UI
 
         #region RoutedEvent
         /// <summary>
-        /// 被搜索到事件。
+        /// 当子项被搜索到时，触发此事件。
         /// </summary>
         public static readonly RoutedEvent SearchedEvent = EventManager.RegisterRoutedEvent("Searched", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<PUListBoxItem>), typeof(PUListBoxItem));
         public event RoutedPropertyChangedEventHandler<PUListBoxItem> Searched

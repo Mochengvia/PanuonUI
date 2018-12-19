@@ -18,73 +18,82 @@
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
     <local:RingProgressBarConverter x:Key="RingProgressBarConverter"></local:RingProgressBarConverter>
     <local:MarginToWidthConverter x:Key="MarginToWidthConverter"></local:MarginToWidthConverter>
-    
+    <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
+
     <Style TargetType="{x:Type local:PUResizeGrid}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PUResizeGrid}">
                     <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
                         <Grid>
-                            <local:ResizeThumb Height="2"
+                            <local:ResizeThumb Height="5"
                                                Cursor="SizeNS"
                                                BorderBrush="Transparent"
-                                               BorderThickness="2"
-                                               Margin="0 -2 0 0"
+                                               BorderThickness="5"
+                                               Margin="0 -5 0 0"
                                                VerticalAlignment="Top"
-                                               HorizontalAlignment="Stretch" />
-                            <local:ResizeThumb Width="2"
+                                               HorizontalAlignment="Stretch"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                            <local:ResizeThumb Width="5"
                                                Cursor="SizeWE"
-                                               Margin="-2 0 0 0"
+                                               Margin="-5 0 0 0"
                                                BorderBrush="Transparent"
-                                               BorderThickness="2"
+                                               BorderThickness="5"
                                                VerticalAlignment="Stretch"
-                                               HorizontalAlignment="Left" />
-                            <local:ResizeThumb Width="2"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Width="5"
                                                Cursor="SizeWE"
-                                               Margin="0 0 -2 0"
+                                               Margin="0 0 -5 0"
                                                BorderBrush="Transparent"
-                                               BorderThickness="2"
+                                               BorderThickness="5"
                                                VerticalAlignment="Stretch"
-                                               HorizontalAlignment="Right" />
-                            <local:ResizeThumb Height="2"
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Height="5"
                                                Cursor="SizeNS"
-                                               Margin="0 0 0 -2"
+                                               Margin="0 0 0 -5"
                                                BorderBrush="Transparent"
-                                               BorderThickness="2"
+                                               BorderThickness="5"
                                                VerticalAlignment="Bottom"
-                                               HorizontalAlignment="Stretch" />
-                            <local:ResizeThumb Width="4"
-                                               Height="4"
+                                               HorizontalAlignment="Stretch"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Width="5"
+                                               Height="5"
                                                Cursor="SizeNWSE"
-                                               Margin="-2 -2 0 0"
+                                               Margin="-5 -5 0 0"
                                                BorderBrush="Transparent"
-                                               BorderThickness="4"
+                                               BorderThickness="5"
                                                VerticalAlignment="Top"
-                                               HorizontalAlignment="Left" />
-                            <local:ResizeThumb Width="4"
-                                               Height="4"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Width="5"
+                                               Height="5"
                                                Cursor="SizeNESW"
-                                               Margin="0 -2 -2 0"
+                                               Margin="0 -5 -5 0"
                                                BorderBrush="Transparent"
-                                               BorderThickness="4"
+                                               BorderThickness="5"
                                                VerticalAlignment="Top"
-                                               HorizontalAlignment="Right" />
-                            <local:ResizeThumb Width="4"
-                                               Height="4"
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Width="5"
+                                               Height="5"
                                                Cursor="SizeNESW"
-                                               Margin="-2 0 0 -2"
+                                               Margin="-5 0 0 -5"
                                                BorderBrush="Transparent"
-                                               BorderThickness="4"
+                                               BorderThickness="5"
                                                VerticalAlignment="Bottom"
-                                               HorizontalAlignment="Left" />
-                            <local:ResizeThumb Width="4"
-                                               Height="4"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <local:ResizeThumb Width="5"
+                                               Height="5"
                                                Cursor="SizeNWSE"
-                                               Margin="0 0 -2 -2"
+                                               Margin="0 0 -5 -5"
                                                BorderBrush="Transparent"
-                                               BorderThickness="4"
+                                               BorderThickness="5"
                                                VerticalAlignment="Bottom"
-                                               HorizontalAlignment="Right" />
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{Binding IsSquare,RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         </Grid>
                         <ContentPresenter Content="{TemplateBinding Content}" />
                     </Grid>
@@ -1224,8 +1233,8 @@
         <Style.Triggers>
             <Trigger Property="ButtonStyle"
                      Value="General">
-                <Setter Property="CoverBrush" 
-                        Value="#26FFFFFF"/>
+                <Setter Property="CoverBrush"
+                        Value="#26FFFFFF" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
@@ -2080,7 +2089,7 @@
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}"></Setter>
         <Setter Property="ShadowColor"
-                Value="#66888888" />
+                Value="#888888" />
         <Setter Property="Height"
                 Value="30" />
         <Style.Triggers>
@@ -2135,7 +2144,7 @@
                                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                     Opacity="0.6" />
-                                        <local:PUButton x:Name="btnClear" 
+                                        <local:PUButton x:Name="btnClear"
                                                         ButtonStyle="Link"
                                                         Visibility="Collapsed"
                                                         Opacity="0"
@@ -2146,7 +2155,7 @@
                                                         CoverBrush="{TemplateBinding Foreground}"
                                                         FontSize="16"
                                                         VerticalAlignment="Center"
-                                                        HorizontalAlignment="Right"/>
+                                                        HorizontalAlignment="Right" />
                                     </Grid>
                                 </Border>
                             </Grid>
@@ -2232,10 +2241,8 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <Label Width="{Binding IconWidth,RelativeSource={RelativeSource AncestorType=TextBox}}"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Left"
-                                               VerticalContentAlignment="Center"
                                                HorizontalContentAlignment="Center"
+                                               VerticalContentAlignment="Center"
                                                Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TextBox}}"
                                                Foreground="{TemplateBinding Foreground}"
                                                FontFamily="{DynamicResource IconFont}"></Label>
@@ -2341,313 +2348,6 @@
 
         </Style.Triggers>
     </Style>
-
-    <Style TargetType="{x:Type local:PUComboBox}">
-        <Setter Property="Foreground"
-                Value="DimGray"></Setter>
-        <Setter Property="Background"
-                Value="White"></Setter>
-        <Setter Property="BorderBrush"
-                Value="LightGray"></Setter>
-        <Setter Property="BorderThickness"
-                Value="1"></Setter>
-        <Setter Property="VerticalContentAlignment"
-                Value="Center"></Setter>
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left"></Setter>
-        <Setter Property="Padding"
-                Value="5,0,0,0"></Setter>
-        <Setter Property="UseLayoutRounding"
-                Value="True"></Setter>
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}"></Setter>
-        <Setter Property="FontSize"
-                Value="14">
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUComboBox}">
-                    <Border x:Name="bdrMain"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
-                        <Grid>
-                            <ContentPresenter HorizontalAlignment="Left"
-                                              Margin="{TemplateBinding Padding}"
-                                              x:Name="ContentSite"
-                                              VerticalAlignment="Center"
-                                              Content="{TemplateBinding SelectionBoxItem}"
-                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                              IsHitTestVisible="False"
-                                              Opacity="0.8" />
-                            <ToggleButton x:Name="ToggleButton"
-                                          Focusable="false"
-                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ClickMode="Press"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          Background="Transparent"
-                                          BorderBrush="Transparent"
-                                          BorderThickness="0">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Grid Background="Transparent">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="30" />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Path x:Name="arrow1"
-                                                              Opacity="1"
-                                                              VerticalAlignment="Center"
-                                                              Grid.Column="1"
-                                                              HorizontalAlignment="Center"
-                                                              Data="M5,4 H14 L9.5,10 Z"
-                                                              Width="15"
-                                                              Height="15"
-                                                              Fill="{TemplateBinding Foreground}"
-                                                              RenderTransformOrigin="0.5,0.5" />
-                                                        <Path x:Name="arrow2"
-                                                              Opacity="0"
-                                                              VerticalAlignment="Center"
-                                                              Grid.Column="1"
-                                                              HorizontalAlignment="Center"
-                                                              Data="M5,10 H14 L9.5,4.5 Z"
-                                                              Width="15"
-                                                              Height="15"
-                                                              Fill="{TemplateBinding Foreground}"
-                                                              RenderTransformOrigin="0.5,0.5" />
-                                                    </Grid>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="IsChecked"
-                                                                 Value="True">
-                                                            <Trigger.EnterActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="arrow1"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="0"
-                                                                                         Duration="0:0:0.2"></DoubleAnimation>
-                                                                        <DoubleAnimation Storyboard.TargetName="arrow2"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="1"
-                                                                                         Duration="0:0:0.2"></DoubleAnimation>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.EnterActions>
-                                                            <Trigger.ExitActions>
-                                                                <BeginStoryboard>
-                                                                    <Storyboard>
-                                                                        <DoubleAnimation Storyboard.TargetName="arrow1"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="1"
-                                                                                         Duration="0:0:0.2"></DoubleAnimation>
-                                                                        <DoubleAnimation Storyboard.TargetName="arrow2"
-                                                                                         Storyboard.TargetProperty="Opacity"
-                                                                                         To="0"
-                                                                                         Duration="0:0:0.2"></DoubleAnimation>
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.ExitActions>
-                                                        </Trigger>
-
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
-                            <local:PUTextBox Visibility="Hidden"
-                                             BorderThickness="0"
-                                             Margin="2,0,25,0"
-                                             Padding="2,0,0,0"
-                                             x:Name="PART_EditableTextBox"
-                                             VerticalAlignment="Center"
-                                             Focusable="True"
-                                             Background="Transparent"
-                                             BorderBrush="{TemplateBinding BorderBrush}"
-                                             Foreground="{TemplateBinding Foreground}"
-                                             IsReadOnly="{TemplateBinding IsReadOnly}" />
-                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
-                                   Placement="Bottom"
-                                   x:Name="Popup"
-                                   Focusable="False"
-                                   AllowsTransparency="True"
-                                   PopupAnimation="Slide">
-                                <Grid MaxHeight="180"
-                                      MinWidth="{TemplateBinding ActualWidth}"
-                                      x:Name="DropDown">
-                                    <Border x:Name="DropDownBorder"
-                                            Margin="0,0,0,10"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="1"
-                                            CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
-                                        <Border.Effect>
-                                            <DropShadowEffect ShadowDepth="0"
-                                                              BlurRadius="10"
-                                                              Opacity="1"
-                                                              Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ComboBox}}"></DropShadowEffect>
-                                        </Border.Effect>
-                                    </Border>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <local:PUTextBox x:Name="tbSearch"
-                                                         Height="30"
-                                                         Padding="5,0,0,0"
-                                                         Tag="Search"
-                                                         IsClearButtonShow="True"
-                                                         BorderBrush="Transparent"
-                                                         BorderThickness="0"
-                                                         ShadowColor="Transparent"
-                                                         Foreground="{TemplateBinding Foreground}"
-                                                         Watermark="  搜 索"
-                                                         FontFamily="{DynamicResource IconFont}"
-                                                         Margin="1,5,1,0"/>
-                                        <ScrollViewer Grid.Row="1"
-                                                      VerticalScrollBarVisibility="Auto"
-                                                      HorizontalScrollBarVisibility="Auto"
-                                                      Style="{StaticResource MiniScrollViewer}"
-                                                      Margin="1,5,1,15"
-                                                      MaxHeight="250">
-                                            <StackPanel IsItemsHost="True"
-                                                        KeyboardNavigation.DirectionalNavigation="Contained"
-                                                        Orientation="Vertical">
-                                            </StackPanel>
-                                        </ScrollViewer>
-                                        <local:PUButton x:Name="btnClear"
-                                                        Grid.Row="1"
-                                                        ButtonStyle="Link"
-                                                        Visibility="Collapsed"
-                                                        Content="×"
-                                                        Tag="Clear"
-                                                        Margin="0,0,3,0"
-                                                        Foreground="{TemplateBinding Foreground}"
-                                                        CoverBrush="{TemplateBinding Foreground}"
-                                                        FontSize="16"
-                                                        VerticalAlignment="Center"
-                                                        HorizontalAlignment="Right" />
-                                    </Grid>
-                                </Grid>
-                            </Popup>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="SearchMode"
-                                     Value="None">
-                            <Setter TargetName="tbSearch"
-                                    Property="Visibility"
-                                    Value="Collapsed" />
-                        </Trigger>
-                        <Trigger Property="IsEditable"
-                                 Value="True">
-                            <Setter TargetName="PART_EditableTextBox"
-                                    Property="Visibility"
-                                    Value="Visible"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver"
-                                 Value="True">
-                            <Setter TargetName="ContentSite"
-                                    Property="Opacity"
-                                    Value="0.9"></Setter>
-                        </Trigger>
-                        <Trigger Property="IsFocused"
-                                 Value="True">
-                            <Setter TargetName="ContentSite"
-                                    Property="Opacity"
-                                    Value="1"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="{x:Type local:PUComboBoxItem}">
-        <Setter Property="Foreground"
-                Value="DimGray"></Setter>
-        <Setter Property="Background"
-                Value="White"></Setter>
-        <Setter Property="VerticalContentAlignment"
-                Value="Center"></Setter>
-        <Setter Property="HorizontalContentAlignment"
-                Value="Left"></Setter>
-        <Setter Property="Padding"
-                Value="10,0,0,0"></Setter>
-        <Setter Property="UseLayoutRounding"
-                Value="True"></Setter>
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}"></Setter>
-        <Setter Property="FontSize"
-                Value="14">
-        </Setter>
-        <Setter Property="MinHeight"
-                Value="35"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUComboBoxItem}">
-                    <Grid Height="{TemplateBinding Height}"
-                          Width="{TemplateBinding Width}">
-                        <Border x:Name="bdrMain"
-                                Background="Transparent" />
-                        <ContentPresenter Margin="{TemplateBinding Padding}"
-                                   VerticalAlignment="Center"
-                                   x:Name="txtContent"
-                                   Opacity="0.8"
-                                   ContentSource="Content" />
-                        <local:PUButton x:Name="btnDelete"
-                                        ButtonStyle="Link"
-                                        Opacity="0.7"
-                                        Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
-                                        CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
-                                        Width="35"
-                                        Cursor="Arrow"
-                                        Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                        CoverBrush="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                        Visibility="{Binding DeleteButtonVisibility,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
-                                        VerticalAlignment="Top"
-                                        HorizontalAlignment="Right"
-                                        VerticalContentAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        FontSize="20"
-                                        Content="×"></local:PUButton>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected"
-                                 Value="true">
-                            <Setter TargetName="bdrMain"
-                                    Property="Background"
-                                    Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
-                            <Setter TargetName="txtContent"
-                                    Property="Opacity"
-                                    Value="1" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected"
-                                           Value="false" />
-                                <Condition Property="IsMouseOver"
-                                           Value="true" />
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="bdrMain"
-                                    Property="Background"
-                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
-                            <Setter TargetName="txtContent"
-                                    Property="Opacity"
-                                    Value="0.7" />
-                        </MultiTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style TargetType="{x:Type local:PUPasswordBox}">
         <Setter Property="AcceptsReturn"
                 Value="False"></Setter>
@@ -2929,6 +2629,331 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:PUComboBox}">
+        <Setter Property="Foreground"
+                Value="DimGray"></Setter>
+        <Setter Property="Background"
+                Value="White"></Setter>
+        <Setter Property="BorderBrush"
+                Value="LightGray"></Setter>
+        <Setter Property="BorderThickness"
+                Value="1"></Setter>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left"></Setter>
+        <Setter Property="Padding"
+                Value="5,0,0,0"></Setter>
+        <Setter Property="UseLayoutRounding"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="Opacity"
+                Value="0.8" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUComboBox}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="EditStates">
+                                <VisualState x:Name="Editable">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="PART_EditableTextBox">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="ContentSite">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Uneditable" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="bdrMain"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
+                        </Border>
+                        <ContentPresenter HorizontalAlignment="Left"
+                                          Margin="{TemplateBinding Padding}"
+                                          x:Name="ContentSite"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          IsHitTestVisible="False"
+                                          Opacity="0.8" />
+                        <ToggleButton x:Name="ToggleButton"
+                                      Focusable="false"
+                                      IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      ClickMode="Press"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      Background="Transparent"
+                                      BorderBrush="Transparent"
+                                      BorderThickness="0">
+                            <ToggleButton.Style>
+                                <Style TargetType="ToggleButton">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid Background="Transparent">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="30" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Path x:Name="arrow1"
+                                                          Opacity="1"
+                                                          VerticalAlignment="Center"
+                                                          Grid.Column="1"
+                                                          HorizontalAlignment="Center"
+                                                          Data="M5,4 H14 L9.5,10 Z"
+                                                          Width="15"
+                                                          Height="15"
+                                                          Fill="{TemplateBinding Foreground}"
+                                                          RenderTransformOrigin="0.5,0.5" />
+                                                    <Path x:Name="arrow2"
+                                                          Opacity="0"
+                                                          VerticalAlignment="Center"
+                                                          Grid.Column="1"
+                                                          HorizontalAlignment="Center"
+                                                          Data="M5,10 H14 L9.5,4.5 Z"
+                                                          Width="15"
+                                                          Height="15"
+                                                          Fill="{TemplateBinding Foreground}"
+                                                          RenderTransformOrigin="0.5,0.5" />
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsChecked"
+                                                             Value="True">
+                                                        <Trigger.EnterActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                                     Storyboard.TargetProperty="Opacity"
+                                                                                     To="0"
+                                                                                     Duration="0:0:0.2"></DoubleAnimation>
+                                                                    <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                                     Storyboard.TargetProperty="Opacity"
+                                                                                     To="1"
+                                                                                     Duration="0:0:0.2"></DoubleAnimation>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </Trigger.EnterActions>
+                                                        <Trigger.ExitActions>
+                                                            <BeginStoryboard>
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Storyboard.TargetName="arrow1"
+                                                                                     Storyboard.TargetProperty="Opacity"
+                                                                                     To="1"
+                                                                                     Duration="0:0:0.2"></DoubleAnimation>
+                                                                    <DoubleAnimation Storyboard.TargetName="arrow2"
+                                                                                     Storyboard.TargetProperty="Opacity"
+                                                                                     To="0"
+                                                                                     Duration="0:0:0.2"></DoubleAnimation>
+                                                                </Storyboard>
+                                                            </BeginStoryboard>
+                                                        </Trigger.ExitActions>
+                                                    </Trigger>
+
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <local:PUTextBox BorderThickness="0"
+                                         Margin="0,0,25,0"
+                                         Padding="{TemplateBinding Padding}"
+                                         x:Name="PART_EditableTextBox"
+                                         VerticalAlignment="Center"
+                                         Focusable="True"
+                                         Visibility="Hidden"
+                                         Background="Transparent"
+                                         BorderBrush="Transparent"
+                                         ShadowColor="Transparent"
+                                         Foreground="{TemplateBinding Foreground}"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}" />
+                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                               Placement="Bottom"
+                               x:Name="Popup"
+                               Focusable="False"
+                               AllowsTransparency="True"
+                               PopupAnimation="Slide">
+                            <Grid MaxHeight="180"
+                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  x:Name="DropDown">
+                                <Border x:Name="DropDownBorder"
+                                        Margin="0,0,0,10"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0"
+                                                          BlurRadius="10"
+                                                          Opacity="1"
+                                                          Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=ComboBox}}"></DropShadowEffect>
+                                    </Border.Effect>
+                                </Border>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <local:PUTextBox x:Name="tbSearch"
+                                                     Height="30"
+                                                     Padding="5,0,0,0"
+                                                     Tag="Search"
+                                                     Visibility="{Binding SearchBoxVisibility,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                                     IsClearButtonShow="True"
+                                                     BorderBrush="Transparent"
+                                                     BorderThickness="0"
+                                                     ShadowColor="Transparent"
+                                                     Foreground="{TemplateBinding Foreground}"
+                                                     Watermark="  搜 索"
+                                                     FontFamily="{DynamicResource IconFont}"
+                                                     Margin="1,5,1,0" />
+                                    <ScrollViewer Grid.Row="1"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                  Style="{DynamicResource MiniScrollViewer}"
+                                                  Margin="1,5,1,15"
+                                                  MaxHeight="250">
+                                        <VirtualizingStackPanel IsItemsHost="True"
+                                                                VirtualizationMode="Recycling"
+                                                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                                                Orientation="Vertical">
+                                        </VirtualizingStackPanel>
+                                    </ScrollViewer>
+                                    <local:PUButton x:Name="btnClear"
+                                                    Grid.Row="1"
+                                                    ButtonStyle="Link"
+                                                    Visibility="Collapsed"
+                                                    Content="×"
+                                                    Tag="Clear"
+                                                    Margin="0,0,3,0"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    CoverBrush="{TemplateBinding Foreground}"
+                                                    FontSize="16"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Right" />
+                                </Grid>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Opacity"
+                                    Value="1"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="False">
+                            <Setter Property="Opacity"
+                                    Value="0.9"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsFocused"
+                                 Value="True">
+                            <Setter Property="Opacity"
+                                    Value="1"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:PUComboBoxItem}">
+        <Setter Property="Background"
+                Value="White"></Setter>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left"></Setter>
+        <Setter Property="Padding"
+                Value="5,0,0,0"></Setter>
+        <Setter Property="UseLayoutRounding"
+                Value="True"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
+        <Setter Property="FontSize"
+                Value="14">
+        </Setter>
+        <Setter Property="MinHeight"
+                Value="35"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUComboBoxItem}">
+                    <Grid Height="{TemplateBinding Height}"
+                          Width="{TemplateBinding Width}">
+                        <Border x:Name="bdrMain"
+                                Background="Transparent" />
+                        <Label Margin="{TemplateBinding Padding}"
+                               VerticalAlignment="Center"
+                               x:Name="txtContent"
+                               Opacity="0.8"
+                               Content="{TemplateBinding Content}"
+                               Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                               FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                        <local:PUButton x:Name="btnDelete"
+                                        ButtonStyle="Link"
+                                        Opacity="0.7"
+                                        Command="{Binding DeleteCommand,RelativeSource={RelativeSource AncestorType=ComboBoxItem}}"
+                                        CommandParameter="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}}"
+                                        Width="35"
+                                        Cursor="Arrow"
+                                        Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        CoverBrush="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Right"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        FontSize="20"
+                                        Content="×"></local:PUButton>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CanDelete"
+                                 Value="False">
+                            <Setter TargetName="btnDelete"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsSelected"
+                                 Value="true">
+                            <Setter TargetName="bdrMain"
+                                    Property="Background"
+                                    Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                            <Setter TargetName="txtContent"
+                                    Property="Opacity"
+                                    Value="1" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected"
+                                           Value="false" />
+                                <Condition Property="IsMouseOver"
+                                           Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="bdrMain"
+                                    Property="Background"
+                                    Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                            <Setter TargetName="txtContent"
+                                    Property="Opacity"
+                                    Value="0.7" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="{x:Type local:PUCheckBox}">
@@ -3219,17 +3244,17 @@
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=CheckBox}}"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}">
-                                        <Border x:Name="bdrInner"
-                                                BorderThickness="0"
-                                                Background="White"
-                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}"
-                                                RenderTransformOrigin="0.5,0.5">
-                                            <Border.RenderTransform>
-                                                <ScaleTransform x:Name="scale"
-                                                                ScaleX="1"
-                                                                ScaleY="1"></ScaleTransform>
-                                            </Border.RenderTransform>
-                                        </Border>
+                                    </Border>
+                                    <Border x:Name="bdrInner"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="White"
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}"
+                                            RenderTransformOrigin="0.5,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform x:Name="scale"
+                                                            ScaleX="1"
+                                                            ScaleY="1"></ScaleTransform>
+                                        </Border.RenderTransform>
                                     </Border>
                                     <Border HorizontalAlignment="Right"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=CheckBox},Converter={StaticResource ToHalfConverter}}"
@@ -3492,6 +3517,8 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUCheckBox}">
                             <Grid x:Name="GrdMain"
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}"
                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
                                 <Border BorderBrush="{TemplateBinding BorderBrush}"
@@ -3887,17 +3914,17 @@
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=RadioButton}}"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}">
-                                        <Border x:Name="bdrInner"
-                                                BorderThickness="0"
-                                                Background="White"
-                                                CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}"
-                                                RenderTransformOrigin="0.5,0.5">
-                                            <Border.RenderTransform>
-                                                <ScaleTransform x:Name="scale"
-                                                                ScaleX="1"
-                                                                ScaleY="1"></ScaleTransform>
-                                            </Border.RenderTransform>
-                                        </Border>
+                                    </Border>
+                                    <Border x:Name="bdrInner"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="White"
+                                            CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}"
+                                            RenderTransformOrigin="0.5,0.5">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform x:Name="scale"
+                                                            ScaleX="1"
+                                                            ScaleY="1"></ScaleTransform>
+                                        </Border.RenderTransform>
                                     </Border>
                                     <Border HorizontalAlignment="Right"
                                             CornerRadius="{Binding InnerHeight,RelativeSource={RelativeSource AncestorType=RadioButton},Converter={StaticResource ToHalfConverter}}"
@@ -4320,6 +4347,12 @@
                                                     </Grid>
                                                 </ToggleButton.Content>
                                             </ToggleButton>
+                                            <Label x:Name="lblIcon"
+                                                   Margin="3,0"
+                                                   Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                                   FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TreeView},Converter={StaticResource IconFontSizeConverter}}"
+                                                   FontFamily="{DynamicResource IconFont}"
+                                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView}}" />
                                             <Grid>
                                                 <Label x:Name="content"
                                                        Margin="5,0,0,0"
@@ -4418,6 +4451,12 @@
                                             Property="Opacity"
                                             Value="1" />
                                 </Trigger>
+                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                             Value="">
+                                    <Setter TargetName="lblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -4485,6 +4524,12 @@
                                                     </Grid>
                                                 </ToggleButton.Content>
                                             </ToggleButton>
+                                            <Label x:Name="lblIcon"
+                                                   Margin="3,0"
+                                                   Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                                   FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TreeView},Converter={StaticResource IconFontSizeConverter}}"
+                                                   FontFamily="{DynamicResource IconFont}"
+                                                   Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=TreeView}}" />
                                             <Grid>
                                                 <Label x:Name="content"
                                                        Margin="2,0,0,0"
@@ -4555,6 +4600,12 @@
                                             TargetName="content"
                                             Value="{Binding ChoosedBrush,RelativeSource={RelativeSource AncestorType=TreeView}}" />
                                 </Trigger>
+                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="lblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -4563,6 +4614,8 @@
         </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type local:PUTreeView}">
+        <Setter Property="Foreground"
+                Value="#696969" />
         <Setter Property="BorderThickness"
                 Value="0"></Setter>
         <Setter Property="CoverBrush"
@@ -4571,8 +4624,6 @@
                 Value="#22666666"></Setter>
         <Setter Property="InnerHeight"
                 Value="40"></Setter>
-        <Setter Property="Foreground"
-                Value="#696969" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -4582,10 +4633,11 @@
                             Width="{TemplateBinding Width}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto"
                                       HorizontalScrollBarVisibility="Disabled"
-                                      Height="{TemplateBinding Height}"
-                                      Width="{TemplateBinding Width}"
+VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"
                                       Style="{StaticResource MiniScrollViewer}">
                             <VirtualizingStackPanel Margin="0,0,0,0"
+                                                    VirtualizationMode="Recycling"
                                                     IsItemsHost="True">
                             </VirtualizingStackPanel>
                         </ScrollViewer>
@@ -4612,13 +4664,13 @@
         <Setter Property="CoverBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Foreground"
-                Value="#FFAAAAAA"></Setter>
+                Value="#AAAAAA"></Setter>
         <Setter Property="FontSize"
                 Value="12"></Setter>
         <Style.Triggers>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="Direction"
+                    <Condition Property="ProgressDirection"
                                Value="LeftToRight" />
                     <Condition Property="ProgressBarStyle"
                                Value="General" />
@@ -4639,14 +4691,14 @@
                                             <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
-                                                <Binding Path="Direction"
+                                                <Binding Path="ProgressDirection"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                             </MultiBinding>
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
 
-                                <Label x:Name="lblContent" 
+                                <Label x:Name="lblContent"
                                        Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -4666,11 +4718,10 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="Direction"
+                    <Condition Property="ProgressDirection"
                                Value="RightToLeft" />
                     <Condition Property="ProgressBarStyle"
                                Value="General" />
@@ -4691,14 +4742,15 @@
                                             <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
-                                                <Binding Path="Direction"
+                                                <Binding Path="ProgressDirection"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                             </MultiBinding>
                                         </Border.CornerRadius>
                                     </Border>
 
                                 </Border>
-                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent"
+                                       Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
@@ -4719,7 +4771,7 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="Direction"
+                    <Condition Property="ProgressDirection"
                                Value="BottomToTop" />
                     <Condition Property="ProgressBarStyle"
                                Value="General" />
@@ -4742,13 +4794,14 @@
                                             <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
-                                                <Binding Path="Direction"
+                                                <Binding Path="ProgressDirection"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                             </MultiBinding>
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
-                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent"
+                                       Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
@@ -4769,7 +4822,7 @@
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="Direction"
+                    <Condition Property="ProgressDirection"
                                Value="TopToBottom" />
                     <Condition Property="ProgressBarStyle"
                                Value="General" />
@@ -4792,13 +4845,14 @@
                                             <MultiBinding Converter="{StaticResource GeneralProgressBarConverter}">
                                                 <Binding Path="BorderCornerRadius"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
-                                                <Binding Path="Direction"
+                                                <Binding Path="ProgressDirection"
                                                          RelativeSource="{RelativeSource AncestorType=Control}"></Binding>
                                             </MultiBinding>
                                         </Border.CornerRadius>
                                     </Border>
                                 </Border>
-                                <Label x:Name="lblContent" Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
+                                <Label x:Name="lblContent"
+                                       Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"
@@ -4824,7 +4878,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUProgressBar}">
-                            <Grid>
+                            <Grid Background="{TemplateBinding Background}"
+                                  Height="{TemplateBinding Height}"
+                                  Width="{TemplateBinding Width}">
                                 <Path StrokeStartLineCap="Round"
                                       StrokeEndLineCap="Round"
                                       Stroke="{TemplateBinding BorderBrush}"
@@ -4840,8 +4896,7 @@
                                         </MultiBinding>
                                     </Path.Data>
                                 </Path>
-                                <Path
-                                      StrokeStartLineCap="Round"
+                                <Path StrokeStartLineCap="Round"
                                       StrokeEndLineCap="Round"
                                       Stroke="{TemplateBinding CoverBrush}"
                                       StrokeThickness="{Binding StrokeThickness,RelativeSource={RelativeSource AncestorType=Control} }">
@@ -4858,7 +4913,7 @@
                                         </MultiBinding>
                                     </Path.Data>
                                 </Path>
-                                <Label x:Name="lblContent" 
+                                <Label x:Name="lblContent"
                                        Content="{Binding PercentString,RelativeSource={RelativeSource AncestorType=Control}}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -4889,7 +4944,7 @@
                 Value="LightGray"></Setter>
         <Setter Property="Foreground"
                 Value="DimGray"></Setter>
-        <Setter Property="CoverBrush"
+        <Setter Property="SelectedBrush"
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
                 Value="Transparent"></Setter>
@@ -4928,10 +4983,11 @@
                                               Margin="0,0,0,1"
                                               VerticalAlignment="Stretch"
                                               HorizontalAlignment="Stretch">
-                                    <StackPanel Orientation="Horizontal">
+                                    <VirtualizingStackPanel Orientation="Horizontal"
+                                                            VirtualizationMode="Recycling">
                                         <TabPanel x:Name="HeaderPanel"
                                                   IsItemsHost="True"></TabPanel>
-                                    </StackPanel>
+                                    </VirtualizingStackPanel>
                                 </ScrollViewer>
                                 <Border BorderThickness="0,0,0,1"
                                         Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
@@ -5034,24 +5090,24 @@
                                             Value="0,0,0,3"></Setter>
                                     <Setter TargetName="lblIcon"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
                                     <Setter TargetName="lblContent"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
                                     <Setter TargetName="bdrSelected"
                                             Property="BorderBrush"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
                                     <Setter TargetName="btnDelete"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
                                     </Setter>
                                     <Setter TargetName="btnDelete"
                                             Property="CoverBrush"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
                                     </Setter>
                                 </Trigger>
-                                <Trigger Property="DeleteButtonVisibility"
-                                         Value="Visible">
+                                <Trigger Property="CanDelete"
+                                         Value="True">
                                     <Setter TargetName="btnDelete"
                                             Property="Visibility"
                                             Value="Visible"></Setter>
@@ -5118,21 +5174,21 @@
                                             Value="1,1,1,0"></Setter>
                                     <Setter TargetName="lblIcon"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
                                     <Setter TargetName="lblContent"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
                                     <Setter TargetName="btnDelete"
                                             Property="Foreground"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
                                     </Setter>
                                     <Setter TargetName="btnDelete"
                                             Property="CoverBrush"
-                                            Value="{Binding CoverBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
+                                            Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}">
                                     </Setter>
                                 </Trigger>
-                                <Trigger Property="DeleteButtonVisibility"
-                                         Value="Visible">
+                                <Trigger Property="CanDelete"
+                                         Value="True">
                                     <Setter TargetName="btnDelete"
                                             Property="Visibility"
                                             Value="Visible"></Setter>
@@ -5147,7 +5203,6 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-
 
     <Style TargetType="{x:Type local:PUListBox}">
         <Setter Property="BorderThickness"
@@ -5178,8 +5233,9 @@
                         </Border>
                         <ScrollViewer Margin="0"
                                       Focusable="false">
-                            <StackPanel Margin="2"
-                                        IsItemsHost="True" />
+                            <VirtualizingStackPanel Margin="2"
+                                                    VirtualizationMode="Recycling"
+                                                    IsItemsHost="True" />
                         </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
@@ -5378,9 +5434,10 @@
                         <ScrollViewer CanContentScroll="True"
                                       Margin="0,3"
                                       Style="{StaticResource MiniScrollViewer}">
-                            <StackPanel ClipToBounds="True"
-                                        Orientation="Vertical"
-                                        IsItemsHost="True" />
+                            <VirtualizingStackPanel ClipToBounds="True"
+                                                    VirtualizationMode="Recycling"
+                                                    Orientation="Vertical"
+                                                    IsItemsHost="True" />
                         </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
@@ -5511,7 +5568,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
     <Style TargetType="{x:Type local:PUSplitLine}">
         <Setter Property="BorderBrush"
                 Value="{StaticResource Theme}"></Setter>
@@ -5530,7 +5586,7 @@
                             <Border Height="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Width="{TemplateBinding Width}"
                                     Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
-                                    Margin="{TemplateBinding Margin}">
+                                    Margin="{TemplateBinding Padding}">
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -5549,7 +5605,7 @@
                             <Border Height="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Width="{TemplateBinding Width}"
                                     Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
-                                    Margin="{TemplateBinding Margin}">
+                                    Margin="{TemplateBinding Padding}">
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -5568,7 +5624,7 @@
                             <Border Width="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Height="{TemplateBinding Height}"
                                     Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
-                                    Margin="{TemplateBinding Margin}">
+                                    Margin="{TemplateBinding Padding}">
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -5587,7 +5643,7 @@
                             <Border Width="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Control}}"
                                     Height="{TemplateBinding Height}"
                                     Background="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Control}}"
-                                    Margin="{TemplateBinding Margin}">
+                                    Margin="{TemplateBinding Padding}">
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>

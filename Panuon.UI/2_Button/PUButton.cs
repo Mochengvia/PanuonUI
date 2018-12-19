@@ -12,6 +12,19 @@ namespace Panuon.UI
         }
 
         #region Property
+
+        /// <summary>
+        /// 效果等同于Tag，无实际作用。
+        /// </summary>
+        public object Value
+        {
+            get { return (object)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty ValueProperty =
+            DependencyProperty.Register("Value", typeof(object), typeof(PUButton));
+
         /// <summary>
         /// 获取或设置按钮的基本样式。默认值为标准样式（General）。
         /// </summary>

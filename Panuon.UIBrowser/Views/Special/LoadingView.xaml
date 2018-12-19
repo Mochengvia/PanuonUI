@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.ViewModels.Special.LoadingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.ViewModels.Special"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+                    <StackPanel Margin="60,20">
+                        <TextBlock FontSize="30"
+                                   Margin="0,0,0,30">PULoading 等待控件</TextBlock>
+                        <TextBlock FontSize="15"
+                                   Margin="0,0,0,10"
+                                   Foreground="#FF1E9CB0">依赖属性概览</TextBlock>
+                        <DataGrid ItemsSource="{Binding DependencyPropertyList}"
+                                  Margin="0,0,0,20">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*"
+                                                    Header="属性名称"
+                                                    Binding="{Binding Name}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="类型"
+                                                    Binding="{Binding Type}" />
+                                <DataGridTextColumn Width="*"
+                                                    Header="默认值"
+                                                    Binding="{Binding DefaultValue}" />
+                                <DataGridTemplateColumn Width="2*"
+                                                        Header="描述">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Description}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+        <StackPanel Orientation="Horizontal" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <pu:PULoading VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Width="100"
+                          Height="100"
+                          IsRunning="True" />
+           
+            <pu:PULoading VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Width="50"
+                          Height="50"
+                          IsRunning="True"
+                          Margin="40,0,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>
