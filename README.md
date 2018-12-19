@@ -17,13 +17,16 @@
 7. DeleteButtonVisibility统一重命名为CanDelete
 8. 图片裁剪器中存在未修复的BUG，不推荐使用。<br/>
 <br/>
+
 ## 使用方式
 1.添加对Panuon.UI.dll的引用<br/>
 2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。<br/>
+
 ```
 <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
 ```
 3.在需要使用PanuonUI的xaml文件中添加引用<br/>
+
 ```
 xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 ```
