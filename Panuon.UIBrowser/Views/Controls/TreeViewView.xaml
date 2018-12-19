@@ -429,6 +429,7 @@
                                            Foreground="{Binding Foreground}"
                                            BindingItems="{Binding TreeViewItems, Mode=TwoWay}">
                             </pu:PUTreeView>
+
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
