@@ -1,10 +1,22 @@
-# PanuonUI(v0.1.2 beta)
+# PanuonUI(v1.0.0 alpha)
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
 本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)，QQ亦可（969954321，请务必备注来意）。<br/>
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
-#### 目前该版本已完成一轮Review，已发现的问题皆已修复。此版本即将新建分支并封存，新代码将升级为1.0版本。
 
+#### v1.0.0 版本说明
+全新的示例程序尚未开发完成，已加入此版本。<br/>
+0.1.2版本中仍旧存在一些BUG。这些问题已在1.0版本中修复，并会在一些时间后再提交到0.1.2。<br/>
+更新说明:
+1. v0.1.2版本无法无损升级到此版本，您可能要对现有项目进行一些修改。<br/>
+2. 将大多数的枚举类型移入到了Panuon.UI命名空间中。<br/>
+3. 解决了ComboBox可能在虚拟化容器中出现BUG的问题。<br/>
+4. 解决了多个控件在使用BindingItems属性时可能出现设置SelectedValue无效的问题。<br/>
+5. 全新的示例程序（集成了属性说明、注意事项，左右滑动可以看到控件示例）。<br/>
+6. Helper中的RowDefinition和ColumnDefinition已支持输入星号（例如pu:Helper.RowDefinition="1*"），纯数字则表示使用像素（例如pu:Helper.RowDefinition="40"）。<br/>
+7. DeleteButtonVisibility统一重命名为CanDelete
+8. 图片裁剪器中存在未修复的BUG，不推荐使用。<br/>
+<br/>
 ## 使用方式
 1.添加对Panuon.UI.dll的引用<br/>
 2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。<br/>
