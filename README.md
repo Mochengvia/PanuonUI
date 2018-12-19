@@ -44,8 +44,67 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 ### Window 窗体
 PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
 通过设置IsCoverMaskShow和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。<br/>
-图中演示了使用Gradual动画效果打开PUMessageBox，该控件是一个继承自PUWindow的窗体，可以提供一段消息显示，或一个询问对话框。<br/>
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/window.png)<br/>
+<br/>
+PUWindow在创建时总是尝试将<b>排在最前面的活动窗口</b>设置为自己的Owner（但如果你在Show或ShowDialog前手动指定了它的Owner，则将以你的为准），以便于使用WindowStartupLocation属性和AllowAutoCoverMask属性（当此属性为True，且Owner是PUWindow类型时，该窗体打开时将自动把其Owner窗体的遮罩层打开，并在关闭时将其遮罩层关闭）。但这可能在某些情况下对你造成困扰。当你在一个窗体中尝试Show出多个PUWindow子窗体时，必须全部指定这些子窗体的Owner属性为当前窗体，否则可能会出现预料不到的问题。<br/>
+<br/>
+PUMessageBox是一个继承自PUWindow的控件，它可以提供一段消息显示，一个询问对话框，或一个可以取消的等待框。
+
+```
+//1. 显示一个提示框
+PUMessageBox.ShowDialog("你好啊");
+
+//2. 显示一个确认框
+if(PUMessageBox.ShowConfirm("确定执行？") == true)
+{
+  PUMessageBox.ShowDialog("已开始执行");
+}
+
+//3. 显示一个不能取消的等待框，该窗体将以Show的方式打开
+PUMessageBox.ShowAwait("正在执行...");
+//当任务执行完，将其关闭
+PUMessageBox.CloseAwait();
+
+//4. 显示一个可以取消的等待框，该窗体将以Show的方式打开
+PUMessageBox.ShowAwait("正在执行...", delegate
+{
+  //当用户点击取消按钮时，将把取消按钮禁用，前端文字显示为“正在取消”，并触发此回调。
+  PUMessageBox.CloseAwait(delegate
+  {
+    PUMessageBox.ShowDialog("您取消了此任务。");
+  });
+});
+//如果用户没有取消，当任务执行完，您可以再将其关闭
+PUMessageBox.CloseAwait();
+```
+你可以使用PUMessageBox.ShowAwait(string content)来打开一个等待对话框，并用PUMessageBox.CloseAwait()方法来将其关闭。<br/>
+但如果你希望在CloseAwait之后立即打开一个新的PUWindow窗体（PUMessageBox的所有Show方法亦在此列），你必须指定新窗体的Owner为当前的主窗体，或者使用另一个重载方法PUMessageBox.CloseAwait(EventHandle closedCallback)关闭等待窗口，并将打开窗体的方法放入此事件处理中。否则新打开的窗体将被立即关闭。
+示例：
+```
+//这种代码会导致弹框刚显示就被关闭
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait();
+PUMessageBox.ShowDialog("任务已完成");
+
+//必须像下面这样
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait(delegate
+{
+  PUMessageBox.ShowDialog("任务已完成");
+});
+
+//或这样
+PUMessageBox.ShowAwait("正在执行...");
+PUMessageBox.CloseAwait();
+await Task.Delay(500);
+PUMessageBox.ShowDialog("任务已完成");
+
+//或者向下面这样
+PUMessageBox.CloseAwait();
+var testWindow = new TestWindow();
+testWindow.Owner = this;
+testWindow.ShowDialog();
+
+```
 
 | 依赖属性  | 类型 | 含义 |
 | --- | --- | ---|
@@ -71,15 +130,6 @@ PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
 | AppendNavButton(object content, RoutedEventHandler clickHandler) | 向标题栏右侧控制按钮组中添加一个新的按钮，该按钮将被添加在按钮组的最左侧。 |
 
 注意：上一个版本的CloseWindow()方法将不再使用，直接使用Close()方法即可触发关闭动画（若AnimateOut为True）。<br/>
-扩展：PUMessageBox<br/>
-该控件继承自PUWindow，因而可以使用上面任意一个属性来配置它。<br/>
-你可以在项目的任意地方调用PUMessageBox，它将自动打开父窗体的遮罩层。<br/>
-```
-//像下面这样调用，来显示一段提示
-PUMessageBox.ShowDialog("操作成功。");
-//或显示一个询问对话框
-PUMessageBox.ShowConfirm("确定吗？");
-```
 
 ### Button 按钮
 PUButton是一个继承自Button的控件，目前共有四种样式。<br/>
