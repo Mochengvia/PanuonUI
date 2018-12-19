@@ -4,6 +4,10 @@
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
 
+## 警告
+PUTabControl和PUTabItem是一对组合控件，必须结合起来使用（同理于PUComboBox和PUComboBoxItem、PUTreeView和PUTreeViewItem）。如果您是从工具箱中拖出的PUTabControl控件，设计器自动生成的子项将是TabItem，需要您手动修改为PUTabItem。<br/>
+如果遇到问题，可以先查看示例程序中的代码。<br/>
+
 ### v1.0.0 版本说明
 
 ![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20181219125733.png)<br/>
