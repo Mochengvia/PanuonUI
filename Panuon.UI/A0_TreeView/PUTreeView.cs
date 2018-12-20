@@ -147,7 +147,6 @@ namespace Panuon.UI
             treeView.OnChoosedItemChanged(e.OldValue as PUTreeViewItem, e.NewValue as PUTreeViewItem);
         }
 
-
         /// <summary>
         /// 获取或设置是否需要展开父项的方式，默认为Click。
         /// </summary>

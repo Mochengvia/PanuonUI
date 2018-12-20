@@ -31,8 +31,11 @@ namespace Panuon.UIBrowser.ViewModels
         public ShellWindowViewModel(IWindowManager windowManager)
         {
             _windowManager = windowManager;
+        }
 
-            
+        public void BtnTest()
+        {
+            ChoosedValue = "1234";
         }
         #endregion
 

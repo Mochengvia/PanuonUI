@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,7 +15,6 @@ namespace Panuon.UI
         }
 
         #region Property
-
         /// <summary>
         /// 获取或设置是否显示删除按钮，默认值为False（不显示）。
         /// </summary>

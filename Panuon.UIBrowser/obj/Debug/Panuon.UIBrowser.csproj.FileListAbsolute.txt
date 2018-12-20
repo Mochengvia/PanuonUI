@@ -318,3 +318,13 @@ C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UIBrowser\obj\Debug\Views\S
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.g.resources
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.Properties.Resources.resources
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UIBrowser\obj\Debug\Panuon.UIBrowser.csproj.GenerateResource.Cache
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\ImageCuterView.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\IndicatorView.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\SplitLineView.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\LoadingView.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\ResizeGridView.g.cs
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\ImageCuterView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\IndicatorView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\SplitLineView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\LoadingView.baml
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\Views\Special\ResizeGridView.baml

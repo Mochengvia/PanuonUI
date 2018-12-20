@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panuon.UI.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -201,6 +202,13 @@ namespace Panuon.UI
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             GenerateBindindItems(e);
+            if (SelectedValue != null)
+            {
+                if (SelectedValuePath == SelectedValuePaths.Header)
+                    SelectItemByContent(SelectedValue);
+                else
+                    SelectItemByValue(SelectedValue);
+            }
         }
 
         /// <summary>
@@ -317,13 +325,6 @@ namespace Panuon.UI
                     foreach (var item in BindingItems)
                     {
                         var comboBoxItem = GenerateComboBoxItem(item);
-                        if(SelectedValue != null)
-                        {
-                            if (SelectedValuePath == SelectedValuePaths.Header && item.Header.Equals(SelectedValue))
-                                comboBoxItem.IsSelected = true;
-                            else if (SelectedValuePath == SelectedValuePaths.Value && item.Value.Equals(SelectedValue))
-                                comboBoxItem.IsSelected = true;
-                        }
                         Items.Add(comboBoxItem);
                     }
                     SelectedValue = value;
@@ -332,13 +333,6 @@ namespace Panuon.UI
                     foreach (var item in e.NewItems)
                     {
                         var comboBoxItem = GenerateComboBoxItem(item as PUComboBoxItemModel);
-                        if (SelectedValue != null)
-                        {
-                            if (SelectedValuePath == SelectedValuePaths.Header && comboBoxItem.Content.Equals(SelectedValue))
-                                comboBoxItem.IsSelected = true;
-                            else if (SelectedValuePath == SelectedValuePaths.Value && comboBoxItem.Value.Equals(SelectedValue))
-                                comboBoxItem.IsSelected = true;
-                        }
                         Items.Insert(e.NewStartingIndex, comboBoxItem);
                     }
                     break;
@@ -383,6 +377,69 @@ namespace Panuon.UI
             };
 
             return comboBoxItem;
+        }
+
+        #endregion
+
+        #region APIs
+        /// <summary>
+        /// 通过内容选中项目。
+        /// <para>若content不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// </summary>
+        /// <param name="content">要匹配的内容。</param>
+        public void SelectItemByContent(object content)
+        {
+            var comboItem = GetItemByContent(content);
+            if (comboItem != null)
+                comboItem.IsSelected = true;
+        }
+
+        /// <summary>
+        /// 通过Value选中项目。
+        /// <para>若value不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// </summary>
+        /// <param name="value">要匹配的value。</param>
+        public void SelectItemByValue(object value)
+        {
+            var comboItem = GetItemByValue(value);
+            if (comboItem != null)
+                comboItem.IsSelected = true;
+        }
+
+        /// <summary>
+        /// 通过内容获取项目。
+        /// <para>若content不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public PUComboBoxItem GetItemByContent(object content)
+        {
+            foreach(var item in Items)
+            {
+                var comboItem = item as PUComboBoxItem;
+                if (comboItem == null)
+                    throw new Exception("PUComboBox的子项必须是PUComboBoxItem。");
+                if (comboItem.Content.IsEqual(content))
+                    return comboItem;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 通过Value选中项目。
+        /// <para>若value不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// </summary>
+        /// <param name="value">要匹配的Value。</param>
+        public PUComboBoxItem GetItemByValue(object value)
+        {
+            foreach (var item in Items)
+            {
+                var comboItem = item as PUComboBoxItem;
+                if (comboItem == null)
+                    throw new Exception("PUComboBox的子项必须是PUComboBoxItem。");
+                if (comboItem.Value.IsEqual(value))
+                    return comboItem;
+            }
+            return null;
         }
 
         #endregion

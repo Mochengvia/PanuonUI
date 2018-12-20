@@ -151,6 +151,52 @@ namespace Panuon.UI.Utils
         #endregion
 
         #region Others
+        /// <summary>
+        /// 比较两个对象的可写属性（具有非Private的Set访问器）是否完全相等。
+        /// <para>若两个对象均为Null，则返回True；若只有一个为Null，则返回False。</para>
+        /// </summary>
+        /// <param name="value">要比较的另一个值。</param>
+        public static bool IsEqual<T>(this T obj, T value)
+        {
+           try
+            {
+                if (obj == null && value == null)
+                    return true;
+                else if (obj == null || value == null)
+                    return false;
+
+                Type type = obj.GetType();
+                foreach (var propertyInfo in type.GetProperties())
+                {
+                    if (propertyInfo.CanWrite)
+                    {
+                        var propType = propertyInfo.PropertyType;
+                        var prop1 = propertyInfo.GetValue(obj, null);
+                        var prop2 = propertyInfo.GetValue(value, null);
+
+                        if (prop1 == null && prop2 == null)
+                            continue;
+                        else if (prop1 == null || prop2 == null)
+                            return false;
+                        else if (!propType.IsValueType && propType.FullName != typeof(string).FullName)
+                        {
+                            if (!prop1.IsEqual(prop2))
+                            {
+                                return false;
+                            }
+                            continue;
+                        }
+                        else if (!prop1.Equals(prop2))
+                            return false;
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region Function
