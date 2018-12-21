@@ -375,7 +375,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <SolidColorBrush x:Key="Theme"
                      Color="#FF3E3E3E" />
     <FontFamily x:Key="IconFont">/#fontawesome</FontFamily>

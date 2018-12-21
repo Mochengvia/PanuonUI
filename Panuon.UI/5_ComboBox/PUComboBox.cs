@@ -202,13 +202,6 @@ namespace Panuon.UI
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             GenerateBindindItems(e);
-            if (SelectedValue != null)
-            {
-                if (SelectedValuePath == SelectedValuePaths.Header)
-                    SelectItemByContent(SelectedValue);
-                else
-                    SelectItemByValue(SelectedValue);
-            }
         }
 
         /// <summary>
@@ -312,6 +305,34 @@ namespace Panuon.UI
             DependencyProperty.Register("SearchBoxVisibility", typeof(Visibility), typeof(PUComboBox), new PropertyMetadata(Visibility.Collapsed));
         #endregion
 
+        #region APIs
+        /// <summary>
+        /// 通过内容选中项目。
+        /// <para>若content不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// </summary>
+        /// <param name="content">要匹配的内容。</param>
+        public void SelectItemByContent(object content)
+        {
+            var comboItem = GetItemByContent(content);
+            if (comboItem != null)
+                comboItem.IsSelected = true;
+        }
+
+        /// <summary>
+        /// 通过Value选中项目。
+        /// <para>若value不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
+        /// </summary>
+        /// <param name="value">要匹配的value。</param>
+        public void SelectItemByValue(object value)
+        {
+            var comboItem = GetItemByValue(value);
+            if (comboItem != null)
+                comboItem.IsSelected = true;
+        }
+
+
+        #endregion
+
         #region Function
         private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
         {
@@ -357,6 +378,13 @@ namespace Panuon.UI
                     }
                     break;
             }
+            if (SelectedValue != null)
+            {
+                if (SelectedValuePath == SelectedValuePaths.Header)
+                    SelectItemByContent(SelectedValue);
+                else
+                    SelectItemByValue(SelectedValue);
+            }
         }
 
         private PUComboBoxItem GenerateComboBoxItem(PUComboBoxItemModel model)
@@ -379,41 +407,9 @@ namespace Panuon.UI
             return comboBoxItem;
         }
 
-        #endregion
-
-        #region APIs
-        /// <summary>
-        /// 通过内容选中项目。
-        /// <para>若content不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
-        /// </summary>
-        /// <param name="content">要匹配的内容。</param>
-        public void SelectItemByContent(object content)
+        private PUComboBoxItem GetItemByContent(object content)
         {
-            var comboItem = GetItemByContent(content);
-            if (comboItem != null)
-                comboItem.IsSelected = true;
-        }
-
-        /// <summary>
-        /// 通过Value选中项目。
-        /// <para>若value不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
-        /// </summary>
-        /// <param name="value">要匹配的value。</param>
-        public void SelectItemByValue(object value)
-        {
-            var comboItem = GetItemByValue(value);
-            if (comboItem != null)
-                comboItem.IsSelected = true;
-        }
-
-        /// <summary>
-        /// 通过内容获取项目。
-        /// <para>若content不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public PUComboBoxItem GetItemByContent(object content)
-        {
-            foreach(var item in Items)
+            foreach (var item in Items)
             {
                 var comboItem = item as PUComboBoxItem;
                 if (comboItem == null)
@@ -424,12 +420,7 @@ namespace Panuon.UI
             return null;
         }
 
-        /// <summary>
-        /// 通过Value选中项目。
-        /// <para>若value不是值类型，则将逐一比较其中各个属性的值是否相等。</para>
-        /// </summary>
-        /// <param name="value">要匹配的Value。</param>
-        public PUComboBoxItem GetItemByValue(object value)
+        private PUComboBoxItem GetItemByValue(object value)
         {
             foreach (var item in Items)
             {
@@ -442,7 +433,9 @@ namespace Panuon.UI
             return null;
         }
 
+
         #endregion
+
 
     }
 }

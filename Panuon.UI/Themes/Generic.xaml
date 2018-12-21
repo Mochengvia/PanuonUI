@@ -2829,11 +2829,7 @@
                                                   Style="{DynamicResource MiniScrollViewer}"
                                                   Margin="1,5,1,15"
                                                   MaxHeight="250">
-                                        <VirtualizingStackPanel IsItemsHost="True"
-                                                                VirtualizationMode="Recycling"
-                                                                KeyboardNavigation.DirectionalNavigation="Contained"
-                                                                Orientation="Vertical">
-                                        </VirtualizingStackPanel>
+                                        <ItemsPresenter />
                                     </ScrollViewer>
                                     <local:PUButton x:Name="btnClear"
                                                     Grid.Row="1"

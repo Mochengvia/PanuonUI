@@ -31,7 +31,8 @@ namespace Panuon.UI
         private string _header = "";
 
         /// <summary>
-        /// 该对象的值。可以作为SelectValuePath的值。必须是数字、字符串或布尔值，其他类型可能会导致选择内容出现错误。
+        /// 该对象的值。可以作为SelectValuePath的值。
+        /// <para>若Value不是值类型，使用Value作为匹配时会逐一比较每一个可写属性的值（参见PanuonUI.Utils扩展方法IsEqual）。</para>
         /// </summary>
         public object Value
         {

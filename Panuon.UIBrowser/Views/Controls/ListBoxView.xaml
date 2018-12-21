@@ -434,10 +434,10 @@
                                     <pu:PUTextBox Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                                   Watermark="模糊搜索行项目内容"
                                                   IsClearButtonShow="True"
-                                                  pu:Helper.ColumnDefinition="4" />
-                                    <Grid pu:Helper.ColumnDefinition="0.1" />
+                                                  pu:Helper.ColumnDefinition="4*" />
+                                    <Grid pu:Helper.ColumnDefinition="0.1*" />
                                     <pu:PUButton IsDefault="True"
-                                                 pu:Helper.ColumnDefinition="1"
+                                                 pu:Helper.ColumnDefinition="*"
                                                  Content="Search"
                                                  cm:Message.Attach="[Event Click]=[Action Search]" />
                                 </Grid>

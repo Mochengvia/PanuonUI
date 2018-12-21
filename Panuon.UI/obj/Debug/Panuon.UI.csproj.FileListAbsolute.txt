@@ -141,7 +141,6 @@ C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.Propertie
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.Cache
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.dll
 C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.pdb
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache
 C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UI\bin\Debug\Panuon.UI.dll
 C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UI\bin\Debug\Panuon.UI.pdb
 C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache
@@ -258,3 +257,4 @@ C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UI\obj\Debug\Panuon.UI.Prop
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UI\obj\Debug\Panuon.UI.csproj.GenerateResource.Cache
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UI\obj\Debug\Panuon.UI.dll
 C:\Users\DELL\Documents\GitHub\PanuonUI_0.1.2\Panuon.UI\obj\Debug\Panuon.UI.pdb
+C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI\obj\Debug\Panuon.UI.csprojResolveAssemblyReference.cache

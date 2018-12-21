@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panuon.UI.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -264,6 +265,22 @@ namespace Panuon.UI
 
         #endregion
 
+        #region APIs
+        public void SelectItemByContent(object content)
+        {
+            var tabItem = GetItemByContent(content);
+            if (tabItem != null)
+                tabItem.IsSelected = true;
+        }
+
+        public void SelectItemByValue(object value)
+        {
+            var tabItem = GetItemByValue(value);
+            if (tabItem != null)
+                tabItem.IsSelected = true;
+        }
+        #endregion
+
         #region Function
         private void CheckSideButton()
         {
@@ -284,6 +301,7 @@ namespace Panuon.UI
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Reset:
+                   var _selectedValue = SelectedValue;
                     Items.Clear();
                     if (BindingItems == null)
                         break;
@@ -292,6 +310,7 @@ namespace Panuon.UI
                         var tabItem = GenerateTabItem(item);
                         Items.Add(tabItem);
                     }
+                    SelectedValue = _selectedValue;
                     break;
                 case NotifyCollectionChangedAction.Add:
                     foreach(var item in e.NewItems)
@@ -320,6 +339,13 @@ namespace Panuon.UI
                         Items.Insert(e.NewStartingIndex, tabItem);
                     }
                     break;
+            }
+            if (SelectedValue != null)
+            {
+                if (SelectedValuePath == SelectedValuePaths.Header)
+                    SelectItemByContent(SelectedValue);
+                else
+                    SelectItemByValue(SelectedValue);
             }
         }
 
@@ -351,6 +377,33 @@ namespace Panuon.UI
 
             return tabItem;
         }
+
+        private PUTabItem GetItemByContent(object content)
+        {
+            foreach (var item in Items)
+            {
+                var tabItem = item as PUTabItem;
+                if (tabItem == null)
+                    throw new Exception("PUTabControl的子项必须是PUTabItem。");
+                if (tabItem.Content.IsEqual(content))
+                    return tabItem;
+            }
+            return null;
+        }
+
+        private PUTabItem GetItemByValue(object value)
+        {
+            foreach (var item in Items)
+            {
+                var tabItem = item as PUTabItem;
+                if (tabItem == null)
+                    throw new Exception("PUTabControl的子项必须是PUTabItem。");
+                if (tabItem.Value.IsEqual(value))
+                    return tabItem;
+            }
+            return null;
+        }
+
         #endregion
     }
     internal sealed class PUTabControlLeftCommand : ICommand

@@ -159,46 +159,27 @@ namespace Panuon.UI
 
         #region APIs
         /// <summary>
-        /// 通过Value获取符合条件的第一个子项。
+        /// 通过内容选中项目。
+        /// <para>若内容不是值类型，则将逐一比较其中每一个可写属性的值是否相等。</para>
         /// </summary>
-        public PUListBoxItem GetListBoxItemByValue(object value)
+        /// <param name="content">要匹配的内容。</param>
+        public void SelectItemByContent(object content)
         {
-            foreach (var item in Items)
-            {
-                var listBoxItem = item as PUListBoxItem;
-                if (listBoxItem.Value == null ? false : listBoxItem.Value.Equals(value))
-                    return listBoxItem;
-            }
-            return null;
+            var item = GetItemByContent(content);
+            if (!item.IsSelected)
+                item.IsSelected = true;
         }
 
         /// <summary>
-        /// 通过内容获取符合条件的第一个子项。
+        /// 通过Value选中项目。
+        /// <para>若Value不是值类型，则将逐一比较其中每一个可写属性的值是否相等。</para>
         /// </summary>
-        public PUListBoxItem GetListBoxItemByContent(object content)
+        /// <param name="value">要匹配的Value</param>
+        public void SelectItemByValue(object value)
         {
-            foreach (var item in Items)
-            {
-                var listBoxItem = item as PUListBoxItem;
-                if (listBoxItem.Content == null ? false : listBoxItem.Content.Equals(content))
-                    return listBoxItem;
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 通过Uid获取符合条件的第一个子项。
-        /// <para>通过BindingItems属性生成子项时，Model的Uid属性（只读，自动生成）会赋值给生成的子项。你可以获取BindingItems集合中的Uid来获取子项。</para>
-        /// </summary>
-        public PUListBoxItem GetListBoxItemByUid(string uid)
-        {
-            foreach (var item in Items)
-            {
-                var listBoxItem = item as PUListBoxItem;
-                if (listBoxItem.Uid == uid)
-                    return listBoxItem;
-            }
-            return null;
+            var item = GetItemByValue(value);
+            if (!item.IsSelected)
+                item.IsSelected = true;
         }
 
         /// <summary>
@@ -225,20 +206,7 @@ namespace Panuon.UI
         /// </summary>
         public void SearchItemByValue(object value)
         {
-            var item = GetListBoxItemByValue(value);
-            if (item == null)
-                return;
-            ScrollIntoView(item);
-            item.OnSearched();
-        }
-
-        /// <summary>
-        /// 通过Uid查询符合条件的第一个子项，滚动到该项目并高亮。
-        /// <para>通过BindingItems属性生成子项时，Model的Uid属性（只读，自动生成）会赋值给生成的子项。你可以获取BindingItems集合中的Uid来获取子项。</para>
-        /// <param name="uid">子项的Uid。</param>
-        public void SearchItemByUid(string uid)
-        {
-            var item = GetListBoxItemByUid(uid);
+            var item = GetItemByValue(value);
             if (item == null)
                 return;
             ScrollIntoView(item);
@@ -247,6 +215,34 @@ namespace Panuon.UI
         #endregion
 
         #region Function
+        /// <summary>
+        /// 通过Value获取符合条件的第一个子项。
+        /// </summary>
+        private PUListBoxItem GetItemByValue(object value)
+        {
+            foreach (var item in Items)
+            {
+                var listBoxItem = item as PUListBoxItem;
+                if (listBoxItem.Value == null ? false : listBoxItem.Value.Equals(value))
+                    return listBoxItem;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 通过内容获取符合条件的第一个子项。
+        /// </summary>
+        private PUListBoxItem GetItemByContent(object content)
+        {
+            foreach (var item in Items)
+            {
+                var listBoxItem = item as PUListBoxItem;
+                if (listBoxItem.Content == null ? false : listBoxItem.Content.Equals(content))
+                    return listBoxItem;
+            }
+            return null;
+        }
+
         private void GenerateBindindItems(NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -290,6 +286,13 @@ namespace Panuon.UI
                         Items.Insert(e.NewStartingIndex, tabItem);
                     }
                     break;
+            }
+            if(SelectedValue != null)
+            {
+                if (SelectedValuePath == SelectedValuePaths.Header)
+                    SelectItemByContent(SelectedValue);
+                else
+                    SelectItemByValue(SelectedValue);
             }
         }
 

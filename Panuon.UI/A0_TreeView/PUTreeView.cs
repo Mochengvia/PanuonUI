@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panuon.UI.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -198,7 +199,7 @@ namespace Panuon.UI
                 return;
             }
 
-            var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
+            var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetItemByHeader(treeView.ChoosedValue) : treeView.GetItemByValue(treeView.ChoosedValue);
 
             if (tvi != null)
             {
@@ -236,59 +237,67 @@ namespace Panuon.UI
                 treeView.BindingItems.CollectionChanged += treeView.BindingItemChanged;
             }
             treeView.GenerateBindindItems(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-            if(treeView.ChoosedValue != null)
-            {
-                var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetTreeViewItemByHeader(treeView.ChoosedValue) : treeView.GetTreeViewItemByValue(treeView.ChoosedValue);
-
-                if (tvi != null)
-                {
-                    if (!tvi.IsChoosed && !tvi.HasItems)
-                        tvi.IsChoosed = true;
-                }
-                else if (tvi == null)
-                {
-                    if (treeView.ChoosedItem != null)
-                    {
-                        treeView.ChoosedItem.IsChoosed = false;
-                        treeView.ChoosedItem = null;
-                    }
-                    treeView.ChoosedValue = null;
-                }
-            }
         }
 
         private void BindingItemChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             GenerateBindindItems(e);
-            if (ChoosedValue != null)
-            {
-                var tvi = ChoosedValuePath == ChoosedValuePaths.Header ? GetTreeViewItemByHeader(ChoosedValue) : GetTreeViewItemByValue(ChoosedValue);
-
-                if (tvi != null)
-                {
-                    if (!tvi.IsChoosed && !tvi.HasItems)
-                        tvi.IsChoosed = true;
-                }
-                else if (tvi == null)
-                {
-                    if (ChoosedItem != null)
-                    {
-                        ChoosedItem.IsChoosed = false;
-                        ChoosedItem = null;
-                    }
-                    ChoosedValue = null;
-                }
-            }
         }
         #endregion
 
         #region APIs
         /// <summary>
-        /// 通过标题获取子项。
+        /// 通过标题选中子项。
+        /// 若标题不是值类型，则将逐一比较每一个可写属性的值是否相等。
         /// </summary>
-        /// <param name="headerOrValue"></param>
-        /// <returns></returns>
-        public PUTreeViewItem GetTreeViewItemByHeader(object header)
+        /// <param name="header">要匹配的标题。</param>
+        public void ChooseItemByHeader(object header)
+        {
+            var tvi = GetItemByHeader(header);
+            if (tvi != null)
+            {
+                if (!tvi.IsChoosed && !tvi.HasItems)
+                    tvi.IsChoosed = true;
+            }
+            else if (tvi == null)
+            {
+                if (ChoosedItem != null)
+                {
+                    ChoosedItem.IsChoosed = false;
+                    ChoosedItem = null;
+                }
+                ChoosedValue = null;
+            }
+        }
+
+        /// <summary>
+        /// 通过Value获取子项。
+        /// 若Value不是值类型，则将逐一比较每一个可写属性的值是否相等。
+        /// </summary>
+        /// <param name="value">要匹配的值。</param>
+        public void ChooseItemByValue(object value)
+        {
+            var tvi = GetItemByValue(value);
+            if (tvi != null)
+            {
+                if (!tvi.IsChoosed && !tvi.HasItems)
+                    tvi.IsChoosed = true;
+            }
+            else if (tvi == null)
+            {
+                if (ChoosedItem != null)
+                {
+                    ChoosedItem.IsChoosed = false;
+                    ChoosedItem = null;
+                }
+                ChoosedValue = null;
+            }
+        }
+
+        #endregion
+
+        #region Function
+        private PUTreeViewItem GetItemByHeader(object header)
         {
             PUTreeViewItem target = null;
             foreach (var item in Items)
@@ -310,12 +319,7 @@ namespace Panuon.UI
             return target;
         }
 
-        /// <summary>
-        /// 通过Value获取子项。
-        /// </summary>
-        /// <param name="headerOrValue"></param>
-        /// <returns></returns>
-        public PUTreeViewItem GetTreeViewItemByValue(object value)
+        private PUTreeViewItem GetItemByValue(object value)
         {
             PUTreeViewItem target = null;
             foreach (var item in Items)
@@ -336,12 +340,10 @@ namespace Panuon.UI
             }
             return target;
         }
-        #endregion
 
-        #region Function
         private PUTreeViewItem GetTreeViewItemByHeader(PUTreeViewItem item, object header)
         {
-            if (item.Header != null && item.Header.Equals(header))
+            if (item.Header != null && item.Header.IsEqual(header))
                 return item;
             if (item.HasItems)
             {
@@ -361,7 +363,7 @@ namespace Panuon.UI
 
         private PUTreeViewItem GetTreeViewItemByValue(PUTreeViewItem item, object value)
         {
-            if (item.Value != null && item.Value.Equals(value))
+            if (item.Value != null && item.Value.IsEqual(value))
                 return item;
             if (item.HasItems)
             {
@@ -393,8 +395,8 @@ namespace Panuon.UI
                         var treeViewItem = GenerateTreeViewItem(item);
                         Items.Add(treeViewItem);
                     }
-                    break;
                     ChoosedValue = _choosedValue;
+                    break;
                 case NotifyCollectionChangedAction.Add:
                     foreach (var item in e.NewItems)
                     {
@@ -423,6 +425,13 @@ namespace Panuon.UI
                     }
                     break;
             }
+            if (ChoosedValue != null)
+            {
+                if(ChoosedValuePath == ChoosedValuePaths.Header)
+                    ChooseItemByHeader(ChoosedValue);
+                else
+                    ChooseItemByValue(ChoosedValue);
+            }
         }
 
         private PUTreeViewItem GenerateTreeViewItem(PUTreeViewItemModel model)
@@ -439,19 +448,6 @@ namespace Panuon.UI
 
             foreach (var child in Generate(model.Items))
             {
-                if (ChoosedValue != null)
-                {
-                    if (ChoosedValuePath == ChoosedValuePaths.Header && treeViewItem.Header != null && child.Header.Equals(ChoosedValuePath))
-                    {
-                        treeViewItem.IsSelected = true;
-                        treeViewItem.IsChoosed = true;
-                    }
-                    else if (ChoosedValuePath == ChoosedValuePaths.Value && treeViewItem.Value != null && child.Value.Equals(ChoosedValuePath))
-                    {
-                        treeViewItem.IsSelected = true;
-                        treeViewItem.IsChoosed = true;
-                    }
-                }
                 treeViewItem.Items.Add(child);
             }
 
@@ -466,19 +462,6 @@ namespace Panuon.UI
                 treeViewItem.Items.Clear();
                 foreach (var child in Generate(model.Items))
                 {
-                    if (ChoosedValue != null)
-                    {
-                        if (ChoosedValuePath == ChoosedValuePaths.Header && treeViewItem.Header != null && child.Header.Equals(ChoosedValuePath))
-                        {
-                            treeViewItem.IsSelected = true;
-                            treeViewItem.IsChoosed = true;
-                        }
-                        else if (ChoosedValuePath == ChoosedValuePaths.Value && treeViewItem.Value != null && child.Value.Equals(ChoosedValuePath))
-                        {
-                            treeViewItem.IsSelected = true;
-                            treeViewItem.IsChoosed = true;
-                        }
-                    }
                     treeViewItem.Items.Add(child);
                 }
             };
