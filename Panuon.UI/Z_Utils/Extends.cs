@@ -166,6 +166,9 @@ namespace Panuon.UI.Utils
                     return false;
 
                 Type type = obj.GetType();
+                if (type.IsValueType)
+                    return obj.Equals(value);
+
                 foreach (var propertyInfo in type.GetProperties())
                 {
                     if (propertyInfo.CanWrite)
