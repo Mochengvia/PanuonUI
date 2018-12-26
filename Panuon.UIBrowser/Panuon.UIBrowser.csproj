@@ -91,6 +91,7 @@
     <Compile Include="ViewModels\Control\TextBoxViewModel.cs" />
     <Compile Include="ViewModels\Control\TabControlViewModel.cs" />
     <Compile Include="ViewModels\Control\ButtonViewModel.cs" />
+    <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="ViewModels\Special\ImageCuterViewModel.cs" />
     <Compile Include="ViewModels\Special\SplitLineViewModel.cs" />
     <Compile Include="ViewModels\Special\LoadingViewModel.cs" />
@@ -206,6 +207,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\WindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OverviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

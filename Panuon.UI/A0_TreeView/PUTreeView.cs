@@ -199,11 +199,11 @@ namespace Panuon.UI
                 return;
             }
 
-            var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetItemByHeader(treeView.ChoosedValue) : treeView.GetItemByValue(treeView.ChoosedValue);
+            var tvi = treeView.ChoosedValuePath == ChoosedValuePaths.Header ? treeView.GetItemByHeader(treeView.ChoosedValue, true, false) : treeView.GetItemByValue(treeView.ChoosedValue, true, false);
 
             if (tvi != null)
             {
-                if ( !tvi.IsChoosed && !tvi.HasItems)
+                if ( !tvi.IsChoosed)
                     tvi.IsChoosed = true;
             }
             else
@@ -253,7 +253,7 @@ namespace Panuon.UI
         /// <param name="header">要匹配的标题。</param>
         public void ChooseItemByHeader(object header)
         {
-            var tvi = GetItemByHeader(header);
+            var tvi = GetItemByHeader(header, true, false);
             if (tvi != null)
             {
                 if (!tvi.IsChoosed && !tvi.HasItems)
@@ -277,7 +277,7 @@ namespace Panuon.UI
         /// <param name="value">要匹配的值。</param>
         public void ChooseItemByValue(object value)
         {
-            var tvi = GetItemByValue(value);
+            var tvi = GetItemByValue(value, true ,false);
             if (tvi != null)
             {
                 if (!tvi.IsChoosed && !tvi.HasItems)
@@ -297,63 +297,81 @@ namespace Panuon.UI
         #endregion
 
         #region Function
-        private PUTreeViewItem GetItemByHeader(object header)
+        /// <summary>
+        /// 通过标题获取Item。
+        /// </summary>
+        /// <param name="header">要匹配的标题。</param>
+        /// <param name="autoExpand">在检索过程中是否自动折叠不是目标项的项目，并将目标项的父PUTreeViewItem展开。</param>
+        /// <param name="includeParent">返回结果中是否包含含有子项的项目。</param>
+        /// <returns></returns>
+        private PUTreeViewItem GetItemByHeader(object header, bool autoExpand = false, bool includeParent = true)
         {
-            PUTreeViewItem target = null;
             foreach (var item in Items)
             {
                 var tvi = item as PUTreeViewItem;
-                tvi.IsExpanded = false;
+                if(autoExpand)
+                    tvi.IsExpanded = false;
 
-                var tvix = GetTreeViewItemByHeader(tvi, header);
+                var tvix = GetTreeViewItemByHeader(tvi, header, autoExpand, includeParent);
                 if (tvix != null)
                 {
-                    var parent = tvix.Parent as PUTreeViewItem;
-                    if (parent != null)
+                    if (autoExpand)
                     {
-                        parent.IsExpanded = true;
+                        var parent = tvix.Parent as PUTreeViewItem;
+                        if (parent != null)
+                            parent.IsExpanded = true;
                     }
-                    target = tvix;
+                    return tvix;
                 }
             }
-            return target;
+             return null;
         }
 
-        private PUTreeViewItem GetItemByValue(object value)
+        /// <summary>
+        /// 通过Value获取Item。
+        /// </summary>
+        /// <param name="value">要匹配的Value。</param>
+        /// <param name="autoExpand">在检索过程中是否自动折叠不是目标项的项目，并将目标项的父PUTreeViewItem展开。</param>
+        /// <param name="includeParent">返回结果中是否包含含有子项的项目。</param>
+        /// <returns></returns>
+        private PUTreeViewItem GetItemByValue(object value, bool autoExpand = false, bool includeParent = true)
         {
-            PUTreeViewItem target = null;
             foreach (var item in Items)
             {
                 var tvi = item as PUTreeViewItem;
-                tvi.IsExpanded = false;
+                if (autoExpand)
+                    tvi.IsExpanded = false;
 
-                var tvix = GetTreeViewItemByValue(tvi, value);
+                var tvix = GetTreeViewItemByValue(tvi, value, autoExpand, includeParent);
                 if (tvix != null)
                 {
-                    var parent = tvix.Parent as PUTreeViewItem;
-                    if (parent != null)
+                    if (autoExpand)
                     {
-                        parent.IsExpanded = true;
+                        var parent = tvix.Parent as PUTreeViewItem;
+                        if (parent != null)
+                            parent.IsExpanded = true;
                     }
-                    target = tvix;
+                    return tvix;
                 }
             }
-            return target;
+             return null;
         }
 
-        private PUTreeViewItem GetTreeViewItemByHeader(PUTreeViewItem item, object header)
+        private PUTreeViewItem GetTreeViewItemByHeader(PUTreeViewItem item, object header, bool autoExpand, bool includeParent)
         {
-            if (item.Header != null && item.Header.IsEqual(header))
+            if ((includeParent || !item.HasItems) && item.Header != null && item.Header.IsEqual(header))
                 return item;
             if (item.HasItems)
             {
                 foreach (var tvi in item.Items)
                 {
-                    (tvi as PUTreeViewItem).IsExpanded = false;
-                    var tvix = GetTreeViewItemByHeader(tvi as PUTreeViewItem, header);
+                    if(autoExpand)
+                        (tvi as PUTreeViewItem).IsExpanded = false;
+                    var tvix = GetTreeViewItemByHeader(tvi as PUTreeViewItem, header, autoExpand, includeParent);
                     if (tvix != null)
                     {
-                        (tvi as PUTreeViewItem).IsExpanded = true;
+                        if (autoExpand)
+                            (tvi as PUTreeViewItem).IsExpanded = true;
                         return tvix;
                     }
                 }
@@ -361,19 +379,21 @@ namespace Panuon.UI
             return null;
         }
 
-        private PUTreeViewItem GetTreeViewItemByValue(PUTreeViewItem item, object value)
+        private PUTreeViewItem GetTreeViewItemByValue(PUTreeViewItem item, object value, bool autoExpand, bool includeParent)
         {
-            if (item.Value != null && item.Value.IsEqual(value))
+            if ((includeParent || !item.HasItems) && item.Value != null && item.Value.IsEqual(value))
                 return item;
             if (item.HasItems)
             {
                 foreach (var tvi in item.Items)
                 {
-                    (tvi as PUTreeViewItem).IsExpanded = false;
-                    var tvix = GetTreeViewItemByValue(tvi as PUTreeViewItem, value);
+                    if (autoExpand)
+                        (tvi as PUTreeViewItem).IsExpanded = false;
+                    var tvix = GetTreeViewItemByValue(tvi as PUTreeViewItem, value, autoExpand, includeParent);
                     if (tvix != null)
                     {
-                        (tvi as PUTreeViewItem).IsExpanded = true;
+                        if (autoExpand)
+                            (tvi as PUTreeViewItem).IsExpanded = true;
                         return tvix;
                     }
                 }

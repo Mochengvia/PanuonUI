@@ -101,7 +101,93 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style TargetType="{x:Type local:PUCard}">
+        <Style.Setters>
+            <Setter Property="BorderBrush"
+                    Value="LightGray" />
+            <Setter Property="BorderThickness"
+                    Value="1"></Setter>
+            <Setter Property="Background"
+                    Value="White" />
+            <Setter Property="ShadowColor"
+                    Value="Transparent" />
+            <Setter Property="HeaderHeight"
+                    Value="40" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch"></Setter>
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="FocusVisualStyle"
+                    Value="{x:Null}"></Setter>
+            <Setter Property="Padding"
+                    Value="5"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:PUCard}">
+                        <Grid>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    >
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      BlurRadius="5"
+                                                      Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=UserControl}}"></DropShadowEffect>
+                                </Border.Effect>
+                            </Border>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{Binding HeaderHeight,RelativeSource={RelativeSource AncestorType=UserControl}}"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="{Binding Icon,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           FontFamily="{DynamicResource IconFont}"
+                                           FontSize="{TemplateBinding FontSize,Converter={StaticResource IconFontSizeConverter}}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"></Label>
+                                    <ContentPresenter Grid.Column="1"
+                                                      ContentSource="Header"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"/>
+                                    <local:PUButton x:Name="btnDetail"
+                                                    Grid.Column="2"
+                                                    ButtonStyle="Link"
+                                                    Content="详情 >"
+                                                    Foreground="#AAAAAA"
+                                                    Tag="PART_Detail"
+                                                    CoverBrush="#999999"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"></local:PUButton>
+                                </Grid>
+                                <ContentPresenter Grid.Row="1"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  ContentSource="Content" />
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDetailButtonShow"
+                                     Value="False">
+                                <Trigger.Setters>
+                                    <Setter TargetName="btnDetail"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger.Setters>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+    
     <Style TargetType="{x:Type local:PUWindow}">
         <Setter Property="Background"
                 Value="White"></Setter>
@@ -1553,7 +1639,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:PUButton}">
-                            <Grid x:Name="grdMain">
+                            <Grid x:Name="grdMain"
+                                  Background="Transparent">
                                 <Label x:Name="lblContent"
                                        Foreground="{TemplateBinding Foreground}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -4274,6 +4361,8 @@
                 Value="14"></Setter>
         <Setter Property="IsExpanded"
                 Value="False"></Setter>
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}"></Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding TreeViewStyle,RelativeSource={RelativeSource AncestorType=TreeView}}"
                          Value="General">

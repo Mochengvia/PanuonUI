@@ -16,6 +16,10 @@ namespace Panuon.UI
         {
             InitializeComponent();
             Foreground = new SolidColorBrush(Colors.LightGray);
+            Loaded += delegate
+            {
+                RecheckSlideBar();
+            };
         }
 
         private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
@@ -57,6 +61,23 @@ namespace Panuon.UI
             bdrCover.Width = left;
             Canvas.SetLeft(tmbToggle, left);
         }
+
+        #region RoutedEvent
+        /// <summary>
+        /// 进度改变事件。
+        /// </summary>
+        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent("ValueChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<int>), typeof(PUSlider));
+        public event RoutedPropertyChangedEventHandler<int> ValueChanged
+        {
+            add { AddHandler(ValueChangedEvent, value); }
+            remove { RemoveHandler(ValueChangedEvent, value); }
+        }
+        internal void OnValueChanged(int oldValue, int newValue)
+        {
+            RoutedPropertyChangedEventArgs<int> arg = new RoutedPropertyChangedEventArgs<int>(oldValue, newValue, ValueChangedEvent);
+            RaiseEvent(arg);
+        }
+        #endregion
 
         #region Property
         /// <summary>
@@ -112,21 +133,24 @@ namespace Panuon.UI
             var slider = d as PUSlider;
             if (!slider.IsLoaded)
                 return;
-            slider.RecheckSlideBar();
+            if (slider.RecheckSlideBar())
+            {
+                slider.OnValueChanged((int)e.OldValue, (int)e.NewValue);
+            }
         }
 
         #endregion
-        private void RecheckSlideBar()
+        private bool RecheckSlideBar()
         {
             if (Value < Minimuim)
             {
                 Value = Minimuim;
-                return;
+                return false;
             }
             if (Value > Maximuim)
             {
                 Value = Maximuim;
-                return;
+                return false;
             }
 
             canvas.Width = this.ActualWidth;
@@ -134,6 +158,7 @@ namespace Panuon.UI
             _delta = _totalWidth / (Maximuim - Minimuim);
             bdrCover.Width = (Value - Minimuim) * _delta;
             Canvas.SetLeft(tmbToggle, (Value - Minimuim) * _delta);
+            return true;
         }
 
         private void slider_SizeChanged(object sender, SizeChangedEventArgs e)

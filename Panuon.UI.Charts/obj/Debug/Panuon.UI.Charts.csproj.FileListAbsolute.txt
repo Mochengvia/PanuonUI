@@ -85,3 +85,15 @@ C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UI.Charts\obj\Debug\1_LineChart
 C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.g.resources
 C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.dll
 C:\Users\97042\Documents\GitHub\PanuonUI2\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.pdb
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Debug\Panuon.UI.Charts.dll
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\bin\Debug\Panuon.UI.Charts.pdb
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.csprojResolveAssemblyReference.cache
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\0_Base\PUChartToolTip.g.cs
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\1_LineChart\PULineChart.g.cs
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts_MarkupCompile.cache
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts_MarkupCompile.lref
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\0_Base\PUChartToolTip.baml
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\1_LineChart\PULineChart.baml
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.g.resources
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.dll
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UI.Charts\obj\Debug\Panuon.UI.Charts.pdb

@@ -33,7 +33,10 @@
                            ChoosedValuePath="Value"
                            ChoosedValue="{Binding ChoosedValue,Mode=TwoWay}">
                 <pu:PUTreeViewItem  Header="概述"
+                                    Value="Introduction"
                                     IsChoosed="True" />
+                <pu:PUTreeViewItem  Header="总览" 
+                                    Value="Overview"/>
                 <pu:PUTreeViewItem Header="Helper 辅助类">
                 </pu:PUTreeViewItem>
                 <pu:PUTreeViewItem Header="基础控件">

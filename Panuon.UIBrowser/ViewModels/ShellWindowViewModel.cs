@@ -58,6 +58,9 @@ namespace Panuon.UIBrowser.ViewModels
         {
             switch (ChoosedValue)
             {
+                case "Overview":
+                    ActivateItem(new OverviewViewModel(_windowManager));
+                    break;
                 case "Window":
                     ActivateItem(new Control.WindowViewModel(_windowManager));
                     break;

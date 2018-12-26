@@ -48,7 +48,6 @@ namespace Panuon.UI
 
         private bool _needToSetDialogResult;
 
-        private Window _autoOwner;
         #endregion
 
         #region Constructor

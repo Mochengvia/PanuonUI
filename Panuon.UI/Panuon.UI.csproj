@@ -90,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="0_Base\PUResizeGrid.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="4_PasswordBox\PUPasswordBox.cs" />
     <Compile Include="6_CheckBox\PUCheckBox.cs" />
     <Compile Include="7_RadioButton\PURadioButton.cs" />
+    <Compile Include="9_Special\PUCard.cs" />
     <Compile Include="A0_TreeView\PUTreeView.cs" />
     <Compile Include="A0_TreeView\PUTreeViewItem.cs" />
     <Compile Include="8_ProgressBar\PUProgressBar.cs" />

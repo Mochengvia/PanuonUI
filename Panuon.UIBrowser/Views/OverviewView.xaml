@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Panuon.UIBrowser.Views.OverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Panuon.UIBrowser.Views"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="60,20">
+                <TextBlock FontSize="30"
+                           Margin="0,0,0,30">Ovewview 总览</TextBlock>
+                <pu:PUCard HorizontalAlignment="Stretch"
+                           Header="PUSlider 滑块">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <pu:PUSlider Margin="30,0,100,0" 
+                                     Foreground="{Binding LightCoverBrush}"
+                                     CoverBrush="{Binding DeepCoverBrush}"
+                                     Minimuim="1"
+                                     Maximuim="5"
+                                     cm:Message.Attach="[Event ValueChanged]=[Action ChangeThemeBrush($eventArgs)]"/>
+                        <Border Width="25"
+                                Height="25"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,40,0"
+                                CornerRadius="3"
+                                Background="{Binding DeepCoverBrush}"
+                                Effect="{DynamicResource DropShadow_LightGray}"/>
+                        <TextBlock Grid.Row="1"
+                                   Margin="30,10,0,5"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Left">*拖动滑块以改变当前页面的主题色</TextBlock>
+                    </Grid>
+                </pu:PUCard>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10">
+                    <pu:PUCard Width="210"
+                               Header="PUButton 按钮"
+                               IsDetailButtonShow="True"
+                               cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
+                        <StackPanel Margin="0,10">
+                            <pu:PUButton Margin="10,10,10,0"
+                                         Background="{Binding DeepCoverBrush}"
+                                         CoverBrush="{Binding LightCoverBrush}"
+                                         Height="35"></pu:PUButton>
+                            <pu:PUButton Margin="10,10,10,0"
+                                         BorderBrush="{Binding DeepCoverBrush}"
+                                         Foreground="{Binding DeepCoverBrush}"
+                                         CoverBrush="{Binding LightCoverBrush}"
+                                         ButtonStyle="Hollow"
+                                         Height="35"></pu:PUButton>
+                            <pu:PUButton Margin="10,10,10,0"
+                                         BorderBrush="{Binding LightCoverBrush}"
+                                         Foreground="{Binding LightCoverBrush}"
+                                         CoverBrush="{Binding DeepCoverBrush}"
+                                         ButtonStyle="Outline"
+                                         Height="35"></pu:PUButton>
+                            <pu:PUButton Margin="10,10,10,0"
+                                         Foreground="{Binding LightCoverBrush}"
+                                         CoverBrush="{Binding DeepCoverBrush}"
+                                         ButtonStyle="Link"
+                                         Height="35"></pu:PUButton>
+                        </StackPanel>
+                    </pu:PUCard>
+                </StackPanel>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

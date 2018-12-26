@@ -192,3 +192,10 @@ C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Vi
 C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\SplitLineView.g.cs
 C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\IndicatorView.baml
 C:\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\SplitLineView.baml
+C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\IndicatorView.g.cs
+C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\SplitLineView.g.cs
+C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\IndicatorView.baml
+C:\Users\DELL\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Views\Special\SplitLineView.baml
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\bin\Release\Panuon.UIBrowser.exe.config
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.exe
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI.Private\Panuon.UIBrowser\obj\Release\Panuon.UIBrowser.pdb

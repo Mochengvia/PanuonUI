@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\obj\Debug\
 Panuon.UIBrowser
 none
 false
 DEBUG;TRACE
-C:\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\App.xaml
-25-579403956
+E:\360MoveData\Users\97042\Documents\GitHub\PanuonUI\Panuon.UIBrowser\App.xaml
+261454834988
 
-361953028138
-19831957994
-Views\Chart\LineChartView.xaml;Views\Controls\ListBoxView.xaml;Views\Controls\SliderView.xaml;Views\Controls\DatePickerView.xaml;Views\Controls\ContextMenuView.xaml;Views\Controls\TreeViewView.xaml;Views\Controls\ProgressBarView.xaml;Views\Controls\RadioButtonView.xaml;Views\Controls\CheckBoxView.xaml;Views\Controls\PasswordBoxView.xaml;Views\Controls\ComboBoxView.xaml;Views\Controls\TextBoxView.xaml;Views\Controls\TabControlView.xaml;Views\Controls\Examples\ChatWindow.xaml;Views\Controls\Examples\LoginWindow.xaml;Views\Controls\Examples\MultiNavWindow.xaml;Views\Controls\ButtonView.xaml;Views\Controls\WindowView.xaml;Views\ShellWindowView.xaml;Views\Special\ImageCuterView.xaml;Views\Special\IndicatorView.xaml;Views\Special\SplitLineView.xaml;Views\Special\LoadingView.xaml;Views\Special\ResizeGridView.xaml;Views\Special\BubbleView.xaml;
+37-58867775
+19-705653659
+Views\Chart\LineChartView.xaml;Views\Controls\ListBoxView.xaml;Views\Controls\SliderView.xaml;Views\Controls\DatePickerView.xaml;Views\Controls\ContextMenuView.xaml;Views\Controls\TreeViewView.xaml;Views\Controls\ProgressBarView.xaml;Views\Controls\RadioButtonView.xaml;Views\Controls\CheckBoxView.xaml;Views\Controls\PasswordBoxView.xaml;Views\Controls\ComboBoxView.xaml;Views\Controls\TextBoxView.xaml;Views\Controls\TabControlView.xaml;Views\Controls\Examples\ChatWindow.xaml;Views\Controls\Examples\LoginWindow.xaml;Views\Controls\Examples\MultiNavWindow.xaml;Views\Controls\ButtonView.xaml;Views\Controls\WindowView.xaml;Views\OverviewView.xaml;Views\ShellWindowView.xaml;Views\Special\ImageCuterView.xaml;Views\Special\IndicatorView.xaml;Views\Special\SplitLineView.xaml;Views\Special\LoadingView.xaml;Views\Special\ResizeGridView.xaml;Views\Special\BubbleView.xaml;
 
 True
 
