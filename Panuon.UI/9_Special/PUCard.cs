@@ -11,6 +11,7 @@ namespace Panuon.UI
         static PUCard()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUCard), new FrameworkPropertyMetadata(typeof(PUCard)));
+
         }
 
         public override void OnApplyTemplate()
