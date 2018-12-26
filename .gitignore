@@ -9,8 +9,11 @@
 *.userprefs
 
 *.pdb
+
 *.dll
+
 *.cache
+
 debug/  
 
 debugPublic/  
@@ -22,6 +25,7 @@ DebugPublic/
 release/  
 
 Releases/
+
 Releases/
 
 x64/  
@@ -31,9 +35,13 @@ x86/
 bld/  
 
 Bin/  
+
 bin/
+
 Obj/ 
+
 obj/ 
 
 Log/
+
 log/  
