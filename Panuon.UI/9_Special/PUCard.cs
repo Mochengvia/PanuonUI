@@ -21,7 +21,8 @@ namespace Panuon.UI
 
         private void OnDetailButtonClicked(object sender, RoutedEventArgs e)
         {
-            if ((sender as PUButton).Tag.ToString() != "PART_Detail")
+            var btnDetail = (sender as PUButton);
+            if (btnDetail == null || btnDetail.Tag == null || btnDetail.Tag.ToString() != "PART_Detail")
                 return;
             OnDetail();
         }
