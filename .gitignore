@@ -14,34 +14,26 @@
 
 *.cache
 
-debug/  
+[Dd]ebug/
 
-debugPublic/  
+[Dd]ebugPublic/
 
-Debug/  
+[Rr]elease/
 
-DebugPublic/  
+[Rr]eleases/
 
-release/  
+x64/
 
-Releases/
+x86/
 
-Releases/
+bld/
 
-x64/  
+[Bb]in/
 
-x86/  
+[Oo]bj/
 
-bld/  
+[Ll]og/
 
-Bin/  
+.vs/
 
-bin/
 
-Obj/ 
-
-obj/ 
-
-Log/
-
-log/  
