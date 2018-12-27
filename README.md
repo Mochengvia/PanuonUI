@@ -4,27 +4,6 @@
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
 
-## 警告
-PUTabControl和PUTabItem是一对组合控件，必须结合起来使用（同理于PUComboBox和PUComboBoxItem、PUTreeView和PUTreeViewItem）。如果您是从工具箱中拖出的PUTabControl控件，设计器自动生成的子项将是TabItem，需要您手动修改为PUTabItem。<br/>
-如果遇到问题，可以先查看示例程序中的代码。<br/>
-
-### v1.0.0 版本说明
-
-![](https://github-1252047526.cos.ap-chengdu.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20181219125733.png)<br/>
-
-全新的示例程序尚未开发完成，已加入此版本。<br/>
-0.1.2版本中仍旧存在一些BUG。这些问题已在1.0版本中修复，并会在一些时间后再提交到0.1.2。<br/>
-更新说明:
-1. v0.1.2版本无法无损升级到此版本，您可能要对现有项目进行一些修改。<br/>
-2. 将大多数的枚举类型移入到了Panuon.UI命名空间中。<br/>
-3. 解决了ComboBox可能在虚拟化容器中出现BUG的问题。<br/>
-4. 解决了多个控件在使用BindingItems属性时可能出现设置SelectedValue无效的问题。<br/>
-5. 全新的示例程序（集成了属性说明、注意事项，左右滑动可以看到控件示例）。<br/>
-6. Helper中的RowDefinition和ColumnDefinition已支持输入星号（例如pu:Helper.RowDefinition="1*"），纯数字则表示使用像素（例如pu:Helper.RowDefinition="40"）。<br/>
-7. DeleteButtonVisibility统一重命名为CanDelete
-8. 图片裁剪器中存在未修复的BUG，不推荐使用。<br/>
-<br/>
-
 ## 使用方式
 1.添加对Panuon.UI.dll的引用<br/>
 2.在你的项目中添加fontawesome.ttf字体文件，并在App.xaml中添加以下资源字典。<br/>
@@ -62,6 +41,19 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 图表<br/>
 [LineCharts 折线图](#linchart-折线图)<br/>
 
+### v1.0.0 版本说明
+全新的示例程序尚未开发完成，已加入此版本。<br/>
+0.1.2版本中仍旧存在一些BUG。这些问题已在1.0版本中修复，并会在一些时间后再提交到0.1.2。<br/>
+更新说明:
+1. v0.1.2版本无法无损升级到此版本，您可能要对现有项目进行一些修改。<br/>
+2. 将大多数的枚举类型移入到了Panuon.UI命名空间中。<br/>
+3. 解决了ComboBox可能在虚拟化容器中出现BUG的问题。<br/>
+4. 解决了多个控件在使用BindingItems属性时可能出现设置SelectedValue无效的问题。<br/>
+5. 全新的示例程序（集成了属性说明、注意事项，左右滑动可以看到控件示例）。<br/>
+6. Helper中的RowDefinition和ColumnDefinition已支持输入星号（例如pu:Helper.RowDefinition="1*"），纯数字则表示使用像素（例如pu:Helper.RowDefinition="40"）。<br/>
+7. DeleteButtonVisibility统一重命名为CanDelete
+8. 图片裁剪器中存在未修复的BUG，不推荐使用。<br/>
+<br/>
 
 ### Window 窗体
 PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
