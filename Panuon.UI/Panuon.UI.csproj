@@ -162,6 +162,7 @@
     <Compile Include="Z_Models\PUTabItemModel.cs" />
     <Compile Include="Z_Others\Converters.cs" />
     <Compile Include="Z_Others\Enums.cs" />
+    <Compile Include="Z_Others\SkipCompareAttribute.cs" />
     <Compile Include="Z_Utils\Extends.cs" />
     <Compile Include="Z_Helper\Helper.cs" />
     <Compile Include="Z_Utils\Utils.cs" />
