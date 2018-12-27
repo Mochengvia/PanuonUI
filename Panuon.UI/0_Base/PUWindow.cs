@@ -121,6 +121,24 @@ namespace Panuon.UI
                 {
                     owner.IsCoverMaskShow = false;
                 }
+                else
+                {
+                    var closeMask = true;
+                    foreach (var window in owner.OwnedWindows)
+                    {
+                        var puwindow = window as PUWindow;
+                        if (puwindow != null)
+                        {
+                            if (puwindow.AllowAutoCoverMask)
+                            {
+                                closeMask = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (closeMask)
+                        owner.IsCoverMaskShow = false;
+                }
             }
 
             if (AnimateOut && _animateOutHandle)
@@ -550,9 +568,9 @@ namespace Panuon.UI
         private static void OnAllowAutoOwnerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var window = d as PUWindow;
-            if(window.AllowAutoOwner == false)
+            if (window.AllowAutoOwner == false)
             {
-                    window.Owner = null;
+                window.Owner = null;
             }
         }
 

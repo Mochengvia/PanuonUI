@@ -41,7 +41,7 @@ namespace Panuon.UI
 
         #region Property
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。",true)]
+        [Obsolete("该属性对此控件无效。请使用BindingItems属性替代。", true)]
         public new IEnumerable ItemsSource
         {
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
@@ -132,7 +132,7 @@ namespace Panuon.UI
         private static void OnChoosedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var treeView = d as PUTreeView;
-            if(treeView.ChoosedItem == null)
+            if (treeView.ChoosedItem == null)
             {
                 treeView.ChoosedValue = null;
             }
@@ -203,7 +203,7 @@ namespace Panuon.UI
 
             if (tvi != null)
             {
-                if ( !tvi.IsChoosed)
+                if (!tvi.IsChoosed)
                     tvi.IsChoosed = true;
             }
             else
@@ -277,7 +277,7 @@ namespace Panuon.UI
         /// <param name="value">要匹配的值。</param>
         public void ChooseItemByValue(object value)
         {
-            var tvi = GetItemByValue(value, true ,false);
+            var tvi = GetItemByValue(value, true, false);
             if (tvi != null)
             {
                 if (!tvi.IsChoosed && !tvi.HasItems)
@@ -309,7 +309,7 @@ namespace Panuon.UI
             foreach (var item in Items)
             {
                 var tvi = item as PUTreeViewItem;
-                if(autoExpand)
+                if (autoExpand)
                     tvi.IsExpanded = false;
 
                 var tvix = GetTreeViewItemByHeader(tvi, header, autoExpand, includeParent);
@@ -324,7 +324,7 @@ namespace Panuon.UI
                     return tvix;
                 }
             }
-             return null;
+            return null;
         }
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace Panuon.UI
                     return tvix;
                 }
             }
-             return null;
+            return null;
         }
 
         private PUTreeViewItem GetTreeViewItemByHeader(PUTreeViewItem item, object header, bool autoExpand, bool includeParent)
@@ -365,7 +365,7 @@ namespace Panuon.UI
             {
                 foreach (var tvi in item.Items)
                 {
-                    if(autoExpand)
+                    if (autoExpand)
                         (tvi as PUTreeViewItem).IsExpanded = false;
                     var tvix = GetTreeViewItemByHeader(tvi as PUTreeViewItem, header, autoExpand, includeParent);
                     if (tvix != null)
@@ -447,7 +447,7 @@ namespace Panuon.UI
             }
             if (ChoosedValue != null)
             {
-                if(ChoosedValuePath == ChoosedValuePaths.Header)
+                if (ChoosedValuePath == ChoosedValuePaths.Header)
                     ChooseItemByHeader(ChoosedValue);
                 else
                     ChooseItemByValue(ChoosedValue);
@@ -493,9 +493,9 @@ namespace Panuon.UI
             if (models == null || models.Count == 0)
                 yield break;
 
-            foreach(var model in models)
+            foreach (var model in models)
             {
-               var item = new UI.PUTreeViewItem()
+                var item = new UI.PUTreeViewItem()
                 {
                     Uid = model.Uid,
                     Header = model.Header,
@@ -505,7 +505,7 @@ namespace Panuon.UI
                 if (model.ToolTip != null)
                     item.ToolTip = model.ToolTip;
 
-                foreach(var child in Generate(model.Items))
+                foreach (var child in Generate(model.Items))
                 {
                     item.Items.Add(child);
                 }
