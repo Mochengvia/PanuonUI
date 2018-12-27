@@ -3,10 +3,12 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Panuon.UI
 {
+     [ContentProperty(nameof(Password))]
     public class PUPasswordBox : TextBox
     {
         /*严重警告：
