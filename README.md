@@ -1,6 +1,6 @@
 # PanuonUI(v1.0.0 alpha)
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
-本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至bonjour@panuon.com，或在我的知乎账户上私信我(@末城via)，QQ亦可（969954321，请务必备注来意）。<br/>
+本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至969954321@qq.com，或在我的知乎账户上私信我(@末城via)，QQ亦可（969954321，请务必备注来意）。<br/>
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
 
@@ -59,7 +59,7 @@ xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
 PUWindow是一个继承自Window的控件，支持边角拖动缩放。<br/>
 通过设置IsCoverMaskShow和IsAwaitShow属性，可以快速打开一个遮罩层，或同时打开遮罩层和等待控件。<br/>
 <br/>
-PUWindow在创建时总是尝试将<b>排在最前面的活动窗口</b>设置为自己的Owner（但如果你在Show或ShowDialog前手动指定了它的Owner，则将以你的为准），以便于使用WindowStartupLocation属性和AllowAutoCoverMask属性（当此属性为True，且Owner是PUWindow类型时，该窗体打开时将自动把其Owner窗体的遮罩层打开，并在关闭时将其遮罩层关闭）。但这可能在某些情况下对你造成困扰。当你在一个窗体中尝试Show出多个PUWindow子窗体时，必须全部指定这些子窗体的Owner属性为当前窗体，否则可能会出现预料不到的问题。<br/>
+PUWindow在创建时总是尝试将<b>排在最前面的活动窗口</b>设置为自己的Owner（如果将AllowAutoOwner设为False，则不会进行此操作；此外，如果你在Show或ShowDialog前手动指定了它的Owner，则将以你的为准），以便于使用WindowStartupLocation属性和AllowAutoCoverMask属性（当此属性为True，且Owner是PUWindow类型时，该窗体打开时将自动把其Owner窗体的遮罩层打开，并在关闭时将其遮罩层关闭）。但这可能在某些情况下对你造成困扰。当你在一个窗体中尝试Show出多个PUWindow子窗体时，必须全部指定这些子窗体的Owner属性为当前窗体（或将这些子窗体的AllowAutoOwner设为False），否则可能会出现预料不到的问题。<br/>
 <br/>
 PUMessageBox是一个继承自PUWindow的控件，它可以提供一段消息显示，一个询问对话框，或一个可以取消的等待框。
 
