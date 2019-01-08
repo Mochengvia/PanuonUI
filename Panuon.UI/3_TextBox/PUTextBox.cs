@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -28,6 +29,57 @@ namespace Panuon.UI
 
             if(scrollViewer != null)
                 scrollViewer.MouseWheel += ScrollViewer_MouseWheel;
+
+            PreviewKeyDown += PUTextBox_PreviewKeyDown;
+        }
+
+        private void PUTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (TextType == TextTypes.Text)
+                return;
+            else
+            {
+                switch (e.Key)
+                {
+                    case System.Windows.Input.Key.D0:
+                    case System.Windows.Input.Key.D1:
+                    case System.Windows.Input.Key.D2:
+                    case System.Windows.Input.Key.D3:
+                    case System.Windows.Input.Key.D4:
+                    case System.Windows.Input.Key.D5:
+                    case System.Windows.Input.Key.D6:
+                    case System.Windows.Input.Key.D7:
+                    case System.Windows.Input.Key.D8:
+                    case System.Windows.Input.Key.D9:
+                    case System.Windows.Input.Key.NumPad0:
+                    case System.Windows.Input.Key.NumPad1:
+                    case System.Windows.Input.Key.NumPad2:
+                    case System.Windows.Input.Key.NumPad3:
+                    case System.Windows.Input.Key.NumPad4:
+                    case System.Windows.Input.Key.NumPad5:
+                    case System.Windows.Input.Key.NumPad6:
+                    case System.Windows.Input.Key.NumPad7:
+                    case System.Windows.Input.Key.NumPad8:
+                    case System.Windows.Input.Key.NumPad9:
+                    case System.Windows.Input.Key.Enter:
+                    case System.Windows.Input.Key.Back:
+                    case System.Windows.Input.Key.Delete:
+                    case System.Windows.Input.Key.Left:
+                    case System.Windows.Input.Key.Right:
+                    case System.Windows.Input.Key.Up:
+                    case System.Windows.Input.Key.Down:
+                    case System.Windows.Input.Key.Home:
+                    case System.Windows.Input.Key.End:
+                        break;
+                    case System.Windows.Input.Key.OemPeriod:
+                        if (TextType != TextTypes.Decimal)
+                            e.Handled = true;
+                        break;
+                    default:
+                        e.Handled = true;
+                        break;
+                }
+            }
         }
 
         private void OnClearButtonClick(object sender, RoutedEventArgs e)
@@ -143,6 +195,31 @@ namespace Panuon.UI
         public static readonly DependencyProperty IsClearButtonShowProperty =
             DependencyProperty.Register("IsClearButtonShow", typeof(bool), typeof(PUTextBox));
 
+
+        /// <summary>
+        /// 获取或设置允许键入的类型。默认值为Text（全部内容）。
+        /// </summary>
+        public TextTypes TextType
+        {
+            get { return (TextTypes)GetValue(TextTypeProperty); }
+            set { SetValue(TextTypeProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextTypeProperty =
+            DependencyProperty.Register("TextType", typeof(TextTypes), typeof(PUTextBox), new PropertyMetadata(TextTypes.Text, OnTextTypeChanged));
+
+        private static void OnTextTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = d as PUTextBox;
+            if(textBox.TextType == TextTypes.Text)
+            {
+                System.Windows.Input.InputMethod.SetIsInputMethodEnabled(textBox, true);
+            }
+            else
+            {
+                System.Windows.Input.InputMethod.SetIsInputMethodEnabled(textBox, false);
+            }
+        }
 
         #endregion
 

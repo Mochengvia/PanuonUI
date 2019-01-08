@@ -427,6 +427,17 @@
                                                    IsChecked="{Binding ClearButtonIsChecked}"
                                                    Content=""></pu:PUCheckBox>
                                 </Grid>
+                                <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                    <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="限制输入数字："
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
+                                    <pu:PUCheckBox pu:Helper.ColumnDefinition="3*"
+                                                   Content=""
+                                                   cm:Message.Attach="[Event Click]=[Action NumberLimit($this.IsChecked)]"></pu:PUCheckBox>
+                                </Grid>
                             </StackPanel>
                             <pu:PUTextBox Grid.Column="1"
                                           Width="190"
@@ -442,7 +453,8 @@
                                           Background="{Binding Background}"
                                           Foreground="{Binding Foreground}"
                                           BorderBrush="{Binding BorderBrush}"
-                                          ShadowColor="{Binding ShadowColor}" />
+                                          ShadowColor="{Binding ShadowColor}"
+                                          TextType="{Binding TextType}"/>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

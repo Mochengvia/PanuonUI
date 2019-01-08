@@ -27,6 +27,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
             Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3E3E3E"));
             BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D3D3D3"));
             ShadowColor = (Color)ColorConverter.ConvertFromString("#22888888");
+            TextType = TextTypes.Text;
             Init();
         }
         #endregion
@@ -53,6 +54,13 @@ namespace Panuon.UIBrowser.ViewModels.Control
         }
         private TextBoxStyles _textboxStyle;
 
+        public TextTypes TextType
+        {
+            get { return _textType; }
+            set { _textType = value; NotifyOfPropertyChange(() => TextType); }
+        }
+        private TextTypes _textType;
+
         public int RadiusInteger
         {
             get { return _radiusInteger; }
@@ -66,7 +74,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
             set { _clearButtonIsChecked = value; NotifyOfPropertyChange(() => ClearButtonIsChecked); }
         }
         private bool _clearButtonIsChecked;
-
+        
         public CornerRadius BorderCornerRadius
         {
             get { return _borderCornerRadius; }
@@ -105,6 +113,14 @@ namespace Panuon.UIBrowser.ViewModels.Control
         #endregion
 
         #region Event
+        public void NumberLimit(bool isLimit)
+        {
+            if (isLimit)
+                TextType = TextTypes.Number;
+            else
+                TextType = TextTypes.Text;
+        }
+
         public void TextBoxStyleChanged(string content)
         {
             TextBoxStyle = (TextBoxStyles)Enum.Parse(typeof(TextBoxStyles), content);
@@ -155,6 +171,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
                 new DataSourceModel() { Name = "Icon" ,Type = "Object" ,Description = "获取或设置输入框获得焦点时阴影的颜色，仅在IconGroup样式下生效。",DefaultValue = "#66888888" },
                 new DataSourceModel() { Name = "IconWidth" ,Type = "Color" ,Description = "获取或设置图标的宽度。",DefaultValue = "30" },
                 new DataSourceModel() { Name = "IsClearButtonShow" ,Type = "Boolean" ,Description = "获取或设置当鼠标悬浮时是否显示清除按钮。",DefaultValue = "False" },
+                new DataSourceModel() { Name = "TextType" ,Type = "TextTypes枚举" ,Description = "获取或设置允许输入的文本类型。【可选值：Text、Number、Decimal】",DefaultValue = "Text" },
             };
             AnnotationList = new ObservableCollection<DataSourceModel>()
             {

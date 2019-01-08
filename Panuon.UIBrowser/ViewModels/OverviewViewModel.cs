@@ -41,6 +41,13 @@ namespace Panuon.UIBrowser.ViewModels
             set { _lightCoverBrush = value; NotifyOfPropertyChange(() => LightCoverBrush); }
         }
         private Brush _lightCoverBrush;
+
+        public Color LightColor
+        {
+            get { return _lightColor; }
+            set { _lightColor = value; NotifyOfPropertyChange(() => LightColor); }
+        }
+        private Color _lightColor; 
         #endregion
 
         #region Event
@@ -74,6 +81,7 @@ namespace Panuon.UIBrowser.ViewModels
                             new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#44444444"), Offset = 1 }
                         }
                     };
+                    LightColor = (Color)ColorConverter.ConvertFromString("#44444444");
                     break;
                 case 2:
                     DeepCoverBrush = new LinearGradientBrush()
@@ -92,6 +100,7 @@ namespace Panuon.UIBrowser.ViewModels
                             new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#4449A9C0"), Offset = 1 }
                         }
                     };
+                    LightColor = (Color)ColorConverter.ConvertFromString("#4449A9C0");
                     break;
                 case 3:
                     DeepCoverBrush = new LinearGradientBrush()
@@ -110,6 +119,7 @@ namespace Panuon.UIBrowser.ViewModels
                             new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#44E089B8"), Offset = 1 }
                         }
                     };
+                    LightColor = (Color)ColorConverter.ConvertFromString("#44E089B8");
                     break;
                 case 4:
                     DeepCoverBrush = new LinearGradientBrush()
@@ -128,10 +138,8 @@ namespace Panuon.UIBrowser.ViewModels
                             new GradientStop() { Color = (Color)ColorConverter.ConvertFromString("#44F4A758"), Offset = 1 }
                         }
                     };
+                    LightColor = (Color)ColorConverter.ConvertFromString("#44F4A758");
                     break;
-                    
-
-
             }
         }
         #endregion

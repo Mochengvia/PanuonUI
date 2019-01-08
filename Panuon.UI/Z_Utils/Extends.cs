@@ -8,7 +8,6 @@ namespace Panuon.UI.Utils
 {
     public static class Extends
     {
-
         #region Interger
         /// <summary>
         /// 将0~10的数字转换为文字。
@@ -229,21 +228,6 @@ namespace Panuon.UI.Utils
         #endregion
 
         #region Function
-        private static bool IsCanCompare(Type t)
-        {
-            if (t.IsValueType)
-                return true;
-            else
-            {
-                if (t.FullName == typeof(String).FullName)
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
         #endregion
-
-
     }
 }

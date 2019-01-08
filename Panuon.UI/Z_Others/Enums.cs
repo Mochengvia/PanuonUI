@@ -363,6 +363,9 @@ namespace Panuon.UI
         Right,
     }
 
+    /// <summary>
+    /// (PanuonUI) Buttons for PUMessageBox
+    /// </summary>
     public enum Buttons
     {
         /// <summary>
@@ -403,4 +406,22 @@ namespace Panuon.UI
         AcceptOrRefused,
     }
 
+    /// <summary>
+    /// (PanuonUI) TextTypes for PUTextBox
+    /// </summary>
+    public enum TextTypes
+    {
+        /// <summary>
+        /// 允许所有文本输入。
+        /// </summary>
+        Text,
+        /// <summary>
+        /// 只允许输入数字、以及其他操控键。
+        /// </summary>
+        Number,
+        /// <summary>
+        /// 只允许输入数字、小数点、以及其他操控键。
+        /// </summary>
+        Decimal,
+    }
 }
