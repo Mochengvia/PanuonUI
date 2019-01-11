@@ -250,7 +250,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
                 new DataSourceModel() { Name = "ShadowColor" ,Type = "Color" ,Description = "获取或设置下拉框激活时阴影的颜色。",DefaultValue = "#888888" },
                 new DataSourceModel() { Name = "BorderCornerRadius" ,Type = "CornerRadius" ,Description = "获取或设置显示框和下拉框的圆角大小。",DefaultValue = "0" },
                 new DataSourceModel() { Name = "DeleteMode" ,Type = "DeleteModes枚举" ,Description = "获取或设置当子项目可删除时，用户点击删除按钮后的操作。【可选项：Delete、EventOnly】",DefaultValue = "Delete" },
-                new DataSourceModel() { Name = "BindingItems" ,Type = "IList<PUComboBoxItemModel>" ,Description = "若使用MVVM绑定，请使用此依赖属性。",DefaultValue = "NULL" },
+                new DataSourceModel() { Name = "BindingItems" ,Type = "IObservableCollection<PUComboBoxItemModel>" ,Description = "若使用MVVM绑定，请使用此依赖属性。",DefaultValue = "NULL" },
                 new DataSourceModel() { Name = "SearchMode" ,Type = "SearchModes枚举" ,Description = "获取或设置搜索模式。【可选项：None、TextChanged、Enter】",DefaultValue = "None" },
                 new DataSourceModel() { Name = "SelectedValuePath" ,Type = "SelectedValuePaths枚举" ,Description = "获取或设置当子项目被选中时，SelectedValue应呈现子项目的哪一个值。【可选项：Header、Value】",DefaultValue = "None" },
             };

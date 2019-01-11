@@ -24,7 +24,7 @@ namespace Panuon.UI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
+            AcceptsReturn = false;
             PUButton btnShowPwd;
             if(PasswordBoxStyle == PasswordBoxStyles.General)
                  btnShowPwd = VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(VisualTreeHelper.GetChild(this, 0), 1), 0), 2) as PUButton;
@@ -66,6 +66,10 @@ namespace Panuon.UI
                 e.Handled = true;
                 return;
             }
+
+            if (e.Text == "\n" || e.Text == "\r" || e.Text == "\t")
+                return;
+
             var currentCursor = SelectionStart;
 
             if (SelectionLength != 0)
@@ -79,14 +83,16 @@ namespace Panuon.UI
             e.Handled = true;
         }
 
-        private void PUPasswordBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void PUPasswordBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            //禁止任何与Control键有关的事(除了全选)，禁止输入Enter
-            if ((Keyboard.IsKeyDown(Key.LeftCtrl) && !Keyboard.IsKeyDown(Key.A)) || Keyboard.IsKeyDown(Key.Enter))
+            //禁止任何与Control键有关的事(除了全选)
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) && !Keyboard.IsKeyDown(Key.A)))
             {
                 e.Handled = true;
                 return;
             }
+            if (e.Key == Key.Enter)
+                return;
 
             var currentCursor = SelectionStart;
 

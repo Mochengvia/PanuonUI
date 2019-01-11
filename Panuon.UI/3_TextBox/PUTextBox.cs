@@ -70,6 +70,7 @@ namespace Panuon.UI
                     case System.Windows.Input.Key.Down:
                     case System.Windows.Input.Key.Home:
                     case System.Windows.Input.Key.End:
+                    case System.Windows.Input.Key.Tab:
                         break;
                     case System.Windows.Input.Key.OemPeriod:
                         if (TextType != TextTypes.Decimal)
