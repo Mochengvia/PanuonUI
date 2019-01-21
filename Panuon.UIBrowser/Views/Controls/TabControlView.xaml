@@ -393,15 +393,18 @@
                                 </Grid>
                             </StackPanel>
                             <pu:PUTabControl SelectedValuePath="Value"
+                                             TabStripPlacement="Top"
                                              SelectedValue="{Binding SelectedValue,Mode=TwoWay}"
                                              TabControlStyle="{Binding TabControlStyle}"
                                              SelectedBrush="{Binding SelectedBrush}"
                                              Foreground="{Binding Foreground}"
                                              BindingItems="{Binding TabItems, Mode=TwoWay}"
                                              BorderBrush="{Binding BorderBrush}"
-                                             Grid.Column="1">
+                                             Grid.Column="1"
+                                             MaxHeight="300">
                             </pu:PUTabControl>
                         </Grid>
+                        <TextBlock Text="*不支持动态修改TabStripPlacement属性。请手动修改以查看效果。" />
                     </StackPanel>
 
                 </ScrollViewer>

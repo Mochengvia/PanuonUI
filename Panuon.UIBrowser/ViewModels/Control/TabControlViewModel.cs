@@ -192,6 +192,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
                 new DataSourceModel() { Name = "如果你想在删除前进行验证" ,Description = "DeleteMode提供了两种方式来处理删除事件。Delete选项表示当用户点击删除按钮时，应当立即删除项目并触发DeleteItem路由事件；而EventOnly选项则只会触发DeleteItem路由事件，不会删除项目。你可以监听该事件的发生，并判断是否应该删除该项目。" },
                 new DataSourceModel() { Name = "关于SelectedValuePath" ,Description = "PanuonUI中的大多数组合型容器控件都重写了此属性。重写后的SelectedValuePath只有两个选项：Header和Value。Header选项表示SelectedValue属性应当呈现被选择项的Header属性，而Value选项则表示SelectedValue属性应呈现被选择项的Value属性。" },
                 new DataSourceModel() { Name = "关于SelectedValue" ,Description = "当选中项发生改变时，该属性的值会依据SelectedValuePath的设定发生变化。同时，你可以通过对该属性赋值来搜索并选中项目（至于是通过子项的Header还是Value进行搜索，这同样取决于SelectedValuePath的值）。请注意，搜索时使用的是Equal方法，这意味着1和“1”是完全不同的（错误赋值可能会导致搜索不到子项）。" },
+                new Models.DataSourceModel() { Name ="不支持动态修改TabStripPlacement属性", Description ="在初始化后设置TabStripPlacement属性可能会导致异常。" }
             };
         }
         public void SetMaskCover(bool toOpen)

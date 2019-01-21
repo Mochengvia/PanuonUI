@@ -18,7 +18,6 @@ namespace Panuon.UIBrowser.ViewModels.Control
     {
         #region Identity
         private IWindowManager _windowManager;
-
         #endregion
 
         #region Constructor

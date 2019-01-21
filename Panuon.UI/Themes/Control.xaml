@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Panuon.UI">
     <local:ToHalfConverter x:Key="ToHalfConverter"></local:ToHalfConverter>
 
-    
+
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled"
                 Value="false" />
@@ -59,8 +59,7 @@
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
                             <Grid>
                                 <Track x:Name="PART_Track"
-                                       IsEnabled="{TemplateBinding IsMouseOver}"
-                                      >
+                                       IsEnabled="{TemplateBinding IsMouseOver}">
                                     <Track.Thumb>
                                         <Thumb>
                                             <Thumb.Template>
@@ -227,7 +226,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="MiniScrollViewer" 
+    <Style x:Key="MiniScrollViewer"
            TargetType="{x:Type ScrollViewer}">
         <Setter Property="BorderBrush"
                 Value="Transparent" />
@@ -375,7 +374,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <SolidColorBrush x:Key="Theme"
                      Color="#FF3E3E3E" />
     <FontFamily x:Key="IconFont">/#fontawesome</FontFamily>
@@ -562,7 +561,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="bdrHover"
                                                          Storyboard.TargetProperty="Opacity"
-                                                          To="1"
+                                                         To="1"
                                                          Duration="0:0:0.2"></DoubleAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -606,7 +605,8 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="HoverToShowCell" TargetType="DataGridCell">
+    <Style x:Key="HoverToShowCell"
+           TargetType="DataGridCell">
         <Setter Property="Background"
                 Value="Transparent"></Setter>
         <Setter Property="FocusVisualStyle"
@@ -618,10 +618,10 @@
                         <Border x:Name="bdrOuter"
                                 Background="{TemplateBinding Background}"
                                 Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=DataGrid}}">
-                            <ContentPresenter x:Name="content" 
+                            <ContentPresenter x:Name="content"
                                               VerticalAlignment="Center"
-                                              HorizontalAlignment="Left" 
-                                              Opacity="0"/>
+                                              HorizontalAlignment="Left"
+                                              Opacity="0" />
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -647,7 +647,7 @@
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="content" 
+                                        <DoubleAnimation Storyboard.TargetName="content"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0:0:0.2"
                                                          To="1"></DoubleAnimation>

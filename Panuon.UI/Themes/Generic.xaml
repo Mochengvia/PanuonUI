@@ -16,6 +16,7 @@
     <local:GeneralProgressBarConverter x:Key="GeneralProgressBarConverter"></local:GeneralProgressBarConverter>
     <local:BubbleConverter x:Key="BubbleConverter"></local:BubbleConverter>
     <local:WidthToMarginConverter x:Key="WidthToMarginConverter"></local:WidthToMarginConverter>
+    <local:HeightToMarginConverter x:Key="HeightToMarginConverter"></local:HeightToMarginConverter>
     <local:RingProgressBarConverter x:Key="RingProgressBarConverter"></local:RingProgressBarConverter>
     <local:MarginToWidthConverter x:Key="MarginToWidthConverter"></local:MarginToWidthConverter>
     <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
@@ -5028,83 +5029,326 @@
                 Value="{StaticResource Theme}"></Setter>
         <Setter Property="Background"
                 Value="Transparent"></Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:PUTabControl}">
-                    <Grid ClipToBounds="True"
-                          KeyboardNavigation.TabNavigation="Local"
-                          HorizontalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <local:PURepeatButton x:Name="btnLeft"
-                                                  Margin="5,0"
-                                                  RepeatButtonStyle="Link"
-                                                  Command="{Binding LeftCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
-                                                  CommandParameter="{Binding ElementName=scrollViewer}"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Left"
-                                                  Foreground="{TemplateBinding Foreground}"
-                                                  Content=""
-                                                  FontSize="18"
-                                                  FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
-                            <Grid  Grid.Column="1">
-                                <ScrollViewer x:Name="scrollViewer"
-                                              Style="{StaticResource MiniScrollViewer}"
-                                              VerticalScrollBarVisibility="Disabled"
-                                              HorizontalScrollBarVisibility="Hidden"
-                                              Margin="0,0,0,1"
-                                              VerticalAlignment="Stretch"
-                                              HorizontalAlignment="Stretch">
-                                    <VirtualizingStackPanel Orientation="Horizontal"
-                                                            VirtualizationMode="Recycling">
-                                        <TabPanel x:Name="HeaderPanel"
-                                                  IsItemsHost="True"></TabPanel>
-                                    </VirtualizingStackPanel>
-                                </ScrollViewer>
-                                <Border BorderThickness="0,0,0,1"
-                                        Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"></Border>
+        <Style.Triggers>
+            <Trigger Property="TabStripPlacement"
+                     Value="Top">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabControl}">
+                            <Grid ClipToBounds="True"
+                                  KeyboardNavigation.TabNavigation="Local"
+                                  HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <local:PURepeatButton x:Name="btnLeft"
+                                                          Margin="5,0"
+                                                          RepeatButtonStyle="Link"
+                                                          Command="{Binding LeftCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                    <Grid  Grid.Column="1">
+                                        <ScrollViewer x:Name="scrollViewer"
+                                                      Style="{StaticResource MiniScrollViewer}"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      HorizontalScrollBarVisibility="Hidden"
+                                                      Margin="0,0,0,1"
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Stretch">
+                                            <VirtualizingStackPanel Orientation="Horizontal"
+                                                                    VirtualizationMode="Recycling">
+                                                <TabPanel x:Name="HeaderPanel"
+                                                          IsItemsHost="True"></TabPanel>
+                                            </VirtualizingStackPanel>
+                                        </ScrollViewer>
+                                        <Border BorderThickness="0,0,0,1"
+                                                Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                                    </Grid>
+                                    <local:PURepeatButton x:Name="btnRight"
+                                                          Grid.Column="2"
+                                                          RepeatButtonStyle="Link"
+                                                          Margin="5,0"
+                                                          Command="{Binding RightCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          Foreground="{StaticResource Theme}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                </Grid>
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  Grid.Row="1"
+                                                  ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}" />
                             </Grid>
-                            <local:PURepeatButton x:Name="btnRight"
-                                                  Grid.Column="2"
-                                                  RepeatButtonStyle="Link"
-                                                  Margin="5,0"
-                                                  Command="{Binding RightCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
-                                                  CommandParameter="{Binding ElementName=scrollViewer}"
-                                                  VerticalAlignment="Center"
-                                                  HorizontalAlignment="Left"
-                                                  Foreground="{StaticResource Theme}"
-                                                  Content=""
-                                                  FontSize="18"
-                                                  FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
-                        </Grid>
-                        <ContentPresenter x:Name="PART_SelectedContentHost"
-                                          Grid.Row="1"
-                                          ContentSource="SelectedContent"
-                                          Margin="{TemplateBinding Padding}" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="SideButtonVisibility"
-                                 Value="Collapsed">
-                            <Setter TargetName="btnLeft"
-                                    Property="Visibility"
-                                    Value="Collapsed"></Setter>
-                            <Setter TargetName="btnRight"
-                                    Property="Visibility"
-                                    Value="Collapsed"></Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SideButtonVisibility"
+                                         Value="Collapsed">
+                                    <Setter TargetName="btnLeft"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnRight"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="TabStripPlacement"
+                     Value="Bottom">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabControl}">
+                            <Grid ClipToBounds="True"
+                                  KeyboardNavigation.TabNavigation="Local"
+                                  HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <local:PURepeatButton x:Name="btnLeft"
+                                                          Margin="5,0"
+                                                          RepeatButtonStyle="Link"
+                                                          Command="{Binding LeftCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                    <Grid  Grid.Column="1">
+                                        <ScrollViewer x:Name="scrollViewer"
+                                                      Style="{StaticResource MiniScrollViewer}"
+                                                      VerticalScrollBarVisibility="Disabled"
+                                                      HorizontalScrollBarVisibility="Hidden"
+                                                      Margin="0,0,0,1"
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Stretch">
+                                            <VirtualizingStackPanel Orientation="Horizontal"
+                                                                    VirtualizationMode="Recycling">
+                                                <TabPanel x:Name="HeaderPanel"
+                                                          IsItemsHost="True"></TabPanel>
+                                            </VirtualizingStackPanel>
+                                        </ScrollViewer>
+                                        <Border BorderThickness="0,1,0,0"
+                                                Margin="{Binding Path=ActualWidth,ElementName=HeaderPanel,Converter={StaticResource WidthToMarginConverter}}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                                    </Grid>
+                                    <local:PURepeatButton x:Name="btnRight"
+                                                          Grid.Column="2"
+                                                          RepeatButtonStyle="Link"
+                                                          Margin="5,0"
+                                                          Command="{Binding RightCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          Foreground="{StaticResource Theme}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                </Grid>
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SideButtonVisibility"
+                                         Value="Collapsed">
+                                    <Setter TargetName="btnLeft"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnRight"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="TabStripPlacement"
+                     Value="Left">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabControl}">
+                            <Grid ClipToBounds="True"
+                                  KeyboardNavigation.TabNavigation="Local"
+                                  VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <local:PURepeatButton x:Name="btnUp"
+                                                          Margin="5,0"
+                                                          RepeatButtonStyle="Link"
+                                                          Command="{Binding UpCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Stretch"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                    <Grid Grid.Row="1">
+                                        <ScrollViewer x:Name="scrollViewer"
+                                                      Style="{StaticResource MiniScrollViewer}"
+                                                      VerticalScrollBarVisibility="Hidden"
+                                                      HorizontalScrollBarVisibility="Disabled"
+                                                      Margin="0,0,0,1"
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Stretch">
+                                            <VirtualizingStackPanel Orientation="Horizontal"
+                                                                    VirtualizationMode="Recycling">
+                                                <TabPanel x:Name="HeaderPanel"
+                                                          IsItemsHost="True"></TabPanel>
+                                            </VirtualizingStackPanel>
+                                        </ScrollViewer>
+                                        <Border BorderThickness="0,0,1,0"
+                                                Margin="{Binding Path=ActualHeight,ElementName=HeaderPanel,Converter={StaticResource HeightToMarginConverter}}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                                    </Grid>
+                                    <local:PURepeatButton x:Name="btnDown"
+                                                          Grid.Row="2"
+                                                          RepeatButtonStyle="Link"
+                                                          Margin="5,0"
+                                                          Command="{Binding DownCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Stretch"
+                                                          Foreground="{StaticResource Theme}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                </Grid>
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  Grid.Column="1"
+                                                  ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SideButtonVisibility"
+                                         Value="Collapsed">
+                                    <Setter TargetName="btnUp"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnDown"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="TabStripPlacement"
+                     Value="Right">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:PUTabControl}">
+                            <Grid ClipToBounds="True"
+                                  KeyboardNavigation.TabNavigation="Local"
+                                  VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <local:PURepeatButton x:Name="btnUp"
+                                                          Margin="5,0"
+                                                          RepeatButtonStyle="Link"
+                                                          Command="{Binding UpCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Stretch"
+                                                          Foreground="{TemplateBinding Foreground}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                    <Grid Grid.Row="1">
+                                        <ScrollViewer x:Name="scrollViewer"
+                                                      Style="{StaticResource MiniScrollViewer}"
+                                                      VerticalScrollBarVisibility="Hidden"
+                                                      HorizontalScrollBarVisibility="Disabled"
+                                                      Margin="0,0,0,1"
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Stretch">
+                                            <VirtualizingStackPanel Orientation="Horizontal"
+                                                                    VirtualizationMode="Recycling">
+                                                <TabPanel x:Name="HeaderPanel"
+                                                          IsItemsHost="True"></TabPanel>
+                                            </VirtualizingStackPanel>
+                                        </ScrollViewer>
+                                        <Border BorderThickness="1,0,0,0"
+                                                Margin="{Binding Path=ActualHeight,ElementName=HeaderPanel,Converter={StaticResource HeightToMarginConverter}}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                                    </Grid>
+                                    <local:PURepeatButton x:Name="btnDown"
+                                                          Grid.Row="2"
+                                                          RepeatButtonStyle="Link"
+                                                          Margin="5,0"
+                                                          Command="{Binding DownCommand,RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                          CommandParameter="{Binding ElementName=scrollViewer}"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Stretch"
+                                                          Foreground="{StaticResource Theme}"
+                                                          Content=""
+                                                          FontSize="18"
+                                                          FontFamily="{DynamicResource IconFont}"></local:PURepeatButton>
+                                </Grid>
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  ContentSource="SelectedContent"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SideButtonVisibility"
+                                         Value="Collapsed">
+                                    <Setter TargetName="btnUp"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                    <Setter TargetName="btnDown"
+                                            Property="Visibility"
+                                            Value="Collapsed"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type local:PUTabItem}">
         <Setter Property="FocusVisualStyle"
@@ -5163,11 +5407,79 @@
                                             Property="Visibility"
                                             Value="Collapsed"></Setter>
                                 </DataTrigger>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Bottom" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,1,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Left" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,0,1,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Right" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="1,0,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Top" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="bdrSelected"
                                             Property="BorderThickness"
                                             Value="0,0,0,3"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Bottom" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,3,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Left" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,0,3,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Right" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="3,0,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
                                     <Setter TargetName="lblIcon"
                                             Property="Foreground"
                                             Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>
@@ -5241,17 +5553,85 @@
                                 </Border>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                <DataTrigger Binding="{Binding Icon,RelativeSource={RelativeSource Self}}"
                                              Value="">
                                     <Setter TargetName="lblIcon"
                                             Property="Visibility"
                                             Value="Collapsed"></Setter>
                                 </DataTrigger>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Bottom" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,1,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Left" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,0,1,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Right" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="1,0,0,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}" 
+                                                   Value="Top"/>
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                        <Setter TargetName="bdrSelected"
+                                                Property="BorderThickness"
+                                                Value="1,1,1,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Bottom" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="bdrSelected"
                                             Property="BorderThickness"
                                             Value="1,1,1,0"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Left" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="1,1,0,1"></Setter>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                                                   Value="Right" />
+                                        <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="bdrSelected"
+                                            Property="BorderThickness"
+                                            Value="0,1,1,1"></Setter>
+                                </MultiDataTrigger>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
                                     <Setter TargetName="lblIcon"
                                             Property="Foreground"
                                             Value="{Binding SelectedBrush,RelativeSource={RelativeSource AncestorType=TabControl}}"></Setter>

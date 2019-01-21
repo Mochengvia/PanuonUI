@@ -9,6 +9,11 @@ namespace Panuon.UI
     public class PUComboBoxItem : ComboBoxItem
     {
 
+        public PUComboBoxItem()
+        {
+
+        }
+
         static PUComboBoxItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PUComboBoxItem), new FrameworkPropertyMetadata(typeof(PUComboBoxItem)));

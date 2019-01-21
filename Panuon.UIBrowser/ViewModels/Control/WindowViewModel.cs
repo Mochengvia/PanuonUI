@@ -131,7 +131,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
                     new DataSourceModel() { Name = "Header" ,Type = "Object" ,Description = "获取或设置窗体的标题。若为空，则窗体标题将使用Title的值。",DefaultValue = "Null" },
                     new DataSourceModel() { Name = "AllowAutoOwner" ,Type = "Boolean" ,Description = "获取或设置是否允许窗体在初始化时，尝试将系统中排在最前面的活动窗口设置为自己的Owner。",DefaultValue = "True" },
                     new DataSourceModel() { Name = "AllowAutoCoverMask" ,Type = "Boolean" ,Description = "获取或设置是否允许在调用Show或ShowDialog方法时自动打开父窗体（若Owner为Null或Owner不是PUWindow类型，则无效）的遮罩层，并在Close时将其关闭。",DefaultValue = "False" },
-                    new DataSourceModel() { Name = "AllowForcingClose" ,Type = "Boolean" ,Description = "获取或设置是否允许用户使用Alt + F4组合键强制关闭当前窗体。",DefaultValue = "False" },
+                    new DataSourceModel() { Name = "AllowForcingClose" ,Type = "Boolean" ,Description = "获取或设置是否允许用户使用Alt + F4组合键强制关闭当前窗体。",DefaultValue = "True" },
                     new DataSourceModel() { Name = "Result" ,Type = "Object" ,Description = "获取或设置窗体的返回结果，不会对前端显示造成影响。",DefaultValue = "Null" },
                 };
             APIList = new ObservableCollection<DataSourceModel>()
@@ -140,7 +140,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
                 };
             AnnotationList = new ObservableCollection<DataSourceModel>()
                 {
-                    new DataSourceModel() { Name = "Owner属性" ,Description = "在PUWindow初始化时，Owner会被自动设置为当前的首个活动窗口（若AllowAutoOwner为False，不会执行此操作；如果失败，不会触发异常），以便于使用AllowAutoCoverMask属性。如果你在窗体Show或ShowDialog前手动指定了窗体的Owner，则将以你的为准。请注意以下情况：当你希望关闭当前窗体并立即打开一个新窗体时，您需要注意新窗体的Owner问题。AutoOwner可能会把即将关闭的窗体设置为自己的Owner，从而导致新窗体一打开就被立即关闭（因为它的Owner关闭了）。" },
+                    new DataSourceModel() { Name = "Owner属性" ,Description = "在PUWindow初始化时，Owner会被自动设置为当前的首个活动窗口（若AllowAutoOwner为False，不会执行此操作；如果失败，不会触发异常），以便于使用AllowAutoCoverMask属性或WindowStartupLocation属性。如果你在窗体Show或ShowDialog前手动指定了窗体的Owner，则将以你的为准。请注意以下情况：当你希望关闭当前窗体并立即打开一个新窗体时，您需要注意新窗体的Owner问题。AutoOwner可能会把即将关闭的窗体设置为自己的Owner，从而导致新窗体一打开就被立即关闭（因为它的Owner关闭了）。" },
                     new DataSourceModel() { Name = "Result" ,Description = "DialogResult属性只有True、False和Null三种选项。若返回结果较为复杂，可以使用该属性。" },
                     new DataSourceModel() { Name = "窗体背景色" ,Description = "若要设置覆盖全窗体的背景色，需要在设置Background的同时将NavBackground设置为Transparent。" },
                     new DataSourceModel() { Name = "有关Header属性" ,Description = "Title属性会同时作用于窗体的左上角标题和任务栏标题。如果你期望使用不同的值，使用Header属性可以单独设置左上角的标题。若Header属性为空，PanuonUI将使用Title属性的值作为左上角标题。若不希望使用任何左上角标题，请将Header属性设置为空格（而不是为空）" },

@@ -62,10 +62,20 @@ namespace Panuon.UI
             var tabPanel = sender as TabPanel;
 
             var scrollViewer = (tabPanel.Parent as VirtualizingStackPanel).Parent as ScrollViewer;
-            if (e.Delta > 0)
-                scrollViewer.LineLeft();
-            else
-                scrollViewer.LineRight();
+           if(TabStripPlacement == Dock.Top || TabStripPlacement == Dock.Bottom)
+            {
+                if (e.Delta > 0)
+                    scrollViewer.LineLeft();
+                else
+                    scrollViewer.LineRight();
+            }
+           else
+            {
+                if (e.Delta > 0)
+                    scrollViewer.LineUp();
+                else
+                    scrollViewer.LineDown();
+            }
 
             if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible || scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
                 e.Handled = true;
@@ -263,6 +273,27 @@ namespace Panuon.UI
         }
         private ICommand _rightCommand = new PUTabControlRightCommand();
 
+        /// <summary>
+        /// 向左命令
+        /// </summary>
+        public ICommand UpCommand
+        {
+            get
+            { return _upCommand; }
+        }
+        private ICommand _upCommand = new PUTabControlUpCommand();
+
+
+        /// <summary>
+        /// 向左命令
+        /// </summary>
+        public ICommand DownCommand
+        {
+            get
+            { return _downCommand; }
+        }
+        private ICommand _downCommand = new PUTabControlDownCommand();
+
         #endregion
 
         #region APIs
@@ -286,13 +317,27 @@ namespace Panuon.UI
         {
             if (tabPanel == null)
                 return;
-            if (ActualWidth <= tabPanel.ActualWidth)
+            if(TabStripPlacement == Dock.Top || TabStripPlacement == Dock.Bottom)
             {
-                SideButtonVisibility = Visibility.Visible;
+                if (ActualWidth <= tabPanel.ActualWidth)
+                {
+                    SideButtonVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    SideButtonVisibility = Visibility.Collapsed;
+                }
             }
             else
             {
-                SideButtonVisibility = Visibility.Collapsed;
+                if (ActualHeight <= tabPanel.ActualHeight)
+                {
+                    SideButtonVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    SideButtonVisibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -452,6 +497,55 @@ namespace Panuon.UI
                 scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + 20);
             else
                 scrollViewer.ScrollToHorizontalOffset(scrollViewer.ActualWidth);
+        }
+    }
+
+    internal sealed class PUTabControlUpCommand : ICommand
+    {
+        event EventHandler ICommand.CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var stkMain = (parameter as ScrollViewer);
+
+            if (stkMain.VerticalOffset >= 20)
+                stkMain.ScrollToVerticalOffset(stkMain.VerticalOffset - 20);
+            else
+                stkMain.ScrollToVerticalOffset(0);
+
+        }
+    }
+
+    internal sealed class PUTabControlDownCommand : ICommand
+    {
+        event EventHandler ICommand.CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var scrollViewer = (parameter as ScrollViewer);
+
+            if (scrollViewer.VerticalOffset <= scrollViewer.ActualHeight - 20)
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + 20);
+            else
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.ActualHeight);
         }
     }
 
