@@ -18,6 +18,7 @@ namespace Panuon.UI
             base.OnApplyTemplate();
             Loaded += delegate
             {
+                PercentString = Percent * 100 + "%";
                 Change();
             };
         }

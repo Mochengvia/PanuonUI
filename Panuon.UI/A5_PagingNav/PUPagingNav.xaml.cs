@@ -30,7 +30,7 @@ namespace Panuon.UI
         /// <summary>
         /// 页码发生改变事件。
         /// </summary>
-        public static readonly RoutedEvent CurrentPageChangedEvent = EventManager.RegisterRoutedEvent("CurrentPageChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<int>), typeof(PUTabControl));
+        public static readonly RoutedEvent CurrentPageChangedEvent = EventManager.RegisterRoutedEvent("CurrentPageChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<int>), typeof(PUPagingNav));
         public event RoutedPropertyChangedEventHandler<int> CurrentPageChanged
         {
             add { AddHandler(CurrentPageChangedEvent, value); }
@@ -45,7 +45,7 @@ namespace Panuon.UI
 
         #region Property
         /// <summary>
-        /// 获取或设置当前的页数。默认值为1。
+        /// 获取或设置当前的总页数。默认值为1。
         /// </summary>
         public int TotalPage
         {

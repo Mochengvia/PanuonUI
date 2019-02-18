@@ -233,18 +233,18 @@ namespace Panuon.UI
             get { return (string)GetValue(WatermarkProperty); }
             set { SetValue(WatermarkProperty, value); }
         }
-        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(PUPasswordBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty WatermarkProperty = DependencyProperty.Register("Watermark", typeof(string), typeof(PUPasswordBox));
 
         /// <summary>
         /// 放置在密码框前的图标。
         /// <para>仅当密码框样式为IconGroup时有效。</para>
         /// </summary>
-        public string Icon
+        public object Icon
         {
-            get { return (string)GetValue(IconProperty); }
+            get { return (object)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(string), typeof(PUPasswordBox), new PropertyMetadata(""));
+        public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(object), typeof(PUPasswordBox));
 
         /// <summary>
         /// 图标的宽度，默认值为30。
@@ -268,7 +268,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IsShowPwdButtonShowProperty =
-            DependencyProperty.Register("IsShowPwdButtonShow", typeof(bool), typeof(PUPasswordBox), new PropertyMetadata(false));
+            DependencyProperty.Register("IsShowPwdButtonShow", typeof(bool), typeof(PUPasswordBox));
 
 
         #endregion

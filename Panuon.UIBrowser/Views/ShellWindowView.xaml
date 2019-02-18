@@ -85,6 +85,9 @@
                 </pu:PUTreeViewItem>
                 <pu:PUTreeViewItem Header="特殊控件">
                     <pu:PUTreeViewItem Padding="10,0,0,0"
+                                       Header="PagingNav 分页器"
+                                       Value="PagingNav" />
+                    <pu:PUTreeViewItem Padding="10,0,0,0"
                                        Header="ResizeGrid 可变大小容器"
                                        Value="ResizeGrid" />
                     <pu:PUTreeViewItem Padding="10,0,0,0"

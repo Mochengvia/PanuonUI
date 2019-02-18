@@ -103,6 +103,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case "ContextMenu":
                     ActivateItem(new Control.ContextMenuViewModel(_windowManager));
                     break;
+                case "PagingNav":
+                    ActivateItem(new Special.PagingNavViewModel(_windowManager));
+                    break;
                 case "ResizeGrid":
                     ActivateItem(new Special.ResizeGridViewModel(_windowManager));
                     break;

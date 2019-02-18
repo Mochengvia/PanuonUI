@@ -10,7 +10,6 @@
                     <local:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

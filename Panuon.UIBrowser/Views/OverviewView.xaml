@@ -11,7 +11,7 @@
              d:DesignWidth="1200">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="60,20">
+            <StackPanel Margin="20,20">
                 <TextBlock FontSize="30"
                            Margin="0,0,0,30">Ovewview 总览</TextBlock>
                 <pu:PUCard HorizontalAlignment="Stretch"
@@ -41,7 +41,7 @@
                     </Grid>
                 </pu:PUCard>
                 <Grid Margin="0,10"
-                      Height="250">
+                      Height="500">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -67,14 +67,19 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <pu:PUCard Grid.RowSpan="8"
+                    <pu:PUCard Grid.RowSpan="6"
                                Grid.ColumnSpan="3"
                                Header="按钮"
                                IsDetailButtonShow="True"
                                Margin="5,0,5,5"
                                cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="0,5,0,0">
                             <pu:PUButton Content="General"
                                          Margin="10,0,10,0"
                                          Background="{Binding DeepCoverBrush}"
@@ -103,13 +108,13 @@
                         </StackPanel>
                     </pu:PUCard>
                     <pu:PUCard Grid.Column="3"
-                               Grid.RowSpan="5"
+                               Grid.RowSpan="4"
                                Grid.ColumnSpan="4"
                                Margin="5,0,5,5"
                                Header="输入框"
                                IsDetailButtonShow="True"
                                cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="0,5">
                             <pu:PUTextBox Margin="10,0,10,0"
                                           Watermark="General"
                                           IsClearButtonShow="True"
@@ -131,13 +136,13 @@
                         </StackPanel>
                     </pu:PUCard>
                     <pu:PUCard Grid.Column="7"
-                               Grid.RowSpan="5"
+                               Grid.RowSpan="4"
                                Grid.ColumnSpan="4"
                                Margin="5,0,5,5"
                                Header="密码框"
                                IsDetailButtonShow="True"
                                cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="0,5">
                             <pu:PUPasswordBox Margin="10,0,10,0"
                                               Watermark="General"
                                               IsShowPwdButtonShow="True"
@@ -159,20 +164,21 @@
                         </StackPanel>
                     </pu:PUCard>
                     <pu:PUCard Grid.Column="11"
-                               Grid.RowSpan="8"
+                               Grid.RowSpan="6"
                                Grid.ColumnSpan="3"
                                Margin="5,0,5,5"
                                Header="复选框"
                                IsDetailButtonShow="True"
                                cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="0,5">
                             <pu:PUCheckBox Margin="10,0,10,0"
-                                              HorizontalAlignment="Center"
-                                              BorderCornerRadius="2"
-                                              Foreground="{Binding DeepCoverBrush}"
-                                            CoverBrush="{Binding DeepCoverBrush}"
-                                            BorderBrush="{Binding LightCoverBrush}"
-                                              Height="32"></pu:PUCheckBox>
+                                           HorizontalAlignment="Center"
+                                           BorderCornerRadius="2"
+                                           Foreground="{Binding DeepCoverBrush}"
+                                           CoverBrush="{Binding DeepCoverBrush}"
+                                           BorderBrush="{Binding LightCoverBrush}"
+                                           Height="32"
+                                           Content="General"></pu:PUCheckBox>
                             <pu:PUCheckBox Margin="10,0,10,0"
                                            HorizontalAlignment="Center"
                                            BorderCornerRadius="2"
@@ -180,7 +186,8 @@
                                            Foreground="{Binding DeepCoverBrush}"
                                            CoverBrush="{Binding DeepCoverBrush}"
                                            BorderBrush="{Binding LightCoverBrush}"
-                                           Height="32"></pu:PUCheckBox>
+                                           Height="32"
+                                           Content="Classic  "></pu:PUCheckBox>
                             <pu:PUCheckBox Margin="10,0,10,0"
                                            HorizontalAlignment="Center"
                                            CheckBoxStyle="Branch"
@@ -188,7 +195,8 @@
                                            Foreground="{Binding DeepCoverBrush}"
                                            CoverBrush="{Binding DeepCoverBrush}"
                                            BorderBrush="{Binding LightCoverBrush}"
-                                           Height="32"></pu:PUCheckBox>
+                                           Height="32"
+                                           Content="Branch"></pu:PUCheckBox>
                             <pu:PUCheckBox Margin="10,0,10,0"
                                            HorizontalAlignment="Center"
                                            BorderCornerRadius="2"
@@ -197,7 +205,8 @@
                                            CoverBrush="{Binding DeepCoverBrush}"
                                            BorderBrush="{Binding LightCoverBrush}"
                                            Height="32"
-                                           InnerWidth="35"></pu:PUCheckBox>
+                                           InnerWidth="35"
+                                           Content="Switch"></pu:PUCheckBox>
                             <pu:PUCheckBox Margin="10,0,10,0"
                                            HorizontalAlignment="Center"
                                            BorderCornerRadius="2"
@@ -205,12 +214,68 @@
                                            Foreground="{Binding DeepCoverBrush}"
                                            CoverBrush="{Binding DeepCoverBrush}"
                                            BorderBrush="{Binding LightCoverBrush}"
-                                           Height="32"></pu:PUCheckBox>
+                                           Height="32"
+                                           Content="Button"></pu:PUCheckBox>
+                        </StackPanel>
+                    </pu:PUCard>
+                    <pu:PUCard Grid.Column="11"
+                               Grid.RowSpan="6"
+                               Grid.Row="6"
+                               Grid.ColumnSpan="3"
+                               Margin="5,0,5,5"
+                               Header="单选框"
+                               IsDetailButtonShow="True"
+                               cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
+                        <StackPanel Margin="0,5">
+                            <pu:PURadioButton Margin="10,0,10,0"
+                                              HorizontalAlignment="Center"
+                                              Foreground="{Binding DeepCoverBrush}"
+                                              CoverBrush="{Binding DeepCoverBrush}"
+                                              BorderBrush="{Binding LightCoverBrush}"
+                                              Height="32"
+                                              Content="General"></pu:PURadioButton>
+                            <pu:PURadioButton Margin="10,0,10,0"
+                                              HorizontalAlignment="Center"
+                                              BorderThickness="0"
+                                              RadioButtonStyle="Classic"
+                                              Foreground="{Binding DeepCoverBrush}"
+                                              CoverBrush="{Binding DeepCoverBrush}"
+                                              Background="{Binding LightCoverBrush}"
+                                              Height="32"
+                                              Content="Classic  "></pu:PURadioButton>
+                            <pu:PURadioButton Margin="10,0,10,0"
+                                              HorizontalAlignment="Center"
+                                              RadioButtonStyle="Branch"
+                                              Padding="25,0,0,0"
+                                              Foreground="{Binding DeepCoverBrush}"
+                                              CoverBrush="{Binding DeepCoverBrush}"
+                                              BorderBrush="{Binding LightCoverBrush}"
+                                              Height="32"
+                                              Content="Branch"></pu:PURadioButton>
+                            <pu:PURadioButton Margin="10,0,10,0"
+                                              HorizontalAlignment="Center"
+                                              BorderCornerRadius="2"
+                                              RadioButtonStyle="Switch"
+                                              Foreground="{Binding DeepCoverBrush}"
+                                              CoverBrush="{Binding DeepCoverBrush}"
+                                              BorderBrush="{Binding LightCoverBrush}"
+                                              Height="32"
+                                              InnerWidth="35"
+                                              Content="Switch"></pu:PURadioButton>
+                            <pu:PURadioButton Margin="10,0,10,0"
+                                              HorizontalAlignment="Center"
+                                              BorderCornerRadius="2"
+                                              RadioButtonStyle="Button"
+                                              Foreground="{Binding DeepCoverBrush}"
+                                              CoverBrush="{Binding DeepCoverBrush}"
+                                              BorderBrush="{Binding LightCoverBrush}"
+                                              Height="32"
+                                              Content="Button"></pu:PURadioButton>
                         </StackPanel>
                     </pu:PUCard>
                     <pu:PUCard Grid.Column="3"
-                               Grid.Row="5"
-                               Grid.RowSpan="8"
+                               Grid.Row="4"
+                               Grid.RowSpan="4"
                                Grid.ColumnSpan="8"
                                Margin="5,0,5,5"
                                Header="进度条"
@@ -218,9 +283,82 @@
                                cm:Message.Attach="[Event Detail]=[Action Detail('Button')]">
                         <Grid Margin="0,0">
                             <Grid pu:Helper.ColumnDefinition="0.5*">
-                                
+                                <pu:PUProgressBar Percent="{Binding ProgressPercent,Mode=OneWay}"
+                                                  Height="30"
+                                                  Margin="10,0"
+                                                  BorderBrush="{Binding LightCoverBrush}"
+                                                  CoverBrush="{Binding DeepCoverBrush}"
+                                                  IsPercentShow="True" />
                             </Grid>
-                            <Grid pu:Helper.ColumnDefinition="0.5*" />
+                            <Grid pu:Helper.ColumnDefinition="0.35*">
+                                <pu:PUProgressBar Percent="{Binding ProgressPercent,Mode=OneWay}"
+                                                  ProgressBarStyle="Ring"
+                                                  Height="70"
+                                                  Width="70"
+                                                  BorderThickness="3"
+                                                  BorderBrush="{Binding LightCoverBrush}"
+                                                  CoverBrush="{Binding DeepCoverBrush}"
+                                                  HorizontalAlignment="Center"
+                                                  IsPercentShow="True" />
+                            </Grid>
+                            <Grid pu:Helper.ColumnDefinition="0.2*">
+                                <StackPanel Orientation="Vertical"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                                    <pu:PUButton Width="25"
+                                                 Height="25"
+                                                 ButtonStyle="Hollow"
+                                                 Content="+"
+                                                 BorderBrush="Gray"
+                                                 CoverBrush="LightGray"
+                                                 Foreground="Gray"
+                                                 cm:Message.Attach="[Event Click]=[Action AddPercent]" />
+                                    <pu:PUButton Margin="0,10,0,0"
+                                                 Width="25"
+                                                 Height="25"
+                                                 ButtonStyle="Hollow"
+                                                 Content="－"
+                                                 BorderBrush="Gray"
+                                                 CoverBrush="LightGray"
+                                                 Foreground="Gray"
+                                                 cm:Message.Attach="[Event Click]=[Action ReducePercent]" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </pu:PUCard>
+                    <pu:PUCard Grid.Column="3"
+                               Grid.Row="8"
+                               Grid.RowSpan="4"
+                               Grid.ColumnSpan="8"
+                               Margin="5,0,5,5"
+                               Header="选项卡"
+                               IsDetailButtonShow="True"
+                               cm:Message.Attach="[Event Detail]=[Action Detail('TabControl')]">
+                        <Grid Margin="0,0">
+                            <Grid pu:Helper.ColumnDefinition="0.5*">
+                                <Grid pu:Helper.RowDefinition="0.5*">
+                                    <pu:PUTabControl Margin="10,0"
+                                                     BorderBrush="{Binding LightCoverBrush}"
+                                                     SelectedBrush="{Binding DeepCoverBrush}">
+                                        <pu:PUTabItem Header="Tab1"></pu:PUTabItem>
+                                        <pu:PUTabItem Header="Tab2"></pu:PUTabItem>
+                                        <pu:PUTabItem Header="Tab3"></pu:PUTabItem>
+                                    </pu:PUTabControl>
+                                </Grid>
+                                <Grid pu:Helper.RowDefinition="0.5*">
+                                    <pu:PUTabControl Margin="10,0"
+                                                     TabControlStyle="Classic"
+                                                     BorderBrush="{Binding LightCoverBrush}"
+                                                     SelectedBrush="{Binding DeepCoverBrush}">
+                                        <pu:PUTabItem Header="Tab1"></pu:PUTabItem>
+                                        <pu:PUTabItem Header="Tab2"></pu:PUTabItem>
+                                        <pu:PUTabItem Header="Tab3"></pu:PUTabItem>
+                                    </pu:PUTabControl>
+                                </Grid>
+                            </Grid>
+                            <Grid pu:Helper.RowDefinition="0.5*">
+                               
+                            </Grid>
                         </Grid>
                     </pu:PUCard>
                 </Grid>

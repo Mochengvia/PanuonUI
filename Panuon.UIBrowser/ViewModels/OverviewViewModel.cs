@@ -24,6 +24,7 @@ namespace Panuon.UIBrowser.ViewModels
         {
             _windowManager = windowManager;
             ChangeThemeBrush(new RoutedPropertyChangedEventArgs<int>(1, 1));
+            ProgressPercent = 0;
         }
         #endregion
 
@@ -47,10 +48,35 @@ namespace Panuon.UIBrowser.ViewModels
             get { return _lightColor; }
             set { _lightColor = value; NotifyOfPropertyChange(() => LightColor); }
         }
-        private Color _lightColor; 
+        private Color _lightColor;
+
+        public double ProgressPercent
+        {
+            get { return _progressPercent; }
+            set { _progressPercent = value; NotifyOfPropertyChange(() => ProgressPercent); }
+        }
+        private double _progressPercent;
         #endregion
 
         #region Event
+        int percent = 0;
+        public void AddPercent()
+        {
+            if (percent < 5)
+            {
+                percent++;
+                ProgressPercent = percent * 0.2;
+            }
+        }
+
+        public void ReducePercent()
+        {
+            if (percent > 0)
+            {
+                percent--;
+                ProgressPercent = percent * 0.2;
+            }
+        }
         public void Detail(string category)
         {
             switch (category)
@@ -60,6 +86,7 @@ namespace Panuon.UIBrowser.ViewModels
                     break;
             }
         }
+
         public void ChangeThemeBrush(RoutedPropertyChangedEventArgs<int> e)
         {
             switch (e.NewValue)

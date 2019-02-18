@@ -93,6 +93,7 @@
     <Compile Include="ViewModels\Control\ButtonViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
     <Compile Include="ViewModels\Special\ImageCuterViewModel.cs" />
+    <Compile Include="ViewModels\Special\PagingNavViewModel.cs" />
     <Compile Include="ViewModels\Special\SplitLineViewModel.cs" />
     <Compile Include="ViewModels\Special\LoadingViewModel.cs" />
     <Compile Include="ViewModels\Special\ResizeGridViewModel.cs" />
@@ -223,6 +224,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Special\IndicatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Special\PagingNavView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

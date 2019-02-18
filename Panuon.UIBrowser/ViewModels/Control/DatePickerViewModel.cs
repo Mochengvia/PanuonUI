@@ -27,7 +27,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
             CoverBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3E3E3E"));
             DatePickerMode = DatePickerModes.DateOnly;
             Init();
-            SelectedDateTime = DateTime.Now;
+            SelectedDateTime = DateTime.Now.Date;
         }
         #endregion
 
@@ -159,6 +159,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
           
             AnnotationList = new ObservableCollection<DataSourceModel>()
             {
+                new DataSourceModel() { Name = "必须指定SelectedDateTime的初始值" ,Description = "否则会因无法计算而引发异常。" },
                 new DataSourceModel() { Name = "不能限制时间选择" ,Description = "MaxDateTime和MinDateTime属性只对日期有效，不能限制用户选择时间。" },
             };
         }

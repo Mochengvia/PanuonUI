@@ -149,7 +149,6 @@
                                     Property="Margin"
                                     Value="0,0,4,4"></Setter>
                         </MultiTrigger>
-
                         <EventTrigger RoutedEvent="ScrollChanged">
                             <BeginStoryboard>
                                 <Storyboard>
