@@ -407,6 +407,7 @@ namespace Panuon.UI
             {
                 case NotifyCollectionChangedAction.Reset:
                     var _choosedValue = ChoosedValue;
+                    ChoosedValue = null;
                     Items.Clear();
                     if (BindingItems == null)
                         break;

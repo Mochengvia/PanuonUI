@@ -12,7 +12,7 @@
     <Grid>
         <pu:PUSlideShow IsIndicatorShow="False"
                         ClipToBounds="True"
-                        Index="2">
+                        Index="1">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               cm:Message.Attach="[Event PreviewMouseWheel]=[Action HandleMouseWheel($source,$eventArgs)]">
@@ -67,28 +67,6 @@
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Width="2*"
                                                         Header="含义">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock TextWrapping="Wrap"
-                                                       Text="{Binding Description}"
-                                                       Height="Auto"
-                                                       Margin="0,5" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <TextBlock FontSize="15"
-                                   Margin="0,0,0,10"
-                                   Foreground="#FF2AA065">注解</TextBlock>
-                        <DataGrid ItemsSource="{Binding AnnotationList}"
-                                  Margin="0,0,0,20">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="*"
-                                                    Header="注解对象"
-                                                    Binding="{Binding Name}" />
-                                <DataGridTemplateColumn Width="2*"
-                                                        Header="提示">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock TextWrapping="Wrap"
@@ -393,7 +371,7 @@
                                                 TotalPage="{Binding TotalPage}"
                                                 ButtonCornerRadius="{Binding ButtonCornerRadius}"
                                                 SelectedBrush="{Binding SelectedBrush}"
-                                                ButtonBrush="{Binding ButtonBrush}"/>
+                                                ButtonBrush="{Binding ButtonBrush}" />
                             </StackPanel>
                         </Grid>
                     </StackPanel>

@@ -36,12 +36,12 @@ namespace Panuon.UIBrowser.ViewModels.Control
         #endregion
 
         #region Bindings
-        public ObservableCollection<PUComboBoxItemModel> ComboBoxItems
+        public BindableCollection<PUComboBoxItemModel> ComboBoxItems
         {
             get { return _comboBoxItems; }
             set { _comboBoxItems = value; NotifyOfPropertyChange(() => ComboBoxItems); }
         }
-        private ObservableCollection<PUComboBoxItemModel> _comboBoxItems;
+        private BindableCollection<PUComboBoxItemModel> _comboBoxItems;
 
         public ObservableCollection<DataSourceModel> DependencyPropertyList
         {
@@ -237,7 +237,7 @@ namespace Panuon.UIBrowser.ViewModels.Control
         {
             await Task.Delay(100);
 
-            ComboBoxItems = new ObservableCollection<PUComboBoxItemModel>()
+            ComboBoxItems = new BindableCollection<PUComboBoxItemModel>()
             {
                 new PUComboBoxItemModel() {  Header = "Item1", Value =1 },
                 new PUComboBoxItemModel() {  Header = "Item2", Value =2 },
