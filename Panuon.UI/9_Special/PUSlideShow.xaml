@@ -22,7 +22,8 @@
                         HorizontalAlignment="Left"
                         Margin="20,0,0,0"
                         BorderCornerRadius="17.5"
-                        Click="BtnLeft_Click"></local:PUButton>
+                        Click="BtnLeft_Click"
+                        Visibility="Collapsed"></local:PUButton>
         <local:PUButton x:Name="PART_BTNRIGHT"
                         Content=""
                         FontFamily="{DynamicResource IconFont}"
@@ -32,7 +33,8 @@
                         HorizontalAlignment="Right"
                         Margin="0,0,20,0"
                         BorderCornerRadius="17.5"
-                        Click="BtnRight_Click"></local:PUButton>
+                        Click="BtnRight_Click"
+                        Visibility="Collapsed"></local:PUButton>
         <local:PUIndicator x:Name="PART_INDICATOR"
                            Height="14"
                            VerticalAlignment="Bottom"
