@@ -144,7 +144,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IsSlideButtonShowProperty =
-            DependencyProperty.Register("IsSlideButtonShow", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(false, OnIsSlideButtonShowChanged));
+            DependencyProperty.Register("IsSlideButtonShow", typeof(bool), typeof(PUSlideShow), new PropertyMetadata(true, OnIsSlideButtonShowChanged));
 
         private static void OnIsSlideButtonShowChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

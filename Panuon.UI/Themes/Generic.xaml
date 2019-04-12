@@ -2771,7 +2771,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 CornerRadius="{Binding BorderCornerRadius,RelativeSource={RelativeSource AncestorType=ComboBox}}">
                         </Border>
-                        <ContentPresenter HorizontalAlignment="Left"
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="{TemplateBinding Padding}"
                                           x:Name="ContentSite"
                                           VerticalAlignment="Center"
@@ -2981,13 +2981,13 @@
                           Width="{TemplateBinding Width}">
                         <Border x:Name="bdrMain"
                                 Background="Transparent" />
-                        <Label Margin="{TemplateBinding Padding}"
-                               VerticalAlignment="Center"
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                x:Name="txtContent"
                                Opacity="0.8"
-                               Content="{TemplateBinding Content}"
-                               Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                               FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
+                               ContentSource="Content"
+                               />
                         <local:PUButton x:Name="btnDelete"
                                         ButtonStyle="Link"
                                         Opacity="0.7"
