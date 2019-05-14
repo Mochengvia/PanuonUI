@@ -114,6 +114,12 @@ namespace Panuon.UI
 
         protected override void OnClosing(CancelEventArgs e)
         {
+            if(_animateOutHandle)
+                base.OnClosing(e);
+
+            if (e.Cancel)
+                return;
+
             if (AllowAutoCoverMask && (Owner as PUWindow) != null)
             {
                 var owner = Owner as PUWindow;
@@ -164,7 +170,6 @@ namespace Panuon.UI
                     DialogResult = _dialogResult;
                 }
             }
-            base.OnClosing(e);
         }
 
         private void ResizeRectangle_PreviewMouseDown(object sender, MouseButtonEventArgs e)
