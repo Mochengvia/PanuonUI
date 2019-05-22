@@ -61,6 +61,7 @@ namespace Panuon.UI
         #region Sys
         private void PUPasswordBox_TextInput(object sender, TextCompositionEventArgs e)
         {
+            Password = Password ?? "";
             if ((MaxLength != 0 && Password.Length >= MaxLength) && SelectionLength == 0)
             {
                 e.Handled = true;
