@@ -1,10 +1,27 @@
 # PanuonUI(v1.0.0 alpha)
+
+对于全新的项目，推荐您使用Panuon.UI.Silver。  
+它使用样式与Helper，拥有更好的性能，更优雅和规范的设计：  
+https://github.com/Ruris/Panuon.UI.Silver  
+
+
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
+
 Panuon.UI现已加入NuGet包。
 本库是一个正在开发的项目，如果遇到问题或有更好的建议，请发送邮件至970424424@qq.com，或在我的知乎账户上私信我(@末城via)，欢迎加入QQ群（718778191）。<br/>
 
 
 你可以在任何地方使用该库，包括移植到你自己的项目中。
+
+## 捐赠
+Panuon.UI是一个无限制的开源控件库。您的支持与帮助是我们持续开发的动力。  
+
+支付宝：（支持花呗（眨眼））：
+
+![](https://raw.githubusercontent.com/Ruris/Panuon.Documents/master/Resources/Global/zhifubao.jpg)
+
+Paypal:   
+paypal.me/Zeoun  
 
 
 ## 使用方式
