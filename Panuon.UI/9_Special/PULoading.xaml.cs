@@ -17,6 +17,13 @@ namespace Panuon.UI
         public PULoading()
         {
             InitializeComponent();
+            Loaded += PULoading_Loaded;
+        }
+
+        private void PULoading_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (IsRunning)
+                Draw();
         }
 
         public override void OnApplyTemplate()
@@ -35,7 +42,7 @@ namespace Panuon.UI
         private static void OnIsRunningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var load = d as PULoading;
-            if (double.IsNaN(load.Width) || load.Width == 0)
+            if (!load.IsLoaded)
                 return;
             var run = (bool)e.NewValue;
             if (run)
@@ -53,9 +60,23 @@ namespace Panuon.UI
             {
                 RepeatBehavior = RepeatBehavior.Forever,
             };
-            if (Height == double.NaN)
-                return;
-            var canvasHeight = this.Height;
+
+            double canvasHeight = 0;
+            if (double.IsNaN(Height))
+            {
+                if (ActualHeight == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    canvasHeight = ActualHeight;
+                }
+            }
+            else
+            {
+                canvasHeight = this.Height;
+            }
             var ellipseHeight = canvasHeight * 0.1;
             var rollHeight = canvasHeight * 0.75;
             var rollRadius = rollHeight / 2;
