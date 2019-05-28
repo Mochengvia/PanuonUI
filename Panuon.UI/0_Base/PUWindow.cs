@@ -568,7 +568,7 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty AllowAutoOwnerProperty =
-            DependencyProperty.Register("AllowAutoOwner", typeof(bool), typeof(PUWindow), new PropertyMetadata(true, OnAllowAutoOwnerChanged));
+            DependencyProperty.Register("AllowAutoOwner", typeof(bool), typeof(PUWindow), new PropertyMetadata(false, OnAllowAutoOwnerChanged));
 
         private static void OnAllowAutoOwnerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

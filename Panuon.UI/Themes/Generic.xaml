@@ -1298,6 +1298,11 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="AllowAutoCoverMask"
+                     Value="True">
+                <Setter Property="AllowAutoOwner"
+                        Value="True" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
