@@ -10,7 +10,7 @@
              MinWidth="350"
              MaxWidth="500"
              SizeToContent="WidthAndHeight"
-             WindowStartupLocation="CenterOwner"
+             WindowStartupLocation="CenterScreen"
              FontSize="16"
              ResizeMode="NoResize"
              AllowAutoCoverMask="True"

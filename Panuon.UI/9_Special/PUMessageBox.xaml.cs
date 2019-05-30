@@ -30,6 +30,10 @@ namespace Panuon.UI
             }
             ShowInTaskbar = showInTaskBar;
             AnimationStyle = animateStyle;
+            if(Owner != null)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            }
         }
         #region APIs
         /// <summary>
