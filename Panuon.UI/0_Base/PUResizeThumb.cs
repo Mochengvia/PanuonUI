@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 
 namespace Panuon.UI
 {
-    /// <summary>
-    /// 此控件源码来源于网络，并在原来的基础上进行了修改。
-    /// </summary>
     internal class ResizeThumb : Thumb
     {
         public ResizeThumb()
@@ -16,8 +15,6 @@ namespace Panuon.UI
         }
 
         #region Property
-
-
         public bool IsSquare
         {
             get { return (bool)GetValue(IsSquareProperty); }
@@ -25,110 +22,149 @@ namespace Panuon.UI
         }
 
         public static readonly DependencyProperty IsSquareProperty =
-            DependencyProperty.Register("IsSquare", typeof(bool), typeof(ResizeThumb), new PropertyMetadata(false));
+            DependencyProperty.Register("IsSquare", typeof(bool), typeof(ResizeThumb));
 
+        public bool LimitInParent
+        {
+            get { return (bool)GetValue(LimitInParentProperty); }
+            set { SetValue(LimitInParentProperty, value); }
+        }
+
+        public static readonly DependencyProperty LimitInParentProperty =
+            DependencyProperty.Register("LimitInParent", typeof(bool), typeof(ResizeThumb));
 
         #endregion
 
-        #region Sys
+        #region Event
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            var item = this.DataContext as FrameworkElement;
+            var element = this.DataContext as FrameworkElement;
+            if (double.IsNaN(Canvas.GetLeft(element)))
+                Canvas.SetLeft(element, 0);
+            if (double.IsNaN(Canvas.GetTop(element)))
+                Canvas.SetTop(element, 0);
 
-            if (item != null)
+            var parentCanvas = element.Parent as Canvas;
+            double width = 0.0;
+            double height = 0.0;
+            var left = Canvas.GetLeft(element);
+            var top = Canvas.GetTop(element);
+
+            if (HorizontalAlignment == HorizontalAlignment.Left || HorizontalAlignment == HorizontalAlignment.Right)
             {
-                if (!IsSquare)
+                if (HorizontalAlignment == HorizontalAlignment.Left)
                 {
-                    double deltaVertical, deltaHorizontal;
-
-                    switch (VerticalAlignment)
+                    width = element.ActualWidth - e.HorizontalChange;
+                    if (LimitInParent && parentCanvas != null)
                     {
-                        case VerticalAlignment.Bottom:
-                            deltaVertical = Math.Min(-e.VerticalChange,
-                                item.ActualHeight - item.MinHeight);
-                            item.Height -= deltaVertical;
-                            break;
-                        case VerticalAlignment.Top:
-                            deltaVertical = Math.Min(e.VerticalChange,
-                                item.ActualHeight - item.MinHeight);
-                            Canvas.SetTop(item, Canvas.GetTop(item) + deltaVertical);
-                            item.Height -= deltaVertical;
-                            break;
-                        default:
-                            break;
+                        if (left + e.HorizontalChange < 0 && element.ActualWidth != element.MaxWidth)
+                            width = element.ActualWidth + left;
                     }
-                    if (item.Height > item.MaxHeight)
-                        item.Height = item.MaxHeight;
-
-                    switch (HorizontalAlignment)
-                    {
-                        case HorizontalAlignment.Left:
-                            deltaHorizontal = Math.Min(e.HorizontalChange,
-                                item.ActualWidth - item.MinWidth);
-                            Canvas.SetLeft(item, Canvas.GetLeft(item) + deltaHorizontal);
-                            item.Width -= deltaHorizontal;
-                            break;
-                        case HorizontalAlignment.Right:
-                            deltaHorizontal = Math.Min(-e.HorizontalChange,
-                                item.ActualWidth - item.MinWidth);
-                            item.Width -= deltaHorizontal;
-                            break;
-                        default:
-                            break;
-                    }
-                    if (item.Width > item.MaxWidth)
-                        item.Width = item.MaxWidth;
                 }
                 else
                 {
-                    double deltaVertical, deltaHorizontal;
-
-                    switch (VerticalAlignment)
+                    width = element.ActualWidth + e.HorizontalChange;
+                    if (LimitInParent && parentCanvas != null)
                     {
-                        case VerticalAlignment.Bottom:
-                            deltaVertical = Math.Min(-e.VerticalChange,
-                                item.ActualHeight - item.MinHeight);
-                            item.Height -= deltaVertical;
-                            if (item.Height > item.MaxHeight)
-                                item.Height = item.MaxHeight;
-                            item.Width = item.Height;
-                            return;
-                        case VerticalAlignment.Top:
-                            deltaVertical = Math.Min(e.VerticalChange,
-                                item.ActualHeight - item.MinHeight);
-                            Canvas.SetTop(item, Canvas.GetTop(item) + deltaVertical);
-                            item.Height -= deltaVertical;
-                            if (item.Height > item.MaxHeight)
-                                item.Height = item.MaxHeight;
-                            item.Width = item.Height;
-                            return;
-                        default:
-                            break;
+                        if (left + element.ActualWidth + e.HorizontalChange > parentCanvas.ActualWidth && element.ActualWidth != element.MaxWidth)
+                            width = parentCanvas.ActualWidth - left;
                     }
+                }
 
-                    switch (HorizontalAlignment)
+                width = width > element.MaxWidth ? element.MaxWidth : width;
+                width = width < element.MinWidth ? element.MinWidth : width;
+            }
+
+            if (VerticalAlignment == VerticalAlignment.Top || VerticalAlignment == VerticalAlignment.Bottom)
+            {
+                if (VerticalAlignment == VerticalAlignment.Top)
+                {
+                    height = element.ActualHeight - e.VerticalChange;
+                    if (LimitInParent && parentCanvas != null)
                     {
-                        case HorizontalAlignment.Left:
-                            deltaHorizontal = Math.Min(e.HorizontalChange,
-                                item.ActualWidth - item.MinWidth);
-                            Canvas.SetLeft(item, Canvas.GetLeft(item) + deltaHorizontal);
-                            item.Width -= deltaHorizontal;
-                            break;
-                        case HorizontalAlignment.Right:
-                            deltaHorizontal = Math.Min(-e.HorizontalChange,
-                                item.ActualWidth - item.MinWidth);
-                            item.Width -= deltaHorizontal;
-                            break;
-                        default:
-                            break;
+                        if (top + e.VerticalChange < 0 && element.ActualHeight != element.MaxHeight)
+                            height = element.ActualHeight + top;
                     }
-                    if (item.Width > item.MaxWidth)
-                        item.Width = item.MaxWidth;
-                    item.Height = item.Width;
+                }
+                else
+                {
+                    height = element.ActualHeight + e.VerticalChange;
+                    if (LimitInParent && parentCanvas != null)
+                    {
+                        if (top + element.ActualHeight + e.VerticalChange > parentCanvas.ActualHeight && element.ActualHeight != element.MaxHeight)
+                            height = parentCanvas.ActualHeight - top;
+                    }
+                }
+                height = height > element.MaxHeight ? element.MaxHeight : height;
+                height = height < element.MinHeight ? element.MinHeight : height;
+            }
 
-                    e.Handled = true;
+            if (!IsSquare)
+            {
+                if (width != 0)
+                    SetElementWidth(element, width, left);
+                if (height != 0)
+                    SetElementHeight(element, height, top);
+            }
+            else
+            {
+                if (width != 0)
+                {
+                    if (!LimitInParent)
+                    {
+                        SetElementWidth(element, width, left);
+                        SetElementHeight(element, width, top);
+
+                    }
+                    if (LimitInParent)
+                    {
+                        if (width + top < parentCanvas.ActualHeight)
+                        {
+                            SetElementWidth(element, width, left);
+                            SetElementHeight(element, width, top);
+                        }
+                    }
+                }
+                else if (height != 0)
+                {
+                    if (!LimitInParent)
+                    {
+                        SetElementWidth(element, height, left);
+                        SetElementHeight(element, height, top);
+
+                    }
+                    if (LimitInParent)
+                    {
+                        if (height + left <= parentCanvas.ActualWidth)
+                        {
+                            SetElementWidth(element, height, left);
+                            SetElementHeight(element, height, top);
+                        }
+                    }
                 }
             }
+        }
+        #endregion
+
+        #region Function
+        private void SetElementWidth(FrameworkElement element, double width, double left)
+        {
+            if (HorizontalAlignment == HorizontalAlignment.Left)
+            {
+                var delta = element.ActualWidth - width;
+                Canvas.SetLeft(element, left + delta);
+            }
+            element.Width = width;
+        }
+
+        private void SetElementHeight(FrameworkElement element, double height, double top)
+        {
+            if (VerticalAlignment == VerticalAlignment.Top)
+            {
+                var delta = element.ActualHeight - height;
+                Canvas.SetTop(element, Canvas.GetTop(element) + delta);
+            }
+            element.Height = height;
         }
         #endregion
     }

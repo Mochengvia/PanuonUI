@@ -96,9 +96,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="0_Base\DragableThumb.cs" />
     <Compile Include="0_Base\PUResizeGrid.cs" />
     <Compile Include="0_Base\PUResizeThumb.cs" />
     <Compile Include="0_Base\PUWindow.cs" />
+    <Compile Include="0_Base\PUResizeContainer.cs" />
     <Compile Include="2_Button\PUButton.cs" />
     <Compile Include="2_Button\PURepeatButton.cs" />
     <Compile Include="3_TextBox\PUTextBox.cs" />

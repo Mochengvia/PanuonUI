@@ -5,34 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Panuon.UI"
              mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
-             x:Name="cuter">
-    <Grid>
-        <Grid x:Name="grdImage"
-              Width="Auto"
-              Height="Auto"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
-            <Image x:Name="img"
-                   VerticalAlignment="Stretch"
-                   HorizontalAlignment="Stretch"
-                   SizeChanged="img_SizeChanged"
-                   Source="{Binding ImageSource,ElementName=cuter}"></Image>
-            <Canvas x:Name="canvas">
-                <local:PUResizeGrid x:Name="resizeGrid"
-                                    Visibility="Collapsed"
-                                    SizeChanged="resizeGrid_SizeChanged"
-                                    Width="50"
-                                    Height="50"
-                                    MinHeight="50"
-                                    MinWidth="50"
-                                    Canvas.Left="0"
-                                    Canvas.Top="0">
-                    <Grid Background="#77AAAAAA">
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:Name="imagecuter">
+    <Grid Width="Auto"
+          Height="Auto">
+        <Image VerticalAlignment="Stretch"
+               HorizontalAlignment="Stretch"
+               SizeChanged="Img_SizeChanged"
+               Source="{Binding ImageSource,ElementName=imagecuter}"
+               Stretch="Uniform" />
+        <Canvas x:Name="CvaMain">
+            <local:PUResizeContainer x:Name="ResizeContainer"
+                                     Visibility="Hidden"
+                                   MinHeight="{Binding ImageMinHeight,ElementName=imagecuter}"
+                                   MinWidth="{Binding ImageMinWidth,ElementName=imagecuter}"
+                                   MaxHeight="{Binding ImageMaxHeight,ElementName=imagecuter}"
+                                   MaxWidth="{Binding ImageMaxWidth,ElementName=imagecuter}"
+                                   LimitInParent="True">
+                <Grid>
+                    <Grid Background="#77DDDDDD">
                         <Grid>
                             <Rectangle StrokeThickness="1"
-                                       Stroke="#77AAAAAA"
+                                       Stroke="#33AAAAAA"
                                        StrokeDashArray="2,1"></Rectangle>
                             <Border Height="10"
                                     Width="10"
@@ -82,8 +77,11 @@
                                        StrokeDashArray="2,1"></Rectangle>
                         </Grid>
                     </Grid>
-                </local:PUResizeGrid>
-            </Canvas>
-        </Grid>
+                    <local:DragableThumb DragTarget="{Binding Path=.,ElementName=ResizeContainer}"
+                                         LimitInParent="True" />
+                </Grid>
+            </local:PUResizeContainer>
+
+        </Canvas>
     </Grid>
 </UserControl>

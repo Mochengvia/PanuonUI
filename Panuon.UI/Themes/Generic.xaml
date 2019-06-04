@@ -102,6 +102,122 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="{x:Type local:PUResizeContainer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PUResizeContainer}">
+                    <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid x:Name="GrdResizeGroup">
+                            <local:ResizeThumb Height="5"
+                                               Tag="Top"
+                                               Cursor="SizeNS"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               Margin="0 -5 0 0"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Stretch"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="Left"
+                                               Cursor="SizeWE"
+                                               Margin="-5 0 0 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="Right"
+                                               Cursor="SizeWE"
+                                               Margin="0 0 -5 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Stretch"
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Height="5"
+                                               Tag="Bottom"
+                                               Cursor="SizeNS"
+                                               Margin="0 0 0 -5"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Stretch"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="TopLeft"
+                                               Height="5"
+                                               Cursor="SizeNWSE"
+                                               Margin="-5 -5 0 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="TopRight"
+                                               Height="5"
+                                               Cursor="SizeNESW"
+                                               Margin="0 -5 -5 0"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="BottomLeft"
+                                               Height="5"
+                                               Cursor="SizeNESW"
+                                               Margin="-5 0 0 -5"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Left"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                            <local:ResizeThumb Width="5"
+                                               Tag="BottomRight"
+                                               Height="5"
+                                               Cursor="SizeNWSE"
+                                               Margin="0 0 -5 -5"
+                                               BorderBrush="Transparent"
+                                               BorderThickness="5"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Right"
+                                               IsSquare="{TemplateBinding IsSquare}"
+                                               LimitInParent="{TemplateBinding LimitInParent}" />
+                        </Grid>
+                        <ContentPresenter Content="{TemplateBinding Content}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CanResize"
+                                 Value="False">
+                            <Setter TargetName="GrdResizeGroup"
+                                    Property="IsEnabled"
+                                    Value="False" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:DragableThumb}">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DragableThumb}">
+                    <Border Background="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="{x:Type local:PUCard}">
         <Style.Setters>
             <Setter Property="BorderBrush"

@@ -15,6 +15,12 @@ using System.Text;
 
 namespace Panuon.UI
 {
+    public enum ImageType
+    {
+        Rectangle,
+        Square,
+    }
+
     /// <summary>
     /// (PanuonUI) Animation styles for PUWindow.
     /// </summary>

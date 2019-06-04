@@ -243,6 +243,7 @@ namespace Panuon.UI
             var selectedItem = comboBox.SelectedItem as PUComboBoxItem;
             foreach (var item in comboBox.Items)
             {
+                
                 var comboBoxItem = item as PUComboBoxItem;
                 if ((comboBox.SelectedValuePath == SelectedValuePaths.Header ?
                     (comboBoxItem.Content == null ? false : comboBoxItem.Content.Equals(comboBox.SelectedValue)) :

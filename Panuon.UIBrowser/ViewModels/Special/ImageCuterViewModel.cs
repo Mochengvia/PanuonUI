@@ -73,12 +73,12 @@ namespace Panuon.UIBrowser.ViewModels.Special
 
         public void BtnCut()
         {
-            if (_cuter.CutImageSource == null)
+            if (_cuter.GetCutedImage() == null)
             {
                 PUMessageBox.ShowDialog("没有图片源。");
                 return;
             }
-            _image.Source = _cuter.CutImageSource;
+            _image.Source = _cuter.GetCutedImage();
         }
 
         public void SelectionChanged(object sender)
@@ -87,10 +87,10 @@ namespace Panuon.UIBrowser.ViewModels.Special
             switch (comboBox.SelectedValue as string)
             {
                 case "Rectangle":
-                    _cuter.AreaStyle = PUImageCuter.AreaStyles.Rectangle;
+                    _cuter.ImageType = ImageType.Rectangle;
                     return;
                 case "Square":
-                    _cuter.AreaStyle = PUImageCuter.AreaStyles.Square;
+                    _cuter.ImageType = ImageType.Square;
                     return;
             }
         }
