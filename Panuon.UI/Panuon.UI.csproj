@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="0_Base\DragableThumb.cs" />
+    <Compile Include="0_Base\NotTopMostPopup.cs" />
     <Compile Include="0_Base\PUResizeGrid.cs" />
     <Compile Include="0_Base\PUResizeThumb.cs" />
     <Compile Include="0_Base\PUWindow.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="4_PasswordBox\PUPasswordBox.cs" />
     <Compile Include="6_CheckBox\PUCheckBox.cs" />
     <Compile Include="7_RadioButton\PURadioButton.cs" />
+    <Compile Include="9_Special\DropDown.cs" />
     <Compile Include="9_Special\PUCard.cs" />
     <Compile Include="A0_TreeView\PUTreeView.cs" />
     <Compile Include="A0_TreeView\PUTreeViewItem.cs" />

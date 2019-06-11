@@ -68,7 +68,5 @@ namespace Panuon.UI
             DependencyProperty.Register("CoverBrush", typeof(Brush), typeof(PURadioButton), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         #endregion
-
-
     }
 }

@@ -15,6 +15,16 @@ using System.Text;
 
 namespace Panuon.UI
 {
+
+    #region DropDown
+    public enum DropDownPlacement
+    {
+        Bottom,
+        RightBottom,
+        LeftBottom
+    }
+    #endregion
+
     public enum ImageType
     {
         Rectangle,

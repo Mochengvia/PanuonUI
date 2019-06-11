@@ -18,11 +18,13 @@
         <Canvas x:Name="CvaMain">
             <local:PUResizeContainer x:Name="ResizeContainer"
                                      Visibility="Hidden"
-                                   MinHeight="{Binding ImageMinHeight,ElementName=imagecuter}"
-                                   MinWidth="{Binding ImageMinWidth,ElementName=imagecuter}"
-                                   MaxHeight="{Binding ImageMaxHeight,ElementName=imagecuter}"
-                                   MaxWidth="{Binding ImageMaxWidth,ElementName=imagecuter}"
-                                   LimitInParent="True">
+                                     MinHeight="{Binding ImageMinHeight,ElementName=imagecuter}"
+                                     MinWidth="{Binding ImageMinWidth,ElementName=imagecuter}"
+                                     MaxHeight="{Binding ImageMaxHeight,ElementName=imagecuter}"
+                                     MaxWidth="{Binding ImageMaxWidth,ElementName=imagecuter}"
+                                     LimitInParent="True"
+                                     Canvas.Left="0"
+                                     Canvas.Top="0">
                 <Grid>
                     <Grid Background="#77DDDDDD">
                         <Grid>

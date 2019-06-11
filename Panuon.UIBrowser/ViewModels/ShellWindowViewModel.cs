@@ -121,6 +121,9 @@ namespace Panuon.UIBrowser.ViewModels
                 case "ImageCuter":
                     ActivateItem(new Special.ImageCuterViewModel(_windowManager));
                     break;
+                case "DropDown":
+                    ActivateItem(new Special.DropDownViewModel(_windowManager));
+                    break;
                 case "LineChart":
                     ActivateItem(new Chart.LineChartViewModel(_windowManager));
                     break;

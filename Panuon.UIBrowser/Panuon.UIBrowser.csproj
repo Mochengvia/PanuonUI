@@ -92,6 +92,7 @@
     <Compile Include="ViewModels\Control\TabControlViewModel.cs" />
     <Compile Include="ViewModels\Control\ButtonViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
+    <Compile Include="ViewModels\Special\DropDownViewModel.cs" />
     <Compile Include="ViewModels\Special\ImageCuterViewModel.cs" />
     <Compile Include="ViewModels\Special\PagingNavViewModel.cs" />
     <Compile Include="ViewModels\Special\SplitLineViewModel.cs" />
@@ -216,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Special\DropDownView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

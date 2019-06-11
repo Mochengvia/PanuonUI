@@ -108,6 +108,9 @@
                     <pu:PUTreeViewItem Padding="10,0,0,0"
                                        Header="ImageCuter 图片裁剪器"
                                        Value="ImageCuter" />
+                    <pu:PUTreeViewItem Padding="10,0,0,0"
+                                       Header="DropDown 下拉菜单"
+                                       Value="DropDown" />
                 </pu:PUTreeViewItem>
                 <pu:PUTreeViewItem Header="样式">
                     <pu:PUTreeViewItem Padding="10,0,0,0"

@@ -20,7 +20,8 @@
     <local:RingProgressBarConverter x:Key="RingProgressBarConverter"></local:RingProgressBarConverter>
     <local:MarginToWidthConverter x:Key="MarginToWidthConverter"></local:MarginToWidthConverter>
     <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></local:BooleanToVisibilityConverter>
-
+    <local:DropDownBorderPathConverter x:Key="DropDownBorderPathConverter"></local:DropDownBorderPathConverter>
+    
     <Style TargetType="{x:Type local:PUResizeGrid}">
         <Setter Property="Template">
             <Setter.Value>
@@ -302,6 +303,199 @@
                 </Setter.Value>
             </Setter>
         </Style.Setters>
+    </Style>
+    <Style TargetType="{x:Type local:DropDown}">
+        <Setter Property="SnapsToDevicePixels"
+                Value="False" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Foreground"
+                Value="#3E3E3E"></Setter>
+        <Setter Property="Background"
+                Value="White"></Setter>
+        <Setter Property="BorderBrush"
+                Value="Transparent"></Setter>
+        <Setter Property="BorderThickness"
+                Value="1"></Setter>
+        <Setter Property="Padding"
+                Value="5,0,0,0"></Setter>
+        <Setter Property="ShadowColor"
+                Value="#DDDDDD" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="CornerRadius"
+                Value="3" />
+        <Setter Property="DropDownPlacement"
+                Value="LeftBottom" />
+        <Style.Triggers>
+            <Trigger Property="DropDownPlacement"
+                     Value="LeftBottom">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:DropDown}">
+                            <Grid>
+                                <Grid>
+                                    <ContentPresenter x:Name="Content"
+                                                      ContentSource="Content"
+                                                      IsHitTestVisible="False" />
+                                </Grid>
+                                <ToggleButton x:Name="ToggleButton"
+                                              Focusable="false"
+                                              IsChecked="{Binding IsOpen,RelativeSource={RelativeSource AncestorType=local:DropDown},Mode=TwoWay}"
+                                              ClickMode="Press"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Background="Transparent"
+                                              BorderBrush="Transparent"
+                                              BorderThickness="0">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="ToggleButton">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Grid Background="Transparent" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+                                <local:NotTopMostPopup Placement="Left"
+                                                       IsOpen="{Binding IsOpen,RelativeSource={RelativeSource AncestorType=local:DropDown},Mode=TwoWay}"
+                                                       x:Name="Popup"
+                                                       PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                       HorizontalOffset="{Binding ActualWidth, ElementName=ToggleButton}"
+                                                       VerticalOffset="{Binding ActualHeight, ElementName=ToggleButton}"
+                                                       Focusable="False"
+                                                       Tag="{Binding ElementName=ToggleButton}"
+                                                       AllowsTransparency="True"
+                                                       PopupAnimation="Slide">
+                                    <Grid x:Name="DropDown"
+                                          Margin="1,1,1,10">
+                                        <Path x:Name="Path"
+                                              Fill="{TemplateBinding Background}"
+                                              Stroke="{TemplateBinding BorderBrush}"
+                                              StrokeThickness="{TemplateBinding BorderThickness}">
+                                            <Path.Data>
+                                                <MultiBinding Converter="{StaticResource DropDownBorderPathConverter}">
+                                                    <Binding Path="ActualWidth"
+                                                             ElementName="Path" />
+                                                    <Binding Path="ActualHeight"
+                                                             ElementName="Path" />
+                                                    <Binding Path="ActualWidth"
+                                                             ElementName="Content" />
+                                                    <Binding Path="ActualHeight"
+                                                             ElementName="Content" />
+                                                    <Binding Path="DropDownPlacement"
+                                                             RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
+                                                    <Binding Path="CornerRadius"
+                                                             RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
+                                                </MultiBinding>
+                                            </Path.Data>
+                                            <Path.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="8"
+                                                                  Opacity="1"
+                                                                  Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=local:DropDown}}"></DropShadowEffect>
+                                            </Path.Effect>
+                                        </Path>
+                                        <Grid Margin="0,7,0,0">
+                                            <ContentPresenter x:Name="Child"
+                                                              ContentSource="Child" />
+                                        </Grid>
+                                    </Grid>
+                                </local:NotTopMostPopup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+            <Trigger Property="DropDownPlacement"
+                     Value="RightBottom">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:DropDown}">
+                            <Grid>
+                                <Grid>
+                                    <ContentPresenter x:Name="Content"
+                                                      ContentSource="Content"
+                                                      IsHitTestVisible="False" />
+                                </Grid>
+                                <ToggleButton x:Name="ToggleButton"
+                                              Focusable="false"
+                                              IsChecked="{Binding Path=IsOpen, Mode=TwoWay, ElementName=Popup}"
+                                              ClickMode="Press"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              Background="Transparent"
+                                              BorderBrush="Transparent"
+                                              BorderThickness="0">
+                                    <ToggleButton.Style>
+                                        <Style TargetType="ToggleButton">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Grid Background="Transparent" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+                                <local:NotTopMostPopup Placement="Bottom"
+                                                       x:Name="Popup"
+                                                       PlacementTarget="{Binding ElementName=ToggleButton}"
+                                                       Focusable="False"
+                                                       Tag="{Binding ElementName=ToggleButton}"
+                                                       AllowsTransparency="True"
+                                                       PopupAnimation="Slide">
+                                    <Grid x:Name="DropDown"
+                                          Margin="1,1,1,10">
+                                        <Path x:Name="Path"
+                                              Fill="{TemplateBinding Background}"
+                                              Stroke="{TemplateBinding BorderBrush}"
+                                              StrokeThickness="{TemplateBinding BorderThickness}">
+                                            <Path.Data>
+                                                <MultiBinding Converter="{StaticResource DropDownBorderPathConverter}">
+                                                    <Binding Path="ActualWidth"
+                                                             ElementName="Path" />
+                                                    <Binding Path="ActualHeight"
+                                                             ElementName="Path" />
+                                                    <Binding Path="ActualWidth"
+                                                             ElementName="Content" />
+                                                    <Binding Path="ActualHeight"
+                                                             ElementName="Content" />
+                                                    <Binding Path="DropDownPlacement"
+                                                             RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
+                                                    <Binding Path="CornerRadius"
+                                                             RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
+                                                </MultiBinding>
+                                            </Path.Data>
+                                            <Path.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="5"
+                                                                  Opacity="1"
+                                                                  Color="{Binding ShadowColor,RelativeSource={RelativeSource AncestorType=local:DropDown}}"></DropShadowEffect>
+                                            </Path.Effect>
+                                        </Path>
+                                        <Grid>
+                                            <ContentPresenter x:Name="Child"
+                                                              ContentSource="Child"
+                                                              IsHitTestVisible="False" />
+                                        </Grid>
+                                    </Grid>
+                                </local:NotTopMostPopup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Trigger>
+
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type local:PUWindow}">
