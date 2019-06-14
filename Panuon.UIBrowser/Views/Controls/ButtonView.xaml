@@ -70,6 +70,7 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
