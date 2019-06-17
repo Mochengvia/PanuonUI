@@ -62,12 +62,6 @@ namespace Panuon.UI
         /// </summary>
         public PUWindow()
         {
-            try
-            {
-                Owner = GetOwnerWindow();
-            }
-            catch (Exception ex) { }
-
             PreviewMouseMove += OnPreviewMouseMove;
         }
         #endregion
@@ -573,9 +567,13 @@ namespace Panuon.UI
         private static void OnAllowAutoOwnerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var window = d as PUWindow;
-            if (window.AllowAutoOwner == false)
+            if (window.AllowAutoOwner == true)
             {
-                window.Owner = null;
+                try
+                {
+                    window.Owner = GetOwnerWindow();
+                }
+                catch (Exception ex) { }
             }
         }
 
