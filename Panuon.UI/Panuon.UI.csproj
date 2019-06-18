@@ -110,6 +110,7 @@
     <Compile Include="4_PasswordBox\PUPasswordBox.cs" />
     <Compile Include="6_CheckBox\PUCheckBox.cs" />
     <Compile Include="7_RadioButton\PURadioButton.cs" />
+    <Compile Include="9_Special\Countdown.cs" />
     <Compile Include="9_Special\DateTimePicker.cs" />
     <Compile Include="9_Special\DropDown.cs" />
     <Compile Include="9_Special\PUCard.cs" />
