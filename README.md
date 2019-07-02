@@ -1,7 +1,7 @@
 # PanuonUI(v1.0.0 alpha)
 
-对于全新的项目，推荐您使用Panuon.UI.Silver来替代PanuonUI。  
-它使用样式与Helper，拥有更好的性能，更优雅和规范的设计，以及English Document：  
+## 对于全新的项目，推荐您使用全新的Panuon.UI.Silver 
+样式与PanuonUI基本一致。它使用样式与Helper，拥有更好的性能，更优雅和规范的设计，更适合新老用户使用：  
 https://github.com/Ruris/Panuon.UI.Silver  
 
 
