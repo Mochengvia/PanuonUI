@@ -1,8 +1,12 @@
 # PanuonUI(v1.0.0 alpha)
 
-### 对于全新的项目，推荐您使用全新的Panuon.UI.Silver 
-样式与PanuonUI基本一致。它使用样式与Helper，拥有更好的性能，更优雅和规范的设计，更适合新老用户使用：  
-https://github.com/Ruris/Panuon.UI.Silver  
+```diff
+- 由于PanuonUI在设计初期的根本缺陷，PanuonUI从今日起将只做基本维护，并不再添加新的控件。
+- 请使用全新的PanuonUI.Silver，它的样式与PanuonUI大致相同，但使用方式更贴合原生控件，
+- 且支持虚拟化。Silver的控件比PanuonUI更多，功能也更强大。如有任何问题，欢迎进群咨询。
+```
+Panuon.UI.Silver ： https://github.com/Ruris/Panuon.UI.Silver  
+
 
 
 一个好看精致，不限制个人或商业使用的WPF控件库。<br/>
