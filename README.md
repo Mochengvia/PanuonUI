@@ -4,8 +4,9 @@
 - 由于PanuonUI在设计初期的根本缺陷，PanuonUI从今日起将只做基本维护，并不再添加新的控件。
 - 请使用全新的PanuonUI.Silver，它的样式与PanuonUI大致相同，但使用方式更贴合原生控件，
 - 且支持虚拟化。Silver的控件比PanuonUI更多，功能也更强大。如有任何问题，欢迎进群咨询。
+- Panuon.UI.Silver ： https://github.com/Ruris/Panuon.UI.Silver  
 ```
-Panuon.UI.Silver ： https://github.com/Ruris/Panuon.UI.Silver  
+
 
 
 
