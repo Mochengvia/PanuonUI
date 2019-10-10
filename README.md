@@ -1,5 +1,6 @@
 # PanuonUI(v1.0.0 alpha)
 
+### 本项目已停止维护。请使用全新的PanuonUI.Silver。
 ```diff
 - 由于PanuonUI在设计初期的根本缺陷，PanuonUI从今日起将只做基本维护，并不再添加新的控件。
 - 请使用全新的PanuonUI.Silver，它的样式与PanuonUI大致相同，但使用方式更贴合原生控件，
